@@ -213,7 +213,7 @@ export default function About() {
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
-                        Nevada Real Estate License
+                        Nevada Real Estate License S.0197614
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="w-4 h-4 mr-2 text-green-600" />

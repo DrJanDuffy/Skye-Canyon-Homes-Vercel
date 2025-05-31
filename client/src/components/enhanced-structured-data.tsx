@@ -34,7 +34,7 @@ export default function EnhancedStructuredData() {
     "hasCredential": [
       {
         "@type": "EducationalOccupationalCredential",
-        "name": "Real Estate License",
+        "name": "Nevada Real Estate License S.0197614",
         "credentialCategory": "Professional License"
       },
       {

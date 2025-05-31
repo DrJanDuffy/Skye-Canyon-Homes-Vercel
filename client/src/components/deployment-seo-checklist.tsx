@@ -71,7 +71,7 @@ export default function DeploymentSEOChecklist() {
       <meta name="review-count" content="127" />
       <meta name="average-rating" content="4.9" />
       <meta name="business-verified" content="true" />
-      <meta name="license-number" content="Nevada Real Estate License" />
+      <meta name="license-number" content="Nevada Real Estate License S.0197614" />
 
       {/* Search Console and Analytics */}
       <meta name="google-site-verification" content="skye-canyon-verified" />

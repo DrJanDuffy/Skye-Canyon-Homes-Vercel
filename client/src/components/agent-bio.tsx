@@ -54,7 +54,7 @@ export default function AgentBio() {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">Education</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
-                  <li>• Real Estate License - Nevada</li>
+                  <li>• Nevada Real Estate License S.0197614</li>
                   <li>• Certified Luxury Specialist</li>
                   <li>• Skye Canyon Market Specialist</li>
                 </ul>
