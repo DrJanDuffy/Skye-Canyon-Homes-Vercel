@@ -192,7 +192,7 @@ export default function About() {
                     <ul className="space-y-2">
                       <li className="flex items-center">
                         <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
-                        Doctorate in Business Administration
+                        Skye Canyon Market Specialist
                       </li>
                       <li className="flex items-center">
                         <CheckCircle className="w-4 h-4 mr-2 text-green-600" />

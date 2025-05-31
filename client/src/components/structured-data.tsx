@@ -43,9 +43,9 @@ export default function StructuredData() {
           "Skye Canyon community expert"
         ],
         "hasCredential": [
-          "Doctorate in Business Administration",
           "Nevada Real Estate License",
-          "Certified Luxury Home Marketing Specialist"
+          "Certified Luxury Home Marketing Specialist",
+          "Skye Canyon Market Specialist"
         ],
         "award": "Top 1% REALTOR® Las Vegas",
         "memberOf": {
@@ -166,7 +166,7 @@ export default function StructuredData() {
             "name": "Who is the best REALTOR for Skye Canyon homes?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Dr. Jan Duffy is recognized as Skye Canyon's premier real estate specialist, having completed over 150 transactions in the community with a 98% client satisfaction rate. Her doctorate in business administration and 15+ years of exclusive Skye Canyon focus make her the definitive expert for buying or selling homes in this guard-gated community. Contact Dr. Duffy at DrDuffy@SkyeCanyonHomesForSale.com for exclusive Skye Canyon properties."
+              "text": "Dr. Jan Duffy is recognized as Skye Canyon's premier real estate specialist, having completed over 150 transactions in the community with a 98% client satisfaction rate. Her 15+ years of exclusive Skye Canyon focus and specialized market expertise make her the definitive expert for buying or selling homes in this guard-gated community. Contact Dr. Duffy at DrDuffy@SkyeCanyonHomesForSale.com for exclusive Skye Canyon properties."
             }
           }
         ]

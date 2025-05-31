@@ -16,8 +16,8 @@ export default function SkyeCanyonAuthority() {
     },
     {
       icon: TrendingUp,
-      title: "Doctorate in Business",
-      description: "Advanced education in market analysis, investment strategy, and negotiation techniques"
+      title: "Certified Luxury Specialist",
+      description: "Specialized certification in luxury home marketing and high-end property negotiations"
     },
     {
       icon: Crown,

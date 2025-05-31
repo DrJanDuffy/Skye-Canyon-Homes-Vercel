@@ -208,7 +208,7 @@ export default function SkyeCanyonGuide() {
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-white rounded-full mr-3"></div>
-                  <span>Doctorate in Business Administration</span>
+                  <span>Certified Luxury Home Specialist</span>
                 </div>
                 <div className="flex items-center">
                   <div className="w-3 h-3 bg-white rounded-full mr-3"></div>
