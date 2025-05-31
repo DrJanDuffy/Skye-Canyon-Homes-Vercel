@@ -193,7 +193,7 @@ export default function AISearchAssistant() {
 
         {/* Results */}
         {results && !isSearching && (
-          <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+          <div className="space-y-6 bg-gray-50 rounded-xl p-6">
             <h4 className="font-semibold text-gray-900 mb-3">AI Insights:</h4>
             {results.suggestions?.map((suggestion, idx) => (
               <div key={idx} className="flex items-start space-x-3">
@@ -201,6 +201,32 @@ export default function AISearchAssistant() {
                 <p className="text-gray-700">{suggestion}</p>
               </div>
             ))}
+            
+            {/* Property Results */}
+            {results.properties && results.properties.length > 0 && (
+              <div className="mt-6">
+                <h5 className="font-medium text-gray-900 mb-4">Matching Properties:</h5>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {results.properties.map((property: any) => (
+                    <div key={property.id} className="bg-white rounded-lg p-4 border border-gray-200">
+                      <div className="flex justify-between items-start mb-2">
+                        <h6 className="font-semibold text-lg text-gray-900">
+                          ${property.price.toLocaleString()}
+                        </h6>
+                        <Badge variant="secondary">{property.type}</Badge>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-2">{property.address}</p>
+                      <div className="flex space-x-4 text-sm text-gray-500">
+                        <span>{property.bedrooms} bed</span>
+                        <span>{property.bathrooms} bath</span>
+                        <span>{property.sqft.toLocaleString()} sqft</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
             {results.marketInsights && (
               <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
                 <p className="text-blue-800 font-medium">Market Insight:</p>
