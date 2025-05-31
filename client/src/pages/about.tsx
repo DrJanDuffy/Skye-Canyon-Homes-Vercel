@@ -74,32 +74,35 @@ export default function About() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-20">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              <div className="inline-flex items-center bg-realscout-blue/10 text-realscout-blue rounded-full px-4 py-2 mb-6">
+                <Award className="w-4 h-4 mr-2" />
+                <span className="text-sm font-medium">Skye Canyon Specialist</span>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
                 Meet Dr. Jan Duffy
               </h1>
-              <p className="text-xl mb-4 text-white">
+              <p className="text-xl mb-4 text-gray-700 font-medium">
                 Your Trusted Skye Canyon Real Estate Expert
               </p>
-              <p className="text-lg mb-8 text-gray-100">
+              <p className="text-lg mb-8 text-gray-600 leading-relaxed">
                 Providing comprehensive real estate services for Skye Canyon buyers, sellers, 
                 and investors with personalized attention and local market expertise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   onClick={scrollToContact}
-                  className="bg-white text-realscout-blue hover:bg-gray-100"
+                  className="bg-realscout-blue text-white hover:bg-realscout-navy"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
                   Schedule Consultation
                 </Button>
                 <Button 
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-realscout-blue"
+                  className="border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Call (702) 555-0123
@@ -107,13 +110,15 @@ export default function About() {
               </div>
             </div>
             <div className="relative">
-              <img 
-                src="/duffy-headshot.jpg" 
-                alt="Dr. Jan Duffy REALTOR professional portrait" 
-                className="rounded-xl shadow-2xl w-full max-w-md mx-auto"
-                style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
-              />
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-lg p-4 shadow-lg">
+              <div className="bg-gradient-to-br from-realscout-blue to-realscout-navy rounded-2xl p-8">
+                <img 
+                  src={drDuffyPhoto}
+                  alt="Dr. Jan Duffy REALTOR professional portrait" 
+                  className="rounded-xl shadow-2xl w-full max-w-md mx-auto"
+                  style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-white rounded-lg p-4 shadow-lg border border-gray-200">
                 <div className="text-realscout-blue text-2xl font-bold">15+</div>
                 <div className="text-gray-600 text-sm">Years Experience</div>
               </div>
