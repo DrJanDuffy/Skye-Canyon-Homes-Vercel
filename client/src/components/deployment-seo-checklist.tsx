@@ -33,7 +33,7 @@ export default function DeploymentSEOChecklist() {
       <meta name="local-business-type" content="Real Estate Agent" />
       <meta name="service-types" content="Home Buying, Home Selling, Market Analysis, Property Valuation" />
       <meta name="price-range" content="$450,000 - $2,000,000+" />
-      <meta name="operating-hours" content="Monday-Sunday 8:00 AM - 8:00 PM" />
+      <meta name="operating-hours" content="Monday-Friday 9:00 AM - 6:00 PM, Saturday 9:00 AM - 5:00 PM, Sunday 11:00 AM - 4:00 PM" />
 
       {/* Voice Search Optimization */}
       <meta name="voice-search-optimized" content="true" />

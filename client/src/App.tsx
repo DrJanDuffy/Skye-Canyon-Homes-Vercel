@@ -17,6 +17,7 @@ import GEOAuthoritySignals from "@/components/geo-authority-signals";
 import MobileOptimizer from "@/components/mobile-optimizer";
 import AnalyticsTracker from "@/components/analytics-tracker";
 import SEOOptimizer from "@/components/seo-optimizer";
+import DeploymentSEOChecklist from "@/components/deployment-seo-checklist";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -54,6 +55,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <CriticalCSS />
+          <DeploymentSEOChecklist />
           <SEOOptimizer />
           <MobileOptimizer />
           <AnalyticsTracker />

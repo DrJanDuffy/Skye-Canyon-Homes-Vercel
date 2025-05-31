@@ -98,6 +98,15 @@ export default function Footer() {
                 <span>License# 12345678</span>
               </div>
             </div>
+            
+            <div className="mt-6 pt-4 border-t border-gray-600">
+              <h5 className="text-sm font-semibold mb-3 text-white">Business Hours</h5>
+              <div className="space-y-1 text-sm text-gray-400">
+                <div>Monday - Friday: 9:00 AM - 6:00 PM</div>
+                <div>Saturday: 9:00 AM - 5:00 PM</div>
+                <div>Sunday: 11:00 AM - 4:00 PM</div>
+              </div>
+            </div>
           </div>
         </div>
         

@@ -86,7 +86,7 @@ export default function EnhancedStructuredData() {
       "latitude": 36.2719,
       "longitude": -115.2369
     },
-    "openingHours": "Mo-Su 08:00-20:00",
+    "openingHours": "Mo-Fr 09:00-18:00, Sa 09:00-17:00, Su 11:00-16:00",
     "priceRange": "$$$$",
     "paymentAccepted": "Cash, Check, Financing",
     "aggregateRating": {
