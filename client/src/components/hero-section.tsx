@@ -27,9 +27,12 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 opacity-60">
         <img 
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=85" 
           alt="Luxury real estate background" 
           className="w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
       </div>
       
