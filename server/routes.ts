@@ -215,29 +215,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Cloud CMA integration
-  app.get("/api/cloud-cma-data", async (req, res) => {
+  // RSS Feed integration from Simplifying the Market
+  app.get("/api/market-insights", async (req, res) => {
     try {
-      const apiKey = process.env.CLOUD_CMA_API_KEY;
-      if (!apiKey) {
-        return res.status(400).json({ message: "Cloud CMA API key not configured" });
+      const response = await fetch("https://www.simplifyingthemarket.com/en/feed?a=956758-ef2edda2f940e018328655620ea05f18");
+      
+      if (!response.ok) {
+        throw new Error(`RSS Feed error: ${response.status}`);
       }
 
-      const response = await fetch(`https://api.cloudcma.com/api/listings?key=${apiKey}&limit=10`, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      const xmlText = await response.text();
+      
+      // Parse XML to extract key insights
+      const titleMatches = xmlText.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/g) || [];
+      const linkMatches = xmlText.match(/<link>(.*?)<\/link>/g) || [];
+      const descriptionMatches = xmlText.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/g) || [];
+      
+      const insights = titleMatches.slice(1, 6).map((title, index) => {
+        const cleanTitle = title.replace(/<title><!\[CDATA\[/, '').replace(/\]\]><\/title>/, '');
+        const link = linkMatches[index + 1]?.replace(/<link>/, '').replace(/<\/link>/, '') || '';
+        const description = descriptionMatches[index + 1]?.replace(/<description><!\[CDATA\[/, '').replace(/\]\]><\/description>/, '') || '';
+        
+        return {
+          title: cleanTitle,
+          link: link,
+          description: description.substring(0, 200) + '...',
+          source: 'Simplifying the Market'
+        };
       });
 
-      if (!response.ok) {
-        throw new Error(`Cloud CMA API error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      res.json(data);
+      res.json({ insights });
     } catch (error) {
-      console.error('Cloud CMA API error:', error);
-      res.status(500).json({ message: "Failed to fetch Cloud CMA data" });
+      console.error("RSS Feed error:", error);
+      res.status(500).json({ message: "Failed to fetch market insights" });
     }
   });
 
