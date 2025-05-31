@@ -16,10 +16,10 @@ export default function AgentBio() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <img 
-              src={drDuffyPhoto} 
+              src="/duffy-headshot.jpg" 
               alt="Dr. Jan Duffy REALTOR professional headshot" 
-              className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0 object-cover aspect-square"
-              style={{ imageRendering: 'crisp-edges' }}
+              className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0"
+              style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
             />
           </div>
           

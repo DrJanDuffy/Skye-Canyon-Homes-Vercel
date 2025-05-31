@@ -107,10 +107,10 @@ export default function About() {
             </div>
             <div className="relative">
               <img 
-                src={drDuffyPhoto} 
+                src="/duffy-headshot.jpg" 
                 alt="Dr. Jan Duffy REALTOR professional portrait" 
-                className="rounded-xl shadow-2xl w-full max-w-md mx-auto object-cover aspect-square"
-                style={{ imageRendering: 'crisp-edges' }}
+                className="rounded-xl shadow-2xl w-full max-w-md mx-auto"
+                style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
               />
               <div className="absolute -bottom-6 -right-6 bg-white rounded-lg p-4 shadow-lg">
                 <div className="text-realscout-blue text-2xl font-bold">15+</div>
