@@ -74,17 +74,18 @@ export default function About() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-20">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 Meet Dr. Jan Duffy
               </h1>
-              <p className="text-xl mb-4 opacity-90">
+              <p className="text-xl mb-4 text-white">
                 Your Trusted Skye Canyon Real Estate Expert
               </p>
-              <p className="text-lg opacity-80 mb-8">
+              <p className="text-lg mb-8 text-gray-100">
                 Providing comprehensive real estate services for Skye Canyon buyers, sellers, 
                 and investors with personalized attention and local market expertise.
               </p>
