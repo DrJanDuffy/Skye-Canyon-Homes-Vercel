@@ -3,6 +3,8 @@ import Footer from "@/components/footer";
 import RealScoutListings from "@/components/realscout-listings";
 import RealScoutCurrentListings from "@/components/realscout-current-listings";
 import FollowUpBossListings from "@/components/followup-boss-listings";
+import Breadcrumb from "@/components/breadcrumb";
+import BackToTop from "@/components/back-to-top";
 
 export default function Properties() {
   return (
@@ -22,6 +24,11 @@ export default function Properties() {
           </div>
         </div>
       </section>
+
+      {/* Breadcrumb Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumb items={[{ label: "Properties" }]} />
+      </div>
 
       {/* Current MLS Listings */}
       <section className="py-16 bg-white">
@@ -69,6 +76,7 @@ export default function Properties() {
       </section>
       
       <Footer />
+      <BackToTop />
     </div>
   );
 }

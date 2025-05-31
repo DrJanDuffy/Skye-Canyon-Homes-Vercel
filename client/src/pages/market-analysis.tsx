@@ -3,6 +3,7 @@ import Footer from "@/components/footer";
 import MarketStats from "@/components/market-stats";
 import MarketIntelligence from "@/components/market-intelligence";
 import Breadcrumb from "@/components/breadcrumb";
+import BackToTop from "@/components/back-to-top";
 
 export default function MarketAnalysis() {
   return (
@@ -25,6 +26,11 @@ export default function MarketAnalysis() {
         </div>
       </section>
       
+      {/* Breadcrumb Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumb items={[{ label: "Market Analysis" }]} />
+      </div>
+
       {/* Market Statistics */}
       <MarketStats />
       
@@ -69,6 +75,7 @@ export default function MarketAnalysis() {
       </section>
       
       <Footer />
+      <BackToTop />
     </div>
   );
 }
