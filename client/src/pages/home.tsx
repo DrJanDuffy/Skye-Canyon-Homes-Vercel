@@ -11,6 +11,7 @@ import RealScoutListings from "@/components/realscout-listings";
 import RealScoutCurrentListings from "@/components/realscout-current-listings";
 import FollowUpBossListings from "@/components/followup-boss-listings";
 import AISearchAssistant from "@/components/ai-search-assistant";
+import MarketIntelligence from "@/components/market-intelligence";
 
 export default function Home() {
   return (
@@ -43,6 +44,9 @@ export default function Home() {
       </section>
       
       <MarketStats />
+      
+      {/* Market Intelligence */}
+      <MarketIntelligence />
       
       {/* FollowUp Boss CRM Integration */}
       <section className="py-16 bg-white">
