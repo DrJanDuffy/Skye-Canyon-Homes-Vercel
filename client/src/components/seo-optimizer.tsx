@@ -29,8 +29,8 @@ export default function SEOOptimizer({
 
   // Dynamic SEO based on page and user context
   const getPageSEO = () => {
-    const baseTitle = "Dr. Jan Duffy REALTOR® | Skye Canyon Homes Expert | Las Vegas NV"
-    const baseDescription = "Discover luxury Skye Canyon homes with Dr. Jan Duffy, your trusted Las Vegas REALTOR®. Expert market knowledge, personalized service, and exclusive listings in North Las Vegas."
+    const baseTitle = "Skye Canyon | Dr. Jan Duffy, REALTOR®"
+    const baseDescription = "Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®. Expert market knowledge, personalized service, and exclusive listings in North Las Vegas."
     
     switch (location) {
       case '/':
@@ -81,7 +81,7 @@ export default function SEOOptimizer({
       "name": "Dr. Jan Duffy",
       "jobTitle": "REALTOR®",
       "url": "https://skyecanyonhomesforsale.com",
-      "telephone": "+1-702-XXX-XXXX",
+      "telephone": "+1-702-500-1902",
       "email": "jan@skyecanyonhomesforsale.com",
       "areaServed": {
         "@type": "Place",
@@ -103,7 +103,7 @@ export default function SEOOptimizer({
         "name": propertyData.address,
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": propertyData.address,
+          "streetAddress": propertyData.address || "10111 W. Skye Canyon Park Drive",
           "addressLocality": "Las Vegas",
           "addressRegion": "Nevada",
           "postalCode": "89166"

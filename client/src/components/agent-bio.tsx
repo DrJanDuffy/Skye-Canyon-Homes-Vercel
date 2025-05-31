@@ -73,7 +73,7 @@ export default function AgentBio() {
             <div className="space-y-3 mb-6">
               <div className="flex items-center text-gray-700">
                 <Phone className="w-5 h-5 text-realscout-blue mr-3" />
-                <span>(702) 555-0123</span>
+                <span>(702) 500-1902</span>
               </div>
               <div className="flex items-center text-gray-700">
                 <Mail className="w-5 h-5 text-realscout-blue mr-3" />
@@ -81,7 +81,7 @@ export default function AgentBio() {
               </div>
               <div className="flex items-center text-gray-700">
                 <MapPin className="w-5 h-5 text-realscout-blue mr-3" />
-                <span>Serving Skye Canyon, Las Vegas, NV</span>
+                <span>10111 W. Skye Canyon Park Drive, Las Vegas, NV 89166</span>
               </div>
             </div>
             

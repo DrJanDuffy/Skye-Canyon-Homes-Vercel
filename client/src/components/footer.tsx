@@ -83,7 +83,7 @@ export default function Footer() {
             <div className="space-y-3 text-gray-400">
               <div className="flex items-center">
                 <span className="mr-3">📞</span>
-                <span>(702) 555-0123</span>
+                <span>(702) 500-1902</span>
               </div>
               <div className="flex items-center">
                 <span className="mr-3">✉️</span>
@@ -91,7 +91,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <span className="mr-3">📍</span>
-                <span>Las Vegas, Nevada</span>
+                <span>10111 W. Skye Canyon Park Drive, Las Vegas, NV 89166</span>
               </div>
               <div className="flex items-center">
                 <span className="mr-3">🆔</span>
