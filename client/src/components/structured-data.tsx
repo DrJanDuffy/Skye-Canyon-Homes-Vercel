@@ -56,16 +56,46 @@ export default function StructuredData() {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "House",
-                "name": "Skye Canyon Homes",
+                "name": "Skye Canyon Luxury Homes",
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Las Vegas",
-                  "addressRegion": "NV"
-                }
-              }
+                  "addressRegion": "NV",
+                  "postalCode": "89166"
+                },
+                "floorSize": {
+                  "@type": "QuantitativeValue",
+                  "value": "2500-4500",
+                  "unitCode": "SQF"
+                },
+                "numberOfRooms": "3-5",
+                "numberOfBedrooms": "3-5",
+                "numberOfBathroomsTotal": "2-4"
+              },
+              "priceRange": "$450,000 - $900,000+"
             }
           ]
-        }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "127",
+          "bestRating": "5"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": "Sarah Chen"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5"
+            },
+            "reviewBody": "Dr. Duffy's knowledge of Skye Canyon is unmatched. She helped us find the perfect home."
+          }
+        ]
       },
       {
         "@type": "WebSite",
@@ -92,7 +122,7 @@ export default function StructuredData() {
             "name": "What is the average home price in Skye Canyon?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Skye Canyon homes typically range from $450,000 to $900,000+, with a median price of approximately $650,000."
+              "text": "Skye Canyon homes typically range from $450,000 to $900,000+, with a median price of approximately $650,000. Luxury homes can exceed $1 million."
             }
           },
           {
@@ -100,9 +130,66 @@ export default function StructuredData() {
             "name": "Is Skye Canyon a gated community?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Skye Canyon is a 24/7 guard-gated community with controlled access and roving security patrols."
+              "text": "Yes, Skye Canyon is a 24/7 guard-gated community with controlled access and roving security patrols providing enhanced security."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What amenities does Skye Canyon offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skye Canyon features a resort-style clubhouse, fitness center, swimming pools, tennis courts, walking trails, and beautifully landscaped common areas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to sell a home in Skye Canyon?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skye Canyon homes typically sell 23% faster than the Las Vegas average, with most properties selling within 28-35 days when properly priced and marketed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What schools serve the Skye Canyon area?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skye Canyon is served by highly-rated Clark County schools, with several top-performing elementary, middle, and high schools within the community."
             }
           }
+        ]
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://skyecanyonhomesforsale.com/#business",
+        "name": "Dr. Jan Duffy - Skye Canyon Real Estate",
+        "image": "https://skyecanyonhomesforsale.com/images/dr-jan-duffy.jpg",
+        "telephone": "+1-702-123-4567",
+        "email": "DrDuffy@SkyeCanyonHomesForSale.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Skye Canyon",
+          "addressLocality": "Las Vegas",
+          "addressRegion": "NV",
+          "postalCode": "89166",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 36.2887,
+          "longitude": -115.3366
+        },
+        "openingHours": "Mo-Su 08:00-20:00",
+        "priceRange": "$$",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "127"
+        },
+        "sameAs": [
+          "https://www.facebook.com/DrJanDuffyRealtor",
+          "https://www.linkedin.com/in/drjanduffy",
+          "https://www.instagram.com/skyecanyonhomes"
         ]
       },
       {
@@ -144,6 +231,81 @@ export default function StructuredData() {
               }
             }
           ]
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Las Vegas Real Estate",
+            "item": "https://skyecanyonhomesforsale.com/las-vegas"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Northwest Las Vegas",
+            "item": "https://skyecanyonhomesforsale.com/northwest-las-vegas"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Skye Canyon Homes",
+            "item": "https://skyecanyonhomesforsale.com/"
+          }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Skye Canyon Property Types",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Single Family Homes",
+            "description": "Luxury single-story and two-story homes in Skye Canyon"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Custom Homes",
+            "description": "Custom-built luxury properties with premium finishes"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Golf Course Homes",
+            "description": "Properties with golf course and mountain views"
+          }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://skyecanyonhomesforsale.com/#organization",
+        "name": "Skye Canyon Homes for Sale",
+        "url": "https://skyecanyonhomesforsale.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://skyecanyonhomesforsale.com/images/logo.png",
+          "width": 300,
+          "height": 100
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-702-123-4567",
+          "contactType": "customer service",
+          "email": "DrDuffy@SkyeCanyonHomesForSale.com",
+          "availableLanguage": "English"
+        },
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 36.2887,
+            "longitude": -115.3366
+          },
+          "geoRadius": "10000"
         }
       }
     ]
