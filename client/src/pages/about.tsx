@@ -73,6 +73,11 @@ export default function About() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       
+      {/* Test Banner - Visible Change */}
+      <div className="bg-red-500 text-white text-center py-4 font-bold text-xl">
+        UPDATED ABOUT PAGE - NEW DESIGN LOADED
+      </div>
+      
       {/* Hero Section */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
