@@ -394,6 +394,132 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // User preferences endpoint
+  app.post("/api/user-preferences", async (req, res) => {
+    try {
+      const { preferences, timestamp, source } = req.body;
+      
+      // Save preferences to database
+      const preferenceData = {
+        preferences: JSON.stringify(preferences),
+        timestamp,
+        source,
+        sessionId: req.sessionID || 'anonymous'
+      };
+      
+      // Send enhanced lead to FollowUp Boss with preferences
+      const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
+      
+      if (apiKey) {
+        const leadData = {
+          source: 'Skye Canyon Preference Collector',
+          customFields: {
+            property_type_preference: preferences.propertyType,
+            desired_features: preferences.features.join(', '),
+            lifestyle_preferences: preferences.lifestyle.join(', '),
+            buying_timeline: preferences.timeline,
+            communication_preference: preferences.communication,
+            preference_score: calculatePreferenceQuality(preferences)
+          },
+          tags: ['Preference Qualified', 'Skye Canyon Interest', `Timeline: ${preferences.timeline}`]
+        };
+
+        await fetch('https://api.followupboss.com/v1/people', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(leadData)
+        });
+      }
+      
+      res.json({ success: true, message: "Preferences saved successfully" });
+    } catch (error) {
+      console.error('Error saving preferences:', error);
+      res.status(500).json({ message: "Failed to save preferences" });
+    }
+  });
+
+  // Personalized property matching endpoint
+  app.post("/api/personalized-matches", async (req, res) => {
+    try {
+      const preferences = req.body;
+      
+      // Get all properties
+      const properties = await storage.getProperties();
+      
+      // Score and filter properties based on preferences
+      const scoredProperties = properties.map(property => ({
+        ...property,
+        matchScore: calculatePropertyMatch(property, preferences)
+      }))
+      .filter(property => property.matchScore > 30) // Only show good matches
+      .sort((a, b) => b.matchScore - a.matchScore) // Sort by best match
+      .slice(0, 6); // Top 6 matches
+      
+      res.json({
+        matches: scoredProperties,
+        totalCount: scoredProperties.length,
+        preferences
+      });
+    } catch (error) {
+      console.error('Error generating matches:', error);
+      res.status(500).json({ message: "Failed to generate matches" });
+    }
+  });
+
+  function calculatePreferenceQuality(preferences: any): number {
+    let score = 0;
+    
+    if (preferences.propertyType) score += 20;
+    if (preferences.features.length > 0) score += preferences.features.length * 10;
+    if (preferences.lifestyle.length > 0) score += preferences.lifestyle.length * 8;
+    if (preferences.timeline) score += 15;
+    if (preferences.communication) score += 10;
+    
+    return Math.min(score, 100);
+  }
+
+  function calculatePropertyMatch(property: any, preferences: any): number {
+    let score = 0;
+    
+    // Property type matching
+    if (preferences.propertyType && property.type?.includes(preferences.propertyType.toLowerCase())) {
+      score += 25;
+    }
+    
+    // Feature matching
+    preferences.features.forEach((feature: string) => {
+      if (property.description?.toLowerCase().includes(feature.replace('-', ' '))) {
+        score += 15;
+      }
+    });
+    
+    // Lifestyle matching
+    preferences.lifestyle.forEach((lifestyle: string) => {
+      switch (lifestyle) {
+        case 'family':
+          if (property.bedrooms >= 3) score += 10;
+          break;
+        case 'entertaining':
+          if (property.description?.includes('pool') || property.description?.includes('entertaining')) score += 10;
+          break;
+        case 'luxury':
+          if (property.price > 800000) score += 10;
+          break;
+        case 'active':
+          if (property.description?.includes('trail') || property.description?.includes('fitness')) score += 10;
+          break;
+      }
+    });
+    
+    // Timeline urgency factor
+    if (preferences.timeline === 'ASAP') score += 5;
+    
+    return Math.min(score, 100);
+  }
+
   // RSS Feed integration from Simplifying the Market
   app.get("/api/market-insights", async (req, res) => {
     try {

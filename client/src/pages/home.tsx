@@ -13,6 +13,7 @@ import FollowUpBossListings from "@/components/followup-boss-listings";
 import AISearchAssistant from "@/components/ai-search-assistant";
 import MarketIntelligence from "@/components/market-intelligence";
 import SkyeCanyonAuthority from "@/components/skye-canyon-authority";
+import PreferenceCollector from "@/components/preference-collector";
 
 export default function Home() {
   return (
@@ -55,6 +56,13 @@ export default function Home() {
           >
             View Complete Market Analysis →
           </a>
+        </div>
+      </section>
+
+      {/* Preference Collector */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PreferenceCollector />
         </div>
       </section>
       
