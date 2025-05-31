@@ -27,6 +27,7 @@ export default function RealScoutSearch({ type, className = "" }: RealScoutSearc
       <div className={className}>
         <realscout-simple-search
           agent-id="QWdlbnQtMjI1MDUw"
+          domain="drjanduffy.realscout.com"
           widget-id="search-widget"
         ></realscout-simple-search>
       </div>
@@ -37,6 +38,7 @@ export default function RealScoutSearch({ type, className = "" }: RealScoutSearc
     <div className={className}>
       <realscout-advanced-search
         agent-id="QWdlbnQtMjI1MDUw"
+        domain="drjanduffy.realscout.com"
         widget-id="advanced-search-widget"
       ></realscout-advanced-search>
     </div>

@@ -24,8 +24,10 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
     <div className={className}>
       <realscout-office-listings
         agent-id="QWdlbnQtMjI1MDUw"
+        domain="drjanduffy.realscout.com"
         widget-id="office-listings-widget"
         max-listings="6"
+        show-agent-info="true"
       ></realscout-office-listings>
     </div>
   );
