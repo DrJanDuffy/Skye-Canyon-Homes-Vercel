@@ -8,6 +8,7 @@ import CommunityHighlights from "@/components/community-highlights";
 import CallToAction from "@/components/call-to-action";
 import Footer from "@/components/footer";
 import RealScoutListings from "@/components/realscout-listings";
+import RealScoutCurrentListings from "@/components/realscout-current-listings";
 
 export default function Home() {
   return (
@@ -24,10 +25,10 @@ export default function Home() {
               Current MLS Listings
             </h2>
             <p className="text-xl text-gray-600">
-              Live inventory from Dr. Jan Duffy's MLS portfolio
+              Newest properties for sale and rent from Dr. Jan Duffy's portfolio
             </p>
           </div>
-          <RealScoutListings className="w-full" />
+          <RealScoutCurrentListings className="w-full" />
         </div>
       </section>
       
