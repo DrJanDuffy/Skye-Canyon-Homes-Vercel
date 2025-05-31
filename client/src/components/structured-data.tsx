@@ -12,7 +12,7 @@ export default function StructuredData() {
         "email": "jan@skyecanyonhomes.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Sky Canyon",
+          "streetAddress": "Skye Canyon",
           "addressLocality": "Las Vegas",
           "addressRegion": "NV",
           "postalCode": "89166",
@@ -33,7 +33,7 @@ export default function StructuredData() {
           "geoRadius": "5000"
         },
         "knowsAbout": [
-          "Sky Canyon real estate",
+          "Skye Canyon real estate",
           "Las Vegas luxury homes",
           "Guard-gated communities",
           "Northwest Las Vegas properties"

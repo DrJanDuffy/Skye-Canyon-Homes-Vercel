@@ -49,7 +49,7 @@ export default function LeadCaptureForm() {
     mutationFn: async (data: Omit<LeadFormData, 'consent'>) => {
       return apiRequest('POST', '/api/leads', {
         ...data,
-        source: 'Sky Canyon Website - Lead Capture Form'
+        source: 'Skye Canyon Website - Lead Capture Form'
       });
     },
     onSuccess: () => {
@@ -86,7 +86,7 @@ export default function LeadCaptureForm() {
             </div>
             <h3 className="text-2xl font-bold mb-4">Thank You!</h3>
             <p className="text-gray-600 mb-6">
-              I'll be in touch within 24 hours to discuss your Sky Canyon home search.
+              I'll be in touch within 24 hours to discuss your Skye Canyon home search.
             </p>
             <Button 
               onClick={() => setShowSuccess(false)}
@@ -105,7 +105,7 @@ export default function LeadCaptureForm() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Find Your Sky Canyon Home?
+            Ready to Find Your Skye Canyon Home?
           </h2>
           <p className="text-xl opacity-90">
             Get personalized listings and expert guidance from Dr. Jan Duffy

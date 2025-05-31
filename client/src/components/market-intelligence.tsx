@@ -180,7 +180,7 @@ export default function MarketIntelligence() {
                 🎯 Personalized Market Insight
               </h3>
               <p className="mb-4">
-                Based on current market conditions, Sky Canyon homes are selling 
+                Based on current market conditions, Skye Canyon homes are selling 
                 {marketData?.sellingSpeed ? ` ${marketData.sellingSpeed}` : ' 23%'} faster than the Las Vegas average. 
                 Properties in the premium price range are receiving strong buyer interest.
               </p>

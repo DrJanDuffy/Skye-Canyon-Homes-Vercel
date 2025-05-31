@@ -19,11 +19,11 @@ export default function AISearchAssistant() {
   const [results, setResults] = useState<AISearchResults | null>(null);
 
   const suggestions = [
-    "Homes under $800k in Sky Canyon",
+    "Homes under $800k in Skye Canyon",
     "3 bedroom houses with pool",
     "What's my home worth?",
     "Best schools in the area",
-    "Market trends in Sky Canyon"
+    "Market trends in Skye Canyon"
   ];
 
   // Voice search integration
@@ -103,7 +103,7 @@ export default function AISearchAssistant() {
             AI Property Search Assistant
           </h3>
           <p className="text-gray-600">
-            Ask me anything about Sky Canyon real estate
+            Ask me anything about Skye Canyon real estate
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export default function AISearchAssistant() {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Ask me anything about Sky Canyon homes..."
+              placeholder="Ask me anything about Skye Canyon homes..."
               className="w-full px-6 py-4 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl"
               onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
             />
