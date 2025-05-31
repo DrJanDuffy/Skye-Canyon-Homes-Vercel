@@ -10,12 +10,21 @@ import Footer from "@/components/footer";
 import RealScoutListings from "@/components/realscout-listings";
 import RealScoutCurrentListings from "@/components/realscout-current-listings";
 import FollowUpBossListings from "@/components/followup-boss-listings";
+import AISearchAssistant from "@/components/ai-search-assistant";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
       <HeroSection />
+      
+      {/* AI Search Assistant */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AISearchAssistant />
+        </div>
+      </section>
+      
       <FeaturedListings />
       
       {/* Live MLS Listings */}

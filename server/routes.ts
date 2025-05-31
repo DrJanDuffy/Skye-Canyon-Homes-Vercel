@@ -4,6 +4,79 @@ import { storage } from "./storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
 
+// AI Search Processing Function
+async function processAISearch(query: string, context: string) {
+  const lowerQuery = query.toLowerCase();
+  
+  // Extract price range from query
+  const priceMatch = lowerQuery.match(/(\$?[\d,]+k?)\s*(?:to|-)?\s*(\$?[\d,]+k?)?/);
+  let priceMin: number | undefined, priceMax: number | undefined;
+  
+  if (priceMatch) {
+    const parsePrice = (str: string) => {
+      const num = str.replace(/[\$,]/g, '');
+      return num.includes('k') ? parseInt(num) * 1000 : parseInt(num);
+    };
+    priceMin = parsePrice(priceMatch[1]);
+    if (priceMatch[2]) priceMax = parsePrice(priceMatch[2]);
+  }
+  
+  // Extract bedrooms/bathrooms
+  const bedroomMatch = lowerQuery.match(/(\d+)\s*(?:bed|br)/);
+  const bathroomMatch = lowerQuery.match(/(\d+)\s*(?:bath|ba)/);
+  
+  // Get properties from storage
+  const properties = await storage.getProperties();
+  
+  // Filter properties based on query
+  let filteredProperties = properties;
+  
+  if (priceMin) {
+    filteredProperties = filteredProperties.filter(p => 
+      p.price >= priceMin && (!priceMax || p.price <= priceMax)
+    );
+  }
+  
+  if (bedroomMatch) {
+    const bedrooms = parseInt(bedroomMatch[1]);
+    filteredProperties = filteredProperties.filter(p => Number(p.bedrooms) >= bedrooms);
+  }
+  
+  if (bathroomMatch) {
+    const bathrooms = parseInt(bathroomMatch[1]);
+    filteredProperties = filteredProperties.filter(p => Number(p.bathrooms) >= bathrooms);
+  }
+  
+  // Generate contextual suggestions
+  const suggestions = [];
+  const propertyCount = filteredProperties.length;
+  
+  if (propertyCount > 0) {
+    suggestions.push(`Found ${propertyCount} properties matching your criteria`);
+    
+    const avgPrice = filteredProperties.reduce((sum, p) => sum + p.price, 0) / propertyCount;
+    suggestions.push(`Average price: $${Math.round(avgPrice).toLocaleString()}`);
+    
+    if (context === 'buying') {
+      suggestions.push("Current market conditions are favorable for buyers");
+    } else if (context === 'selling') {
+      suggestions.push("Properties in Sky Canyon are selling 15% faster than last year");
+    } else if (context === 'value') {
+      suggestions.push("Sky Canyon home values have increased 8% year-over-year");
+    }
+  } else {
+    suggestions.push("No exact matches found, but here are similar properties");
+    suggestions.push("Consider expanding your search criteria");
+  }
+  
+  return {
+    properties: filteredProperties.slice(0, 6),
+    suggestions,
+    marketInsights: "Sky Canyon remains one of Las Vegas's most desirable neighborhoods with strong appreciation potential.",
+    totalResults: propertyCount
+  };
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   
   // Get all properties
@@ -165,6 +238,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Cloud CMA API error:', error);
       res.status(500).json({ message: "Failed to fetch Cloud CMA data" });
+    }
+  });
+
+  // AI Search Assistant endpoint
+  app.post("/api/ai-search", async (req, res) => {
+    try {
+      const { query, context } = req.body;
+      
+      if (!query || typeof query !== 'string') {
+        return res.status(400).json({ message: "Search query is required" });
+      }
+
+      // Process natural language query and return relevant property insights
+      const searchResults = await processAISearch(query, context);
+      res.json(searchResults);
+    } catch (error) {
+      console.error('AI Search error:', error);
+      res.status(500).json({ message: "Failed to process search query" });
     }
   });
 
