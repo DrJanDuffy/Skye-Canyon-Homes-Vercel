@@ -27,7 +27,7 @@ export default function AgentBio() {
                 Meet Dr. Jan Duffy
               </h2>
               <div className="text-xl text-realscout-blue font-semibold mb-2">
-                REALTOR® | Sky Canyon Specialist
+                REALTOR® | Skye Canyon Specialist
               </div>
               <div className="text-gray-600 mb-4">
                 Licensed in Nevada | MLS# 12345678
@@ -37,12 +37,12 @@ export default function AgentBio() {
             <div className="space-y-4 text-gray-700 mb-8">
               <p>
                 With over 15 years of experience in Las Vegas real estate and a doctorate in business, 
-                Dr. Jan Duffy brings unparalleled expertise to Sky Canyon home buyers and sellers. 
+                Dr. Jan Duffy brings unparalleled expertise to Skye Canyon home buyers and sellers. 
                 Her deep knowledge of the community, combined with cutting-edge technology and 
                 personalized service, ensures exceptional results for every client.
               </p>
               <p>
-                Specializing exclusively in Sky Canyon properties, Dr. Duffy has helped over 150 
+                Specializing exclusively in Skye Canyon properties, Dr. Duffy has helped over 150 
                 families find their dream homes in this prestigious community. Her commitment to 
                 excellence and client satisfaction has earned her recognition as a top performer 
                 in the Las Vegas real estate market.

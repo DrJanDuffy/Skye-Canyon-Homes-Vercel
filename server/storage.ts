@@ -129,10 +129,10 @@ export class MemStorage implements IStorage {
   }
 
   private initializeData() {
-    // Sample properties for Sky Canyon
+    // Sample properties for Skye Canyon
     const sampleProperties: InsertProperty[] = [
       {
-        address: "123 Sky Canyon Drive",
+        address: "123 Skye Canyon Drive",
         price: 1285000,
         bedrooms: 4,
         bathrooms: "3.5",

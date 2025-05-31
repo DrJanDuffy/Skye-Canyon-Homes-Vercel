@@ -19,7 +19,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="text-2xl font-bold text-realscout-blue">
-              Sky Canyon Homes
+              Skye Canyon Homes
             </div>
           </div>
           
