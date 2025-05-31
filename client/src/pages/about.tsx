@@ -83,7 +83,7 @@ export default function About() {
                 <span className="text-sm font-medium">Skye Canyon Specialist</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                Meet Dr. Jan Duffy
+                Meet Dr. Jan Duffy, REALTOR®
               </h1>
               <p className="text-xl mb-4 text-gray-700 font-medium">
                 Your Trusted Skye Canyon Real Estate Expert
