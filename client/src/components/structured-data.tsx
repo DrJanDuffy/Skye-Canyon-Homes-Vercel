@@ -9,7 +9,7 @@ export default function StructuredData() {
         "jobTitle": "REALTOR®",
         "image": "https://skyecanyonhomesforsale.com/images/dr-jan-duffy.jpg",
         "telephone": "+1-702-123-4567",
-        "email": "jan@skyecanyonhomes.com",
+        "email": "DrDuffy@skyecanyonhomesforsale.com",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Skye Canyon",

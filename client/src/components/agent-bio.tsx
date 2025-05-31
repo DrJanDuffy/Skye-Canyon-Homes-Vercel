@@ -77,7 +77,7 @@ export default function AgentBio() {
               </div>
               <div className="flex items-center text-gray-700">
                 <Mail className="w-5 h-5 text-realscout-blue mr-3" />
-                <span>jan.duffy@realscout.com</span>
+                <span>DrDuffy@skyecanyonhomesforsale.com</span>
               </div>
               <div className="flex items-center text-gray-700">
                 <MapPin className="w-5 h-5 text-realscout-blue mr-3" />

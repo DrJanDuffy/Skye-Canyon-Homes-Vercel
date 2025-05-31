@@ -82,7 +82,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <span className="mr-3">✉️</span>
-                <span>jan.duffy@realscout.com</span>
+                <span>DrDuffy@skyecanyonhomesforsale.com</span>
               </div>
               <div className="flex items-center">
                 <span className="mr-3">📍</span>
