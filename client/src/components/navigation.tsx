@@ -50,7 +50,7 @@ export default function Navigation() {
               Contact
             </button>
             <Button 
-              onClick={() => scrollToSection('contact')}
+              onClick={() => window.open('http://drjanduffy.realscout.com/onboarding', '_blank')}
               className="bg-realscout-blue text-white hover:bg-realscout-navy"
             >
               Get Started
