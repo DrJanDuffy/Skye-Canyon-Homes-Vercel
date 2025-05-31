@@ -1,9 +1,20 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { securityHeaders, geoHeaders, seoHeaders, realEstateContext, rateLimiter } from "./middleware";
 import path from "path";
 
 const app = express();
+
+// Apply security and performance middleware
+app.use(securityHeaders);
+app.use(geoHeaders);
+app.use(seoHeaders);
+app.use(realEstateContext);
+
+// Apply rate limiting to API routes
+app.use('/api', rateLimiter);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
