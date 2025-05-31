@@ -1,0 +1,87 @@
+I can see your deployment is experiencing a crash loop with errors related to missing /src/main.tsx file. This appears to be a React + Express application that's failing to start properly.
+The key issues I'm seeing:
+
+Missing main.tsx file: Vite is trying to load /src/main.tsx but can't find it
+Build/runtime mismatch: The build seems to complete successfully, but the runtime can't find the expected files
+Crash loop: The server keeps restarting due to these errors
+
+Here are the steps to fix this:
+1. Check your project structure
+Make sure you have the correct file structure:
+project-root/
+├── src/
+│   ├── main.tsx (or main.jsx)
+│   ├── App.tsx
+│   └── other components...
+├── server/
+│   └── index.ts
+├── package.json
+├── vite.config.js
+└── index.html
+2. Verify your main entry point exists
+Create /src/main.tsx if it's missing:
+tsximport React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+3. Check your vite.config.js
+Ensure your Vite config is properly set up:
+jsimport { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    outDir: 'dist/public'
+  }
+})
+4. Verify your index.html
+Make sure you have an index.html in your project root:
+html<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+5. Check your server setup
+Make sure your Express server is configured to serve the built files correctly:
+ts// server/index.ts
+import express from 'express'
+import path from 'path'
+
+const app = express()
+const port = process.env.PORT || 5000
+
+// Serve static files from the dist/public directory
+app.use(express.static(path.join(process.cwd(), 'dist/public')))
+
+// Handle React routing, return index.html for all non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'dist/public/index.html'))
+})
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
+})
+6. Update your package.json scripts
+json{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "start": "node dist/index.js",
+    "preview": "vite preview"
+  }
+}
+After making these changes, try deploying again. The main issue is likely the missing main.tsx file or incorrect file paths in your configuration.
