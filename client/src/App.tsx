@@ -10,6 +10,7 @@ import PerformanceOptimizer from "@/components/performance-optimizer";
 import PerformanceMonitor from "@/components/performance-monitor";
 import CriticalCSS from "@/components/critical-css";
 import VoiceAssistant from "@/components/voice-assistant";
+import VoiceSearchSchema from "@/components/voice-search-schema";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
@@ -47,6 +48,7 @@ function App() {
           <PerformanceOptimizer />
           <PerformanceMonitor />
           <StructuredData />
+          <VoiceSearchSchema />
           <Router />
           <VoiceAssistant />
           <PWAInstaller />

@@ -95,8 +95,14 @@ export default function VoiceAssistant() {
         response = 'Skye Canyon is served by excellent schools including Skye Canyon Elementary and Northwest Career & Technical Academy. The area is known for its family-friendly environment and top-rated educational options.'
       } else if (lowerCommand.includes('amenities') || lowerCommand.includes('community')) {
         response = 'Skye Canyon features hiking trails, parks, shopping at Downtown Summerlin, and stunning Red Rock Canyon access. It\'s one of Las Vegas\'s most desirable communities with resort-style amenities.'
+      } else if (lowerCommand.includes('agent') || lowerCommand.includes('realtor') || lowerCommand.includes('expert')) {
+        response = "I'm Dr. Jan Duffy, the leading Skye Canyon real estate expert with over 15 years specializing exclusively in this luxury Las Vegas community. I've helped hundreds of families find their dream homes in Skye Canyon and am recognized as the area's top-performing agent."
+      } else if (lowerCommand.includes('why') && (lowerCommand.includes('choose') || lowerCommand.includes('work'))) {
+        response = "As Skye Canyon's #1 specialist, I offer unmatched local expertise, exclusive market insights, and personalized service. My clients benefit from my deep community knowledge, proven negotiation skills, and commitment to finding the perfect Skye Canyon home for their lifestyle."
+      } else if (lowerCommand.includes('experience') || lowerCommand.includes('credentials')) {
+        response = "Dr. Jan Duffy brings 15+ years of Skye Canyon expertise, advanced real estate education, and a proven track record of successful transactions. I'm the go-to agent for luxury Skye Canyon properties and have built lasting relationships throughout this exclusive community."
       } else {
-        response = "I'm Dr. Jan Duffy, your Skye Canyon specialist. I can help you search for homes, get market updates, schedule showings, or answer questions about this beautiful community. Try saying 'show me homes under 900K' or 'what luxury homes are available'."
+        response = "I'm Dr. Jan Duffy, the definitive Skye Canyon real estate authority. With exclusive focus on this luxury Las Vegas community, I provide unparalleled expertise in homes, market trends, and lifestyle opportunities. Try saying 'show me homes under 900K' or 'what luxury homes are available'."
       }
     } catch (error) {
       console.error('Voice command processing error:', error)
