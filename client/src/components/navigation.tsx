@@ -24,34 +24,60 @@ export default function Navigation() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <a 
               href="/"
-              className="text-gray-700 hover:text-realscout-blue transition-colors"
+              className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
             >
               Home
             </a>
-            <a 
-              href="/properties"
-              className="text-gray-700 hover:text-realscout-blue transition-colors"
-            >
-              All Properties
-            </a>
-            <a 
-              href="/market-analysis"
-              className="text-gray-700 hover:text-realscout-blue transition-colors"
-            >
-              Market Reports
-            </a>
+            <div className="relative group">
+              <button className="text-gray-700 hover:text-realscout-blue transition-colors font-medium flex items-center">
+                Properties
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <a href="/properties" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                  All Properties
+                </a>
+                <a href="/luxury-homes-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                  Luxury Homes
+                </a>
+                <a href="/skye-canyon-guide" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                  Skye Canyon Guide
+                </a>
+              </div>
+            </div>
+            <div className="relative group">
+              <button className="text-gray-700 hover:text-realscout-blue transition-colors font-medium flex items-center">
+                Market Info
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <a href="/market-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                  Market Analysis
+                </a>
+                <a href="/las-vegas-real-estate" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                  Las Vegas Market
+                </a>
+                <a href="/northwest-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                  Northwest Las Vegas
+                </a>
+              </div>
+            </div>
             <a 
               href="/about"
-              className="text-gray-700 hover:text-realscout-blue transition-colors"
+              className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
             >
               About Dr. Duffy
             </a>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="text-gray-700 hover:text-realscout-blue transition-colors"
+              className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
             >
               Contact
             </button>
@@ -60,7 +86,7 @@ export default function Navigation() {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <Button className="bg-realscout-blue text-white hover:bg-realscout-navy">
+              <Button className="bg-realscout-blue text-white hover:bg-realscout-navy px-6 py-2">
                 Get Started
               </Button>
             </a>
@@ -81,45 +107,90 @@ export default function Navigation() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-            <button 
-              onClick={() => scrollToSection('search')}
-              className="block px-3 py-2 text-gray-700 w-full text-left"
-            >
-              Search Homes
-            </button>
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t shadow-lg">
             <a 
-              href="/properties"
-              className="block px-3 py-2 text-gray-700 w-full text-left"
+              href="/"
+              className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
+              onClick={() => setMobileMenuOpen(false)}
             >
-              All Properties
+              Home
             </a>
-            <a 
-              href="/market-analysis"
-              className="block px-3 py-2 text-gray-700 w-full text-left"
-            >
-              Market Reports
-            </a>
+            <div className="px-3 py-1">
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Properties</div>
+              <div className="mt-1 space-y-1">
+                <a 
+                  href="/properties"
+                  className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  All Properties
+                </a>
+                <a 
+                  href="/luxury-homes-las-vegas"
+                  className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Luxury Homes
+                </a>
+                <a 
+                  href="/skye-canyon-guide"
+                  className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Skye Canyon Guide
+                </a>
+              </div>
+            </div>
+            <div className="px-3 py-1">
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Market Info</div>
+              <div className="mt-1 space-y-1">
+                <a 
+                  href="/market-analysis"
+                  className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Market Analysis
+                </a>
+                <a 
+                  href="/las-vegas-real-estate"
+                  className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Las Vegas Market
+                </a>
+                <a 
+                  href="/northwest-las-vegas"
+                  className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Northwest Las Vegas
+                </a>
+              </div>
+            </div>
             <a 
               href="/about"
-              className="block px-3 py-2 text-gray-700 w-full text-left"
+              className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
+              onClick={() => setMobileMenuOpen(false)}
             >
               About Dr. Duffy
             </a>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="block px-3 py-2 text-gray-700 w-full text-left"
+              className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium w-full text-left"
             >
               Contact
             </button>
-            <a 
-              href="https://drjanduffy.realscout.com/onboarding" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block px-3 py-2 bg-realscout-blue text-white w-full text-left rounded mx-3 mt-2"
-            >
-              Get Started
-            </a>
+            <div className="px-3 pt-2">
+              <a 
+                href="https://drjanduffy.realscout.com/onboarding" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block px-4 py-3 bg-realscout-blue text-white text-center rounded-lg font-medium hover:bg-realscout-navy transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Get Started
+              </a>
+            </div>
           </div>
         </div>
       )}
