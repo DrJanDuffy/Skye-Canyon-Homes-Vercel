@@ -226,23 +226,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const xmlText = await response.text();
       
-      // Parse XML to extract key insights
-      const titleMatches = xmlText.match(/<title><!\[CDATA\[(.*?)\]\]><\/title>/g) || [];
-      const linkMatches = xmlText.match(/<link>(.*?)<\/link>/g) || [];
-      const descriptionMatches = xmlText.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/g) || [];
+      // Parse XML to extract insights from items
+      const itemMatches = xmlText.match(/<item>([\s\S]*?)<\/item>/g) || [];
       
-      const insights = titleMatches.slice(1, 6).map((title, index) => {
-        const cleanTitle = title.replace(/<title><!\[CDATA\[/, '').replace(/\]\]><\/title>/, '');
-        const link = linkMatches[index + 1]?.replace(/<link>/, '').replace(/<\/link>/, '') || '';
-        const description = descriptionMatches[index + 1]?.replace(/<description><!\[CDATA\[/, '').replace(/\]\]><\/description>/, '') || '';
+      const insights = itemMatches.slice(0, 5).map((item) => {
+        const titleMatch = item.match(/<title>(.*?)<\/title>/);
+        const linkMatch = item.match(/<link>(.*?)<\/link>/);
+        const descriptionMatch = item.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/);
+        
+        const title = titleMatch ? titleMatch[1] : '';
+        const link = linkMatch ? linkMatch[1] : '';
+        const description = descriptionMatch ? descriptionMatch[1].replace(/<[^>]*>/g, '').substring(0, 200) + '...' : '';
         
         return {
-          title: cleanTitle,
-          link: link,
-          description: description.substring(0, 200) + '...',
+          title,
+          link,
+          description,
           source: 'Simplifying the Market'
         };
-      });
+      }).filter(insight => insight.title && insight.link);
 
       res.json({ insights });
     } catch (error) {
