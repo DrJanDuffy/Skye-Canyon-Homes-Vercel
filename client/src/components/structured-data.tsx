@@ -50,13 +50,13 @@ export default function StructuredData() {
         },
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Sky Canyon Homes for Sale",
+          "name": "Skye Canyon Homes for Sale",
           "itemListElement": [
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "House",
-                "name": "Sky Canyon Homes",
+                "name": "Skye Canyon Homes",
                 "address": {
                   "@type": "PostalAddress",
                   "addressLocality": "Las Vegas",
@@ -70,8 +70,8 @@ export default function StructuredData() {
       {
         "@type": "WebSite",
         "url": "https://skyecanyonhomesforsale.com",
-        "name": "Sky Canyon Homes for Sale",
-        "description": "Exclusive Sky Canyon real estate in Las Vegas, NV",
+        "name": "Skye Canyon Homes for Sale",
+        "description": "Exclusive Skye Canyon real estate in Las Vegas, NV",
         "publisher": {
           "@id": "https://skyecanyonhomesforsale.com/#agent"
         },
@@ -89,18 +89,18 @@ export default function StructuredData() {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is the average home price in Sky Canyon?",
+            "name": "What is the average home price in Skye Canyon?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Sky Canyon homes typically range from $450,000 to $900,000+, with a median price of approximately $650,000."
+              "text": "Skye Canyon homes typically range from $450,000 to $900,000+, with a median price of approximately $650,000."
             }
           },
           {
             "@type": "Question",
-            "name": "Is Sky Canyon a gated community?",
+            "name": "Is Skye Canyon a gated community?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Sky Canyon is a 24/7 guard-gated community with controlled access and roving security patrols."
+              "text": "Yes, Skye Canyon is a 24/7 guard-gated community with controlled access and roving security patrols."
             }
           }
         ]
@@ -113,7 +113,7 @@ export default function StructuredData() {
         },
         "areaServed": {
           "@type": "Place",
-          "name": "Sky Canyon, Las Vegas, NV 89166"
+          "name": "Skye Canyon, Las Vegas, NV 89166"
         },
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
@@ -124,7 +124,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Home Buying Assistance",
-                "description": "Expert guidance for buying Sky Canyon homes"
+                "description": "Expert guidance for buying Skye Canyon homes"
               }
             },
             {
@@ -132,7 +132,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Home Selling Services",
-                "description": "Professional home selling in Sky Canyon"
+                "description": "Professional home selling in Skye Canyon"
               }
             },
             {
@@ -140,7 +140,7 @@ export default function StructuredData() {
               "itemOffered": {
                 "@type": "Service",
                 "name": "Free Home Valuation",
-                "description": "Instant CMA for Sky Canyon properties"
+                "description": "Instant CMA for Skye Canyon properties"
               }
             }
           ]

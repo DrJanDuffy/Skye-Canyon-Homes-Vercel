@@ -245,7 +245,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           link,
           description,
           imageUrl,
-          source: 'Sky Canyon Market Report'
+          source: 'Skye Canyon Market Report'
         };
       }).filter(insight => insight.title && insight.link);
 

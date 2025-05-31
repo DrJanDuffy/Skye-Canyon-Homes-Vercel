@@ -129,7 +129,7 @@ export default function HeroSection() {
           {/* Quick Links */}
           <div className="text-center mt-6 space-x-4">
             <button className="text-sm text-white/80 hover:text-white underline">
-              View All Sky Canyon Listings →
+              View All Skye Canyon Listings →
             </button>
             <button className="text-sm text-white/80 hover:text-white underline">
               Schedule a Tour →
