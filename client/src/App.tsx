@@ -9,6 +9,7 @@ import PWAInstaller from "@/components/pwa-installer";
 import PerformanceOptimizer from "@/components/performance-optimizer";
 import PerformanceMonitor from "@/components/performance-monitor";
 import CriticalCSS from "@/components/critical-css";
+import VoiceAssistant from "@/components/voice-assistant";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
@@ -47,6 +48,7 @@ function App() {
           <PerformanceMonitor />
           <StructuredData />
           <Router />
+          <VoiceAssistant />
           <PWAInstaller />
           <Toaster />
         </TooltipProvider>
