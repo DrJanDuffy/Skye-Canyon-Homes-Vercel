@@ -15,6 +15,7 @@ import EnhancedStructuredData from "@/components/enhanced-structured-data";
 import AIContentOptimizer from "@/components/ai-content-optimizer";
 import GEOAuthoritySignals from "@/components/geo-authority-signals";
 import MobileOptimizer from "@/components/mobile-optimizer";
+import AnalyticsTracker from "@/components/analytics-tracker";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -53,6 +54,7 @@ function App() {
         <TooltipProvider>
           <CriticalCSS />
           <MobileOptimizer />
+          <AnalyticsTracker />
           <PerformanceOptimizer />
           <PerformanceMonitor />
           <StructuredData />

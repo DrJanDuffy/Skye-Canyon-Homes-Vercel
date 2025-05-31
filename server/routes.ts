@@ -520,6 +520,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return Math.min(score, 100);
   }
 
+  // Analytics endpoint
+  app.post("/api/analytics", async (req, res) => {
+    try {
+      const { event, parameters, context } = req.body;
+      
+      // Store analytics data
+      const analyticsData = {
+        event,
+        parameters,
+        context,
+        timestamp: new Date().toISOString(),
+        ip: req.ip,
+        userAgent: req.get('User-Agent')
+      };
+      
+      // Log for analysis (in production, send to analytics service)
+      console.log('Analytics Event:', JSON.stringify(analyticsData, null, 2));
+      
+      // Send to external analytics if configured
+      const analyticsKey = process.env.ANALYTICS_API_KEY;
+      if (analyticsKey) {
+        // Forward to external analytics service
+        await fetch('https://analytics.example.com/events', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${analyticsKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(analyticsData)
+        }).catch(err => console.log('External analytics error:', err));
+      }
+      
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error('Analytics error:', error);
+      res.status(500).json({ message: "Failed to track event" });
+    }
+  });
+
   // RSS Feed integration from Simplifying the Market
   app.get("/api/market-insights", async (req, res) => {
     try {
