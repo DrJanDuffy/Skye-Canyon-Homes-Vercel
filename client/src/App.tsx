@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import StructuredData from "@/components/structured-data";
 import PWAInstaller from "@/components/pwa-installer";
 import PerformanceOptimizer from "@/components/performance-optimizer";
+import PerformanceMonitor from "@/components/performance-monitor";
+import CriticalCSS from "@/components/critical-css";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
@@ -40,7 +42,9 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <CriticalCSS />
           <PerformanceOptimizer />
+          <PerformanceMonitor />
           <StructuredData />
           <Router />
           <PWAInstaller />
