@@ -36,16 +36,14 @@ export default function AgentBio() {
             
             <div className="space-y-4 text-gray-700 mb-8">
               <p>
-                With over 15 years of experience in Las Vegas real estate and a doctorate in business, 
-                Dr. Jan Duffy brings unparalleled expertise to Skye Canyon home buyers and sellers. 
-                Her deep knowledge of the community, combined with cutting-edge technology and 
-                personalized service, ensures exceptional results for every client.
+                Dr. Jan Duffy provides comprehensive real estate services for Skye Canyon buyers and sellers. 
+                From initial property search to closing, she guides clients through every step of their 
+                real estate transaction with personalized attention and local market expertise.
               </p>
               <p>
-                Specializing exclusively in Skye Canyon properties, Dr. Duffy has helped over 150 
-                families find their dream homes in this prestigious community. Her commitment to 
-                excellence and client satisfaction has earned her recognition as a top performer 
-                in the Las Vegas real estate market.
+                Whether you're buying your first home, selling your current property, or investing in 
+                Skye Canyon real estate, Dr. Duffy offers strategic guidance, market analysis, and 
+                negotiation expertise to help you achieve your real estate goals.
               </p>
             </div>
             

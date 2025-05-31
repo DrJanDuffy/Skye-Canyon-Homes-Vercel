@@ -84,8 +84,8 @@ export default function About() {
                 Your Trusted Skye Canyon Real Estate Expert
               </p>
               <p className="text-lg opacity-80 mb-8">
-                With over 15 years of experience and a doctorate in business, 
-                Dr. Duffy brings unparalleled expertise to every transaction.
+                Providing comprehensive real estate services for Skye Canyon buyers, sellers, 
+                and investors with personalized attention and local market expertise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -163,24 +163,24 @@ export default function About() {
             <CardContent className="p-8">
               <div className="prose max-w-none">
                 <p className="text-lg leading-relaxed mb-6">
-                  Dr. Jan Duffy is a distinguished real estate professional with over 15 years 
-                  of experience in the Las Vegas luxury market. Her academic background includes 
-                  a Doctorate in Business Administration, which provides her with unique insights 
-                  into market trends, investment strategies, and client negotiations.
+                  Dr. Jan Duffy offers comprehensive real estate services for Skye Canyon clients, 
+                  including buyer representation, listing services, investment property analysis, 
+                  and market consultation. Her approach combines detailed market research with 
+                  personalized client service to ensure optimal outcomes for every transaction.
                 </p>
                 
                 <p className="text-lg leading-relaxed mb-6">
-                  Specializing exclusively in Skye Canyon properties, Dr. Duffy has developed 
-                  an intimate knowledge of this prestigious community. Her expertise extends 
-                  beyond traditional real estate services to include investment analysis, 
-                  market forecasting, and comprehensive client advisory services.
+                  Services include property valuation, market analysis, negotiation strategy, 
+                  transaction management, and post-closing support. Whether you're buying your 
+                  first home, selling to upgrade, or building an investment portfolio, 
+                  Dr. Duffy provides the expertise and guidance you need.
                 </p>
                 
                 <p className="text-lg leading-relaxed mb-8">
-                  Her commitment to excellence and personalized service has earned her 
-                  recognition as one of Las Vegas's top-performing REALTORS®. Dr. Duffy's 
-                  approach combines cutting-edge technology with traditional relationship-building 
-                  to ensure every client receives exceptional service.
+                  Dr. Duffy's client-focused approach combines comprehensive market knowledge 
+                  with advanced technology tools to streamline your real estate experience. 
+                  From initial consultation to closing day, she provides clear communication, 
+                  strategic guidance, and dedicated support throughout your transaction.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
