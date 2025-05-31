@@ -1,17 +1,6 @@
-import { spawn } from 'child_process';
+#!/usr/bin/env node
 
-// Start the built server
-const server = spawn('node', ['dist/index.js'], {
-  stdio: 'inherit',
-  env: process.env
-});
-
-server.on('error', (err) => {
+import('./dist/index.js').catch((err) => {
   console.error('Failed to start server:', err);
   process.exit(1);
-});
-
-server.on('close', (code) => {
-  console.log(`Server process exited with code ${code}`);
-  process.exit(code);
 });
