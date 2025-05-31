@@ -75,7 +75,7 @@ export default function PropertyDetail() {
         <Navigation />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Property Not Found</h1>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Property Not Found</h2>
             <p className="text-gray-600">The property you're looking for doesn't exist.</p>
           </div>
         </div>
