@@ -49,12 +49,15 @@ export default function Navigation() {
             >
               Contact
             </button>
-            <Button 
-              onClick={() => window.open('http://drjanduffy.realscout.com/onboarding', '_blank')}
-              className="bg-realscout-blue text-white hover:bg-realscout-navy"
+            <a 
+              href="http://drjanduffy.realscout.com/onboarding" 
+              target="_blank" 
+              rel="noopener noreferrer"
             >
-              Get Started
-            </Button>
+              <Button className="bg-realscout-blue text-white hover:bg-realscout-navy">
+                Get Started
+              </Button>
+            </a>
           </div>
           
           {/* Mobile Menu Button */}
@@ -97,12 +100,14 @@ export default function Navigation() {
             >
               Contact
             </button>
-            <button 
-              onClick={() => window.open('http://drjanduffy.realscout.com/onboarding', '_blank')}
+            <a 
+              href="http://drjanduffy.realscout.com/onboarding" 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="block px-3 py-2 bg-realscout-blue text-white w-full text-left rounded mx-3 mt-2"
             >
               Get Started
-            </button>
+            </a>
           </div>
         </div>
       )}
