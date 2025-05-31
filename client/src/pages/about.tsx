@@ -20,7 +20,7 @@ const achievements = [
   {
     icon: Home,
     title: "150+ Homes Sold",
-    description: "Successfully closed over 150 transactions in Sky Canyon"
+    description: "Successfully closed over 150 transactions in Skye Canyon"
   },
   {
     icon: Users,
@@ -42,8 +42,8 @@ const achievements = [
 const testimonials = [
   {
     name: "Michael & Sarah Chen",
-    location: "Sky Canyon Drive",
-    text: "Dr. Duffy made our home buying experience seamless. Her knowledge of Sky Canyon is unmatched.",
+    location: "Skye Canyon Drive",
+    text: "Dr. Duffy made our home buying experience seamless. Her knowledge of Skye Canyon is unmatched.",
     rating: 5
   },
   {

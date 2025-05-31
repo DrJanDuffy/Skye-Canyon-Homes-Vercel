@@ -65,7 +65,7 @@ export default function HeroSection() {
         {/* Search Widget Container */}
         <div className="bg-white/10 backdrop-blur-md rounded-xl p-8 max-w-4xl mx-auto">
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-semibold mb-2">Find Your Dream Home in Sky Canyon</h3>
+            <h3 className="text-2xl font-semibold mb-2">Find Your Dream Home in Skye Canyon</h3>
             <p className="opacity-90">Search luxury properties in Las Vegas's premier community</p>
           </div>
           

@@ -190,7 +190,12 @@ export class MemStorage implements IStorage {
 
     sampleProperties.forEach(property => {
       const id = this.currentPropertyId++;
-      this.properties.set(id, { ...property, id });
+      this.properties.set(id, { 
+        ...property, 
+        id,
+        status: property.status || "active",
+        featured: property.featured || false
+      });
     });
 
     // Initialize market stats
@@ -237,7 +242,12 @@ export class MemStorage implements IStorage {
 
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
     const id = this.currentPropertyId++;
-    const property: Property = { ...insertProperty, id };
+    const property: Property = { 
+      ...insertProperty, 
+      id,
+      status: insertProperty.status || "active",
+      featured: insertProperty.featured ?? false
+    };
     this.properties.set(id, property);
     return property;
   }
@@ -266,6 +276,11 @@ export class MemStorage implements IStorage {
     const lead: Lead = { 
       ...insertLead, 
       id,
+      source: insertLead.source || "website",
+      message: insertLead.message ?? null,
+      phone: insertLead.phone ?? null,
+      timeframe: insertLead.timeframe ?? null,
+      priceRange: insertLead.priceRange ?? null,
       createdAt: new Date()
     };
     this.leads.set(id, lead);

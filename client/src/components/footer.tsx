@@ -97,7 +97,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Sky Canyon Homes for Sale. All rights reserved. | Dr. Jan Duffy, REALTOR®</p>
+          <p>&copy; 2024 Skye Canyon Homes for Sale. All rights reserved. | Dr. Jan Duffy, REALTOR®</p>
           <p className="text-sm mt-2">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a> | 
             <a href="#" className="hover:text-white transition-colors"> Terms of Service</a> | 
