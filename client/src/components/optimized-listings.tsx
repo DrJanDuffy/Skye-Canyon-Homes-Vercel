@@ -11,7 +11,7 @@ export default function OptimizedListings({ className = "", limit = 6 }: Optimiz
   const { isInView, elementRef } = useLazyLoading(0.1, "100px");
   
   const { data: listings, isLoading } = useQuery({
-    queryKey: ['/api/followup-boss/listings'],
+    queryKey: ['/api/properties'],
     enabled: isInView,
     staleTime: 2 * 60 * 1000, // 2 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes

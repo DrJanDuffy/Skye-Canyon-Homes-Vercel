@@ -27,7 +27,7 @@ export default function FollowUpBossListings() {
 
   const fetchListings = async () => {
     try {
-      const response = await fetch('/api/followup-boss/listings');
+      const response = await fetch('/api/followup-boss/leads');
       if (!response.ok) {
         throw new Error('Failed to fetch listings');
       }

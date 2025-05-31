@@ -306,16 +306,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // FollowUp Boss listings integration
-  app.get("/api/followup-boss/listings", async (req, res) => {
+  // FollowUp Boss lead management only (no listings)
+  app.get("/api/followup-boss/leads", async (req, res) => {
     try {
       const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
       if (!apiKey) {
         return res.status(400).json({ message: "FollowUp Boss API key not configured" });
       }
 
-      // Fetch properties from FollowUp Boss
-      const response = await fetch('https://api.followupboss.com/v1/properties', {
+      // Fetch leads/contacts from FollowUp Boss
+      const response = await fetch('https://api.followupboss.com/v1/people', {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json'
@@ -329,8 +329,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const data = await response.json();
       res.json(data);
     } catch (error) {
-      console.error('FollowUp Boss listings API error:', error);
-      res.status(500).json({ message: "Failed to fetch FollowUp Boss listings" });
+      console.error('FollowUp Boss leads API error:', error);
+      res.status(500).json({ message: "Failed to fetch FollowUp Boss leads" });
     }
   });
 
