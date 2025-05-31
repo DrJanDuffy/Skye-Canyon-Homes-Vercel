@@ -22,10 +22,10 @@ export default function HeroSection() {
       id="search" 
       className="relative bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-20"
     >
-      <div className="absolute inset-0 bg-black opacity-20"></div>
+      <div className="absolute inset-0 bg-black opacity-10"></div>
       
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-60">
         <img 
           src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
           alt="Luxury real estate background" 

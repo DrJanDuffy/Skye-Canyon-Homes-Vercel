@@ -94,7 +94,7 @@ export default function PropertyDetail() {
           alt={`Property at ${property.address}`}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         <div className="absolute bottom-6 left-6 right-6">
           <div className="flex justify-between items-end">
             <div className="text-white">
