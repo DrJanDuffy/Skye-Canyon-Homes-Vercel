@@ -1,5 +1,5 @@
-// Service Worker for Sky Canyon Real Estate Website
-const CACHE_NAME = 'sky-canyon-v1';
+// Service Worker for Skye Canyon Real Estate Website
+const CACHE_NAME = 'skye-canyon-v1';
 const STATIC_CACHE = 'static-v1';
 const API_CACHE = 'api-v1';
 
