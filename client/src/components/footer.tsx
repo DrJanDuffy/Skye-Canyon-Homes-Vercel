@@ -95,7 +95,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center">
                 <span className="mr-3">🆔</span>
-                <span>License# 12345678</span>
+                <span>License# S.0197614</span>
               </div>
             </div>
             

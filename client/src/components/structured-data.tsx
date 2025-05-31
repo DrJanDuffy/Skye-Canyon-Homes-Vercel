@@ -43,7 +43,7 @@ export default function StructuredData() {
           "Skye Canyon community expert"
         ],
         "hasCredential": [
-          "Nevada Real Estate License",
+          "Nevada Real Estate License S.0197614",
           "Certified Luxury Home Marketing Specialist",
           "Skye Canyon Market Specialist"
         ],

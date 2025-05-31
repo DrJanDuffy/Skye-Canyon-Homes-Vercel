@@ -32,7 +32,7 @@ export default function AgentBio() {
                 REALTOR® | Skye Canyon Specialist
               </div>
               <div className="text-gray-600 mb-4">
-                Licensed in Nevada | MLS# 12345678
+                Licensed in Nevada | License# S.0197614
               </div>
             </div>
             
