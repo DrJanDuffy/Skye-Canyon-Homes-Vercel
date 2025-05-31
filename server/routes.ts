@@ -245,7 +245,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           link,
           description,
           imageUrl,
-          source: 'Simplifying the Market'
+          source: 'Las Vegas Market Report'
         };
       }).filter(insight => insight.title && insight.link);
 
