@@ -24,7 +24,7 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
     <div className={className}>
       <realscout-office-listings 
         agent-encoded-id="QWdlbnQtMjI1MDUw" 
-        sort-order="NEWEST" 
+        sort-order="PRICE_HIGH" 
         listing-status=",For Sale" 
         property-types="SFR,MF,TC" 
         price-min="450000"
