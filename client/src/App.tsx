@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import StructuredData from "@/components/structured-data";
+import PWAInstaller from "@/components/pwa-installer";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
@@ -28,6 +29,7 @@ function App() {
       <TooltipProvider>
         <StructuredData />
         <Router />
+        <PWAInstaller />
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
