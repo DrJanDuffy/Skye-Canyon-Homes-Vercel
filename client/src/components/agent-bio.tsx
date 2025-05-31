@@ -18,7 +18,8 @@ export default function AgentBio() {
             <img 
               src={drDuffyPhoto} 
               alt="Dr. Jan Duffy REALTOR professional headshot" 
-              className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0"
+              className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0 object-cover aspect-square"
+              style={{ imageRendering: 'crisp-edges' }}
             />
           </div>
           

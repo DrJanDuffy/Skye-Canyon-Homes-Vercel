@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import drDuffyPhoto from "@assets/design 05_new 2.jpg";
 import { 
   Phone, 
   Mail, 
@@ -106,9 +107,10 @@ export default function About() {
             </div>
             <div className="relative">
               <img 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600" 
+                src={drDuffyPhoto} 
                 alt="Dr. Jan Duffy REALTOR professional portrait" 
-                className="rounded-xl shadow-2xl w-full max-w-md mx-auto object-cover"
+                className="rounded-xl shadow-2xl w-full max-w-md mx-auto object-cover aspect-square"
+                style={{ imageRendering: 'crisp-edges' }}
               />
               <div className="absolute -bottom-6 -right-6 bg-white rounded-lg p-4 shadow-lg">
                 <div className="text-realscout-blue text-2xl font-bold">15+</div>
