@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import MarketStats from "@/components/market-stats";
 import MarketIntelligence from "@/components/market-intelligence";
+import Breadcrumb from "@/components/breadcrumb";
 
 export default function MarketAnalysis() {
   return (

@@ -38,31 +38,36 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <button 
-                  onClick={() => scrollToSection('search')}
+                <a 
+                  href="/"
                   className="hover:text-white transition-colors"
                 >
-                  Search Homes
-                </button>
+                  Home
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection('featured')}
+                <a 
+                  href="/properties"
                   className="hover:text-white transition-colors"
                 >
-                  Featured Listings
-                </button>
+                  All Properties
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => scrollToSection('about')}
+                <a 
+                  href="/market-analysis"
+                  className="hover:text-white transition-colors"
+                >
+                  Market Reports
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/about"
                   className="hover:text-white transition-colors"
                 >
                   About Dr. Duffy
-                </button>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">Market Reports</a>
+                </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">Buyer's Guide</a>

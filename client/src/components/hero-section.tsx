@@ -128,12 +128,20 @@ export default function HeroSection() {
           
           {/* Quick Links */}
           <div className="text-center mt-6 space-x-4">
-            <button className="text-sm text-white/80 hover:text-white underline">
+            <a 
+              href="/properties" 
+              className="text-sm text-white/80 hover:text-white underline"
+            >
               View All Skye Canyon Listings →
-            </button>
-            <button className="text-sm text-white/80 hover:text-white underline">
+            </a>
+            <a 
+              href="https://drjanduffy.realscout.com/onboarding" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-white/80 hover:text-white underline"
+            >
               Schedule a Tour →
-            </button>
+            </a>
           </div>
         </div>
       </div>
