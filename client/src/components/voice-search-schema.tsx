@@ -72,8 +72,8 @@ export default function VoiceSearchSchema() {
     ],
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "url": "https://skyecanyonhomes.com",
-      "name": "Skye Canyon Real Estate - Dr. Jan Duffy",
+      "url": "https://skyecanyonhomesforsale.com",
+      "name": "Skye Canyon | Dr. Jan Duffy, REALTOR®",
       "description": "Skye Canyon luxury homes and real estate expertise by Dr. Jan Duffy, the area's leading specialist"
     }
   };
