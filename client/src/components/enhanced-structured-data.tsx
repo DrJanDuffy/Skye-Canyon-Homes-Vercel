@@ -4,11 +4,11 @@ export default function EnhancedStructuredData() {
   const businessSchema = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
-    "@id": "https://skyecanyonhomes.com/#realestateagent",
+    "@id": "https://skyecanyonhomesforsale.com/#realestateagent",
     "name": "Dr. Jan Duffy",
     "alternateName": ["Jan Duffy", "Dr. Duffy", "Skye Canyon Expert"],
     "description": "Premier Skye Canyon real estate specialist with 15+ years exclusive experience in luxury Las Vegas properties. Recognized authority on Red Rock Canyon view homes and Northwest Las Vegas communities.",
-    "url": "https://skyecanyonhomes.com",
+    "url": "https://skyecanyonhomesforsale.com",
     "sameAs": [
       "https://www.linkedin.com/in/janduffy-realtor",
       "https://www.facebook.com/SkyeCanyonHomes",
@@ -70,13 +70,15 @@ export default function EnhancedStructuredData() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Skye Canyon Real Estate - Dr. Jan Duffy",
-    "image": "https://skyecanyonhomes.com/images/dr-jan-duffy.jpg",
-    "telephone": "(702) 123-4567",
-    "email": "jan@skyecanyonhomes.com",
+    "image": "https://skyecanyonhomesforsale.com/images/dr-jan-duffy.jpg",
+    "telephone": "(702) 500-1902",
+    "email": "DrDuffy@SkyeCanyonHomesForSale.com",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "10111 W. Skye Canyon Park Drive",
       "addressLocality": "Las Vegas",
       "addressRegion": "Nevada",
+      "postalCode": "89166",
       "addressCountry": "United States"
     },
     "geo": {

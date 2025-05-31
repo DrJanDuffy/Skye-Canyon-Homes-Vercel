@@ -6,9 +6,9 @@ export default function VoiceSearchSchema() {
     "@type": ["RealEstateAgent", "Person", "LocalBusiness"],
     "name": "Dr. Jan Duffy",
     "description": "Leading Skye Canyon real estate expert and luxury home specialist in Las Vegas, Nevada",
-    "url": "https://skyecanyonhomes.com",
-    "telephone": "(702) 123-4567",
-    "email": "jan@skyecanyonhomes.com",
+    "url": "https://skyecanyonhomesforsale.com",
+    "telephone": "(702) 500-1902",
+    "email": "DrDuffy@SkyeCanyonHomesForSale.com",
     "areaServed": {
       "@type": "Place",
       "name": "Skye Canyon, Las Vegas, Nevada",
@@ -58,7 +58,7 @@ export default function VoiceSearchSchema() {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://skyecanyonhomes.com/search?q={search_term_string}"
+          "urlTemplate": "https://skyecanyonhomesforsale.com/search?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       },
@@ -66,7 +66,7 @@ export default function VoiceSearchSchema() {
         "@type": "ContactAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://skyecanyonhomes.com/contact"
+          "urlTemplate": "https://skyecanyonhomesforsale.com/contact"
         }
       }
     ],
