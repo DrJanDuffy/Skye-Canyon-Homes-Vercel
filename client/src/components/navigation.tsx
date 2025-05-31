@@ -50,7 +50,7 @@ export default function Navigation() {
               Contact
             </button>
             <a 
-              href="http://drjanduffy.realscout.com/onboarding" 
+              href="https://drjanduffy.realscout.com/onboarding" 
               target="_blank" 
               rel="noopener noreferrer"
             >
@@ -101,7 +101,7 @@ export default function Navigation() {
               Contact
             </button>
             <a 
-              href="http://drjanduffy.realscout.com/onboarding" 
+              href="https://drjanduffy.realscout.com/onboarding" 
               target="_blank" 
               rel="noopener noreferrer"
               className="block px-3 py-2 bg-realscout-blue text-white w-full text-left rounded mx-3 mt-2"
