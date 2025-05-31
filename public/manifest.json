@@ -1,7 +1,7 @@
 {
-  "name": "Sky Canyon Homes for Sale - Dr. Jan Duffy REALTOR",
-  "short_name": "Sky Canyon Homes",
-  "description": "Exclusive Sky Canyon real estate specialist in Las Vegas, NV",
+  "name": "Skye Canyon Homes for Sale - Dr. Jan Duffy REALTOR",
+  "short_name": "Skye Canyon Homes",
+  "description": "Exclusive Skye Canyon real estate specialist in Las Vegas, NV",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -27,7 +27,7 @@
     {
       "name": "Search Properties",
       "short_name": "Search",
-      "description": "Find Sky Canyon homes for sale",
+      "description": "Find Skye Canyon homes for sale",
       "url": "/properties",
       "icons": [
         {
@@ -39,7 +39,7 @@
     {
       "name": "Contact Dr. Jan Duffy",
       "short_name": "Contact",
-      "description": "Get in touch with your Sky Canyon specialist",
+      "description": "Get in touch with your Skye Canyon specialist",
       "url": "/about",
       "icons": [
         {

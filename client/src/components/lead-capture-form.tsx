@@ -248,7 +248,7 @@ export default function LeadCaptureForm() {
                     <FormLabel>Additional Information</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Tell me about your ideal home in Sky Canyon..."
+                        placeholder="Tell me about your ideal home in Skye Canyon..."
                         className="focus:ring-realscout-blue focus:border-realscout-blue"
                         rows={4}
                         {...field}

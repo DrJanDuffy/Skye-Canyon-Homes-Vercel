@@ -65,10 +65,10 @@ export default function PWAInstaller() {
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <h3 className="font-semibold text-blue-900 mb-1">
-              Install Sky Canyon Homes App
+              Install Skye Canyon Homes App
             </h3>
             <p className="text-sm text-blue-700 mb-3">
-              Get quick access to Sky Canyon properties with our mobile app experience.
+              Get quick access to Skye Canyon properties with our mobile app experience.
             </p>
             <div className="flex space-x-2">
               <Button
