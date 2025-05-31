@@ -23,7 +23,7 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
   return (
     <div className={className}>
       <realscout-office-listings
-        domain="sky-canyon-homes"
+        agent-id="QWdlbnQtMjI1MDUw"
         widget-id="office-listings-widget"
         max-listings="6"
       ></realscout-office-listings>

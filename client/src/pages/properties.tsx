@@ -79,7 +79,7 @@ export default function Properties() {
                   <SelectValue placeholder="No Min" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">No Min</SelectItem>
+                  <SelectItem value="none">No Min</SelectItem>
                   <SelectItem value="500000">$500K</SelectItem>
                   <SelectItem value="750000">$750K</SelectItem>
                   <SelectItem value="1000000">$1M</SelectItem>
@@ -95,7 +95,7 @@ export default function Properties() {
                   <SelectValue placeholder="No Max" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">No Max</SelectItem>
+                  <SelectItem value="none">No Max</SelectItem>
                   <SelectItem value="1000000">$1M</SelectItem>
                   <SelectItem value="1500000">$1.5M</SelectItem>
                   <SelectItem value="2000000">$2M</SelectItem>

@@ -23,10 +23,12 @@ import Footer from "@/components/footer";
 import type { Property } from "@shared/schema";
 
 export default function PropertyDetail() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params.id;
   
   const { data: property, isLoading, error } = useQuery<Property>({
     queryKey: ['/api/properties', id],
+    enabled: !!id,
   });
 
   const formatPrice = (price: number) => {
@@ -40,6 +42,11 @@ export default function PropertyDetail() {
 
   const formatSqft = (sqft: number) => {
     return new Intl.NumberFormat('en-US').format(sqft);
+  };
+
+  const formatId = (id: number | undefined) => {
+    if (!id) return '000000';
+    return id.toString().padStart(6, '0');
   };
 
   if (isLoading) {
@@ -273,7 +280,7 @@ export default function PropertyDetail() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">MLS #:</span>
-                    <span className="font-medium">SC{property.id.toString().padStart(6, '0')}</span>
+                    <span className="font-medium">SC{formatId(property.id)}</span>
                   </div>
                 </div>
               </CardContent>
