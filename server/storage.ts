@@ -5,6 +5,8 @@ import {
   type Lead, type InsertLead,
   type MarketStats, type InsertMarketStats
 } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // User methods
@@ -26,6 +28,83 @@ export interface IStorage {
   // Market stats methods
   getMarketStats(): Promise<MarketStats | undefined>;
   updateMarketStats(stats: InsertMarketStats): Promise<MarketStats>;
+}
+
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async getProperties(): Promise<Property[]> {
+    return await db.select().from(properties);
+  }
+
+  async getFeaturedProperties(): Promise<Property[]> {
+    return await db.select().from(properties).where(eq(properties.featured, true));
+  }
+
+  async getProperty(id: number): Promise<Property | undefined> {
+    const [property] = await db.select().from(properties).where(eq(properties.id, id));
+    return property || undefined;
+  }
+
+  async createProperty(insertProperty: InsertProperty): Promise<Property> {
+    const [property] = await db
+      .insert(properties)
+      .values(insertProperty)
+      .returning();
+    return property;
+  }
+
+  async searchProperties(filters: { priceMin?: number; priceMax?: number; type?: string }): Promise<Property[]> {
+    let query = db.select().from(properties);
+    
+    // Add filters as needed - this is a simplified version
+    return await query;
+  }
+
+  async getLeads(): Promise<Lead[]> {
+    return await db.select().from(leads);
+  }
+
+  async createLead(insertLead: InsertLead): Promise<Lead> {
+    const [lead] = await db
+      .insert(leads)
+      .values(insertLead)
+      .returning();
+    return lead;
+  }
+
+  async getMarketStats(): Promise<MarketStats | undefined> {
+    const [stats] = await db.select().from(marketStats).limit(1);
+    return stats || undefined;
+  }
+
+  async updateMarketStats(stats: InsertMarketStats): Promise<MarketStats> {
+    const [updatedStats] = await db
+      .insert(marketStats)
+      .values(stats)
+      .onConflictDoUpdate({
+        target: marketStats.id,
+        set: stats
+      })
+      .returning();
+    return updatedStats;
+  }
 }
 
 export class MemStorage implements IStorage {
@@ -208,4 +287,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
