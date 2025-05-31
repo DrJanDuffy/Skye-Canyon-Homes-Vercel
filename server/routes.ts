@@ -233,15 +233,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const titleMatch = item.match(/<title>(.*?)<\/title>/);
         const linkMatch = item.match(/<link>(.*?)<\/link>/);
         const descriptionMatch = item.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/);
+        const imageMatch = item.match(/<img[^>]*src="([^"]*)"[^>]*>/);
         
         const title = titleMatch ? titleMatch[1] : '';
         const link = linkMatch ? linkMatch[1] : '';
         const description = descriptionMatch ? descriptionMatch[1].replace(/<[^>]*>/g, '').substring(0, 200) + '...' : '';
+        const imageUrl = imageMatch ? imageMatch[1] : '';
         
         return {
           title,
           link,
           description,
+          imageUrl,
           source: 'Simplifying the Market'
         };
       }).filter(insight => insight.title && insight.link);

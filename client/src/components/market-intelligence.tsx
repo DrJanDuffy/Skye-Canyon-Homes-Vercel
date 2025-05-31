@@ -137,7 +137,16 @@ export default function MarketIntelligence() {
               <h3 className="text-2xl font-bold mb-6 text-center">Latest Market Insights</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {marketInsights.insights.slice(0, 4).map((insight: any, index: number) => (
-                  <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <Card key={index} className="hover:shadow-lg transition-shadow overflow-hidden">
+                    {insight.imageUrl && (
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={insight.imageUrl} 
+                          alt={insight.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
                     <CardContent className="p-6">
                       <h4 className="font-semibold text-lg mb-2 line-clamp-2">
                         {insight.title}
