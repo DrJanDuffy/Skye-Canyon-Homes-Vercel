@@ -1,13 +1,6 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/navigation";
-import PropertyCard from "@/components/property-card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, SlidersHorizontal } from "lucide-react";
 import Footer from "@/components/footer";
-import type { Property } from "@shared/schema";
+import RealScoutListings from "@/components/realscout-listings";
 
 export default function Properties() {
   const [searchFilters, setSearchFilters] = useState({

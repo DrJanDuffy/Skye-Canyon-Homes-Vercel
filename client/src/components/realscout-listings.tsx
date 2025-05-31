@@ -22,12 +22,12 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
 
   return (
     <div className={className}>
-      <realscout-office-listings
-        agent-id="QWdlbnQtMjI1MDUw"
-        domain="drjanduffy.realscout.com"
-        widget-id="office-listings-widget"
-        max-listings="6"
-        show-agent-info="true"
+      <realscout-office-listings 
+        agent-encoded-id="QWdlbnQtMjI1MDUw" 
+        sort-order="NEWEST" 
+        listing-status=",For Sale" 
+        property-types="SFR,MF,TC" 
+        price-min="450000"
       ></realscout-office-listings>
     </div>
   );
