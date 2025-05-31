@@ -1,0 +1,107 @@
+import { Button } from "@/components/ui/button";
+import { Phone, Mail, MapPin } from "lucide-react";
+
+export default function AgentBio() {
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  return (
+    <section id="about" className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <img 
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800" 
+              alt="Dr. Jan Duffy REALTOR professional headshot" 
+              className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0"
+            />
+          </div>
+          
+          <div>
+            <div className="mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Meet Dr. Jan Duffy
+              </h2>
+              <div className="text-xl text-realscout-blue font-semibold mb-2">
+                REALTOR® | Sky Canyon Specialist
+              </div>
+              <div className="text-gray-600 mb-4">
+                Licensed in Nevada | MLS# 12345678
+              </div>
+            </div>
+            
+            <div className="space-y-4 text-gray-700 mb-8">
+              <p>
+                With over 15 years of experience in Las Vegas real estate and a doctorate in business, 
+                Dr. Jan Duffy brings unparalleled expertise to Sky Canyon home buyers and sellers. 
+                Her deep knowledge of the community, combined with cutting-edge technology and 
+                personalized service, ensures exceptional results for every client.
+              </p>
+              <p>
+                Specializing exclusively in Sky Canyon properties, Dr. Duffy has helped over 150 
+                families find their dream homes in this prestigious community. Her commitment to 
+                excellence and client satisfaction has earned her recognition as a top performer 
+                in the Las Vegas real estate market.
+              </p>
+            </div>
+            
+            {/* Credentials */}
+            <div className="grid grid-cols-2 gap-6 mb-8">
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2">Education</h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• Doctorate in Business Admin</li>
+                  <li>• Real Estate License - Nevada</li>
+                  <li>• Certified Luxury Specialist</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold text-gray-900 mb-2">Memberships</h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• NAR (National Association)</li>
+                  <li>• Nevada REALTORS®</li>
+                  <li>• Las Vegas REALTORS®</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Contact Options */}
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center text-gray-700">
+                <Phone className="w-5 h-5 text-realscout-blue mr-3" />
+                <span>(702) 555-0123</span>
+              </div>
+              <div className="flex items-center text-gray-700">
+                <Mail className="w-5 h-5 text-realscout-blue mr-3" />
+                <span>jan.duffy@realscout.com</span>
+              </div>
+              <div className="flex items-center text-gray-700">
+                <MapPin className="w-5 h-5 text-realscout-blue mr-3" />
+                <span>Serving Sky Canyon, Las Vegas, NV</span>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                onClick={scrollToContact}
+                className="bg-realscout-blue text-white hover:bg-realscout-navy"
+              >
+                Schedule Consultation
+              </Button>
+              <Button 
+                variant="outline"
+                className="border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"
+              >
+                View Testimonials
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
