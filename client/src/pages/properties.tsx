@@ -11,10 +11,10 @@ import type { Property } from "@shared/schema";
 
 export default function Properties() {
   const [searchFilters, setSearchFilters] = useState({
-    priceMin: "",
-    priceMax: "",
-    bedrooms: "",
-    bathrooms: "",
+    priceMin: "none",
+    priceMax: "none",
+    bedrooms: "none",
+    bathrooms: "none",
     sortBy: "price-desc"
   });
 
@@ -23,10 +23,10 @@ export default function Properties() {
   });
 
   const filteredProperties = properties?.filter(property => {
-    if (searchFilters.priceMin && property.price < parseInt(searchFilters.priceMin)) return false;
-    if (searchFilters.priceMax && searchFilters.priceMax !== "999999999" && property.price > parseInt(searchFilters.priceMax)) return false;
-    if (searchFilters.bedrooms && property.bedrooms !== parseInt(searchFilters.bedrooms)) return false;
-    if (searchFilters.bathrooms && !property.bathrooms.includes(searchFilters.bathrooms)) return false;
+    if (searchFilters.priceMin !== "none" && property.price < parseInt(searchFilters.priceMin)) return false;
+    if (searchFilters.priceMax !== "none" && searchFilters.priceMax !== "999999999" && property.price > parseInt(searchFilters.priceMax)) return false;
+    if (searchFilters.bedrooms !== "none" && property.bedrooms !== parseInt(searchFilters.bedrooms)) return false;
+    if (searchFilters.bathrooms !== "none" && !property.bathrooms.includes(searchFilters.bathrooms)) return false;
     return true;
   });
 
@@ -111,7 +111,7 @@ export default function Properties() {
                   <SelectValue placeholder="Any" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Any</SelectItem>
+                  <SelectItem value="none">Any</SelectItem>
                   <SelectItem value="3">3+</SelectItem>
                   <SelectItem value="4">4+</SelectItem>
                   <SelectItem value="5">5+</SelectItem>
@@ -127,7 +127,7 @@ export default function Properties() {
                   <SelectValue placeholder="Any" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Any</SelectItem>
+                  <SelectItem value="none">Any</SelectItem>
                   <SelectItem value="2">2+</SelectItem>
                   <SelectItem value="3">3+</SelectItem>
                   <SelectItem value="4">4+</SelectItem>
@@ -190,7 +190,7 @@ export default function Properties() {
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No properties found</h3>
               <p className="text-gray-600">Try adjusting your search filters to see more results.</p>
               <Button 
-                onClick={() => setSearchFilters({ priceMin: "", priceMax: "", bedrooms: "", bathrooms: "", sortBy: "price-desc" })}
+                onClick={() => setSearchFilters({ priceMin: "none", priceMax: "none", bedrooms: "none", bathrooms: "none", sortBy: "price-desc" })}
                 className="mt-4 bg-realscout-blue text-white hover:bg-realscout-navy"
               >
                 Clear Filters
