@@ -66,27 +66,26 @@
 - Service-specific landing pages optimized
 - Social sharing optimization with Open Graph
 
-## Remaining Pages to Optimize
+### 4. MARKET ANALYSIS PAGE ✅
+- **Title Tag**: "Skye Canyon Market Analysis | Real Estate Trends | Dr. Jan Duffy REALTOR®"
+- **Meta Description**: Current market analysis with pricing trends and investment insights
+- **H1 Tag**: "Skye Canyon Market Analysis"
+- **Keywords**: Market analysis, Las Vegas real estate trends, Nevada 89166 market data
+- **Article Schema**: OG type set to "article" for market content
 
-### Market Analysis Page
-- Needs title tag and meta description
-- Market data integration required
-- Local market statistics emphasis
+### 5. LUXURY HOMES PAGE ✅  
+- **Title Tag**: "Luxury Homes Las Vegas | High-End Real Estate | Dr. Jan Duffy REALTOR®"
+- **Meta Description**: Luxury homes featuring Skye Canyon, The Ridges, exclusive communities
+- **H1 Tag**: "Luxury Homes Las Vegas"
+- **Keywords**: Luxury homes Las Vegas, high-end real estate, exclusive communities
+- **Luxury Focus**: Premium property positioning and exclusive community emphasis
 
-### Skye Canyon Guide Page
-- Neighborhood-specific SEO optimization needed
-- Community information integration
-- Local amenities and features content
-
-### Luxury Homes Page
-- High-end market targeting
-- Price range and luxury feature emphasis
-- Exclusive property positioning
-
-### Las Vegas Real Estate Page
-- Broader market coverage
-- Regional expertise demonstration
-- Market trend integration
+### 6. LAS VEGAS REAL ESTATE PAGE ✅
+- **Title Tag**: "Las Vegas Real Estate | Nevada Homes for Sale | Dr. Jan Duffy REALTOR®"
+- **Meta Description**: Comprehensive Las Vegas real estate covering Henderson, Summerlin, Northwest
+- **H1 Tag**: "Las Vegas Real Estate"
+- **Keywords**: Las Vegas real estate, Nevada homes, Henderson properties, Summerlin homes
+- **Regional Coverage**: Broader market expertise demonstration
 
 ## Next Steps Recommendations
 

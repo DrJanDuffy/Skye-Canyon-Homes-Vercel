@@ -6,6 +6,32 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Building, Users, Star } from "lucide-react";
 
 export default function LasVegasRealEstate() {
+  return (
+    <>
+      <Helmet>
+        <title>Las Vegas Real Estate | Nevada Homes for Sale | Dr. Jan Duffy REALTOR®</title>
+        <meta name="description" content="Las Vegas real estate for sale including Henderson, Summerlin, and Northwest communities. Expert Nevada real estate service from Dr. Jan Duffy, licensed REALTOR®." />
+        <meta name="keywords" content="Las Vegas real estate, Nevada homes for sale, Henderson properties, Summerlin homes, Northwest Las Vegas" />
+        <meta property="og:title" content="Las Vegas Real Estate | Dr. Jan Duffy REALTOR®" />
+        <meta property="og:description" content="Comprehensive Las Vegas real estate services covering all major communities with expert guidance." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/las-vegas-real-estate" />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Las Vegas Real Estate
+            </h1>
+            <p className="text-xl opacity-90 mb-8">
+              Comprehensive real estate services across all Las Vegas communities
+            </p>
+          </div>
+        </section>
+
   const areas = [
     {
       name: "Northwest Las Vegas",

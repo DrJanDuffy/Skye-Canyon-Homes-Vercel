@@ -6,6 +6,32 @@ import { Button } from "@/components/ui/button";
 import { Crown, Shield, Gem, Star } from "lucide-react";
 
 export default function LuxuryHomesLasVegas() {
+  return (
+    <>
+      <Helmet>
+        <title>Luxury Homes Las Vegas | High-End Real Estate | Dr. Jan Duffy REALTOR®</title>
+        <meta name="description" content="Luxury homes for sale in Las Vegas featuring Skye Canyon, The Ridges, and exclusive communities. Expert service from Dr. Jan Duffy, licensed Nevada REALTOR®." />
+        <meta name="keywords" content="luxury homes Las Vegas, high-end real estate, exclusive communities, Nevada luxury properties" />
+        <meta property="og:title" content="Luxury Homes Las Vegas | Dr. Jan Duffy REALTOR®" />
+        <meta property="og:description" content="Discover Las Vegas luxury homes in premier communities with expert guidance from Dr. Jan Duffy." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/luxury-homes-las-vegas" />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Luxury Homes Las Vegas
+            </h1>
+            <p className="text-xl opacity-90 mb-8">
+              Discover exclusive properties in Las Vegas's most prestigious communities
+            </p>
+          </div>
+        </section>
+
   const luxuryCommunities = [
     {
       name: "Skye Canyon",
