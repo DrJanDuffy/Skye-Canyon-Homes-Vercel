@@ -273,7 +273,7 @@ export default function LeadCaptureForm() {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel className="text-sm">
-                        I agree to receive communications about Sky Canyon properties and market updates *
+                        I agree to receive communications about Skye Canyon properties and market updates *
                       </FormLabel>
                       <FormMessage />
                     </div>

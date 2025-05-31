@@ -36,13 +36,13 @@ export default function HeroSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Sky Canyon Homes Expert
+            Skye Canyon Homes Expert
           </h1>
           <p className="text-xl md:text-2xl mb-2">
             Dr. Jan Duffy, REALTOR®
           </p>
           <p className="text-lg opacity-90 mb-8">
-            Your Trusted Sky Canyon Real Estate Specialist in Las Vegas, Nevada
+            Your Trusted Skye Canyon Real Estate Specialist in Las Vegas, Nevada
           </p>
           
           {/* Quick Stats */}
