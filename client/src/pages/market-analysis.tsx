@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import MarketStats from "@/components/market-stats";
@@ -7,8 +8,18 @@ import BackToTop from "@/components/back-to-top";
 
 export default function MarketAnalysis() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
+    <>
+      <Helmet>
+        <title>Skye Canyon Market Analysis | Real Estate Trends | Dr. Jan Duffy REALTOR®</title>
+        <meta name="description" content="Current Skye Canyon real estate market analysis, pricing trends, and investment insights. Expert market intelligence from Dr. Jan Duffy, licensed Nevada REALTOR®." />
+        <meta name="keywords" content="Skye Canyon market analysis, Las Vegas real estate trends, Nevada 89166 market data, property values" />
+        <meta property="og:title" content="Skye Canyon Market Analysis | Dr. Jan Duffy REALTOR®" />
+        <meta property="og:description" content="Comprehensive real estate market insights and trends for Skye Canyon, Las Vegas with expert analysis." />
+        <meta property="og:type" content="article" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/market-analysis" />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-16">
@@ -74,8 +85,9 @@ export default function MarketAnalysis() {
         </div>
       </section>
       
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </>
   );
 }

@@ -6,7 +6,35 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Home, School, Shield, Car, Utensils, Coffee, TreePine } from "lucide-react";
 
 export default function SkyeCanyonGuide() {
-  const communityStats = [
+  return (
+    <>
+      <Helmet>
+        <title>Skye Canyon Community Guide | Living in Las Vegas NV 89166 | Dr. Jan Duffy REALTOR®</title>
+        <meta name="description" content="Complete Skye Canyon community guide covering amenities, schools, parks, dining, and lifestyle. Expert neighborhood insights from Dr. Jan Duffy, local REALTOR®." />
+        <meta name="keywords" content="Skye Canyon community, Las Vegas 89166, neighborhood guide, schools, amenities, lifestyle" />
+        <meta property="og:title" content="Skye Canyon Community Guide | Dr. Jan Duffy REALTOR®" />
+        <meta property="og:description" content="Discover what makes Skye Canyon special - amenities, schools, parks, and lifestyle in this premier Las Vegas community." />
+        <meta property="og:type" content="article" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/skye-canyon-guide" />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+
+        
+        {/* Community Overview */}
+        <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Skye Canyon Community Guide
+            </h1>
+            <p className="text-xl opacity-90 mb-8">
+              Discover what makes Skye Canyon one of Las Vegas's most desirable guard-gated communities
+            </p>
+          </div>
+        </section>
+
+        {(() => {
+          const communityStats = [
     { label: "Total Homes", value: "1,847", description: "Single-family residences" },
     { label: "Average Home Size", value: "2,850 sq ft", description: "Spacious floor plans" },
     { label: "Average Lot Size", value: "0.23 acres", description: "Generous outdoor space" },
