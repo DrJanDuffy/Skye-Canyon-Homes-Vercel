@@ -14,6 +14,7 @@ import VoiceSearchSchema from "@/components/voice-search-schema";
 import EnhancedStructuredData from "@/components/enhanced-structured-data";
 import AIContentOptimizer from "@/components/ai-content-optimizer";
 import GEOAuthoritySignals from "@/components/geo-authority-signals";
+import MobileOptimizer from "@/components/mobile-optimizer";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -51,6 +52,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <CriticalCSS />
+          <MobileOptimizer />
           <PerformanceOptimizer />
           <PerformanceMonitor />
           <StructuredData />
