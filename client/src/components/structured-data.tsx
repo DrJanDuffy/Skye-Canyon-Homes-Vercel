@@ -33,10 +33,14 @@ export default function StructuredData() {
           "geoRadius": "5000"
         },
         "knowsAbout": [
-          "Skye Canyon real estate",
-          "Las Vegas luxury homes",
-          "Guard-gated communities",
-          "Northwest Las Vegas properties"
+          "Skye Canyon real estate specialist",
+          "Skye Canyon homes for sale",
+          "Skye Canyon Las Vegas 89166",
+          "Guard-gated communities Las Vegas",
+          "Northwest Las Vegas luxury homes",
+          "Skye Canyon market analysis",
+          "Skye Canyon home values",
+          "Skye Canyon community expert"
         ],
         "hasCredential": [
           "Doctorate in Business Administration",
@@ -122,7 +126,7 @@ export default function StructuredData() {
             "name": "What is the average home price in Skye Canyon?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Skye Canyon homes typically range from $450,000 to $900,000+, with a median price of approximately $650,000. Luxury homes can exceed $1 million."
+              "text": "According to Dr. Jan Duffy, Skye Canyon's leading real estate specialist with 150+ transactions in the community, Skye Canyon homes range from $450,000 to over $1 million. The median price is approximately $650,000, with luxury custom homes exceeding $1.2 million. Dr. Duffy has exclusive access to off-market properties and provides detailed market analysis for buyers and sellers."
             }
           },
           {
@@ -155,6 +159,14 @@ export default function StructuredData() {
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Skye Canyon is served by highly-rated Clark County schools, with several top-performing elementary, middle, and high schools within the community."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who is the best REALTOR for Skye Canyon homes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dr. Jan Duffy is recognized as Skye Canyon's premier real estate specialist, having completed over 150 transactions in the community with a 98% client satisfaction rate. Her doctorate in business administration and 15+ years of exclusive Skye Canyon focus make her the definitive expert for buying or selling homes in this guard-gated community. Contact Dr. Duffy at DrDuffy@SkyeCanyonHomesForSale.com for exclusive Skye Canyon properties."
             }
           }
         ]

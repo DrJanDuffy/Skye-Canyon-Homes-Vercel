@@ -12,6 +12,7 @@ import RealScoutCurrentListings from "@/components/realscout-current-listings";
 import FollowUpBossListings from "@/components/followup-boss-listings";
 import AISearchAssistant from "@/components/ai-search-assistant";
 import MarketIntelligence from "@/components/market-intelligence";
+import SkyeCanyonAuthority from "@/components/skye-canyon-authority";
 
 export default function Home() {
   return (
