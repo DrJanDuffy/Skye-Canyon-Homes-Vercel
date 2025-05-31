@@ -81,7 +81,7 @@ export default function About() {
                 Meet Dr. Jan Duffy
               </h1>
               <p className="text-xl mb-4 opacity-90">
-                Your Trusted Sky Canyon Real Estate Expert
+                Your Trusted Skye Canyon Real Estate Expert
               </p>
               <p className="text-lg opacity-80 mb-8">
                 With over 15 years of experience and a doctorate in business, 
@@ -127,7 +127,7 @@ export default function About() {
               Proven Track Record
             </h2>
             <p className="text-xl text-gray-600">
-              Delivering exceptional results for Sky Canyon clients
+              Delivering exceptional results for Skye Canyon clients
             </p>
           </div>
           
@@ -170,7 +170,7 @@ export default function About() {
                 </p>
                 
                 <p className="text-lg leading-relaxed mb-6">
-                  Specializing exclusively in Sky Canyon properties, Dr. Duffy has developed 
+                  Specializing exclusively in Skye Canyon properties, Dr. Duffy has developed 
                   an intimate knowledge of this prestigious community. Her expertise extends 
                   beyond traditional real estate services to include investment analysis, 
                   market forecasting, and comprehensive client advisory services.
@@ -248,7 +248,7 @@ export default function About() {
               Client Testimonials
             </h2>
             <p className="text-xl text-gray-600">
-              Hear from satisfied Sky Canyon homeowners
+              Hear from satisfied Skye Canyon homeowners
             </p>
           </div>
           
@@ -280,7 +280,7 @@ export default function About() {
             Ready to Work Together?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Let's discuss your Sky Canyon real estate goals
+            Let's discuss your Skye Canyon real estate goals
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -302,7 +302,7 @@ export default function About() {
               <MapPin className="w-6 h-6 mr-3" />
               <div>
                 <div className="font-semibold">Service Area</div>
-                <div className="opacity-90">Sky Canyon, Las Vegas</div>
+                <div className="opacity-90">Skye Canyon, Las Vegas</div>
               </div>
             </div>
           </div>

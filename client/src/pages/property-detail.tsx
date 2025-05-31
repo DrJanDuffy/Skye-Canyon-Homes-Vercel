@@ -229,7 +229,7 @@ export default function PropertyDetail() {
                     className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
                   />
                   <h3 className="font-semibold text-lg">Dr. Jan Duffy</h3>
-                  <p className="text-gray-600">REALTOR® | Sky Canyon Specialist</p>
+                  <p className="text-gray-600">REALTOR® | Skye Canyon Specialist</p>
                 </div>
                 
                 <div className="space-y-3">
