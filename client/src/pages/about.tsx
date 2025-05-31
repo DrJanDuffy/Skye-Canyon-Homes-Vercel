@@ -295,7 +295,7 @@ export default function About() {
               <Mail className="w-6 h-6 mr-3" />
               <div>
                 <div className="font-semibold">Email</div>
-                <div className="opacity-90">DrDuffy@skyecanyonhomesforsale.com</div>
+                <div className="opacity-90">DrDuffy@SkyeCanyonHomesForSale.com</div>
               </div>
             </div>
             <div className="flex items-center justify-center">
