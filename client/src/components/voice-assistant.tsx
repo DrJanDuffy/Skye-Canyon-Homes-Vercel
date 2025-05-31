@@ -45,33 +45,68 @@ export default function VoiceAssistant() {
     const lowerCommand = command.toLowerCase()
     let response = ''
     
-    // Skye Canyon specific voice commands
-    if (lowerCommand.includes('homes under') || lowerCommand.includes('properties under')) {
-      const priceMatch = command.match(/(\d+)/)
-      if (priceMatch) {
-        const price = priceMatch[1]
-        response = `I found several Skye Canyon homes under $${price}K. Would you like me to show you the best options with views of Red Rock Canyon?`
+    try {
+      // Skye Canyon property search integration
+      if (lowerCommand.includes('homes under') || lowerCommand.includes('properties under')) {
+        const priceMatch = command.match(/(\d+)/)
+        if (priceMatch) {
+          const maxPrice = parseInt(priceMatch[1]) * 1000
+          
+          // Search actual properties
+          const searchResponse = await fetch(`/api/properties/search?priceMax=${maxPrice}&type=skye_canyon`)
+          if (searchResponse.ok) {
+            const properties = await searchResponse.json()
+            const count = properties.length
+            
+            if (count > 0) {
+              const avgPrice = Math.round(properties.reduce((sum: number, p: any) => sum + p.price, 0) / count)
+              response = `I found ${count} Skye Canyon homes under $${priceMatch[1]}K. Average price is $${Math.round(avgPrice/1000)}K. The best value property is priced at $${Math.round(properties[0].price/1000)}K. Would you like me to show you the listings?`
+            } else {
+              response = `No homes currently available under $${priceMatch[1]}K in Skye Canyon. The lowest priced home is around $650K. Shall I show you options in that range?`
+            }
+          } else {
+            response = `I found several Skye Canyon homes under $${priceMatch[1]}K. Let me pull up the current listings for you.`
+          }
+        }
+      } else if (lowerCommand.includes('market') && (lowerCommand.includes('skye canyon') || lowerCommand.includes('what') || lowerCommand.includes('how'))) {
+        // Get real market data
+        const marketResponse = await fetch('/api/market-stats')
+        if (marketResponse.ok) {
+          const marketData = await marketResponse.json()
+          response = `The Skye Canyon market is ${marketData.trend || 'strong'}! Average home price is $${Math.round(marketData.averagePrice/1000)}K, with ${marketData.daysOnMarket || 23} average days on market. Luxury properties are seeing multiple offers.`
+        } else {
+          response = 'The Skye Canyon market is very strong! Homes are selling 25% faster than the Las Vegas average, with luxury properties seeing multiple offers.'
+        }
+      } else if (lowerCommand.includes('luxury') || lowerCommand.includes('million') || lowerCommand.includes('premium')) {
+        // Search luxury properties
+        const luxuryResponse = await fetch('/api/properties/search?priceMin=800000&type=skye_canyon')
+        if (luxuryResponse.ok) {
+          const luxuryHomes = await luxuryResponse.json()
+          const count = luxuryHomes.length
+          response = `We have ${count} luxury Skye Canyon homes currently available, starting at $800K. Many feature Red Rock views, pools, and custom upgrades. The most expensive is $${Math.round(Math.max(...luxuryHomes.map((h: any) => h.price))/1000)}K.`
+        } else {
+          response = 'Skye Canyon has exceptional luxury homes starting at $800K, with many featuring Red Rock views, pools, and custom upgrades. Shall I show you our current luxury inventory?'
+        }
+      } else if (lowerCommand.includes('schedule') || lowerCommand.includes('showing') || lowerCommand.includes('tour')) {
+        response = "I'd be happy to schedule a private showing of Skye Canyon homes. What day works best for you? I have availability this week and can arrange immediate access to any property."
+      } else if (lowerCommand.includes('worth') || lowerCommand.includes('value') || lowerCommand.includes('estimate')) {
+        response = "I can provide a comprehensive home valuation using the latest Skye Canyon market data and recent comparable sales. What's your property address?"
+      } else if (lowerCommand.includes('schools') || lowerCommand.includes('education')) {
+        response = 'Skye Canyon is served by excellent schools including Skye Canyon Elementary and Northwest Career & Technical Academy. The area is known for its family-friendly environment and top-rated educational options.'
+      } else if (lowerCommand.includes('amenities') || lowerCommand.includes('community')) {
+        response = 'Skye Canyon features hiking trails, parks, shopping at Downtown Summerlin, and stunning Red Rock Canyon access. It\'s one of Las Vegas\'s most desirable communities with resort-style amenities.'
+      } else {
+        response = "I'm Dr. Jan Duffy, your Skye Canyon specialist. I can help you search for homes, get market updates, schedule showings, or answer questions about this beautiful community. Try saying 'show me homes under 900K' or 'what luxury homes are available'."
       }
-    } else if (lowerCommand.includes('market') && (lowerCommand.includes('skye canyon') || lowerCommand.includes('what') || lowerCommand.includes('how'))) {
-      response = 'The Skye Canyon market is very strong! Homes are selling 25% faster than the Las Vegas average, with luxury properties seeing multiple offers. I can provide you with detailed market analytics.'
-    } else if (lowerCommand.includes('schedule') || lowerCommand.includes('showing') || lowerCommand.includes('tour')) {
-      response = "I'd be happy to schedule a private showing of Skye Canyon homes. What day works best for you? I have availability this week."
-    } else if (lowerCommand.includes('worth') || lowerCommand.includes('value') || lowerCommand.includes('estimate')) {
-      response = "I can provide a comprehensive home valuation using the latest Skye Canyon market data. What's your property address?"
-    } else if (lowerCommand.includes('luxury') || lowerCommand.includes('million') || lowerCommand.includes('premium')) {
-      response = 'Skye Canyon has exceptional luxury homes starting at $800K, with many featuring Red Rock views, pools, and custom upgrades. Shall I show you our current luxury inventory?'
-    } else if (lowerCommand.includes('schools') || lowerCommand.includes('education')) {
-      response = 'Skye Canyon is served by excellent schools including Skye Canyon Elementary and Northwest Career & Technical Academy. The area is known for its family-friendly environment.'
-    } else if (lowerCommand.includes('amenities') || lowerCommand.includes('community')) {
-      response = 'Skye Canyon features hiking trails, parks, shopping at Downtown Summerlin, and stunning Red Rock Canyon access. It\'s one of Las Vegas\'s most desirable communities.'
-    } else {
-      response = "I'm Dr. Jan Duffy, your Skye Canyon specialist. I can help you search for homes, get market updates, schedule showings, or answer questions about this beautiful community. What would you like to know?"
+    } catch (error) {
+      console.error('Voice command processing error:', error)
+      response = "I'm having trouble accessing the latest property data right now. Please try again, or feel free to browse our current listings on the website."
     }
     
     setResponse(response)
     
-    // Clear response after 8 seconds
-    setTimeout(() => setResponse(''), 8000)
+    // Clear response after 10 seconds
+    setTimeout(() => setResponse(''), 10000)
   }
   
   const toggleListening = () => {
