@@ -35,7 +35,7 @@ export default function CallToAction() {
             className="border-2 border-white text-white px-8 py-4 hover:bg-white hover:text-realscout-blue"
           >
             <Phone className="w-5 h-5 mr-2" />
-            Call (702) 555-0123
+            Call (702) 500-1902
           </Button>
         </div>
         

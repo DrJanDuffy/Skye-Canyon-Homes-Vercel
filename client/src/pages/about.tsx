@@ -112,7 +112,7 @@ export default function About() {
                   className="border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"
                 >
                   <Phone className="w-4 h-4 mr-2" />
-                  Call (702) 555-0123
+                  Call (702) 500-1902
                 </Button>
               </div>
             </div>
