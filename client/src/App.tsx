@@ -11,6 +11,7 @@ import PerformanceMonitor from "@/components/performance-monitor";
 import CriticalCSS from "@/components/critical-css";
 import VoiceAssistant from "@/components/voice-assistant";
 import VoiceSearchSchema from "@/components/voice-search-schema";
+import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
@@ -40,6 +41,8 @@ function Router() {
 }
 
 function App() {
+  usePredictiveLoading();
+
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
