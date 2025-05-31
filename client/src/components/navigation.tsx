@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,6 +25,13 @@ export default function Navigation() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
+            <a 
+              href="tel:+17025001902"
+              className="flex items-center text-realscout-blue hover:text-realscout-navy transition-colors font-medium"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              (702) 500-1902
+            </a>
             <a 
               href="/"
               className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
@@ -108,6 +115,14 @@ export default function Navigation() {
       {mobileMenuOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t shadow-lg">
+            <a 
+              href="tel:+17025001902"
+              className="flex items-center px-3 py-2 text-realscout-blue hover:text-realscout-navy hover:bg-blue-50 rounded-lg font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              (702) 500-1902
+            </a>
             <a 
               href="/"
               className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
