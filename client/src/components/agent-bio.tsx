@@ -15,7 +15,7 @@ export default function AgentBio() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800" 
+              src="/dr-jan-duffy-headshot.jpg" 
               alt="Dr. Jan Duffy REALTOR professional headshot" 
               className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0"
             />

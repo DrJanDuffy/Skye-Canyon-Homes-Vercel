@@ -7,7 +7,7 @@ export default function StructuredData() {
         "@id": "https://skyecanyonhomesforsale.com/#agent",
         "name": "Dr. Jan Duffy",
         "jobTitle": "REALTOR®",
-        "image": "https://skyecanyonhomesforsale.com/images/dr-jan-duffy.jpg",
+        "image": "https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg",
         "telephone": "+1-702-123-4567",
         "email": "DrDuffy@SkyeCanyonHomesForSale.com",
         "address": {
@@ -175,7 +175,7 @@ export default function StructuredData() {
         "@type": "LocalBusiness",
         "@id": "https://skyecanyonhomesforsale.com/#business",
         "name": "Dr. Jan Duffy - Skye Canyon Real Estate",
-        "image": "https://skyecanyonhomesforsale.com/images/dr-jan-duffy.jpg",
+        "image": "https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg",
         "telephone": "+1-702-123-4567",
         "email": "DrDuffy@SkyeCanyonHomesForSale.com",
         "address": {
