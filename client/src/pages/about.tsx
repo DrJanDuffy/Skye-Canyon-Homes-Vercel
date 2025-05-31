@@ -16,6 +16,8 @@ import {
   CheckCircle 
 } from "lucide-react";
 import Footer from "@/components/footer";
+import Breadcrumb from "@/components/breadcrumb";
+import BackToTop from "@/components/back-to-top";
 
 const achievements = [
   {
@@ -73,6 +75,11 @@ export default function About() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       
+      {/* Breadcrumb Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <Breadcrumb items={[{ label: "About Dr. Duffy" }]} />
+      </div>
+
       {/* Hero Section */}
       <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,17 +117,19 @@ export default function About() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-realscout-blue to-realscout-navy rounded-2xl p-8">
-                <img 
-                  src={drDuffyPhoto}
-                  alt="Dr. Jan Duffy REALTOR professional portrait" 
-                  className="rounded-xl shadow-2xl w-full max-w-md mx-auto"
-                  style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
-                />
+              <div className="bg-gradient-to-br from-realscout-blue to-realscout-navy rounded-2xl p-1 shadow-2xl">
+                <div className="bg-white rounded-xl p-4">
+                  <img 
+                    src={drDuffyPhoto}
+                    alt="Dr. Jan Duffy REALTOR professional portrait" 
+                    className="rounded-lg w-full max-w-md mx-auto object-cover"
+                    style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
+                  />
+                </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-lg p-4 shadow-lg border border-gray-200">
+              <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl border-2 border-realscout-blue">
                 <div className="text-realscout-blue text-2xl font-bold">15+</div>
-                <div className="text-gray-600 text-sm">Years Experience</div>
+                <div className="text-gray-600 text-sm font-medium">Years Experience</div>
               </div>
             </div>
           </div>
@@ -329,6 +338,7 @@ export default function About() {
       </section>
       
       <Footer />
+      <BackToTop />
     </div>
   );
 }
