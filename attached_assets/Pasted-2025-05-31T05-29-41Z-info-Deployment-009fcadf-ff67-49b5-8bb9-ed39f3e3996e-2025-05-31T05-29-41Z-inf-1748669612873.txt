@@ -1,0 +1,73 @@
+2025-05-31T05:29:41Z info: Deployment: 009fcadf-ff67-49b5-8bb9-ed39f3e3996e
+2025-05-31T05:29:41Z info: Build: 89cb266b-2e31-4d17-9279-76eccc0b3f2e
+2025-05-31T05:29:41Z info: Connecting to builder
+2025-05-31T05:29:44Z info: Builder connected
+2025-05-31T05:29:44Z info: Installing packages
+2025-05-31T05:29:45Z info: Starting Build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+
+vite v5.4.14 building for production...
+
+transforming...
+
+Browserslist: browsers data (caniuse-lite) is 7 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+✓ 1728 modules transformed.
+
+rendering chunks...
+
+computing gzip size...
+
+../dist/public/index.html                   0.63 kB │ gzip:   0.38 kB
+
+../dist/public/assets/index-KFTTyyBL.css   64.48 kB │ gzip:  11.30 kB
+
+✓ built in 4.56s
+
+
+  dist/index.js  13.9kb
+
+⚡ Done in 283ms
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.4.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.1
+npm notice To update run: npm install -g npm@11.4.1
+npm notice
+
+2025-05-31T05:29:54Z info: Pushing pid1 binary layer...
+2025-05-31T05:29:55Z info: Pushing hosting layer...
+2025-05-31T05:29:55Z info: Pushing Repl layer...
+2025-05-31T05:29:55Z info: Retrieved cached nix layer
+2025-05-31T05:29:55Z info: Created hosting layer
+2025-05-31T05:29:56Z info: Created pid1 binary layer
+2025-05-31T05:30:09Z info: Created Repl layer
+2025-05-31T05:30:09Z info: Pushed image manifest
+2025-05-31T05:30:10Z info: Pushed soci index manifest
+2025-05-31T05:30:15Z info: Creating Autoscale service
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at node:internal/main/run_main_module:28:49 {
+forwarding local port 5000 to external port 80 (mapped as 1104)
+  requireStack: []
+command finished with error [sh -c node server.js]: exit status 1
+  ^
+  code: 'MODULE_NOT_FOUND',
+node:internal/modules/cjs/loader:1228
+  requireStack: []
+command finished with error [sh -c node server.js]: exit status 1
+  throw err;
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:173:12)
+Node.js v20.18.1
+node:internal/modules/cjs/loader:1228
+    at node:internal/main/run_main_module:28:49 {
+
+  throw err;
+Error: Cannot find module '/home/runner/workspace/server.js'
+crash loop detected
+2025-05-31T05:31:35Z error: The deployment is crash looping. This can happen if the run command fails or exits immediately after starting. Check the logs for more information.
