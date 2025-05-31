@@ -9,6 +9,7 @@ import CallToAction from "@/components/call-to-action";
 import Footer from "@/components/footer";
 import RealScoutListings from "@/components/realscout-listings";
 import RealScoutCurrentListings from "@/components/realscout-current-listings";
+import FollowUpBossListings from "@/components/followup-boss-listings";
 
 export default function Home() {
   return (

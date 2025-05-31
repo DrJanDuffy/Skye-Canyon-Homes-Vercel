@@ -115,6 +115,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // FollowUp Boss integration
+  app.get("/api/followup-boss-listings", async (req, res) => {
+    try {
+      const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
+      if (!apiKey) {
+        return res.status(400).json({ message: "FollowUp Boss API key not configured" });
+      }
+
+      const response = await fetch('https://api.followupboss.com/v1/people', {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`FollowUp Boss API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      res.json(data);
+    } catch (error) {
+      console.error('FollowUp Boss API error:', error);
+      res.status(500).json({ message: "Failed to fetch FollowUp Boss data" });
+    }
+  });
+
+  // Cloud CMA integration
+  app.get("/api/cloud-cma-data", async (req, res) => {
+    try {
+      const apiKey = process.env.CLOUD_CMA_API_KEY;
+      if (!apiKey) {
+        return res.status(400).json({ message: "Cloud CMA API key not configured" });
+      }
+
+      const response = await fetch(`https://api.cloudcma.com/api/listings?key=${apiKey}&limit=10`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Cloud CMA API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      res.json(data);
+    } catch (error) {
+      console.error('Cloud CMA API error:', error);
+      res.status(500).json({ message: "Failed to fetch Cloud CMA data" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
