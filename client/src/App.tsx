@@ -13,6 +13,7 @@ import About from "@/pages/about";
 import NotFound from "@/pages/not-found";
 import NorthwestLasVegas from "@/pages/northwest-las-vegas";
 import LasVegasRealEstate from "@/pages/las-vegas-real-estate";
+import LuxuryHomesLasVegas from "@/pages/luxury-homes-las-vegas";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/northwest-las-vegas" component={NorthwestLasVegas} />
       <Route path="/las-vegas-real-estate" component={LasVegasRealEstate} />
+      <Route path="/luxury-homes-las-vegas" component={LuxuryHomesLasVegas} />
       <Route component={NotFound} />
     </Switch>
   );
