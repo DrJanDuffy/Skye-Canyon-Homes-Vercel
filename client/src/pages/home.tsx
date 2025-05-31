@@ -7,7 +7,6 @@ import AgentBio from "@/components/agent-bio";
 import CommunityHighlights from "@/components/community-highlights";
 import CallToAction from "@/components/call-to-action";
 import Footer from "@/components/footer";
-import RealScoutListings from "@/components/realscout-listings";
 
 export default function Home() {
   return (
@@ -16,7 +15,7 @@ export default function Home() {
       <HeroSection />
       <FeaturedListings />
       
-      {/* RealScout MLS Access */}
+      {/* MLS Search Portal */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -24,7 +23,7 @@ export default function Home() {
               Search Live MLS Listings
             </h2>
             <p className="text-xl text-gray-600 mb-8">
-              Access Dr. Jan Duffy's complete MLS inventory and advanced search tools
+              Access Dr. Jan Duffy's complete MLS inventory with advanced search tools
             </p>
             
             <div className="bg-white rounded-xl p-8 shadow-lg max-w-2xl mx-auto">
@@ -38,7 +37,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-4">Professional MLS Search Portal</h3>
               <p className="text-gray-600 mb-6">
                 Search thousands of properties with detailed filters, high-resolution photos, 
-                and real-time market data through Dr. Jan Duffy's dedicated MLS platform.
+                and real-time market data through Dr. Jan Duffy's dedicated platform.
               </p>
               <button 
                 onClick={() => window.open('http://drjanduffy.realscout.com/', '_blank')}
@@ -47,8 +46,20 @@ export default function Home() {
                 Launch MLS Search Portal
               </button>
               <p className="text-sm text-gray-500 mt-4">
-                Opens in new window • Powered by RealScout MLS
+                Opens in new window • Powered by MLS data
               </p>
+            </div>
+            
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 mb-4">
+                Or browse current listings below
+              </p>
+              <button 
+                onClick={() => window.location.href = '/properties'}
+                className="bg-gray-100 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                View All Properties
+              </button>
             </div>
           </div>
         </div>
