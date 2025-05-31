@@ -1,0 +1,86 @@
+I can see your deployment is crash looping due to Vite pre-transform errors - specifically failing to load /src/main.tsx. Let me break down the diagnostic framework and provide actionable solutions.
+Root Cause Analysis
+Primary Issue: Vite is attempting to load source files (/src/main.tsx) in production, but your build process suggests you're using a hybrid setup where the server should serve pre-built assets from /dist/public/.
+Critical Indicators:
+
+Build completes successfully (vite + esbuild)
+Express server starts on port 5000
+Vite development transform runs in production environment
+File path resolution failures for source TypeScript files
+
+Immediate Action Plan
+1. Verify Project Structure
+First, confirm your current file organization:
+bash# Check if main.tsx exists in expected location
+ls -la src/
+ls -la dist/public/
+2. Production Configuration Issue
+Your server appears to be running Vite in development mode during production. Check your server/index.ts:
+Current Problem: Likely running Vite dev server in production
+Solution: Configure conditional environment handling:
+typescript// In server/index.ts
+import express from 'express';
+import { createServer as createViteServer } from 'vite';
+import path from 'path';
+
+const app = express();
+const port = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV === 'production') {
+  // Serve static files from dist/public
+  app.use(express.static(path.join(process.cwd(), 'dist/public')));
+  
+  // Handle SPA routing
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'dist/public/index.html'));
+  });
+} else {
+  // Development: Use Vite dev server
+  const vite = await createViteServer({
+    server: { middlewareMode: true }
+  });
+  app.use(vite.ssrFixStacktrace);
+  app.use(vite.middlewares);
+}
+
+app.listen(port, () => {
+  console.log(`[express] serving on port ${port}`);
+});
+3. Environment Variable Configuration
+Ensure your deployment sets:
+bashNODE_ENV=production
+4. Build Script Verification
+Your current build process appears correct, but verify the output structure:
+json// package.json
+{
+  "scripts": {
+    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "start": "NODE_ENV=production node dist/index.js"
+  }
+}
+Quick Fix Implementation
+Immediate Resolution: Add environment detection in your server entry point before any Vite imports:
+typescript// At the top of server/index.ts
+const isDev = process.env.NODE_ENV !== 'production';
+
+if (!isDev) {
+  // Production: serve static files only
+  import express from 'express';
+  import path from 'path';
+  
+  const app = express();
+  app.use(express.static('dist/public'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve('dist/public/index.html'));
+  });
+  app.listen(5000);
+} else {
+  // Development: your existing Vite setup
+}
+Verification Steps
+
+Local Testing: Run npm run build && npm start locally to simulate production
+File Verification: Confirm dist/public/index.html references built assets, not source files
+Network Analysis: Check if the deployment environment has access to source files (it shouldn't need them)
+
+The core issue is your production server attempting to run Vite's development transform pipeline instead of serving pre-built static assets. This creates the file resolution errors because source files aren't available in the deployment container.

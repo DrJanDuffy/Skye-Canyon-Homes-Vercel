@@ -274,6 +274,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // SEO Routes
+  app.get("/robots.txt", (req, res) => {
+    res.type('text/plain');
+    res.sendFile('robots.txt', { root: 'public' });
+  });
+
+  app.get("/sitemap.xml", (req, res) => {
+    res.type('application/xml');
+    res.sendFile('sitemap.xml', { root: 'public' });
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
