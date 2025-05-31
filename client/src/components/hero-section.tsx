@@ -6,9 +6,9 @@ import { Search } from "lucide-react";
 export default function HeroSection() {
   const [searchType, setSearchType] = useState<'simple' | 'advanced'>('simple');
   const [searchFilters, setSearchFilters] = useState({
-    propertyType: '',
-    priceMin: '',
-    priceMax: ''
+    propertyType: 'all',
+    priceMin: '0',
+    priceMax: '999999999'
   });
 
   const handleSearch = (e: React.FormEvent) => {
@@ -79,7 +79,7 @@ export default function HeroSection() {
                     <SelectValue placeholder="All Types" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Types</SelectItem>
+                    <SelectItem value="all">All Types</SelectItem>
                     <SelectItem value="single-family">Single Family</SelectItem>
                     <SelectItem value="townhome">Townhome</SelectItem>
                     <SelectItem value="condo">Condo</SelectItem>
@@ -93,7 +93,7 @@ export default function HeroSection() {
                     <SelectValue placeholder="No Min" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">No Min</SelectItem>
+                    <SelectItem value="0">No Min</SelectItem>
                     <SelectItem value="500000">$500K</SelectItem>
                     <SelectItem value="750000">$750K</SelectItem>
                     <SelectItem value="1000000">$1M+</SelectItem>
@@ -107,7 +107,7 @@ export default function HeroSection() {
                     <SelectValue placeholder="No Max" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">No Max</SelectItem>
+                    <SelectItem value="999999999">No Max</SelectItem>
                     <SelectItem value="1000000">$1M</SelectItem>
                     <SelectItem value="1500000">$1.5M</SelectItem>
                     <SelectItem value="2000000">$2M+</SelectItem>
