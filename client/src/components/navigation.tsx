@@ -97,6 +97,12 @@ export default function Navigation() {
             >
               Contact
             </button>
+            <button 
+              onClick={() => window.open('http://drjanduffy.realscout.com/onboarding', '_blank')}
+              className="block px-3 py-2 bg-realscout-blue text-white w-full text-left rounded mx-3 mt-2"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       )}
