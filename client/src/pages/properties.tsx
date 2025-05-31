@@ -72,6 +72,7 @@ export default function Properties() {
             <p className="text-xl text-gray-600">
               Properties managed through Dr. Jan Duffy's CRM system
             </p>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Exclusive Client Listings</h3>
           </div>
           <FollowUpBossListings />
         </div>

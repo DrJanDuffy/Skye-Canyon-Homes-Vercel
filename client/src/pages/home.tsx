@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import FeaturedListings from "@/components/featured-listings";
@@ -17,9 +18,20 @@ import PreferenceCollector from "@/components/preference-collector";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navigation />
-      <HeroSection />
+    <>
+      <Helmet>
+        <title>Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR® | Las Vegas NV</title>
+        <meta name="description" content="Find luxury Skye Canyon homes for sale with Dr. Jan Duffy, REALTOR®. Expert real estate services in Las Vegas, Nevada 89166. Schedule your tour today!" />
+        <meta name="keywords" content="Skye Canyon homes for sale, Las Vegas real estate, Nevada 89166, luxury homes, Dr. Jan Duffy REALTOR" />
+        <meta property="og:title" content="Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR®" />
+        <meta property="og:description" content="Find luxury Skye Canyon homes for sale with Dr. Jan Duffy, REALTOR®. Expert real estate services in Las Vegas, Nevada 89166." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://skyecanyonhomesforsale.com" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com" />
+      </Helmet>
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <HeroSection />
       
       {/* AI Search Assistant */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -68,9 +80,10 @@ export default function Home() {
         </div>
       </section>
       
-      <AgentBio />
-      <CallToAction />
-      <Footer />
-    </div>
+        <AgentBio />
+        <CallToAction />
+        <Footer />
+      </div>
+    </>
   );
 }
