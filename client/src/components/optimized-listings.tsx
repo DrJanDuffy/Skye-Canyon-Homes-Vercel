@@ -18,7 +18,7 @@ export default function OptimizedListings({ className = "", limit = 6 }: Optimiz
   });
 
   const optimizedListings = useMemo(() => {
-    if (!listings) return [];
+    if (!listings || !Array.isArray(listings)) return [];
     return listings.slice(0, limit);
   }, [listings, limit]);
 

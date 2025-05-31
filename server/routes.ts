@@ -306,8 +306,69 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // FollowUp Boss integration
-  app.get("/api/followup-boss-listings", async (req, res) => {
+  // FollowUp Boss listings integration
+  app.get("/api/followup-boss/listings", async (req, res) => {
+    try {
+      const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
+      if (!apiKey) {
+        return res.status(400).json({ message: "FollowUp Boss API key not configured" });
+      }
+
+      // Fetch properties from FollowUp Boss
+      const response = await fetch('https://api.followupboss.com/v1/properties', {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`FollowUp Boss API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      res.json(data);
+    } catch (error) {
+      console.error('FollowUp Boss listings API error:', error);
+      res.status(500).json({ message: "Failed to fetch FollowUp Boss listings" });
+    }
+  });
+
+  // FollowUp Boss lead update endpoint
+  app.post("/api/followup-boss/update-lead", async (req, res) => {
+    try {
+      const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
+      if (!apiKey) {
+        return res.status(400).json({ message: "FollowUp Boss API key not configured" });
+      }
+
+      const { leadId, customFields } = req.body;
+
+      const response = await fetch(`https://api.followupboss.com/v1/people/${leadId}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          customFields
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`FollowUp Boss API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      res.json(data);
+    } catch (error) {
+      console.error('FollowUp Boss update lead API error:', error);
+      res.status(500).json({ message: "Failed to update lead in FollowUp Boss" });
+    }
+  });
+
+  // FollowUp Boss contacts endpoint
+  app.get("/api/followup-boss/contacts", async (req, res) => {
     try {
       const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
       if (!apiKey) {
@@ -328,8 +389,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const data = await response.json();
       res.json(data);
     } catch (error) {
-      console.error('FollowUp Boss API error:', error);
-      res.status(500).json({ message: "Failed to fetch FollowUp Boss data" });
+      console.error('FollowUp Boss contacts API error:', error);
+      res.status(500).json({ message: "Failed to fetch FollowUp Boss contacts" });
     }
   });
 

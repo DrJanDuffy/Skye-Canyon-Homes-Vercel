@@ -32,7 +32,21 @@ export default function FollowUpBossListings() {
         throw new Error('Failed to fetch listings');
       }
       const data = await response.json();
-      setListings(data);
+      
+      // Transform FollowUp Boss data to match our interface
+      const transformedListings = data.map((item: any) => ({
+        id: item.id,
+        address: item.address || 'Address not available',
+        price: item.listPrice || item.price || 0,
+        bedrooms: item.bedrooms,
+        bathrooms: item.bathrooms,
+        sqft: item.squareFeet,
+        imageUrl: item.photos?.[0]?.url,
+        status: item.status || 'Active',
+        listingDate: item.listDate
+      }));
+      
+      setListings(transformedListings);
     } catch (err) {
       setError('Unable to load authentic listings at this time');
       console.error('FollowUp Boss API error:', err);
