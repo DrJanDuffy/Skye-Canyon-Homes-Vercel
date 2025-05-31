@@ -42,13 +42,10 @@ export default function HeroSection() {
             <span className="text-sm font-medium text-white">🏆 Top Skye Canyon Specialist</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Skye Canyon
+            Skye Canyon Homes for Sale | Dr. Jan Duffy, REALTOR®
           </h1>
-          <p className="text-xl md:text-2xl mb-2">
-            Dr. Jan Duffy, REALTOR®
-          </p>
           <p className="text-lg opacity-90 mb-8">
-            Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®
+            Luxury Real Estate Expert in Las Vegas, Nevada 89166
           </p>
           
           {/* Quick Stats */}
