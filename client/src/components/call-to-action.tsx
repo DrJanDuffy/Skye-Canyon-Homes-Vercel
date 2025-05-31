@@ -13,10 +13,10 @@ export default function CallToAction() {
     <section className="py-16 bg-gradient-to-r from-realscout-blue to-realscout-light text-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Ready to Call Sky Canyon Home?
+          Ready to Call Skye Canyon Home?
         </h2>
         <p className="text-xl mb-8 opacity-90">
-          Let Dr. Jan Duffy guide you to your perfect Sky Canyon property
+          Let Dr. Jan Duffy guide you to your perfect Skye Canyon property
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -13,9 +13,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <div className="text-2xl font-bold mb-4">Sky Canyon Homes</div>
+            <div className="text-2xl font-bold mb-4">Skye Canyon Homes</div>
             <p className="text-gray-400 mb-4">
-              Your trusted partner for luxury real estate in Sky Canyon, Las Vegas. 
+              Your trusted partner for luxury real estate in Skye Canyon, Las Vegas. 
               Specializing in premium properties with exceptional service.
             </p>
             <div className="flex space-x-4">

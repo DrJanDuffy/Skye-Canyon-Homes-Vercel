@@ -60,9 +60,9 @@ async function processAISearch(query: string, context: string) {
     if (context === 'buying') {
       suggestions.push("Current market conditions are favorable for buyers");
     } else if (context === 'selling') {
-      suggestions.push("Properties in Sky Canyon are selling 15% faster than last year");
+      suggestions.push("Properties in Skye Canyon are selling 15% faster than last year");
     } else if (context === 'value') {
-      suggestions.push("Sky Canyon home values have increased 8% year-over-year");
+      suggestions.push("Skye Canyon home values have increased 8% year-over-year");
     }
   } else {
     suggestions.push("No exact matches found, but here are similar properties");
@@ -72,7 +72,7 @@ async function processAISearch(query: string, context: string) {
   return {
     properties: filteredProperties.slice(0, 6),
     suggestions,
-    marketInsights: "Sky Canyon remains one of Las Vegas's most desirable neighborhoods with strong appreciation potential.",
+    marketInsights: "Skye Canyon remains one of Las Vegas's most desirable neighborhoods with strong appreciation potential.",
     totalResults: propertyCount
   };
 }
