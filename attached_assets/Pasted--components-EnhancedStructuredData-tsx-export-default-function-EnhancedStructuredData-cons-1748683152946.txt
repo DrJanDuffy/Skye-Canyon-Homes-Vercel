@@ -1,0 +1,148 @@
+// components/EnhancedStructuredData.tsx
+export default function EnhancedStructuredData() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "@id": "https://skyecanyonhomesforsale.com/#agent",
+        "name": "Dr. Jan Duffy",
+        "image": "https://skyecanyonhomesforsale.com/images/dr-jan-duffy.jpg",
+        "telephone": "+1-702-123-4567",
+        "email": "jan@skyecanyonhomes.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Sky Canyon",
+          "addressLocality": "Las Vegas",
+          "addressRegion": "NV",
+          "postalCode": "89166",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 36.2887,
+          "longitude": -115.3366
+        },
+        "areaServed": {
+          "@type": "GeoCircle",
+          "geoMidpoint": {
+            "@type": "GeoCoordinates",
+            "latitude": 36.2887,
+            "longitude": -115.3366
+          },
+          "geoRadius": "5000"
+        },
+        "knowsAbout": [
+          "Sky Canyon real estate",
+          "Las Vegas luxury homes",
+          "Guard-gated communities",
+          "Northwest Las Vegas properties"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Sky Canyon Homes for Sale",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "House",
+                "name": "Sky Canyon Homes",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Las Vegas",
+                  "addressRegion": "NV"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://skyecanyonhomesforsale.com",
+        "name": "Sky Canyon Homes for Sale",
+        "description": "Exclusive Sky Canyon real estate in Las Vegas, NV",
+        "publisher": {
+          "@id": "https://skyecanyonhomesforsale.com/#agent"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://skyecanyonhomesforsale.com/search?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the average home price in Sky Canyon?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sky Canyon homes typically range from $450,000 to $900,000+, with a median price of approximately $650,000."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Sky Canyon a gated community?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Sky Canyon is a 24/7 guard-gated community with controlled access and roving security patrols."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "serviceType": "Real Estate Services",
+        "provider": {
+          "@id": "https://skyecanyonhomesforsale.com/#agent"
+        },
+        "areaServed": {
+          "@type": "Place",
+          "name": "Sky Canyon, Las Vegas, NV 89166"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Real Estate Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Home Buying Assistance",
+                "description": "Expert guidance for buying Sky Canyon homes"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Home Selling Services",
+                "description": "Professional home selling in Sky Canyon"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Free Home Valuation",
+                "description": "Instant CMA for Sky Canyon properties"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  )
+}
