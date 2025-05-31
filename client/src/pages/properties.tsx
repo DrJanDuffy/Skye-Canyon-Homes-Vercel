@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import RealScoutListings from "@/components/realscout-listings";
@@ -8,8 +9,18 @@ import BackToTop from "@/components/back-to-top";
 
 export default function Properties() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
+    <>
+      <Helmet>
+        <title>Skye Canyon Properties for Sale | Luxury Homes Las Vegas | Dr. Jan Duffy REALTOR®</title>
+        <meta name="description" content="Browse luxury Skye Canyon properties for sale. Current MLS listings, exclusive client portfolio, and Las Vegas area homes. Expert service by Dr. Jan Duffy REALTOR®." />
+        <meta name="keywords" content="Skye Canyon properties, luxury homes for sale, Las Vegas MLS listings, Nevada 89166, real estate" />
+        <meta property="og:title" content="Skye Canyon Properties for Sale | Dr. Jan Duffy REALTOR®" />
+        <meta property="og:description" content="Browse luxury Skye Canyon properties for sale with current MLS listings and exclusive client portfolio." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/properties" />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
       
       {/* Header */}
       <section className="bg-realscout-blue text-white py-12">
@@ -78,8 +89,9 @@ export default function Properties() {
         </div>
       </section>
       
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </>
   );
 }

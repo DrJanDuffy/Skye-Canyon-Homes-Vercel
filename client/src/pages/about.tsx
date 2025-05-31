@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -72,8 +73,18 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
+    <>
+      <Helmet>
+        <title>About Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Expert | Las Vegas NV</title>
+        <meta name="description" content="Meet Dr. Jan Duffy, your trusted Skye Canyon real estate specialist. Licensed Nevada REALTOR® with 15+ years experience in Las Vegas luxury homes. License S.0197614." />
+        <meta name="keywords" content="Dr. Jan Duffy, Skye Canyon REALTOR, Las Vegas real estate agent, Nevada license S.0197614, luxury home specialist" />
+        <meta property="og:title" content="About Dr. Jan Duffy REALTOR® | Skye Canyon Expert" />
+        <meta property="og:description" content="Meet Dr. Jan Duffy, your trusted Skye Canyon real estate specialist with 15+ years experience in Las Vegas luxury homes." />
+        <meta property="og:type" content="profile" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/about" />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
       
       {/* Breadcrumb Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
@@ -337,8 +348,9 @@ export default function About() {
         </div>
       </section>
       
-      <Footer />
-      <BackToTop />
-    </div>
+        <Footer />
+        <BackToTop />
+      </div>
+    </>
   );
 }
