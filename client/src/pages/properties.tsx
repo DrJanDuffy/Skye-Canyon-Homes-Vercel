@@ -40,6 +40,7 @@ export default function Properties() {
             <p className="text-xl text-gray-600">
               Latest properties for sale from Dr. Jan Duffy's active portfolio
             </p>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Featured Listings</h3>
           </div>
           <RealScoutCurrentListings className="w-full" />
         </div>
@@ -55,6 +56,7 @@ export default function Properties() {
             <p className="text-xl text-gray-600">
               Complete listing of Skye Canyon homes and Las Vegas area properties
             </p>
+            <h3 className="text-lg font-medium text-gray-700 mb-4">Browse All Properties</h3>
           </div>
           <RealScoutListings className="w-full" />
         </div>

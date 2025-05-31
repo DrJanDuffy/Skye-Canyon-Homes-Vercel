@@ -52,7 +52,8 @@ export default function AgentBio() {
             {/* Credentials */}
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Education</h4>
+                <h3 className="font-semibold text-gray-900 mb-2">Professional Credentials</h3>
+                <h4 className="font-medium text-gray-700 mb-2">Education & Licensing</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
                   <li>• Nevada Real Estate License S.0197614</li>
                   <li>• Certified Luxury Specialist</li>
@@ -60,7 +61,7 @@ export default function AgentBio() {
                 </ul>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Memberships</h4>
+                <h4 className="font-medium text-gray-700 mb-2">Professional Memberships</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
                   <li>• NAR (National Association)</li>
                   <li>• Nevada REALTORS®</li>

@@ -202,10 +202,10 @@ export default function About() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 flex items-center">
+                    <h2 className="text-xl font-semibold mb-4 flex items-center">
                       <Award className="w-5 h-5 mr-2 text-realscout-blue" />
                       Education & Credentials
-                    </h3>
+                    </h2>
                     <ul className="space-y-2">
                       <li className="flex items-center">
                         <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
@@ -227,10 +227,10 @@ export default function About() {
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-semibold mb-4 flex items-center">
+                    <h2 className="text-xl font-semibold mb-4 flex items-center">
                       <Users className="w-5 h-5 mr-2 text-realscout-blue" />
                       Professional Memberships
-                    </h3>
+                    </h2>
                     <ul className="space-y-2">
                       <li className="flex items-center">
                         <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
