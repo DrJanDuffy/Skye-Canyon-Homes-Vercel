@@ -74,7 +74,10 @@ export default function FeaturedListings() {
             </div>
             
             <div className="text-center mt-12">
-              <Button className="bg-realscout-blue text-white px-8 py-3 hover:bg-realscout-navy">
+              <Button 
+                onClick={() => window.location.href = '/properties'}
+                className="bg-realscout-blue text-white px-8 py-3 hover:bg-realscout-navy"
+              >
                 View All Sky Canyon Listings
               </Button>
             </div>

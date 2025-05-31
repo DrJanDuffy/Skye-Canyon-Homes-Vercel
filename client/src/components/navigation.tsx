@@ -25,24 +25,24 @@ export default function Navigation() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('search')}
+            <a 
+              href="/"
               className="text-gray-700 hover:text-realscout-blue transition-colors"
             >
-              Search Homes
-            </button>
-            <button 
-              onClick={() => scrollToSection('featured')}
+              Home
+            </a>
+            <a 
+              href="/properties"
               className="text-gray-700 hover:text-realscout-blue transition-colors"
             >
-              Featured Listings
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')}
+              All Properties
+            </a>
+            <a 
+              href="/about"
               className="text-gray-700 hover:text-realscout-blue transition-colors"
             >
               About Dr. Duffy
-            </button>
+            </a>
             <button 
               onClick={() => scrollToSection('contact')}
               className="text-gray-700 hover:text-realscout-blue transition-colors"

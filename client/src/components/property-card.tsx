@@ -75,7 +75,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         <div className="flex space-x-2">
           <Button 
             className="flex-1 bg-realscout-blue text-white hover:bg-realscout-navy"
-            onClick={() => console.log('View details for property', property.id)}
+            onClick={() => window.location.href = `/property/${property.id}`}
           >
             View Details
           </Button>
