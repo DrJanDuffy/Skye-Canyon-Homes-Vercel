@@ -15,6 +15,7 @@ import NorthwestLasVegas from "@/pages/northwest-las-vegas";
 import LasVegasRealEstate from "@/pages/las-vegas-real-estate";
 import LuxuryHomesLasVegas from "@/pages/luxury-homes-las-vegas";
 import SkyeCanyonGuide from "@/pages/skye-canyon-guide";
+import MarketAnalysis from "@/pages/market-analysis";
 
 function Router() {
   return (
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/las-vegas-real-estate" component={LasVegasRealEstate} />
       <Route path="/luxury-homes-las-vegas" component={LuxuryHomesLasVegas} />
       <Route path="/skye-canyon-guide" component={SkyeCanyonGuide} />
+      <Route path="/market-analysis" component={MarketAnalysis} />
       <Route component={NotFound} />
     </Switch>
   );

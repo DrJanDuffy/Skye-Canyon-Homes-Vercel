@@ -38,6 +38,12 @@ export default function Navigation() {
               All Properties
             </a>
             <a 
+              href="/market-analysis"
+              className="text-gray-700 hover:text-realscout-blue transition-colors"
+            >
+              Market Reports
+            </a>
+            <a 
               href="/about"
               className="text-gray-700 hover:text-realscout-blue transition-colors"
             >
@@ -82,18 +88,24 @@ export default function Navigation() {
             >
               Search Homes
             </button>
-            <button 
-              onClick={() => scrollToSection('featured')}
+            <a 
+              href="/properties"
               className="block px-3 py-2 text-gray-700 w-full text-left"
             >
-              Featured Listings
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')}
+              All Properties
+            </a>
+            <a 
+              href="/market-analysis"
+              className="block px-3 py-2 text-gray-700 w-full text-left"
+            >
+              Market Reports
+            </a>
+            <a 
+              href="/about"
               className="block px-3 py-2 text-gray-700 w-full text-left"
             >
               About Dr. Duffy
-            </button>
+            </a>
             <button 
               onClick={() => scrollToSection('contact')}
               className="block px-3 py-2 text-gray-700 w-full text-left"

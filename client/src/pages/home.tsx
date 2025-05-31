@@ -29,47 +29,36 @@ export default function Home() {
       
       <FeaturedListings />
       
-      {/* Skye Canyon Authority Section */}
-      <SkyeCanyonAuthority />
-      
-      {/* Live MLS Listings */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Current MLS Listings
-            </h2>
-            <p className="text-xl text-gray-600">
-              Newest properties for sale and rent from Dr. Jan Duffy's portfolio
-            </p>
+      {/* Quick Market Stats Preview */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            Skye Canyon Market Snapshot
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="text-3xl font-bold text-realscout-blue mb-2">$1.2M</div>
+              <div className="text-gray-600">Median Home Price</div>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="text-3xl font-bold text-realscout-blue mb-2">28</div>
+              <div className="text-gray-600">Days on Market</div>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-sm">
+              <div className="text-3xl font-bold text-realscout-blue mb-2">96%</div>
+              <div className="text-gray-600">Price to List Ratio</div>
+            </div>
           </div>
-          <RealScoutCurrentListings className="w-full" />
+          <a 
+            href="/market-analysis" 
+            className="inline-flex items-center text-realscout-blue hover:text-realscout-navy font-medium"
+          >
+            View Complete Market Analysis →
+          </a>
         </div>
       </section>
       
-      <MarketStats />
-      
-      {/* Market Intelligence */}
-      <MarketIntelligence />
-      
-      {/* FollowUp Boss CRM Integration */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Client Portfolio
-            </h2>
-            <p className="text-xl text-gray-600">
-              Properties managed through Dr. Jan Duffy's CRM system
-            </p>
-          </div>
-          <FollowUpBossListings />
-        </div>
-      </section>
-      
-      <LeadCaptureForm />
       <AgentBio />
-      <CommunityHighlights />
       <CallToAction />
       <Footer />
     </div>
