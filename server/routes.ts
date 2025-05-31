@@ -4,6 +4,107 @@ import { storage } from "./storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
 
+// AI Lead Scoring Functions
+async function scoreLeadWithAI(leadData: any) {
+  const factors = {
+    hasPreapproval: leadData.preapproved ? 20 : 0,
+    timeframe: {
+      'ASAP': 25,
+      '1-3 months': 20,
+      '3-6 months': 10,
+      '6+ months': 5,
+      'Just browsing': 0
+    }[leadData.timeframe as string] || 0,
+    priceRange: leadData.priceRange ? 15 : 0,
+    previousInteractions: Math.min((leadData.interactions || 0) * 5, 20),
+    propertyViews: Math.min((leadData.propertyViews || 0) * 2, 10),
+    responseTime: leadData.responseTime < 300 ? 10 : 5,
+  };
+  
+  const totalScore = Object.values(factors).reduce((a, b) => a + b, 0);
+  
+  let category: 'hot' | 'warm' | 'cold';
+  let recommendedActions: string[];
+  let estimatedTimeframe: string;
+  
+  if (totalScore >= 70) {
+    category = 'hot';
+    recommendedActions = [
+      'Call within 5 minutes',
+      'Send personalized Skye Canyon property matches',
+      'Schedule showing ASAP'
+    ];
+    estimatedTimeframe = '0-30 days';
+  } else if (totalScore >= 40) {
+    category = 'warm';
+    recommendedActions = [
+      'Call within 1 hour',
+      'Send Skye Canyon market report',
+      'Add to drip campaign'
+    ];
+    estimatedTimeframe = '30-90 days';
+  } else {
+    category = 'cold';
+    recommendedActions = [
+      'Add to nurture sequence',
+      'Send monthly Skye Canyon newsletter',
+      'Check in quarterly'
+    ];
+    estimatedTimeframe = '90+ days';
+  }
+  
+  return {
+    score: totalScore,
+    category,
+    recommendedActions,
+    estimatedTimeframe
+  };
+}
+
+async function sendToFollowUpBoss(lead: any, leadScore: any) {
+  const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
+  
+  if (!apiKey) {
+    console.log('FollowUp Boss API key not configured - skipping CRM integration');
+    return;
+  }
+
+  try {
+    const response = await fetch('https://api.followupboss.com/v1/people', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName: lead.firstName,
+        lastName: lead.lastName,
+        emails: [{ value: lead.email, type: 'work' }],
+        phones: lead.phone ? [{ value: lead.phone, type: 'mobile' }] : [],
+        source: 'Skye Canyon Website',
+        customFields: {
+          lead_score: leadScore.score,
+          lead_category: leadScore.category,
+          estimated_timeframe: leadScore.estimatedTimeframe,
+          skye_canyon_interest: true,
+          timeframe: lead.timeframe,
+          price_range: lead.priceRange,
+          message: lead.message
+        },
+        tags: [`Lead Score: ${leadScore.category}`, 'Skye Canyon Interest']
+      })
+    });
+
+    if (!response.ok) {
+      console.error('Failed to send lead to FollowUp Boss:', response.statusText);
+    } else {
+      console.log(`Lead successfully sent to FollowUp Boss with ${leadScore.category} score`);
+    }
+  } catch (error) {
+    console.error('Error sending lead to FollowUp Boss:', error);
+  }
+}
+
 // AI Search Processing Function
 async function processAISearch(query: string, context: string) {
   const lowerQuery = query.toLowerCase();
@@ -161,14 +262,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
 
-  // Create new lead
+  // Create new lead with AI scoring
   app.post("/api/leads", async (req, res) => {
     try {
       const validatedData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(validatedData);
+      
+      // AI Lead Scoring
+      const leadScore = await scoreLeadWithAI({
+        ...validatedData,
+        id: lead.id,
+        interactions: 1,
+        propertyViews: 0,
+        responseTime: 0
+      });
+      
+      // Send to FollowUp Boss CRM with score
+      await sendToFollowUpBoss(lead, leadScore);
+      
       res.status(201).json({ 
         message: "Lead created successfully",
-        id: lead.id 
+        id: lead.id,
+        score: leadScore.score,
+        category: leadScore.category,
+        recommendedActions: leadScore.recommendedActions,
+        estimatedTimeframe: leadScore.estimatedTimeframe
       });
     } catch (error) {
       if (error instanceof z.ZodError) {

@@ -52,13 +52,21 @@ export default function LeadCaptureForm() {
         source: 'Skye Canyon Website - Lead Capture Form'
       });
     },
-    onSuccess: () => {
+    onSuccess: (response: any) => {
       setShowSuccess(true);
       form.reset();
       queryClient.invalidateQueries({ queryKey: ['/api/leads'] });
+      
+      // Show AI-powered lead score feedback
+      const scoreMessage = response.category === 'hot' 
+        ? "High-priority lead! I'll contact you within 5 minutes."
+        : response.category === 'warm'
+        ? "Thank you! I'll reach out within the hour with personalized recommendations."
+        : "Thank you! I'll send you market updates and check in soon.";
+        
       toast({
         title: "Thank you!",
-        description: "Your information has been submitted successfully.",
+        description: scoreMessage,
       });
     },
     onError: (error) => {
@@ -205,10 +213,11 @@ export default function LeadCaptureForm() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="immediate">Within 30 days</SelectItem>
-                          <SelectItem value="short">1-3 months</SelectItem>
-                          <SelectItem value="medium">3-6 months</SelectItem>
-                          <SelectItem value="long">6+ months</SelectItem>
+                          <SelectItem value="ASAP">ASAP (Immediate)</SelectItem>
+                          <SelectItem value="1-3 months">1-3 months</SelectItem>
+                          <SelectItem value="3-6 months">3-6 months</SelectItem>
+                          <SelectItem value="6+ months">6+ months</SelectItem>
+                          <SelectItem value="Just browsing">Just browsing</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
