@@ -89,6 +89,34 @@ export default function Properties() {
           <FollowUpBossListings />
         </div>
       </section>
+
+      {/* FAQ Section for Properties */}
+      <FAQSection 
+        title="Property Search & Buying Process FAQs"
+        pageType="general"
+        faqs={[
+          {
+            question: "How do I search for Skye Canyon properties?",
+            answer: "Use our advanced search tools to filter by price, bedrooms, bathrooms, and specific features. Dr. Jan Duffy also provides exclusive access to off-market listings and upcoming properties."
+          },
+          {
+            question: "What is the typical timeline for buying a home?",
+            answer: "The home buying process typically takes 30-45 days from offer acceptance to closing. Pre-approval can be completed in 1-3 days, and property searches can begin immediately."
+          },
+          {
+            question: "Do you have access to new construction homes?",
+            answer: "Yes, Dr. Jan Duffy works with premier builders in Skye Canyon and can help you secure new construction homes, including quick move-in properties and custom builds."
+          },
+          {
+            question: "What are closing costs in Las Vegas?",
+            answer: "Closing costs typically range from 2-5% of the purchase price and include title insurance, escrow fees, inspections, and loan origination fees. Dr. Jan Duffy provides detailed cost estimates upfront."
+          },
+          {
+            question: "Can I view properties virtually?",
+            answer: "Yes, we offer virtual tours, video walkthroughs, and detailed photo galleries for most properties. In-person showings can be scheduled at your convenience."
+          }
+        ]}
+      />
       
         <Footer />
         <BackToTop />

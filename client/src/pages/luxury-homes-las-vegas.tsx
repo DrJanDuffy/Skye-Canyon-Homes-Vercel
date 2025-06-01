@@ -5,6 +5,8 @@ import BackToTop from "@/components/back-to-top";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Crown, Shield, Gem, Star } from "lucide-react";
+import FAQSection from "@/components/faq-section";
+import RelatedSearches from "@/components/related-searches";
 
 export default function LuxuryHomesLasVegas() {
   return (
@@ -62,6 +64,37 @@ export default function LuxuryHomesLasVegas() {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section for Luxury Homes */}
+        <FAQSection 
+          title="Luxury Homes & High-End Real Estate FAQs"
+          pageType="luxury-homes"
+          faqs={[
+            {
+              question: "What defines a luxury home in Las Vegas?",
+              answer: "Luxury homes in Las Vegas typically feature 3,000+ sq ft, premium finishes, custom designs, and are often located in guard-gated communities like Skye Canyon, The Ridges, or Spanish Trail with prices starting around $650K."
+            },
+            {
+              question: "Which Las Vegas communities have the best luxury homes?",
+              answer: "Premier luxury communities include Skye Canyon ($650K-$1.2M+), The Ridges ($800K-$3M+), Spanish Trail ($500K-$1.5M), and MacDonald Ranch in Henderson, each offering unique amenities and lifestyle features."
+            },
+            {
+              question: "What luxury amenities are common in high-end Las Vegas homes?",
+              answer: "Luxury Las Vegas homes often feature resort-style pools, wine cellars, home theaters, gourmet kitchens, smart home technology, casitas, RV garages, and outdoor entertainment areas with mountain or golf course views."
+            },
+            {
+              question: "How is the luxury real estate market performing in Las Vegas?",
+              answer: "The luxury market remains strong with steady appreciation. Properties above $1M show consistent demand, especially in guard-gated communities. Dr. Jan Duffy provides detailed market analysis for informed luxury home investments."
+            },
+            {
+              question: "What should I expect when buying a luxury home?",
+              answer: "Luxury home purchases involve detailed inspections, custom financing options, longer due diligence periods, and specialized marketing. Dr. Jan Duffy's expertise ensures smooth transactions and exclusive access to off-market properties."
+            }
+          ]}
+        />
+
+        {/* Related Searches for Luxury Homes */}
+        <RelatedSearches searchType="luxury-homes" />
 
         <Footer />
         <BackToTop />

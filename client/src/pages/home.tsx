@@ -16,6 +16,8 @@ import MarketIntelligence from "@/components/market-intelligence";
 import FAQSection from "@/components/faq-section";
 import SkyeCanyonAuthority from "@/components/skye-canyon-authority";
 import PreferenceCollector from "@/components/preference-collector";
+import LocalBusinessSchema from "@/components/local-business-schema";
+import RelatedSearches from "@/components/related-searches";
 
 export default function Home() {
   return (
@@ -30,6 +32,7 @@ export default function Home() {
         <meta property="og:url" content="https://skyecanyonhomesforsale.com" />
         <link rel="canonical" href="https://skyecanyonhomesforsale.com" />
       </Helmet>
+      <LocalBusinessSchema />
       <div className="min-h-screen bg-white">
         <Navigation />
         <HeroSection />
@@ -112,6 +115,9 @@ export default function Home() {
           }
         ]}
       />
+
+      {/* Related Searches Section */}
+      <RelatedSearches searchType="skye-canyon" />
       
         <AgentBio />
         <CallToAction />
