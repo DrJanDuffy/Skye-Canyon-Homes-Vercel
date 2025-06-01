@@ -7,7 +7,7 @@ interface FAQItem {
 
 interface FAQSchemaProps {
   faqs: FAQItem[];
-  pageType?: 'general' | 'skye-canyon' | 'luxury-homes' | 'market-analysis';
+  pageType?: 'general' | 'skye-canyon' | 'luxury-homes' | 'market-analysis' | 'las-vegas';
 }
 
 export default function FAQSchema({ faqs, pageType = 'general' }: FAQSchemaProps) {

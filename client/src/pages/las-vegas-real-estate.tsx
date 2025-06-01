@@ -65,6 +65,41 @@ export default function LasVegasRealEstate() {
           </div>
         </section>
 
+        {/* FAQ Section for Las Vegas Real Estate */}
+        <FAQSection 
+          title="Las Vegas Real Estate Market FAQs"
+          pageType="las-vegas"
+          faqs={[
+            {
+              question: "What are the best areas to buy real estate in Las Vegas?",
+              answer: "Top Las Vegas areas include Skye Canyon (guard-gated luxury), Henderson (family-friendly), Summerlin (master-planned), The Ridges (high-end), and Northwest Las Vegas communities. Each area offers unique amenities and lifestyle benefits."
+            },
+            {
+              question: "How is the Las Vegas real estate market currently performing?",
+              answer: "Las Vegas real estate continues to show strong performance with steady appreciation, growing population, and diverse economic drivers. The market benefits from no state income tax, business-friendly environment, and tourism industry."
+            },
+            {
+              question: "What should out-of-state buyers know about Las Vegas real estate?",
+              answer: "Nevada has no state income tax, property taxes are relatively low, and the climate offers year-round outdoor activities. Consider factors like HOA fees, water restrictions, and proximity to amenities when choosing locations."
+            },
+            {
+              question: "What is the average home price in Las Vegas?",
+              answer: "Las Vegas home prices vary by area: Northwest Las Vegas ($350K-$900K+), Henderson ($400K-$1.2M+), Summerlin ($450K-$1.5M+), with luxury communities like Skye Canyon ranging $650K-$1.2M+."
+            },
+            {
+              question: "Are there good investment opportunities in Las Vegas real estate?",
+              answer: "Yes, Las Vegas offers excellent investment potential with rental properties, vacation homes, and appreciation opportunities. Popular investment areas include established communities and emerging neighborhoods with growth potential."
+            },
+            {
+              question: "What makes Las Vegas attractive for relocation?",
+              answer: "Las Vegas offers no state income tax, year-round entertainment, outdoor recreation, growing job market, relatively affordable housing compared to California, and excellent dining and cultural amenities."
+            }
+          ]}
+        />
+
+        {/* Related Searches for Las Vegas Real Estate */}
+        <RelatedSearches searchType="las-vegas" />
+
         <Footer />
         <BackToTop />
       </div>
