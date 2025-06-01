@@ -629,6 +629,79 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.sendFile('sitemap.xml', { root: 'public' });
   });
 
+  // Google Indexing API webhook
+  app.post("/api/indexing-webhook", async (req, res) => {
+    try {
+      const { url, type, timestamp } = req.body;
+      
+      console.log(`Indexing request: ${type} for ${url} at ${timestamp}`);
+      
+      const indexingData = {
+        url,
+        type,
+        timestamp: new Date().toISOString(),
+        userAgent: req.get('User-Agent'),
+        ip: req.ip
+      };
+      
+      res.status(200).json({ 
+        success: true, 
+        message: 'Indexing request processed',
+        data: indexingData 
+      });
+      
+    } catch (error) {
+      console.error('Indexing webhook error:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Failed to process indexing request' 
+      });
+    }
+  });
+
+  // IndexNow API endpoint for instant search engine notification
+  app.post("/api/submit-indexnow", async (req, res) => {
+    try {
+      const { urls } = req.body;
+      const indexNowKey = 'a8b9c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0';
+      
+      const payload = {
+        host: 'skyecanyonhomesforsale.com',
+        key: indexNowKey,
+        keyLocation: `https://skyecanyonhomesforsale.com/${indexNowKey}.txt`,
+        urlList: urls || []
+      };
+      
+      const engines = [
+        'https://api.indexnow.org/indexnow',
+        'https://www.bing.com/indexnow'
+      ];
+      
+      const submissions = engines.map(engine => 
+        fetch(engine, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.log(`IndexNow submission failed for ${engine}:`, err))
+      );
+      
+      await Promise.allSettled(submissions);
+      
+      res.json({ 
+        success: true, 
+        message: `IndexNow submitted for ${urls?.length || 0} URLs`,
+        submitted_urls: urls 
+      });
+      
+    } catch (error) {
+      console.error('IndexNow submission error:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Failed to submit to IndexNow' 
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
