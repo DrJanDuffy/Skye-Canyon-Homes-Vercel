@@ -5,6 +5,7 @@ import MarketStats from "@/components/market-stats";
 import MarketIntelligence from "@/components/market-intelligence";
 import Breadcrumb from "@/components/breadcrumb";
 import BackToTop from "@/components/back-to-top";
+import FAQSection from "@/components/faq-section";
 
 export default function MarketAnalysis() {
   return (
@@ -84,6 +85,38 @@ export default function MarketAnalysis() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section for Market Analysis */}
+      <FAQSection 
+        title="Skye Canyon Market Analysis & Investment FAQs"
+        pageType="market-analysis"
+        faqs={[
+          {
+            question: "What is the current median home price in Skye Canyon?",
+            answer: "The current median home price in Skye Canyon ranges from $650,000 to $1.2M+, with luxury custom homes reaching higher price points. The guard-gated community maintains strong property values due to premium amenities and location."
+          },
+          {
+            question: "How is the Skye Canyon real estate market performing?",
+            answer: "Skye Canyon continues to show strong market performance with steady appreciation, low inventory, and high demand. The premium location and exclusive amenities contribute to consistent property value growth."
+          },
+          {
+            question: "What is the average days on market for Skye Canyon homes?",
+            answer: "Well-priced Skye Canyon homes typically sell within 30-45 days on market. Properties with unique features or premium locations often receive multiple offers and sell even faster."
+          },
+          {
+            question: "Is Skye Canyon a good investment for real estate?",
+            answer: "Yes, Skye Canyon offers excellent investment potential due to its guard-gated exclusivity, golf course amenities, limited inventory, and strong appreciation history. The community's desirability ensures long-term value stability."
+          },
+          {
+            question: "What factors affect Skye Canyon property values?",
+            answer: "Key factors include golf course views, lot size, home condition, custom features, and proximity to amenities. The guard-gated security and Desert Highlands Golf Course significantly enhance property values."
+          },
+          {
+            question: "How do Skye Canyon prices compare to other Las Vegas areas?",
+            answer: "Skye Canyon commands premium pricing compared to most Las Vegas areas due to its exclusive guard-gated status, golf course, and luxury amenities. Prices are competitive with other high-end communities like The Ridges and Spanish Trail."
+          }
+        ]}
+      />
       
         <Footer />
         <BackToTop />

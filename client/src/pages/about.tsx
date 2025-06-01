@@ -19,6 +19,7 @@ import {
 import Footer from "@/components/footer";
 import Breadcrumb from "@/components/breadcrumb";
 import BackToTop from "@/components/back-to-top";
+import FAQSection from "@/components/faq-section";
 
 const achievements = [
   {
@@ -347,6 +348,34 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section for About Dr. Jan Duffy */}
+      <FAQSection 
+        title="About Dr. Jan Duffy - Your Skye Canyon Real Estate Expert"
+        pageType="general"
+        faqs={[
+          {
+            question: "What are Dr. Jan Duffy's qualifications as a REALTOR®?",
+            answer: "Dr. Jan Duffy holds Nevada Real Estate License S.0197614 and has over 15 years of experience specializing in Skye Canyon and Las Vegas luxury real estate. She is affiliated with Berkshire Hathaway HomeServices Nevada Properties."
+          },
+          {
+            question: "Why choose Dr. Jan Duffy for Skye Canyon homes?",
+            answer: "Dr. Jan Duffy specializes exclusively in Skye Canyon properties and has extensive knowledge of the guard-gated community, Desert Highlands Golf Course, and local amenities. Her expertise ensures clients get the best value and service."
+          },
+          {
+            question: "What areas does Dr. Jan Duffy serve?",
+            answer: "While specializing in Skye Canyon (89166), Dr. Jan Duffy also serves Northwest Las Vegas, Henderson, Summerlin, and other luxury communities throughout the Las Vegas valley."
+          },
+          {
+            question: "How can I contact Dr. Jan Duffy?",
+            answer: "Call (702) 500-1902 or visit the office at 10111 W. Skye Canyon Park Drive, Las Vegas, NV 89166. Office hours are Monday-Friday 9AM-6PM, Saturday 9AM-5PM, Sunday 11AM-4PM."
+          },
+          {
+            question: "Does Dr. Jan Duffy work with first-time buyers?",
+            answer: "Yes, Dr. Jan Duffy works with all types of buyers including first-time homebuyers, luxury home purchasers, investors, and those relocating to Las Vegas. She provides personalized service for every client's needs."
+          }
+        ]}
+      />
       
         <Footer />
         <BackToTop />

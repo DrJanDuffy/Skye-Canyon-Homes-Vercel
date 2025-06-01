@@ -5,6 +5,8 @@ import BackToTop from "@/components/back-to-top";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Building, Users, Star } from "lucide-react";
+import FAQSection from "@/components/faq-section";
+import RelatedSearches from "@/components/related-searches";
 
 export default function LasVegasRealEstate() {
   return (
