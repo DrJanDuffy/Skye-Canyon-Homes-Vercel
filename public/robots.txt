@@ -1,22 +1,38 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Priority crawling for main pages
+Allow: /properties
+Allow: /about
+Allow: /market-analysis
+Allow: /luxury-homes
+Allow: /community-guide
+Allow: /las-vegas-real-estate
+
+# Block non-essential paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+# Sitemap location
 Sitemap: https://skyecanyonhomesforsale.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 
-# Allow all search engines to access important pages
+# Special instructions for major search engines
+User-agent: Googlebot
 Allow: /
-Allow: /about
-Allow: /properties
-Allow: /las-vegas-real-estate
-Allow: /luxury-homes-las-vegas
-Allow: /northwest-las-vegas
-Allow: /skye-canyon-guide
+Crawl-delay: 1
 
-# Block any admin or private areas (if they exist in the future)
-Disallow: /admin/
-Disallow: /api/
-Disallow: /*.json$
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
