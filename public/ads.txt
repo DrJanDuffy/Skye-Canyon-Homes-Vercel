@@ -1,0 +1,16 @@
+# Authorized Digital Sellers for skyecanyonhomesforsale.com
+# This file helps prevent ad fraud and unauthorized advertising
+# Contact: DrDuffy@SkyeCanyonHomesForSale.com for advertising inquiries
+
+# Google AdSense (if using)
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+
+# Facebook/Meta Advertising (if using)
+# facebook.com, 000000000000000, DIRECT, c3e20eee3f780d68
+
+# Real Estate Advertising Networks
+# realtor.com, authorized-partner-id, RESELLER
+# zillow.com, authorized-partner-id, RESELLER
+
+# Direct sales only - no third-party advertising networks authorized
+# For advertising opportunities, contact Dr. Jan Duffy directly

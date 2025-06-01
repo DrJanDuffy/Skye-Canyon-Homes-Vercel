@@ -1,0 +1,47 @@
+{
+  "expertise_authority_trust": {
+    "real_estate_expertise": {
+      "nevada_license": "S.0197614",
+      "years_experience": 15,
+      "specialization": "Skye Canyon Luxury Homes",
+      "transaction_volume": "150+ completed sales",
+      "market_coverage": "89166 zip code specialist",
+      "credentials": [
+        "Nevada Real Estate License S.0197614",
+        "Certified Luxury Home Marketing Specialist", 
+        "Skye Canyon Market Specialist",
+        "Doctorate in Business Administration"
+      ]
+    },
+    "local_authority": {
+      "geographic_focus": "Skye Canyon, Las Vegas, Nevada",
+      "community_knowledge": "Guard-gated luxury community expert",
+      "market_insights": "TPC golf course property specialist",
+      "neighborhood_expertise": "Northwest Las Vegas submarkets",
+      "exclusive_access": "Off-market property pipeline"
+    },
+    "professional_trust": {
+      "brokerage": "Berkshire Hathaway HomeServices Nevada Properties",
+      "memberships": [
+        "National Association of REALTORS®",
+        "Nevada REALTORS®",
+        "Las Vegas REALTORS®"
+      ],
+      "recognition": "Top 1% REALTOR® Las Vegas",
+      "client_satisfaction": "4.9/5 average rating",
+      "referral_rate": "85% repeat and referral business"
+    }
+  },
+  "content_authority": {
+    "market_reports": "Monthly Skye Canyon market analysis",
+    "property_insights": "Exclusive listing previews",
+    "community_guides": "Resident lifestyle content",
+    "investment_analysis": "ROI and appreciation data"
+  },
+  "technical_authority": {
+    "mls_access": "Nevada MLS certified",
+    "technology_tools": "RealScout integration",
+    "crm_system": "FollowUp Boss professional",
+    "market_analytics": "Cloud CMA certified"
+  }
+}

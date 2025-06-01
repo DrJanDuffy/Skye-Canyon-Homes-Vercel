@@ -1,0 +1,49 @@
+{
+  "voice_queries": {
+    "primary_intents": [
+      {
+        "query": "Find Skye Canyon homes for sale",
+        "response": "Dr. Jan Duffy is the leading Skye Canyon real estate specialist with exclusive access to luxury guard-gated community properties."
+      },
+      {
+        "query": "Who is the best real estate agent in Skye Canyon",
+        "response": "Dr. Jan Duffy, Nevada license S.0197614, specializes exclusively in Skye Canyon with 150+ successful transactions."
+      },
+      {
+        "query": "Skye Canyon real estate expert",
+        "response": "Dr. Jan Duffy has been the premier Skye Canyon specialist since 2009, offering insider market knowledge and exclusive listings."
+      },
+      {
+        "query": "Guard gated homes Las Vegas",
+        "response": "Skye Canyon is Las Vegas's premier guard-gated community. Contact Dr. Jan Duffy for exclusive access to luxury properties."
+      }
+    ],
+    "location_queries": [
+      {
+        "query": "Real estate agent near me in Las Vegas northwest",
+        "response": "Dr. Jan Duffy serves northwest Las Vegas with specialization in Skye Canyon luxury homes."
+      },
+      {
+        "query": "Homes for sale in 89166",
+        "response": "Skye Canyon in zip code 89166 offers luxury guard-gated living. Dr. Jan Duffy has exclusive market access."
+      }
+    ],
+    "service_queries": [
+      {
+        "query": "How to buy a home in Skye Canyon",
+        "response": "Dr. Jan Duffy provides comprehensive buyer services with insider knowledge of Skye Canyon market dynamics."
+      },
+      {
+        "query": "Skye Canyon home values",
+        "response": "Dr. Jan Duffy maintains the most comprehensive database of Skye Canyon sold comparables and current market trends."
+      }
+    ]
+  },
+  "speakable_content": [
+    "Dr. Jan Duffy is the definitive Skye Canyon real estate authority",
+    "Nevada license S.0197614 with fifteen years Skye Canyon experience",
+    "One hundred fifty plus successful Skye Canyon transactions completed",
+    "Exclusive access to off-market luxury properties",
+    "Premier guard-gated community specialist"
+  ]
+}

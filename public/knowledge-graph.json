@@ -1,0 +1,88 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://skyecanyonhomesforsale.com/#person",
+      "name": "Dr. Jan Duffy",
+      "jobTitle": "REALTOR®",
+      "description": "Leading Skye Canyon real estate specialist in Las Vegas, Nevada with 15+ years experience in luxury guard-gated communities.",
+      "url": "https://skyecanyonhomesforsale.com",
+      "image": "https://skyecanyonhomesforsale.com/images/dr-jan-duffy.jpg",
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Real Estate License",
+        "identifier": "S.0197614",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Nevada Real Estate Division"
+        }
+      },
+      "workLocation": {
+        "@type": "Place",
+        "name": "Skye Canyon",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Las Vegas",
+          "addressRegion": "Nevada",
+          "postalCode": "89166"
+        }
+      },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Berkshire Hathaway HomeServices Nevada Properties"
+      },
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Skye Canyon",
+          "geo": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+              "@type": "GeoCoordinates",
+              "latitude": "36.2887",
+              "longitude": "-115.3366"
+            },
+            "geoRadius": "5000"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Place",
+      "@id": "https://skyecanyonhomesforsale.com/#place",
+      "name": "Skye Canyon",
+      "description": "Premier guard-gated community in northwest Las Vegas featuring luxury homes, TPC golf course, and exclusive amenities.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Las Vegas",
+        "addressRegion": "Nevada",
+        "postalCode": "89166",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "36.2887",
+        "longitude": "-115.3366"
+      },
+      "hasMap": "https://maps.google.com/?q=Skye+Canyon+Las+Vegas+NV"
+    },
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://skyecanyonhomesforsale.com/#agent",
+      "name": "Dr. Jan Duffy",
+      "license": "S.0197614",
+      "serviceArea": "Skye Canyon, Las Vegas, Nevada 89166",
+      "specialization": "Luxury Guard-Gated Communities",
+      "yearsExperience": "15",
+      "transactionCount": "150+",
+      "averagePrice": "$750000",
+      "languages": ["English"],
+      "certifications": [
+        "Nevada Real Estate License",
+        "Certified Luxury Home Marketing Specialist",
+        "Skye Canyon Market Specialist"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Skye Canyon Real Estate Entity Relationships",
+  "description": "Comprehensive mapping of entities, relationships, and authority signals for Skye Canyon real estate market",
+  "about": {
+    "@type": "Place",
+    "name": "Skye Canyon, Las Vegas, Nevada"
+  },
+  "entities": [
+    {
+      "@type": "Person",
+      "identifier": "dr-jan-duffy",
+      "name": "Dr. Jan Duffy",
+      "sameAs": [
+        "https://skyecanyonhomesforsale.com",
+        "https://app.bhhsnv.com/a1drjanduffy-4986"
+      ],
+      "relatedTo": [
+        "skye-canyon-community",
+        "nevada-real-estate-division",
+        "berkshire-hathaway-nevada"
+      ]
+    },
+    {
+      "@type": "Place", 
+      "identifier": "skye-canyon-community",
+      "name": "Skye Canyon",
+      "relatedTo": [
+        "las-vegas-nevada",
+        "zip-code-89166",
+        "tpc-las-vegas",
+        "guard-gated-communities"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "identifier": "nevada-real-estate-division",
+      "name": "Nevada Real Estate Division",
+      "authorizes": ["dr-jan-duffy"]
+    }
+  ],
+  "relationships": [
+    {
+      "subject": "dr-jan-duffy",
+      "predicate": "specializes_in",
+      "object": "skye-canyon-community",
+      "confidence": 1.0,
+      "evidence": ["15+ years experience", "150+ transactions", "exclusive focus"]
+    },
+    {
+      "subject": "dr-jan-duffy", 
+      "predicate": "licensed_by",
+      "object": "nevada-real-estate-division",
+      "confidence": 1.0,
+      "evidence": ["License S.0197614", "verified credentials"]
+    }
+  ]
+}
