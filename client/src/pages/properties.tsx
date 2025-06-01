@@ -6,6 +6,7 @@ import RealScoutCurrentListings from "@/components/realscout-current-listings";
 import FollowUpBossListings from "@/components/followup-boss-listings";
 import Breadcrumb from "@/components/breadcrumb";
 import BackToTop from "@/components/back-to-top";
+import FAQSection from "@/components/faq-section";
 
 export default function Properties() {
   return (

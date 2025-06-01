@@ -13,6 +13,7 @@ import RealScoutCurrentListings from "@/components/realscout-current-listings";
 import FollowUpBossListings from "@/components/followup-boss-listings";
 import AISearchAssistant from "@/components/ai-search-assistant";
 import MarketIntelligence from "@/components/market-intelligence";
+import FAQSection from "@/components/faq-section";
 import SkyeCanyonAuthority from "@/components/skye-canyon-authority";
 import PreferenceCollector from "@/components/preference-collector";
 
@@ -79,6 +80,38 @@ export default function Home() {
           <PreferenceCollector />
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection 
+        title="Frequently Asked Questions About Skye Canyon Homes"
+        pageType="skye-canyon"
+        faqs={[
+          {
+            question: "What are the home prices in Skye Canyon?",
+            answer: "Skye Canyon home prices typically range from $650,000 to $1.2M+, with luxury custom homes reaching higher price points. The guard-gated community offers exceptional value for the premium amenities and location."
+          },
+          {
+            question: "Is Skye Canyon a guard-gated community?",
+            answer: "Yes, Skye Canyon is a prestigious 24/7 guard-gated community with controlled access and roving security patrols, ensuring residents' safety and privacy."
+          },
+          {
+            question: "What amenities are available in Skye Canyon?",
+            answer: "Skye Canyon features the Desert Highlands Golf Course, community recreation center, fitness facilities, swimming pools, tennis courts, walking trails, and exclusive clubhouse amenities."
+          },
+          {
+            question: "How long does it take to find a home in Skye Canyon?",
+            answer: "With Dr. Jan Duffy's expertise and exclusive market knowledge, most clients find their ideal Skye Canyon home within 30-60 days, depending on specific requirements and market conditions."
+          },
+          {
+            question: "What schools serve the Skye Canyon area?",
+            answer: "Skye Canyon is served by highly-rated schools in the Clark County School District, including top-performing elementary, middle, and high schools in the northwest Las Vegas area."
+          },
+          {
+            question: "Are there new construction homes available in Skye Canyon?",
+            answer: "Yes, Skye Canyon offers both resale homes and new construction opportunities. Dr. Jan Duffy can help you explore all available options including quick move-in homes and custom builds."
+          }
+        ]}
+      />
       
         <AgentBio />
         <CallToAction />
