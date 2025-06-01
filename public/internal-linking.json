@@ -1,0 +1,42 @@
+{
+  "link_structure": {
+    "hub_pages": [
+      {
+        "url": "/",
+        "title": "Skye Canyon Homes for Sale",
+        "links_to": ["/properties", "/about", "/market-analysis", "/luxury-homes"]
+      },
+      {
+        "url": "/properties",
+        "title": "Current Skye Canyon Properties",
+        "links_to": ["/properties/luxury", "/properties/new-construction", "/properties/golf-course", "/market-analysis"]
+      },
+      {
+        "url": "/about",
+        "title": "Dr. Jan Duffy REALTOR Nevada S.0197614",
+        "links_to": ["/services/buyers", "/services/sellers", "/community-guide", "/"]
+      }
+    ],
+    "category_pages": [
+      {
+        "url": "/luxury-homes",
+        "related": ["/properties/luxury", "/market-analysis", "/community-guide"]
+      },
+      {
+        "url": "/market-analysis", 
+        "related": ["/properties", "/luxury-homes", "/las-vegas-real-estate"]
+      }
+    ]
+  },
+  "anchor_text_strategy": {
+    "branded": ["Dr. Jan Duffy REALTOR", "Skye Canyon specialist"],
+    "location": ["Skye Canyon homes", "Las Vegas Nevada 89166", "guard gated community"],
+    "service": ["luxury real estate", "property search", "market analysis"],
+    "credentials": ["Nevada license S.0197614", "certified specialist"]
+  },
+  "link_equity_flow": {
+    "primary_flow": "Home → Properties → Individual Listings",
+    "secondary_flow": "About → Services → Contact",
+    "tertiary_flow": "Market Analysis → Community Guide → Las Vegas Real Estate"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://skyecanyonhomesforsale.com",
+  "name": "Skye Canyon Homes for Sale",
+  "alternateName": "Dr. Jan Duffy REALTOR Skye Canyon",
+  "description": "Nevada licensed REALTOR Dr. Jan Duffy specializes exclusively in Skye Canyon luxury homes with 15+ years experience in guard-gated communities.",
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "isFamilyFriendly": true,
+  "keywords": "Skye Canyon homes, Las Vegas real estate, Nevada REALTOR S.0197614, guard gated community, luxury homes 89166",
+  "about": {
+    "@type": "Thing",
+    "name": "Skye Canyon Real Estate",
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/Skye_Canyon,_Nevada",
+      "https://www.google.com/maps/place/Skye+Canyon,+Las+Vegas,+NV"
+    ]
+  },
+  "publisher": {
+    "@type": "RealEstateAgent",
+    "name": "Dr. Jan Duffy",
+    "license": "S.0197614",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "10111 W. Skye Canyon Park Drive",
+      "addressLocality": "Las Vegas",
+      "addressRegion": "Nevada",
+      "postalCode": "89166"
+    }
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": 12,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "url": "https://skyecanyonhomesforsale.com/"
+      },
+      {
+        "@type": "ListItem", 
+        "position": 2,
+        "url": "https://skyecanyonhomesforsale.com/properties"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "url": "https://skyecanyonhomesforsale.com/about"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "url": "https://skyecanyonhomesforsale.com/market-analysis"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "url": "https://skyecanyonhomesforsale.com/luxury-homes"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "url": "https://skyecanyonhomesforsale.com/community-guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "url": "https://skyecanyonhomesforsale.com/las-vegas-real-estate"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "url": "https://skyecanyonhomesforsale.com/properties/luxury"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "url": "https://skyecanyonhomesforsale.com/properties/new-construction"
+      },
+      {
+        "@type": "ListItem",
+        "position": 10,
+        "url": "https://skyecanyonhomesforsale.com/properties/golf-course"
+      },
+      {
+        "@type": "ListItem",
+        "position": 11,
+        "url": "https://skyecanyonhomesforsale.com/services/buyers"
+      },
+      {
+        "@type": "ListItem",
+        "position": 12,
+        "url": "https://skyecanyonhomesforsale.com/services/sellers"
+      }
+    ]
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Las Vegas Real Estate",
+        "item": "https://skyecanyonhomesforsale.com/las-vegas-real-estate"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Skye Canyon Community",
+        "item": "https://skyecanyonhomesforsale.com/community-guide"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Luxury Homes",
+        "item": "https://skyecanyonhomesforsale.com/luxury-homes"
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "crawl_hints": {
+    "priority_urls": [
+      "https://skyecanyonhomesforsale.com/",
+      "https://skyecanyonhomesforsale.com/properties",
+      "https://skyecanyonhomesforsale.com/about",
+      "https://skyecanyonhomesforsale.com/market-analysis"
+    ],
+    "update_frequency": {
+      "high": ["properties", "market-analysis"],
+      "medium": ["luxury-homes", "las-vegas-real-estate"],
+      "low": ["about", "community-guide", "contact"]
+    },
+    "content_freshness": {
+      "real_time": "/properties",
+      "daily": "/market-analysis",
+      "weekly": "/luxury-homes",
+      "monthly": "/about"
+    }
+  },
+  "indexing_signals": {
+    "mobile_optimized": true,
+    "https_enabled": true,
+    "core_web_vitals_optimized": true,
+    "structured_data_present": true,
+    "amp_enabled": false,
+    "pwa_enabled": true
+  },
+  "content_categories": [
+    "Real Estate",
+    "Local Business", 
+    "Professional Services",
+    "Las Vegas Nevada",
+    "Luxury Homes"
+  ],
+  "geographic_signals": {
+    "primary_location": "Skye Canyon, Las Vegas, Nevada 89166",
+    "service_radius": "25 miles",
+    "coordinates": "36.2887,-115.3366"
+  }
+}

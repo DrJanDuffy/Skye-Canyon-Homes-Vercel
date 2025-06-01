@@ -1,0 +1,50 @@
+{
+  "indexing_requests": [
+    {
+      "url": "https://skyecanyonhomesforsale.com/",
+      "type": "URL_UPDATED",
+      "priority": "high",
+      "last_modified": "2025-06-01T12:00:00Z"
+    },
+    {
+      "url": "https://skyecanyonhomesforsale.com/properties",
+      "type": "URL_UPDATED", 
+      "priority": "high",
+      "last_modified": "2025-06-01T12:00:00Z"
+    },
+    {
+      "url": "https://skyecanyonhomesforsale.com/about",
+      "type": "URL_UPDATED",
+      "priority": "medium",
+      "last_modified": "2025-06-01T12:00:00Z"
+    },
+    {
+      "url": "https://skyecanyonhomesforsale.com/market-analysis",
+      "type": "URL_UPDATED",
+      "priority": "high",
+      "last_modified": "2025-06-01T12:00:00Z"
+    },
+    {
+      "url": "https://skyecanyonhomesforsale.com/luxury-homes",
+      "type": "URL_UPDATED",
+      "priority": "medium",
+      "last_modified": "2025-06-01T12:00:00Z"
+    },
+    {
+      "url": "https://skyecanyonhomesforsale.com/community-guide",
+      "type": "URL_UPDATED",
+      "priority": "medium",
+      "last_modified": "2025-06-01T12:00:00Z"
+    },
+    {
+      "url": "https://skyecanyonhomesforsale.com/las-vegas-real-estate",
+      "type": "URL_UPDATED",
+      "priority": "medium",
+      "last_modified": "2025-06-01T12:00:00Z"
+    }
+  ],
+  "batch_settings": {
+    "max_requests_per_day": 200,
+    "notification_target": "https://skyecanyonhomesforsale.com/api/indexing-webhook"
+  }
+}

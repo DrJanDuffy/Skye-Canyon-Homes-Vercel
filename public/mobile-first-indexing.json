@@ -1,0 +1,45 @@
+{
+  "mobile_optimization": {
+    "responsive_design": true,
+    "mobile_usability": {
+      "text_readable": "16px minimum font size",
+      "tap_targets": "48px minimum touch targets",
+      "viewport_configured": "width=device-width, initial-scale=1",
+      "content_width": "fits screen without horizontal scrolling"
+    },
+    "page_speed": {
+      "target_lcp": "< 2.5 seconds",
+      "target_fid": "< 100 milliseconds", 
+      "target_cls": "< 0.1",
+      "compression": "gzip/brotli enabled",
+      "image_optimization": "WebP format with fallbacks"
+    }
+  },
+  "structured_data_mobile": {
+    "local_business": "Complete with hours, phone, address",
+    "real_estate_agent": "License, credentials, service area",
+    "breadcrumbs": "Navigation hierarchy",
+    "faq": "Voice search optimization",
+    "organization": "Berkshire Hathaway affiliation"
+  },
+  "mobile_features": {
+    "click_to_call": "tel:+17025001902",
+    "map_integration": "Google Maps for office location",
+    "form_optimization": "Touch-friendly input fields",
+    "image_galleries": "Swipe-enabled property photos"
+  },
+  "indexing_priority": {
+    "primary_pages": [
+      "Home page with hero CTA",
+      "Properties with MLS listings",
+      "About page with credentials",
+      "Contact with phone/location"
+    ],
+    "mobile_signals": [
+      "Fast loading times",
+      "No intrusive interstitials",
+      "Easy navigation",
+      "Readable content"
+    ]
+  }
+}
