@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Skye Canyon Homes for Sale - Dr. Jan Duffy REALTOR®</title>
+    <link>https://skyecanyonhomesforsale.com</link>
+    <description>Latest Skye Canyon real estate listings, market updates, and luxury home insights from Dr. Jan Duffy, Nevada's premier Skye Canyon specialist.</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Jun 2025 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://skyecanyonhomesforsale.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <generator>Skye Canyon Real Estate Feed</generator>
+    <image>
+      <url>https://skyecanyonhomesforsale.com/images/logo.png</url>
+      <title>Skye Canyon Homes for Sale</title>
+      <link>https://skyecanyonhomesforsale.com</link>
+    </image>
+    
+    <item>
+      <title>New Luxury Listings in Skye Canyon - June 2025</title>
+      <link>https://skyecanyonhomesforsale.com/properties</link>
+      <description>Discover the latest luxury home listings in Skye Canyon's guard-gated community. Properties starting from $450K with exclusive amenities.</description>
+      <pubDate>Sat, 01 Jun 2025 00:00:00 GMT</pubDate>
+      <guid>https://skyecanyonhomesforsale.com/properties#june2025</guid>
+    </item>
+    
+    <item>
+      <title>Skye Canyon Market Analysis - Spring 2025 Report</title>
+      <link>https://skyecanyonhomesforsale.com/market-analysis</link>
+      <description>Dr. Jan Duffy's comprehensive market analysis shows continued appreciation in Skye Canyon luxury homes with 8% year-over-year growth.</description>
+      <pubDate>Wed, 15 May 2025 00:00:00 GMT</pubDate>
+      <guid>https://skyecanyonhomesforsale.com/market-analysis#spring2025</guid>
+    </item>
+    
+    <item>
+      <title>Why Choose Skye Canyon - Community Spotlight</title>
+      <link>https://skyecanyonhomesforsale.com/community-guide</link>
+      <description>Explore the exclusive amenities and lifestyle benefits of living in Las Vegas's premier guard-gated community.</description>
+      <pubDate>Mon, 01 May 2025 00:00:00 GMT</pubDate>
+      <guid>https://skyecanyonhomesforsale.com/community-guide#may2025</guid>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,7 @@
+Contact: mailto:DrDuffy@SkyeCanyonHomesForSale.com
+Expires: 2026-06-01T00:00:00.000Z
+Encryption: https://skyecanyonhomesforsale.com/pgp-key.txt
+Preferred-Languages: en
+Canonical: https://skyecanyonhomesforsale.com/.well-known/security.txt
+Policy: https://skyecanyonhomesforsale.com/security-policy
+Hiring: https://skyecanyonhomesforsale.com/careers

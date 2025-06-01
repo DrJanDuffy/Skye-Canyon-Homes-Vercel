@@ -1,0 +1,57 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Skye Canyon",
+  "description": "Premier guard-gated community in northwest Las Vegas, Nevada featuring luxury homes, golf course, and resort-style amenities.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Las Vegas",
+    "addressRegion": "Nevada",
+    "postalCode": "89166",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "36.2887",
+    "longitude": "-115.3366"
+  },
+  "containsPlace": [
+    {
+      "@type": "RealEstateAgent",
+      "name": "Dr. Jan Duffy",
+      "description": "Leading Skye Canyon real estate specialist",
+      "url": "https://skyecanyonhomesforsale.com",
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "Real Estate License",
+        "identifier": "S.0197614"
+      }
+    }
+  ],
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Guard-Gated Security"
+    },
+    {
+      "@type": "LocationFeatureSpecification", 
+      "name": "TPC Las Vegas Golf Course"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Resort-Style Amenities"
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Mountain Views"
+    }
+  ],
+  "knowsAbout": [
+    "Luxury Real Estate",
+    "Guard-Gated Communities", 
+    "Las Vegas Northwest",
+    "Nevada 89166",
+    "TPC Golf Course Homes",
+    "Mountain View Properties"
+  ]
+}
