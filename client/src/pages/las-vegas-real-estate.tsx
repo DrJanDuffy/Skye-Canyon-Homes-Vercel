@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Building, Users, Star } from "lucide-react";
 import FAQSection from "@/components/faq-section";
 import RelatedSearches from "@/components/related-searches";
+import RealScoutListings from "@/components/realscout-listings";
 
 export default function LasVegasRealEstate() {
   return (
@@ -32,6 +33,21 @@ export default function LasVegasRealEstate() {
             <p className="text-xl opacity-90 mb-8">
               Comprehensive real estate services across all Las Vegas communities
             </p>
+          </div>
+        </section>
+
+        {/* Current Las Vegas Listings */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Current Las Vegas Listings
+              </h2>
+              <p className="text-xl text-gray-600">
+                Available properties across all Las Vegas communities
+              </p>
+            </div>
+            <RealScoutListings className="w-full" />
           </div>
         </section>
 

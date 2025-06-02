@@ -6,6 +6,7 @@ import MarketIntelligence from "@/components/market-intelligence";
 import Breadcrumb from "@/components/breadcrumb";
 import BackToTop from "@/components/back-to-top";
 import FAQSection from "@/components/faq-section";
+import RealScoutListings from "@/components/realscout-listings";
 
 export default function MarketAnalysis() {
   return (
@@ -42,6 +43,21 @@ export default function MarketAnalysis() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <Breadcrumb items={[{ label: "Market Analysis" }]} />
       </div>
+
+      {/* Current Listings */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Current Market Listings
+            </h2>
+            <p className="text-xl text-gray-600">
+              Live inventory showing current market conditions
+            </p>
+          </div>
+          <RealScoutListings className="w-full" />
+        </div>
+      </section>
 
       {/* Market Statistics */}
       <MarketStats />
