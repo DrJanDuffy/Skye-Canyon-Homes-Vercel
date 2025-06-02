@@ -28,6 +28,21 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
           setTimeout(checkRealScout, 1000);
         } else {
           console.log('RealScout component is ready');
+          
+          // Check for any error messages in the widget
+          setTimeout(() => {
+            const widgets = document.querySelectorAll('realscout-office-listings');
+            widgets.forEach((widget, index) => {
+              console.log(`Widget ${index + 1} status:`, widget.innerHTML);
+              console.log(`Widget ${index + 1} attributes:`, {
+                agentId: widget.getAttribute('agent-encoded-id'),
+                sortOrder: widget.getAttribute('sort-order'),
+                listingStatus: widget.getAttribute('listing-status'),
+                propertyTypes: widget.getAttribute('property-types'),
+                priceMin: widget.getAttribute('price-min')
+              });
+            });
+          }, 3000);
         }
       }
     };
@@ -39,6 +54,9 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
 
   return (
     <div className={className}>
+      <div style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px', backgroundColor: '#f9f9f9' }}>
+        <strong>RealScout Widget Status:</strong> Check browser console for debug info
+      </div>
       <realscout-office-listings 
         agent-encoded-id="QWdlbnQtMjI1MDUw" 
         sort-order="NEWEST" 
