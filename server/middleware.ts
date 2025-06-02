@@ -23,7 +23,7 @@ export function securityHeaders(req: Request, res: Response, next: NextFunction)
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://em.realscout.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
-    "img-src 'self' data: https: https://*.realscout.com https://em.realscout.com https://*.cloudfront.net https://*.amazonaws.com; " +
+    "img-src * data: blob:; " +
     "connect-src 'self' https://api.followupboss.com https://api.cloudcma.com https://www.simplifyingthemarket.com https://*.realscout.com https://em.realscout.com; " +
     "frame-src 'self' https://www.google.com https://*.realscout.com; " +
     "object-src 'none';"
