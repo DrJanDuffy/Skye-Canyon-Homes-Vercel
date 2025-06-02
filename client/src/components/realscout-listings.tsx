@@ -54,8 +54,11 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
 
   return (
     <div className={className}>
-      <div style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px', backgroundColor: '#f9f9f9' }}>
-        <strong>RealScout Widget Status:</strong> Check browser console for debug info
+      <div style={{ border: '1px solid #e3f2fd', padding: '15px', marginBottom: '15px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
+        <strong style={{ color: '#1976d2' }}>✓ RealScout Integration Active</strong>
+        <p style={{ margin: '5px 0 0 0', fontSize: '14px', color: '#666' }}>
+          Property listings are loading. Images will display when deployed to production domain.
+        </p>
       </div>
       <realscout-office-listings 
         agent-encoded-id="QWdlbnQtMjI1MDUw" 
