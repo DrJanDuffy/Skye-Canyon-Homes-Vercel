@@ -103,10 +103,8 @@ export default function FollowUpBossListings() {
           {listing.imageUrl && (
             <img 
               src={listing.imageUrl} 
-              alt={`${listing.bedrooms || 0} bedroom ${listing.bathrooms || 0} bathroom home at ${listing.address} in Skye Canyon Las Vegas - Listed at ${formatPrice(listing.price)}`}
+              alt={`Property at ${listing.address}`}
               className="w-full h-48 object-cover"
-              loading="lazy"
-              decoding="async"
             />
           )}
           <CardContent className="p-6">

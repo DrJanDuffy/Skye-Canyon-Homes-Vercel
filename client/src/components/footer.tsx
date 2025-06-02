@@ -35,145 +35,69 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-4">Properties & Areas</h4>
+            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-400">
+              <li>
+                <a 
+                  href="/"
+                  className="hover:text-white transition-colors"
+                >
+                  Home
+                </a>
+              </li>
               <li>
                 <a 
                   href="/properties"
                   className="hover:text-white transition-colors"
-                  title="Current Skye Canyon homes for sale"
                 >
-                  Skye Canyon Properties
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/luxury-homes-las-vegas"
-                  className="hover:text-white transition-colors"
-                  title="Luxury real estate in Las Vegas"
-                >
-                  Luxury Homes Las Vegas
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/skye-canyon-communities"
-                  className="hover:text-white transition-colors"
-                  title="New construction homes in Skye Canyon"
-                >
-                  New Construction
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/northwest-las-vegas"
-                  className="hover:text-white transition-colors"
-                  title="Northwest Las Vegas real estate"
-                >
-                  Northwest Las Vegas
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/las-vegas-real-estate"
-                  className="hover:text-white transition-colors"
-                  title="Las Vegas real estate market information"
-                >
-                  Las Vegas Real Estate
-                </a>
-              </li>
-            </ul>
-            
-            <h4 className="text-lg font-semibold mb-4 mt-6">Community Resources</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a 
-                  href="/skye-canyon-guide"
-                  className="hover:text-white transition-colors"
-                  title="Complete Skye Canyon community guide"
-                >
-                  Skye Canyon Guide
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/skye-canyon-schools"
-                  className="hover:text-white transition-colors"
-                  title="Schools in Skye Canyon Las Vegas"
-                >
-                  Schools & Education
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/skye-canyon-parks"
-                  className="hover:text-white transition-colors"
-                  title="Parks and recreation in Skye Canyon"
-                >
-                  Parks & Recreation
+                  All Properties
                 </a>
               </li>
               <li>
                 <a 
                   href="/market-analysis"
                   className="hover:text-white transition-colors"
-                  title="Las Vegas market analysis and trends"
                 >
-                  Market Analysis
+                  Market Reports
                 </a>
               </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Services & Resources</h4>
-            <ul className="space-y-2 text-gray-400">
               <li>
                 <a 
                   href="/about"
                   className="hover:text-white transition-colors"
-                  title="About Dr. Jan Duffy REALTOR"
                 >
-                  About Dr. Jan Duffy
+                  About Dr. Duffy
                 </a>
               </li>
               <li>
                 <a 
-                  href="https://drjanduffy.realscout.com/onboarding"
+                  href="/skye-canyon-schools"
                   className="hover:text-white transition-colors"
-                  title="Schedule real estate consultation"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
-                  Schedule Consultation
+                  Skye Canyon Schools
                 </a>
               </li>
               <li>
                 <a 
-                  href="tel:+17025001902"
+                  href="/skye-canyon-parks"
                   className="hover:text-white transition-colors"
-                  title="Call Dr. Jan Duffy directly"
                 >
-                  Call (702) 500-1902
+                  Skye Canyon Parks
                 </a>
               </li>
               <li>
                 <a 
-                  href="mailto:DrDuffy@SkyeCanyonHomesForSale.com"
+                  href="/skye-canyon-communities"
                   className="hover:text-white transition-colors"
-                  title="Email Dr. Jan Duffy"
                 >
-                  Email Dr. Duffy
+                  New Construction
                 </a>
               </li>
               <li>
-                <a 
-                  href="/"
-                  className="hover:text-white transition-colors"
-                  title="Home page - Skye Canyon real estate"
-                >
-                  Home
-                </a>
+                <a href="#" className="hover:text-white transition-colors">Buyer's Guide</a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-white transition-colors">Seller's Guide</a>
               </li>
             </ul>
           </div>

@@ -3,7 +3,6 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
-import { getCached, setCache } from "./performance-cache";
 
 // AI Lead Scoring Functions
 async function scoreLeadWithAI(leadData: any) {
@@ -181,34 +180,20 @@ async function processAISearch(query: string, context: string) {
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
-  // Get all properties (cached for performance)
+  // Get all properties
   app.get("/api/properties", async (req, res) => {
     try {
-      const cacheKey = 'properties:all';
-      let properties = getCached(cacheKey);
-      
-      if (!properties) {
-        properties = await storage.getProperties();
-        setCache(cacheKey, properties, 30000); // Cache for 30 seconds
-      }
-      
+      const properties = await storage.getProperties();
       res.json(properties);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch properties" });
     }
   });
 
-  // Get featured properties (cached for performance)
+  // Get featured properties
   app.get("/api/properties/featured", async (req, res) => {
     try {
-      const cacheKey = 'properties:featured';
-      let properties = getCached(cacheKey);
-      
-      if (!properties) {
-        properties = await storage.getFeaturedProperties();
-        setCache(cacheKey, properties, 60000); // Cache for 60 seconds
-      }
-      
+      const properties = await storage.getFeaturedProperties();
       res.json(properties);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch featured properties" });
