@@ -14,21 +14,19 @@ declare global {
 
 export default function RealScoutListings({ className = "" }: RealScoutListingsProps) {
   useEffect(() => {
-    // Log when component mounts
-    console.log('RealScout component mounted');
-    
-    // Check if script loaded
-    const checkScript = () => {
+    // Ensure RealScout script loads properly
+    const loadRealScout = () => {
+      // Check if already loaded
       if (window.customElements && window.customElements.get('realscout-office-listings')) {
-        console.log('RealScout web component is registered');
-      } else {
-        console.log('RealScout web component not yet registered');
+        console.log('RealScout loaded successfully');
+        return;
       }
+      
+      // If not loaded, wait and check again
+      setTimeout(loadRealScout, 500);
     };
     
-    // Check immediately and after delay
-    checkScript();
-    setTimeout(checkScript, 2000);
+    loadRealScout();
   }, []);
 
   return (
