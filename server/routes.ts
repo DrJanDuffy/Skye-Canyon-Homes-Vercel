@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
+import Anthropic from '@anthropic-ai/sdk';
 
 // AI Lead Scoring Functions
 async function scoreLeadWithAI(leadData: any) {
@@ -176,6 +177,117 @@ async function processAISearch(query: string, context: string) {
     marketInsights: "Skye Canyon remains one of Las Vegas's most desirable neighborhoods with strong appreciation potential.",
     totalResults: propertyCount
   };
+}
+
+// Voice Search with Anthropic AI
+async function processVoiceSearch(query: string, conversationHistory: Array<{role: 'user' | 'assistant', content: string}>) {
+  const anthropic = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY
+  });
+
+  // Get available properties from storage
+  const allProperties = await storage.getProperties();
+  
+  // Create context for AI about available properties
+  const propertyContext = allProperties.map(p => 
+    `${p.address} - $${p.price.toLocaleString()} - ${p.bedrooms}bed/${p.bathrooms}bath - ${p.sqft}sqft - ${p.type}`
+  ).join('\n');
+
+  const systemPrompt = `You are a professional real estate assistant for Dr. Jan Duffy, specializing in Skye Canyon and Las Vegas properties. 
+
+Available Properties:
+${propertyContext}
+
+Your role:
+- Help users find properties that match their criteria
+- Provide conversational, helpful responses
+- Extract search criteria from natural language
+- Be knowledgeable about Las Vegas real estate market
+- Always be professional and friendly
+
+When users ask about properties, analyze their request and:
+1. Extract search criteria (price range, bedrooms, location, property type)
+2. Filter the available properties
+3. Provide a conversational response explaining the results
+4. Suggest relevant follow-up questions or alternatives`;
+
+  try {
+    // the newest Anthropic model is "claude-3-7-sonnet-20250219" which was released February 24, 2025
+    const response = await anthropic.messages.create({
+      model: 'claude-3-7-sonnet-20250219',
+      max_tokens: 1500,
+      system: systemPrompt,
+      messages: [
+        ...conversationHistory,
+        { role: 'user', content: query }
+      ]
+    });
+
+    // Parse the AI response to extract search criteria and conversational response
+    const aiResponse = response.content[0].text;
+    
+    // Extract search criteria using simple parsing (could be enhanced with more AI)
+    const searchCriteria: any = {};
+    const queryLower = query.toLowerCase();
+    
+    // Price range detection
+    if (queryLower.includes('under') && queryLower.includes('million')) {
+      const match = queryLower.match(/under\s+\$?(\d+(?:\.\d+)?)\s*million/);
+      if (match) {
+        searchCriteria.priceRange = `Under $${match[1]}M`;
+      }
+    }
+    
+    // Bedroom detection
+    const bedroomMatch = queryLower.match(/(\d+)[\s-]*(bed|bedroom)/);
+    if (bedroomMatch) {
+      searchCriteria.bedrooms = parseInt(bedroomMatch[1]);
+    }
+    
+    // Location detection
+    if (queryLower.includes('skye canyon')) {
+      searchCriteria.location = 'Skye Canyon';
+    } else if (queryLower.includes('las vegas')) {
+      searchCriteria.location = 'Las Vegas';
+    }
+    
+    // Property type detection
+    if (queryLower.includes('luxury') || queryLower.includes('premium')) {
+      searchCriteria.propertyType = 'Luxury';
+    }
+
+    // Filter properties based on criteria
+    let filteredProperties = allProperties;
+    
+    if (searchCriteria.priceRange && searchCriteria.priceRange.includes('Under')) {
+      const maxPrice = parseFloat(searchCriteria.priceRange.match(/(\d+(?:\.\d+)?)/)[1]) * 1000000;
+      filteredProperties = filteredProperties.filter(p => p.price <= maxPrice);
+    }
+    
+    if (searchCriteria.bedrooms) {
+      filteredProperties = filteredProperties.filter(p => p.bedrooms >= searchCriteria.bedrooms);
+    }
+    
+    if (searchCriteria.location === 'Skye Canyon') {
+      filteredProperties = filteredProperties.filter(p => p.address.toLowerCase().includes('skye') || p.address.toLowerCase().includes('canyon'));
+    }
+
+    return {
+      properties: filteredProperties.slice(0, 6), // Limit to 6 results
+      conversationalResponse: aiResponse,
+      searchCriteria
+    };
+
+  } catch (error) {
+    console.error('Error processing voice search with AI:', error);
+    
+    // Fallback response
+    return {
+      properties: allProperties.slice(0, 3),
+      conversationalResponse: "I apologize, but I'm having trouble processing your request right now. Here are some available properties that might interest you. Could you please rephrase your search or try again?",
+      searchCriteria: {}
+    };
+  }
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {

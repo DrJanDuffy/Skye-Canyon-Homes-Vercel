@@ -35,14 +35,14 @@ export default function VoicePropertySearch() {
   const [searchResults, setSearchResults] = useState<SearchResponse | null>(null);
   const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'assistant', content: string}>>([]);
   
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
   const [isSupported, setIsSupported] = useState(false);
 
   useEffect(() => {
     // Check if browser supports speech recognition
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       setIsSupported(true);
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
       
       if (recognitionRef.current) {
@@ -50,7 +50,7 @@ export default function VoicePropertySearch() {
         recognitionRef.current.interimResults = true;
         recognitionRef.current.lang = 'en-US';
 
-        recognitionRef.current.onresult = (event) => {
+        recognitionRef.current.onresult = (event: any) => {
           const current = event.resultIndex;
           const transcript = event.results[current][0].transcript;
           setTranscript(transcript);
@@ -60,7 +60,7 @@ export default function VoicePropertySearch() {
           setIsListening(false);
         };
 
-        recognitionRef.current.onerror = (event) => {
+        recognitionRef.current.onerror = (event: any) => {
           console.error('Speech recognition error:', event.error);
           setIsListening(false);
           toast({
