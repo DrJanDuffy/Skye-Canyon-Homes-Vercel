@@ -14,23 +14,32 @@ declare global {
 
 export default function RealScoutListings({ className = "" }: RealScoutListingsProps) {
   useEffect(() => {
-    // Ensure RealScout script loads properly
-    const loadRealScout = () => {
-      // Check if already loaded
-      if (window.customElements && window.customElements.get('realscout-office-listings')) {
-        console.log('RealScout loaded successfully');
-        return;
-      }
+    // Debug logging for RealScout widget
+    const checkRealScout = () => {
+      console.log('Checking RealScout widget status...');
+      console.log('customElements available:', !!window.customElements);
       
-      // If not loaded, wait and check again
-      setTimeout(loadRealScout, 500);
+      if (window.customElements) {
+        const isRegistered = window.customElements.get('realscout-office-listings');
+        console.log('realscout-office-listings registered:', !!isRegistered);
+        
+        if (!isRegistered) {
+          console.log('Waiting for RealScout components to load...');
+          setTimeout(checkRealScout, 1000);
+        } else {
+          console.log('RealScout component is ready');
+        }
+      }
     };
     
-    loadRealScout();
+    // Check immediately and after a delay
+    checkRealScout();
+    setTimeout(checkRealScout, 2000);
   }, []);
 
   return (
-    <div className={className}>
+    <div className={className} style={{ minHeight: '400px', border: '1px dashed #ccc', padding: '20px' }}>
+      <p style={{ marginBottom: '10px', color: '#666' }}>RealScout Listings Widget:</p>
       <realscout-office-listings 
         agent-encoded-id="QWdlbnQtMjI1MDUw" 
         sort-order="NEWEST" 
