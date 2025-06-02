@@ -51,8 +51,22 @@
       realscout-office-listings {
         --rs-listing-divider-color: #4a90e2;
         width: 100%;
+        display: block;
+        min-height: 400px;
       }
     </style>
+    <script>
+      window.addEventListener('load', function() {
+        console.log('Page loaded, checking for RealScout components...');
+        if (window.customElements) {
+          console.log('Custom elements supported');
+          setTimeout(function() {
+            const isLoaded = window.customElements.get('realscout-office-listings');
+            console.log('RealScout component loaded:', !!isLoaded);
+          }, 1000);
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
