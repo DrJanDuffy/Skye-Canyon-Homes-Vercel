@@ -11,6 +11,8 @@ export default function CriticalCSSInline() {
         display: flex;
         align-items: center;
         contain: layout style paint;
+        transform: translateZ(0);
+        will-change: transform;
       }
       
       .navigation {
@@ -70,10 +72,25 @@ export default function CriticalCSSInline() {
         font-weight: 500;
         cursor: pointer;
         transition: background-color 0.2s ease;
+        transform: translateZ(0);
       }
       
       .btn-primary:hover {
         background: #357abd;
+      }
+      
+      /* Immediate visible text styles */
+      h1, h2, .hero-title {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.2;
+        margin: 0;
+        transform: translateZ(0);
+      }
+      
+      /* Force GPU acceleration for smooth rendering */
+      .hero-section * {
+        backface-visibility: hidden;
+        perspective: 1000px;
       }
     `;
 
