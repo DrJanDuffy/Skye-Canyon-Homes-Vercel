@@ -1,0 +1,9 @@
+# Netlify/Vercel redirect rules for single page application
+/*    /index.html   200
+
+# Force HTTPS redirects
+http://skyecanyonhomesforsale.com/*  https://skyecanyonhomesforsale.com/:splat  301!
+http://www.skyecanyonhomesforsale.com/*  https://skyecanyonhomesforsale.com/:splat  301!
+
+# WWW to non-WWW redirect
+https://www.skyecanyonhomesforsale.com/*  https://skyecanyonhomesforsale.com/:splat  301!
