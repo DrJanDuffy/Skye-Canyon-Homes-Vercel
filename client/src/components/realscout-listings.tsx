@@ -13,6 +13,24 @@ declare global {
 }
 
 export default function RealScoutListings({ className = "" }: RealScoutListingsProps) {
+  useEffect(() => {
+    // Log when component mounts
+    console.log('RealScout component mounted');
+    
+    // Check if script loaded
+    const checkScript = () => {
+      if (window.customElements && window.customElements.get('realscout-office-listings')) {
+        console.log('RealScout web component is registered');
+      } else {
+        console.log('RealScout web component not yet registered');
+      }
+    };
+    
+    // Check immediately and after delay
+    checkScript();
+    setTimeout(checkScript, 2000);
+  }, []);
+
   return (
     <div className={className}>
       <realscout-office-listings 
