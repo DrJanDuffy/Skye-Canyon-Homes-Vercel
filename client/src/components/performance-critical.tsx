@@ -3,16 +3,24 @@ import { useEffect } from 'react';
 // Critical performance optimizations for real estate website
 export default function PerformanceCritical() {
   useEffect(() => {
-    // Preload critical resources
+    // Preload critical resources with optimization
     const preloadCriticalResources = () => {
-      // Preload hero image
-      const heroImageLink = document.createElement('link');
-      heroImageLink.rel = 'preload';
-      heroImageLink.as = 'image';
-      heroImageLink.href = '/dr-jan-duffy-headshot.jpg';
-      document.head.appendChild(heroImageLink);
+      // Preload WebP hero image with JPEG fallback
+      const heroImageLinkWebP = document.createElement('link');
+      heroImageLinkWebP.rel = 'preload';
+      heroImageLinkWebP.as = 'image';
+      heroImageLinkWebP.href = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85&fm=webp';
+      heroImageLinkWebP.type = 'image/webp';
+      document.head.appendChild(heroImageLinkWebP);
 
-      // Preload fonts
+      // Preload agent headshot
+      const agentImageLink = document.createElement('link');
+      agentImageLink.rel = 'preload';
+      agentImageLink.as = 'image';
+      agentImageLink.href = '/dr-jan-duffy-headshot.jpg';
+      document.head.appendChild(agentImageLink);
+
+      // Preload critical fonts
       const fontLink = document.createElement('link');
       fontLink.rel = 'preload';
       fontLink.as = 'font';
