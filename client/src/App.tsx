@@ -68,6 +68,7 @@ function App() {
           <AnalyticsTracker />
           <PerformanceOptimizer />
           <PerformanceMonitor />
+          <PerformanceCritical />
           <StructuredData />
           <EnhancedStructuredData />
           <AIContentOptimizer />
