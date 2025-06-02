@@ -61,6 +61,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Custom RealScout colors
+        "realscout-blue": "hsl(var(--realscout-blue))",
+        "realscout-light": "hsl(var(--realscout-light))",
+        "realscout-navy": "hsl(var(--realscout-navy))",
       },
       keyframes: {
         "accordion-down": {
