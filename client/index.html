@@ -52,7 +52,21 @@
     <link rel="prefetch" href="/dr-jan-duffy-headshot.jpg">
     
     <!-- RealScout Widget Integration -->
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async></script>
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async crossorigin="anonymous"></script>
+    <script src="https://em.realscout.com/js/realscout-widgets.js" async defer crossorigin="anonymous"></script>
+    <script>
+      // Production domain compatibility for RealScout widgets
+      window.addEventListener('load', function() {
+        // Verify widget loading for skyecanyonhomesforsale.com
+        setTimeout(function() {
+          if (window.customElements && window.customElements.get('realscout-office-listings')) {
+            console.log('RealScout widgets ready on production domain');
+          } else {
+            console.log('RealScout widgets loading...');
+          }
+        }, 2000);
+      });
+    </script>
     <style>
       realscout-office-listings {
         --rs-listing-divider-color: #4a90e2;
