@@ -47,9 +47,18 @@
     
     <!-- Resource Hints for Performance -->
     <link rel="dns-prefetch" href="//em.realscout.com">
+    <link rel="dns-prefetch" href="//images.unsplash.com">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="prefetch" href="/dr-jan-duffy-headshot.jpg">
+    <link rel="preconnect" href="https://em.realscout.com" crossorigin>
+    
+    <!-- Critical resource preloads -->
+    <link rel="preload" href="/dr-jan-duffy-headshot.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85&fm=webp" as="image" type="image/webp">
+    
+    <!-- Cloudflare optimization hints -->
+    <meta name="cf-2fa-verify" content="performance">
+    <meta name="cf-visitor" content="{&quot;scheme&quot;:&quot;https&quot;}">
     
     <!-- RealScout Widget Integration -->
     <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async></script>

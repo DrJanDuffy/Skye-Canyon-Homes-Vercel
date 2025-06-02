@@ -20,6 +20,9 @@ import SEOOptimizer from "@/components/seo-optimizer";
 import DeploymentSEOChecklist from "@/components/deployment-seo-checklist";
 import PerformanceCritical from "@/components/performance-critical";
 import ImageCompression from "@/components/image-compression";
+import CriticalCSSInline from "@/components/critical-css-inline";
+import ThirdPartyScriptOptimizer from "@/components/third-party-script-optimizer";
+import CloudflareOptimization from "@/components/cloudflare-optimization";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -62,6 +65,7 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <CriticalCSSInline />
           <CriticalCSS />
           <DeploymentSEOChecklist />
           <SEOOptimizer />
@@ -71,6 +75,8 @@ function App() {
           <PerformanceMonitor />
           <PerformanceCritical />
           <ImageCompression />
+          <ThirdPartyScriptOptimizer />
+          <CloudflareOptimization />
           <StructuredData />
           <EnhancedStructuredData />
           <AIContentOptimizer />
