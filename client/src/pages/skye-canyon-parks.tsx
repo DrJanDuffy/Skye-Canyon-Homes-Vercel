@@ -3,6 +3,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import FAQSection from "@/components/faq-section";
 import EnhancedStructuredData from "@/components/enhanced-structured-data";
+import RealScoutListings from "@/components/realscout-listings";
 import { MapPin, Clock, Users, TreePine, Waves, Dumbbell } from "lucide-react";
 
 export default function SkyeCanyonParks() {
@@ -137,6 +138,21 @@ export default function SkyeCanyonParks() {
                 Sports Courts & Fields
               </span>
             </div>
+          </div>
+        </section>
+
+        {/* Current Listings */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Homes Near Parks & Recreation
+              </h2>
+              <p className="text-xl text-gray-600">
+                Properties close to community amenities
+              </p>
+            </div>
+            <RealScoutListings className="w-full" />
           </div>
         </section>
 

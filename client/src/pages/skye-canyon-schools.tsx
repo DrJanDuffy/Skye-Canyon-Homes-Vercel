@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import FAQSection from "@/components/faq-section";
+import RealScoutListings from "@/components/realscout-listings";
 import { GraduationCap, School, Users, MapPin, Star, Clock, BookOpen } from "lucide-react";
 
 const elementarySchools = [
@@ -185,6 +186,21 @@ export default function SkyeCanyonSchools() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Current Listings */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Homes Near Top-Rated Schools
+              </h2>
+              <p className="text-xl text-gray-600">
+                Properties in excellent school districts
+              </p>
+            </div>
+            <RealScoutListings className="w-full" />
           </div>
         </section>
 
