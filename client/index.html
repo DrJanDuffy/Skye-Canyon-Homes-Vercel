@@ -46,7 +46,7 @@
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
     
     <!-- RealScout Widget Integration -->
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async></script>
     <style>
       realscout-office-listings {
         --rs-listing-divider-color: #4a90e2;
@@ -72,6 +72,6 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" defer></script>
   </body>
 </html>
