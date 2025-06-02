@@ -61,23 +61,11 @@
         min-height: 400px;
       }
     </style>
-    <script>
-      window.addEventListener('load', function() {
-        console.log('Page loaded, checking for RealScout components...');
-        if (window.customElements) {
-          console.log('Custom elements supported');
-          setTimeout(function() {
-            const isLoaded = window.customElements.get('realscout-office-listings');
-            console.log('RealScout component loaded:', !!isLoaded);
-          }, 1000);
-        }
-      });
-    </script>
+
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" defer></script>
+
   </body>
 </html>

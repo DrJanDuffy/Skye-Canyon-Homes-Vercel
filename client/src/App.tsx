@@ -20,6 +20,7 @@ import SEOOptimizer from "@/components/seo-optimizer";
 import DeploymentSEOChecklist from "@/components/deployment-seo-checklist";
 import PerformanceCritical from "@/components/performance-critical";
 import ImageCompression from "@/components/image-compression";
+import ProductionReadiness from "@/components/production-readiness";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -71,6 +72,7 @@ function App() {
           <PerformanceMonitor />
           <PerformanceCritical />
           <ImageCompression />
+          <ProductionReadiness />
           <StructuredData />
           <EnhancedStructuredData />
           <AIContentOptimizer />
