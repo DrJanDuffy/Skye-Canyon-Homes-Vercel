@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Home, TrendingUp, Shield } from "lucide-react";
+import RealScoutListings from "@/components/realscout-listings";
 
 export default function NorthwestLasVegas() {
   const neighborhoods = [
@@ -61,6 +62,21 @@ export default function NorthwestLasVegas() {
               <span>Serving Northwest Las Vegas, NV 89149, 89166, 89144</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Current Listings */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Northwest Las Vegas Listings
+            </h2>
+            <p className="text-xl text-gray-600">
+              Available properties in northwest communities
+            </p>
+          </div>
+          <RealScoutListings className="w-full" />
         </div>
       </section>
 
