@@ -38,8 +38,7 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
   }, []);
 
   return (
-    <div className={className} style={{ minHeight: '400px', border: '1px dashed #ccc', padding: '20px' }}>
-      <p style={{ marginBottom: '10px', color: '#666' }}>RealScout Listings Widget:</p>
+    <div className={className}>
       <realscout-office-listings 
         agent-encoded-id="QWdlbnQtMjI1MDUw" 
         sort-order="NEWEST" 
