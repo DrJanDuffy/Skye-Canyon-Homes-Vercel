@@ -26,6 +26,9 @@ import CloudflareOptimization from "@/components/cloudflare-optimization";
 import PerformanceFinal from "@/components/performance-final";
 import CriticalPerformanceBoost from "@/components/critical-performance-boost";
 import InstantLoadOptimizer from "@/components/instant-load-optimizer";
+import InternalLinkOptimizer from "@/components/internal-link-optimizer";
+import AdvancedSEOOptimizer from "@/components/advanced-seo-optimizer";
+import SEOContentEnhancer from "@/components/seo-content-enhancer";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -74,6 +77,9 @@ function App() {
           <CriticalCSS />
           <DeploymentSEOChecklist />
           <SEOOptimizer />
+          <AdvancedSEOOptimizer />
+          <InternalLinkOptimizer />
+          <SEOContentEnhancer />
           <MobileOptimizer />
           <AnalyticsTracker />
           <PerformanceOptimizer />
