@@ -1,45 +1,22 @@
+# humanstxt.org/
 # The humans responsible & technology colophon
 
 # TEAM
-
-    Real Estate Expert: Dr. Jan Duffy
-    Contact: DrDuffy [at] SkyeCanyonHomesForSale.com
-    Twitter: @DrJanDuffy
-    Location: Las Vegas, Nevada
-
-    Website Developer: Replit AI Assistant
-    Contact: support [at] replit.com
-    Location: San Francisco, California
-
-# THANKS
-
-    Nevada Real Estate Division
-    Berkshire Hathaway HomeServices Nevada Properties
-    Skye Canyon Community Association
-    Las Vegas REALTORS® Association
-    National Association of REALTORS®
+    Dr. Jan Duffy -- Real Estate Agent -- Las Vegas, Nevada
+    Site: https://skyecanyonhomesforsale.com
+    License: S.0197614
+    Speciality: Skye Canyon luxury homes and Las Vegas real estate
 
 # TECHNOLOGY COLOPHON
-
-    HTML5, CSS3, JavaScript ES6+
-    React.js, TypeScript
-    Node.js, Express.js
-    PostgreSQL Database
-    Tailwind CSS
-    Vite Build System
-    Progressive Web App (PWA)
-    
-    Third-party Services:
-    RealScout MLS Integration
-    FollowUp Boss CRM
-    Cloud CMA Market Reports
-    Google Analytics
-    Cloudflare CDN
+    Standards: HTML5, CSS3, JavaScript ES6+
+    Components: React, TypeScript, Tailwind CSS
+    Performance: Progressive Web App, Service Workers
+    SEO: Structured Data, Open Graph, Schema.org
+    Analytics: Performance monitoring and user tracking
+    Integrations: RealScout property listings
 
 # SITE
-
-    Last update: 2025/06/01
-    Standards: HTML5, CSS3, ES6+
-    Components: React, TypeScript
-    Software: Visual Studio Code, Git
-    Hosting: Replit Deployments
+    Last update: 2025/06/02
+    Language: English
+    Doctype: HTML5
+    Domain: skyecanyonhomesforsale.com
