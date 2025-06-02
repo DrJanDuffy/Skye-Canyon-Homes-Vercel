@@ -177,6 +177,13 @@ export default function Navigation() {
                 >
                   Skye Canyon Parks
                 </a>
+                <a 
+                  href="/skye-canyon-communities"
+                  className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  New Construction
+                </a>
               </div>
             </div>
             <div className="px-3 py-1">
