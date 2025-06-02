@@ -198,14 +198,14 @@ export class MemStorage implements IStorage {
       });
     });
 
-    // Initialize market stats
+    // Initialize market stats with June 2025 Las Vegas data
     this.marketStatsData = {
       id: 1,
-      medianPrice: "$1.2M",
-      daysOnMarket: 28,
-      homesSold: 156,
-      activeListings: 42,
-      updatedAt: new Date()
+      medianPrice: "$485,000",
+      daysOnMarket: 49,
+      homesSold: 1456,
+      activeListings: 7150,
+      updatedAt: new Date("2025-06-02")
     };
   }
 

@@ -18,6 +18,7 @@ import SkyeCanyonAuthority from "@/components/skye-canyon-authority";
 import PreferenceCollector from "@/components/preference-collector";
 import LocalBusinessSchema from "@/components/local-business-schema";
 import RelatedSearches from "@/components/related-searches";
+import MarketAnalysisJune2025 from "@/components/market-analysis-june-2025";
 
 export default function Home() {
   return (
@@ -62,34 +63,8 @@ export default function Home() {
       
       <FeaturedListings />
       
-      {/* Quick Market Stats Preview */}
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            Skye Canyon Market Snapshot
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-realscout-blue mb-2">$1.2M</div>
-              <div className="text-gray-600">Median Home Price</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-realscout-blue mb-2">28</div>
-              <div className="text-gray-600">Days on Market</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-realscout-blue mb-2">96%</div>
-              <div className="text-gray-600">Price to List Ratio</div>
-            </div>
-          </div>
-          <a 
-            href="/market-analysis" 
-            className="inline-flex items-center text-realscout-blue hover:text-realscout-navy font-medium"
-          >
-            View Complete Market Analysis →
-          </a>
-        </div>
-      </section>
+      {/* Updated June 2025 Market Analysis */}
+      <MarketAnalysisJune2025 />
 
       {/* Preference Collector */}
       <section className="py-16 bg-gray-50">
