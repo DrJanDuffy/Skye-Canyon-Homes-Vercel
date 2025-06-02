@@ -122,4 +122,13 @@
     <mobile:mobile/>
   </url>
   
+  <!-- Skye Canyon Schools page -->
+  <url>
+    <loc>https://skyecanyonhomesforsale.com/skye-canyon-schools</loc>
+    <lastmod>2025-06-01T12:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <mobile:mobile/>
+  </url>
+  
 </urlset>

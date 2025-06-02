@@ -55,6 +55,9 @@ export default function Navigation() {
                 <a href="/skye-canyon-guide" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
                   Skye Canyon Guide
                 </a>
+                <a href="/skye-canyon-schools" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                  Skye Canyon Schools
+                </a>
               </div>
             </div>
             <div className="relative group">
