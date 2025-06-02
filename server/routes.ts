@@ -663,7 +663,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/submit-indexnow", async (req, res) => {
     try {
       const { urls } = req.body;
-      const indexNowKey = 'a8b9c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0';
+      const indexNowKey = process.env.INDEXNOW_API_KEY || 'a8b9c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0';
       
       const payload = {
         host: 'skyecanyonhomesforsale.com',

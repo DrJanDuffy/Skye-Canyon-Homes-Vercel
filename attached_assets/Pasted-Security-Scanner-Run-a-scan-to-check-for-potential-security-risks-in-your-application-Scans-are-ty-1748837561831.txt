@@ -1,0 +1,26 @@
+Security Scanner
+Run a scan to check for potential security risks in your application. Scans are typically complete within minutes. Learn more
+5 potential vulnerabilities found
+Last ran on
+ 
+9:12 pm, Jun 01, 2025
+Detected potential vulnerability in attached_assets/Pasted-Build-a-modern-GEO-optimized-real-estate-website-for-Dr-Jan-Duffy-REALTOR-focused-exclusively-on-S-1748668278543.txt
+Generic API Key detected
+attached_assets/Pasted-Build-a-modern-GEO-optimized-real-estate-website-for-Dr-Jan-Duffy-REALTOR-focused-exclusively-on-S-1748668278543.txt
+const CLOUD_CMA_API_KEY = '0a2124dd852cffd63e48e79e9b283398'
+Detected potential vulnerability in attached_assets/Pasted-Build-a-modern-GEO-optimized-real-estate-website-for-Dr-Jan-Duffy-REALTOR-focused-exclusively-on-S-1748668278543.txt
+Generic API Key detected
+attached_assets/Pasted-Build-a-modern-GEO-optimized-real-estate-website-for-Dr-Jan-Duffy-REALTOR-focused-exclusively-on-S-1748668278543.txt
+CLOUD_CMA_API_KEY=0a2124dd852cffd63e48e79e9b283398
+Detected potential vulnerability in attached_assets/Pasted-Build-a-modern-GEO-optimized-real-estate-website-for-Dr-Jan-Duffy-REALTOR-focused-exclusively-on-S-1748668278543.txt
+A gitleaks generic-api-key was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module). This rule can introduce a lot of false positives, it is not recommended to be used in PR comments.
+attached_assets/Pasted-Build-a-modern-GEO-optimized-real-estate-website-for-Dr-Jan-Duffy-REALTOR-focused-exclusively-on-S-1748668278543.txt
+HOMEBOT_CLIENT_ID=35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43
+Detected potential vulnerability in server/indexing-webhook.ts
+A gitleaks generic-api-key was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module). This rule can introduce a lot of false positives, it is not recommended to be used in PR comments.
+server/indexing-webhook.ts
+  const indexNowKey = 'a8b9c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0';
+Detected potential vulnerability in server/routes.ts
+A gitleaks generic-api-key was detected which attempts to identify hard-coded credentials. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module). This rule can introduce a lot of false positives, it is not recommended to be used in PR comments.
+server/routes.ts
+      const indexNowKey = 'a8b9c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0';
