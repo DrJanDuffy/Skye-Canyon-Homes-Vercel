@@ -9,7 +9,7 @@ import CommunityHighlights from "@/components/community-highlights";
 import CallToAction from "@/components/call-to-action";
 import Footer from "@/components/footer";
 import RealScoutListings from "@/components/realscout-listings";
-import RealScoutCurrentListings from "@/components/realscout-current-listings";
+
 import FollowUpBossListings from "@/components/followup-boss-listings";
 import AISearchAssistant from "@/components/ai-search-assistant";
 import MarketIntelligence from "@/components/market-intelligence";

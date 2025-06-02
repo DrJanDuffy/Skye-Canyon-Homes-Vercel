@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import RealScoutListings from "@/components/realscout-listings";
-import RealScoutCurrentListings from "@/components/realscout-current-listings";
+
 import FollowUpBossListings from "@/components/followup-boss-listings";
 import Breadcrumb from "@/components/breadcrumb";
 import BackToTop from "@/components/back-to-top";
@@ -54,7 +54,7 @@ export default function Properties() {
             </p>
             <h3 className="text-lg font-medium text-gray-700 mb-4">Featured Listings</h3>
           </div>
-          <RealScoutCurrentListings className="w-full" />
+          <RealScoutListings className="w-full" />
         </div>
       </section>
 
