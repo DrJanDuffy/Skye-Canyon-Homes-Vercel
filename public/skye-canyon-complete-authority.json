@@ -46,6 +46,16 @@
       ]
     },
     {
+      "topic": "Skye Canyon New Construction",
+      "authority_level": "Complete",
+      "content_coverage": [
+        "Century Communities builder expertise",
+        "Eaglepointe, Marvella, and Skyecrest communities",
+        "Flexible floor plans and customization options",
+        "Price ranges and quick move-in inventory"
+      ]
+    },
+    {
       "topic": "Skye Canyon Real Estate Market",
       "authority_level": "Expert",
       "content_coverage": [
@@ -57,7 +67,7 @@
     }
   ],
   "contentAuthority": {
-    "totalPages": 3,
+    "totalPages": 4,
     "comprehensiveGuides": [
       {
         "title": "Skye Canyon Schools Complete Guide",
@@ -70,6 +80,11 @@
         "coverage": "5 parks, swimming pool, sports facilities"
       },
       {
+        "title": "Skye Canyon New Construction Communities",
+        "url": "/skye-canyon-communities",
+        "coverage": "Century Communities, 3 communities, pricing"
+      },
+      {
         "title": "Skye Canyon Property Listings",
         "url": "/properties",
         "coverage": "Current luxury home inventory"
@@ -80,7 +95,9 @@
     "primaryKeywords": [
       "Skye Canyon real estate",
       "Skye Canyon schools",
-      "Skye Canyon parks",
+      "Skye Canyon parks", 
+      "Skye Canyon new construction",
+      "Century Communities Las Vegas",
       "Las Vegas luxury homes 89166"
     ],
     "localSEO": "Complete geographic and community authority",
