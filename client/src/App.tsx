@@ -4,11 +4,13 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import React, { Suspense } from "react";
 import StructuredData from "@/components/structured-data";
 import PWAInstaller from "@/components/pwa-installer";
 import PerformanceOptimizer from "@/components/performance-optimizer";
 import PerformanceMonitor from "@/components/performance-monitor";
 import CriticalCSS from "@/components/critical-css";
+import PerformanceCriticalLoader from "@/components/performance-critical-loader";
 import VoiceAssistant from "@/components/voice-assistant";
 import VoiceSearchSchema from "@/components/voice-search-schema";
 import EnhancedStructuredData from "@/components/enhanced-structured-data";
@@ -64,25 +66,30 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <PerformanceCriticalLoader />
           <CriticalCSS />
-          <DeploymentSEOChecklist />
-          <SEOOptimizer />
-          <MobileOptimizer />
           <AnalyticsTracker />
-          <PerformanceOptimizer />
-          <PerformanceMonitor />
-          <PerformanceCritical />
-          <ImageCompression />
-          <ProductionReadiness />
           <GoogleRichSnippets />
           <StructuredData />
-          <EnhancedStructuredData />
-          <AIContentOptimizer />
-          <GEOAuthoritySignals />
-          <VoiceSearchSchema />
           <Router />
-          <VoiceAssistant />
-          <PWAInstaller />
+          
+          {/* Load non-critical components after initial render */}
+          <Suspense fallback={null}>
+            <DeploymentSEOChecklist />
+            <SEOOptimizer />
+            <MobileOptimizer />
+            <PerformanceOptimizer />
+            <PerformanceMonitor />
+            <PerformanceCritical />
+            <ImageCompression />
+            <ProductionReadiness />
+            <EnhancedStructuredData />
+            <AIContentOptimizer />
+            <GEOAuthoritySignals />
+            <VoiceSearchSchema />
+            <VoiceAssistant />
+            <PWAInstaller />
+          </Suspense>
           <Toaster />
         </TooltipProvider>
       </QueryClientProvider>
