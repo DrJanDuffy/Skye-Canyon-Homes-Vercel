@@ -60,8 +60,20 @@
     <meta name="cf-2fa-verify" content="performance">
     <meta name="cf-visitor" content="{&quot;scheme&quot;:&quot;https&quot;}">
     
-    <!-- RealScout Widget Integration -->
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async></script>
+    <!-- RealScout Widget Integration - Deferred for performance -->
+    <link rel="modulepreload" href="https://em.realscout.com/widgets/realscout-web-components.umd.js">
+    <script>
+      // Load RealScout after critical rendering
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const script = document.createElement('script');
+          script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
+          script.type = 'module';
+          script.async = true;
+          document.head.appendChild(script);
+        }, 100);
+      });
+    </script>
     <style>
       realscout-office-listings {
         --rs-listing-divider-color: #4a90e2;

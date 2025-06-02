@@ -92,8 +92,11 @@ export default function PropertyDetail() {
       <div className="relative h-96 lg:h-[500px]">
         <img 
           src={property.imageUrl} 
-          alt={`Property at ${property.address}`}
+          alt={`${property.bedrooms} bedroom ${property.bathrooms} bathroom luxury home at ${property.address} in Skye Canyon Las Vegas - ${formatPrice(property.price)}`}
           className="w-full h-full object-cover"
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         <div className="absolute bottom-6 left-6 right-6">
@@ -226,8 +229,10 @@ export default function PropertyDetail() {
                 <div className="text-center mb-6">
                   <img 
                     src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200" 
-                    alt="Dr. Jan Duffy" 
+                    alt="Dr. Jan Duffy REALTOR headshot - Nevada licensed real estate agent specializing in Skye Canyon luxury properties" 
                     className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <h3 className="font-semibold text-lg">Dr. Jan Duffy</h3>
                   <p className="text-gray-600">REALTOR® | Skye Canyon Specialist</p>

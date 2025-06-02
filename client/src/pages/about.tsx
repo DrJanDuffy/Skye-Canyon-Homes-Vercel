@@ -134,9 +134,11 @@ export default function About() {
                 <div className="bg-white rounded-xl p-4">
                   <img 
                     src={drDuffyPhoto}
-                    alt="Dr. Jan Duffy REALTOR professional portrait" 
+                    alt="Dr. Jan Duffy REALTOR professional portrait - Licensed Nevada real estate agent S.0197614 specializing in Skye Canyon luxury homes and Las Vegas real estate" 
                     className="rounded-lg w-full max-w-md mx-auto object-cover"
                     style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>

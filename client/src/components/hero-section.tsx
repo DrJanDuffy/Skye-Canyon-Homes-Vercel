@@ -43,10 +43,10 @@ export default function HeroSection() {
           />
           <img 
             src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
-            alt="Luxury real estate background" 
+            alt="Modern luxury homes in Skye Canyon Las Vegas neighborhood with mountain views and pristine landscaping" 
             className="w-full h-full object-cover"
             loading="eager"
-            decoding="async"
+            decoding="sync"
             fetchPriority="high"
           />
         </picture>

@@ -17,9 +17,11 @@ export default function AgentBio() {
           <div>
             <img 
               src="/duffy-headshot.jpg" 
-              alt="Dr. Jan Duffy REALTOR professional headshot" 
+              alt="Dr. Jan Duffy REALTOR professional headshot - Licensed Nevada real estate agent specializing in Skye Canyon luxury homes in Las Vegas" 
               className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0"
               style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
+              loading="lazy"
+              decoding="async"
             />
           </div>
           
