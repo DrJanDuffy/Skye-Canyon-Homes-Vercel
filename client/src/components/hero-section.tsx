@@ -26,14 +26,30 @@ export default function HeroSection() {
       
       {/* Background Image */}
       <div className="absolute inset-0 opacity-60">
-        <img 
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=85" 
-          alt="Luxury real estate background" 
-          className="w-full h-full object-cover"
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-        />
+        <picture>
+          <source 
+            media="(max-width: 768px)" 
+            srcSet="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=75&fm=webp"
+            type="image/webp"
+          />
+          <source 
+            media="(max-width: 1200px)" 
+            srcSet="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80&fm=webp"
+            type="image/webp"
+          />
+          <source 
+            srcSet="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85&fm=webp"
+            type="image/webp"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+            alt="Luxury real estate background" 
+            className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
