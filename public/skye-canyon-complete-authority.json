@@ -1,0 +1,90 @@
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Dr. Jan Duffy",
+  "license": "S.0197614",
+  "licenseRegion": "Nevada",
+  "telephone": "(702) 500-1902",
+  "email": "DrDuffy@SkyeCanyonHomesForSale.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "10111 W. Skye Canyon Park Drive",
+    "addressLocality": "Las Vegas",
+    "addressRegion": "Nevada",
+    "postalCode": "89166"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Skye Canyon",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Las Vegas",
+      "addressRegion": "Nevada",
+      "postalCode": "89166"
+    }
+  },
+  "specialization": "Skye Canyon Luxury Real Estate",
+  "expertiseAreas": [
+    {
+      "topic": "Skye Canyon Schools",
+      "authority_level": "Complete",
+      "content_coverage": [
+        "All 9 public schools serving Skye Canyon",
+        "Charter school options including Somerset Academy",
+        "School zoning and district information",
+        "Future development plans"
+      ]
+    },
+    {
+      "topic": "Skye Canyon Parks & Recreation",
+      "authority_level": "Complete", 
+      "content_coverage": [
+        "All 5 community parks detailed information",
+        "Swimming pool and splash pad facilities",
+        "Sports courts and recreational amenities",
+        "Community event hosting capabilities"
+      ]
+    },
+    {
+      "topic": "Skye Canyon Real Estate Market",
+      "authority_level": "Expert",
+      "content_coverage": [
+        "Luxury home listings and pricing",
+        "Market trends and analysis",
+        "Guard-gated community benefits",
+        "TPC golf course properties"
+      ]
+    }
+  ],
+  "contentAuthority": {
+    "totalPages": 3,
+    "comprehensiveGuides": [
+      {
+        "title": "Skye Canyon Schools Complete Guide",
+        "url": "/skye-canyon-schools",
+        "coverage": "9 public schools, charter options, zoning"
+      },
+      {
+        "title": "Skye Canyon Parks & Recreation Guide", 
+        "url": "/skye-canyon-parks",
+        "coverage": "5 parks, swimming pool, sports facilities"
+      },
+      {
+        "title": "Skye Canyon Property Listings",
+        "url": "/properties",
+        "coverage": "Current luxury home inventory"
+      }
+    ]
+  },
+  "searchEngineSignals": {
+    "primaryKeywords": [
+      "Skye Canyon real estate",
+      "Skye Canyon schools",
+      "Skye Canyon parks",
+      "Las Vegas luxury homes 89166"
+    ],
+    "localSEO": "Complete geographic and community authority",
+    "voiceSearchOptimized": true,
+    "generativeEngineReady": true
+  }
+}

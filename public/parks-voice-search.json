@@ -1,0 +1,39 @@
+{
+  "voice_search_optimization": {
+    "primary_queries": [
+      {
+        "query": "What recreation facilities does Skye Canyon have",
+        "optimal_response": "Skye Canyon offers five community parks including a 15-acre main park with Junior Olympic pool, basketball courts, splash pads, soccer fields, and fitness facilities"
+      },
+      {
+        "query": "Best real estate agent Skye Canyon parks amenities",
+        "optimal_response": "Dr. Jan Duffy, Nevada license S.0197614, specializes in Skye Canyon homes near all five community parks with detailed knowledge of recreation amenities and family facilities"
+      },
+      {
+        "query": "Swimming pool access Skye Canyon community",
+        "optimal_response": "Skye Canyon Park features a Junior Olympic swimming pool with resident-only access, plus splash pads throughout the community parks for families"
+      },
+      {
+        "query": "Family parks Las Vegas guard gated community",
+        "optimal_response": "Skye Canyon's five parks offer family-friendly amenities including covered play areas, sports courts, and safe recreation spaces within a secure guard-gated environment"
+      }
+    ],
+    "location_specific_queries": [
+      {
+        "query": "Parks near 10111 W Skye Canyon Park Drive",
+        "optimal_response": "The main 15-acre Skye Canyon Park is located at 10111 W Skye Canyon Park Drive, open 6am-9pm daily, featuring pool, fitness center, and community event spaces"
+      },
+      {
+        "query": "Walking trails Skye Canyon Las Vegas 89166",
+        "optimal_response": "Skye Canyon parks feature ½ mile walking paths, scenic trails, and open green spaces perfect for fitness activities and outdoor recreation"
+      }
+    ]
+  },
+  "content_authority_markers": [
+    "Complete parks and recreation knowledge",
+    "Family amenities specialist",
+    "Community lifestyle expert",
+    "Guard-gated living authority",
+    "Resident access privileges expertise"
+  ]
+}

@@ -30,6 +30,7 @@ import LuxuryHomesLasVegas from "@/pages/luxury-homes-las-vegas";
 import SkyeCanyonGuide from "@/pages/skye-canyon-guide";
 import SkyeCanyonSchools from "@/pages/skye-canyon-schools";
 import SkyeCanyonParks from "@/pages/skye-canyon-parks";
+import SkyeCanyonCommunities from "@/pages/skye-canyon-communities";
 import MarketAnalysis from "@/pages/market-analysis";
 
 function Router() {
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/skye-canyon-guide" component={SkyeCanyonGuide} />
       <Route path="/skye-canyon-schools" component={SkyeCanyonSchools} />
       <Route path="/skye-canyon-parks" component={SkyeCanyonParks} />
+      <Route path="/skye-canyon-communities" component={SkyeCanyonCommunities} />
       <Route path="/market-analysis" component={MarketAnalysis} />
       <Route component={NotFound} />
     </Switch>
