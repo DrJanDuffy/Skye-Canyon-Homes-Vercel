@@ -1,0 +1,190 @@
+> rest-express@1.0.0 dev
+> NODE_ENV=development tsx server/index.ts
+
+6:05:21 AM [express] serving on port 5000
+6:05:35 AM [express] GET /api/market-data 200 in 52ms
+6:05:36 AM [express] GET /api/properties 200 in 996ms :: [{"id":1,"address":"123 Sky Canyon Drive","…
+6:05:38 AM [express] GET /api/market-data 200 in 24ms
+6:05:38 AM [express] GET /api/listings 200 in 24ms
+Analytics Event: {
+  "event": "page_view",
+  "parameters": {
+    "page_path": "/",
+    "page_title": "Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR® | Las Vegas NV",
+    "user_journey_stage": "engagement",
+    "visit_count": 1,
+    "is_returning_visitor": false
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-02T06:05:38.268Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:05:38 AM [express] POST /api/analytics 200 in 1ms :: {"success":true}
+Analytics Event: {
+  "event": "page_view",
+  "parameters": {
+    "page_path": "/",
+    "page_title": "Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR® | Las Vegas NV",
+    "user_journey_stage": "engagement",
+    "visit_count": 1,
+    "is_returning_visitor": false
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-02T06:05:38.271Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:05:38 AM [express] POST /api/analytics 200 in 0ms :: {"success":true}
+Analytics Event: {
+  "event": "web_vital",
+  "parameters": {
+    "metric_name": "TTFB",
+    "metric_value": 608.3000000044703,
+    "metric_rating": "good",
+    "metric_delta": 608.3000000044703
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-02T06:05:38.357Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:05:38 AM [express] POST /api/analytics 200 in 1ms :: {"success":true}
+Analytics Event: {
+  "event": "web_vital",
+  "parameters": {
+    "metric_name": "FCP",
+    "metric_value": 4607.5,
+    "metric_rating": "poor",
+    "metric_delta": 4607.5
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-02T06:05:38.527Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:05:38 AM [express] POST /api/analytics 200 in 1ms :: {"success":true}
+6:05:38 AM [express] GET /api/community-data 200 in 36ms
+6:05:38 AM [express] GET /api/agent-bio 200 in 16ms
+6:05:38 AM [express] GET /api/properties/featured 200 in 78ms :: [{"id":1,"address":"123 Sky Canyon …
+6:05:39 AM [express] GET /api/market-stats 200 in 341ms :: {"id":1,"medianPrice":"$1.2M","daysOnMark…
+6:05:39 AM [express] GET /api/properties 304 in 312ms :: [{"id":1,"address":"123 Sky Canyon Drive","…
+Analytics Event: {
+  "event": "web_vital",
+  "parameters": {
+    "metric_name": "LCP",
+    "metric_value": 4607.5,
+    "metric_rating": "poor",
+    "metric_delta": 4607.5
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "800x600",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-02T06:05:39.263Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:05:39 AM [express] POST /api/analytics 200 in 1ms :: {"success":true}
+Analytics Event: {
+  "event": "web_vital",
+  "parameters": {
+    "metric_name": "CLS",
+    "metric_value": 0.01021032428741455,
+    "metric_rating": "good",
+    "metric_delta": 0.01021032428741455
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "800x600",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-02T06:05:39.265Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:05:39 AM [express] POST /api/analytics 200 in 0ms :: {"success":true}
+6:05:39 AM [express] GET /api/market-insights 200 in 651ms :: {"insights":[{"title":"Home Projects T…
