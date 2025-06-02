@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isProduction, setIsProduction] = useState(false);
+
+  useEffect(() => {
+    // Detect production environment for consistent menu behavior
+    setIsProduction(window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1');
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -13,12 +19,24 @@ export default function Navigation() {
     setMobileMenuOpen(false);
   };
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuOpen && !(event.target as Element)?.closest('nav')) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [mobileMenuOpen]);
+
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
+    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-realscout-blue">
+            <div className="text-2xl font-bold text-realscout-blue tracking-tight">
               Skye Canyon
             </div>
           </div>
@@ -45,23 +63,23 @@ export default function Navigation() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <a href="/properties" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                <a href="/properties" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   All Properties
                 </a>
-                <a href="/luxury-homes-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                <a href="/luxury-homes-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Luxury Homes
                 </a>
-                <a href="/skye-canyon-guide" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                <a href="/skye-canyon-guide" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Skye Canyon Guide
                 </a>
-                <a href="/skye-canyon-schools" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                <a href="/skye-canyon-schools" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Skye Canyon Schools
                 </a>
-                <a href="/skye-canyon-parks" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                <a href="/skye-canyon-parks" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Skye Canyon Parks
                 </a>
-                <a href="/skye-canyon-communities" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                <a href="/skye-canyon-communities" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   New Construction
                 </a>
               </div>
@@ -73,14 +91,14 @@ export default function Navigation() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <a href="/market-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+                <a href="/market-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Market Analysis
                 </a>
-                <a href="/las-vegas-real-estate" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                <a href="/las-vegas-real-estate" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Las Vegas Market
                 </a>
-                <a href="/northwest-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue">
+                <a href="/northwest-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Northwest Las Vegas
                 </a>
               </div>
