@@ -1,0 +1,50 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Skye Canyon Homes for Sale - Complete Community Guide",
+  "url": "https://skyecanyonhomesforsale.com",
+  "author": {
+    "@type": "RealEstateAgent",
+    "name": "Dr. Jan Duffy",
+    "license": "S.0197614",
+    "worksFor": "Berkshire Hathaway HomeServices Nevada Properties"
+  },
+  "mainContentOfPage": [
+    {
+      "@type": "WebPage",
+      "name": "Skye Canyon Schools Guide",
+      "url": "https://skyecanyonhomesforsale.com/skye-canyon-schools",
+      "about": "Complete guide to education options in Skye Canyon including public schools, charter schools, and zoning information",
+      "keywords": "Skye Canyon schools, Arbor View High School, Somerset Academy, Clark County School District"
+    },
+    {
+      "@type": "WebPage", 
+      "name": "Skye Canyon Properties",
+      "url": "https://skyecanyonhomesforsale.com/properties",
+      "about": "Current luxury home listings in Skye Canyon guard-gated community",
+      "keywords": "Skye Canyon homes, luxury real estate, guard gated community, Las Vegas 89166"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Skye Canyon Market Analysis", 
+      "url": "https://skyecanyonhomesforsale.com/market-analysis",
+      "about": "Professional market analysis and pricing trends for Skye Canyon real estate",
+      "keywords": "Skye Canyon market report, home values, real estate trends"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Skye Canyon Community Guide",
+      "url": "https://skyecanyonhomesforsale.com/community-guide",
+      "about": "Comprehensive guide to Skye Canyon amenities, lifestyle, and community features",
+      "keywords": "Skye Canyon amenities, TPC golf course, guard gated living"
+    }
+  ],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://skyecanyonhomesforsale.com/properties?search={search_term}",
+    "query-input": "required name=search_term"
+  },
+  "sameAs": [
+    "https://app.bhhsnv.com/a1drjanduffy-4986"
+  ]
+}

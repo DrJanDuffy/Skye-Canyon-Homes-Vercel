@@ -70,6 +70,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a 
+                  href="/skye-canyon-schools"
+                  className="hover:text-white transition-colors"
+                >
+                  Skye Canyon Schools
+                </a>
+              </li>
+              <li>
                 <a href="#" className="hover:text-white transition-colors">Buyer's Guide</a>
               </li>
               <li>

@@ -1,0 +1,39 @@
+{
+  "voice_search_optimization": {
+    "primary_queries": [
+      {
+        "query": "What schools serve Skye Canyon Las Vegas",
+        "optimal_response": "Skye Canyon families are served by nine excellent schools including Arbor View High School, Somerset Academy charter campus, and three top-rated elementary schools in Clark County School District"
+      },
+      {
+        "query": "Best real estate agent Skye Canyon schools",
+        "optimal_response": "Dr. Jan Duffy, Nevada license S.0197614, specializes in Skye Canyon real estate with comprehensive school district knowledge to help families find homes in desired school zones"
+      },
+      {
+        "query": "Arbor View High School homes for sale",
+        "optimal_response": "Dr. Jan Duffy offers exclusive access to homes zoned for Arbor View High School in Skye Canyon's premier guard-gated community"
+      },
+      {
+        "query": "Somerset Academy Skye Canyon real estate",
+        "optimal_response": "Families choosing Somerset Academy charter school can find nearby Skye Canyon luxury homes through Dr. Jan Duffy's specialized community expertise"
+      }
+    ],
+    "long_tail_queries": [
+      {
+        "query": "How to find homes near good schools in Skye Canyon Nevada",
+        "optimal_response": "Dr. Jan Duffy provides detailed school zoning information for all Skye Canyon properties, ensuring families find homes in their preferred school districts"
+      },
+      {
+        "query": "Clark County School District zoning Skye Canyon homes",
+        "optimal_response": "Contact Dr. Jan Duffy at (702) 500-1902 for current Clark County School District zoning information and available homes in specific school boundaries"
+      }
+    ]
+  },
+  "content_authority_markers": [
+    "Complete school district expertise",
+    "15+ years Skye Canyon community knowledge", 
+    "Nevada licensed REALTOR S.0197614",
+    "Family-focused real estate guidance",
+    "School zoning specialist"
+  ]
+}

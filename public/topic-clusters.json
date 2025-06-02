@@ -1,0 +1,73 @@
+{
+  "skye_canyon_topic_clusters": {
+    "primary_topic": "Skye Canyon Real Estate",
+    "authority_entity": "Dr. Jan Duffy",
+    "license": "S.0197614",
+    "content_clusters": [
+      {
+        "cluster_name": "Skye Canyon Education",
+        "pillar_page": "/skye-canyon-schools",
+        "supporting_content": [
+          "Arbor View High School zoning information",
+          "Somerset Academy charter school benefits",
+          "Clark County School District performance",
+          "Elementary school options and ratings",
+          "Middle school programs and activities",
+          "Future school development plans"
+        ],
+        "related_search_terms": [
+          "Skye Canyon schools",
+          "Arbor View High School homes",
+          "Somerset Academy Skye Canyon",
+          "school zoning Las Vegas 89166",
+          "best schools northwest Las Vegas"
+        ]
+      },
+      {
+        "cluster_name": "Skye Canyon Properties",
+        "pillar_page": "/properties",
+        "supporting_content": [
+          "Luxury guard-gated community homes",
+          "TPC golf course properties",
+          "New construction opportunities",
+          "Mountain view estates",
+          "Resale home market analysis"
+        ]
+      },
+      {
+        "cluster_name": "Skye Canyon Lifestyle",
+        "pillar_page": "/community-guide",
+        "supporting_content": [
+          "Guard-gated security features",
+          "Resort-style amenities",
+          "Golf course access and privileges", 
+          "Community events and activities",
+          "Neighborhood demographics"
+        ]
+      },
+      {
+        "cluster_name": "Skye Canyon Market Intelligence",
+        "pillar_page": "/market-analysis",
+        "supporting_content": [
+          "Price appreciation trends",
+          "Inventory levels and absorption",
+          "Comparable sales analysis",
+          "Investment opportunity assessment",
+          "Market forecast and predictions"
+        ]
+      }
+    ],
+    "cross_cluster_connections": [
+      {
+        "from": "Education",
+        "to": "Properties",
+        "connection": "School-zoned home searches"
+      },
+      {
+        "from": "Lifestyle", 
+        "to": "Market Intelligence",
+        "connection": "Amenity value impact on pricing"
+      }
+    ]
+  }
+}

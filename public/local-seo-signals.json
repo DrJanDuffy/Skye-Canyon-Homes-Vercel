@@ -1,0 +1,79 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Dr. Jan Duffy REALTOR® - Skye Canyon Specialist",
+  "description": "Nevada licensed real estate professional specializing exclusively in Skye Canyon luxury homes, schools, and community expertise in Las Vegas Nevada 89166",
+  "url": "https://skyecanyonhomesforsale.com",
+  "telephone": "(702) 500-1902",
+  "email": "DrDuffy@SkyeCanyonHomesForSale.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "10111 W. Skye Canyon Park Drive",
+    "addressLocality": "Las Vegas",
+    "addressRegion": "Nevada",
+    "postalCode": "89166",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "36.2887",
+    "longitude": "-115.3366"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Skye Canyon",
+      "geo": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "36.2887",
+          "longitude": "-115.3366"
+        },
+        "geoRadius": "3000"
+      }
+    },
+    {
+      "@type": "Place", 
+      "name": "Northwest Las Vegas",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Las Vegas",
+        "addressRegion": "Nevada",
+        "postalCode": "89166"
+      }
+    }
+  ],
+  "serviceType": "Real Estate Services",
+  "priceRange": "$450,000 - $2,000,000+",
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "Real Estate License",
+    "identifier": "S.0197614",
+    "recognizedBy": {
+      "@type": "Organization",
+      "name": "Nevada Real Estate Division"
+    }
+  },
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Berkshire Hathaway HomeServices Nevada Properties"
+  },
+  "knowsAbout": [
+    "Skye Canyon Schools",
+    "Arbor View High School Zoning",
+    "Somerset Academy Charter School",
+    "Clark County School District",
+    "Luxury Guard-Gated Communities",
+    "TPC Las Vegas Golf Course Properties",
+    "Nevada Real Estate Market",
+    "Las Vegas 89166 Properties"
+  ],
+  "openingHours": [
+    "Mo-Fr 09:00-18:00",
+    "Sa 09:00-17:00", 
+    "Su 11:00-16:00"
+  ],
+  "paymentAccepted": "Cash, Check, Wire Transfer",
+  "currenciesAccepted": "USD"
+}
