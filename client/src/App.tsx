@@ -25,6 +25,7 @@ import ThirdPartyScriptOptimizer from "@/components/third-party-script-optimizer
 import CloudflareOptimization from "@/components/cloudflare-optimization";
 import PerformanceFinal from "@/components/performance-final";
 import CriticalPerformanceBoost from "@/components/critical-performance-boost";
+import InstantLoadOptimizer from "@/components/instant-load-optimizer";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -67,6 +68,7 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <InstantLoadOptimizer />
           <CriticalPerformanceBoost />
           <CriticalCSSInline />
           <CriticalCSS />
