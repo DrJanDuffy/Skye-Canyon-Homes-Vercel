@@ -21,6 +21,7 @@ import DeploymentSEOChecklist from "@/components/deployment-seo-checklist";
 import PerformanceCritical from "@/components/performance-critical";
 import ImageCompression from "@/components/image-compression";
 import ProductionReadiness from "@/components/production-readiness";
+import GoogleRichSnippets from "@/components/google-rich-snippets";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -73,6 +74,7 @@ function App() {
           <PerformanceCritical />
           <ImageCompression />
           <ProductionReadiness />
+          <GoogleRichSnippets />
           <StructuredData />
           <EnhancedStructuredData />
           <AIContentOptimizer />
