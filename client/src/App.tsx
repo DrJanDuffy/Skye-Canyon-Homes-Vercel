@@ -64,6 +64,7 @@ function Router() {
       <Route path="/skye-canyon-parks" component={SkyeCanyonParks} />
       <Route path="/skye-canyon-communities" component={SkyeCanyonCommunities} />
       <Route path="/market-analysis" component={MarketAnalysis} />
+      <Route path="/neighborhood-analysis" component={NeighborhoodAnalysis} />
       <Route component={NotFound} />
     </Switch>
   );

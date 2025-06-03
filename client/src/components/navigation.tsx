@@ -94,9 +94,12 @@ export default function Navigation() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
+              <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
                 <a href="/market-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Market Analysis
+                </a>
+                <a href="/neighborhood-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                  Neighborhood Heat Map
                 </a>
                 <a href="/las-vegas-real-estate" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Las Vegas Market
