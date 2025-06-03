@@ -197,6 +197,34 @@
   .focus\:ring-realscout-blue:focus {
     --tw-ring-color: hsl(var(--realscout-blue));
   }
+
+  /* RealScout Widget Photo Display Fixes */
+  realscout-office-listings,
+  realscout-office-listings *,
+  realscout-office-listings img,
+  realscout-office-listings picture,
+  realscout-office-listings [style*="background-image"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  /* Ensure images load and display */
+  realscout-office-listings img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+  }
+
+  /* Fix any lazy loading or intersection observer issues */
+  realscout-office-listings [data-src],
+  realscout-office-listings [src*="placeholder"] {
+    background: transparent !important;
+  }
   
   .focus\:border-realscout-blue:focus {
     border-color: hsl(var(--realscout-blue));
