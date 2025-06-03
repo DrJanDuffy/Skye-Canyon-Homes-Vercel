@@ -4,7 +4,7 @@ import Footer from "@/components/footer";
 import BackToTop from "@/components/back-to-top";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Home } from "@/lib/icons";
+import { MapPin, Home } from "lucide-react";
 import FAQSection from "@/components/faq-section";
 import RelatedSearches from "@/components/related-searches";
 import RealScoutListings from "@/components/realscout-listings";
