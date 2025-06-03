@@ -18,12 +18,12 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
         <h3 className="text-2xl font-bold mb-2">Search Skye Canyon Homes</h3>
         <p className="text-blue-100 mb-4">Browse available properties and find your dream home</p>
         <div className="flex flex-col sm:flex-row gap-3">
-          <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-center">
             Search All Homes
-          </button>
-          <button className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-400 border border-blue-400 transition-colors">
+          </a>
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-400 border border-blue-400 transition-colors text-center">
             Get Home Value
-          </button>
+          </a>
         </div>
       </div>
       
@@ -51,12 +51,12 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
           Ready to explore more properties or get your home's value?
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center">
             View All Available Homes
-          </button>
-          <button className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+          </a>
+          <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors text-center">
             Get Instant Home Valuation
-          </button>
+          </a>
         </div>
         <p className="text-sm text-gray-600 mt-3">
           Click any property above to start your search or get detailed property information

@@ -63,12 +63,12 @@ export default function RealScoutSearchWidget({
             Powered by RealScout • Updated daily with MLS data
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center">
               Advanced Property Search
-            </button>
-            <button className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            </a>
+            <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-center">
               Contact Dr. Jan Duffy
-            </button>
+            </a>
           </div>
         </div>
       </div>
