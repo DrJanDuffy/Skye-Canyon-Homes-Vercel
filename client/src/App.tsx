@@ -5,7 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import React, { Suspense, useEffect } from "react";
-import StructuredData from "@/components/structured-data";
+import StructuredData from "@/components/structured-data-fixed";
 import PWAInstaller from "@/components/pwa-installer";
 import PerformanceOptimizer from "@/components/performance-optimizer";
 import PerformanceMonitor from "@/components/performance-monitor";
