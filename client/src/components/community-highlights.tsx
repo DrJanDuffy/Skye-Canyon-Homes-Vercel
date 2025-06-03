@@ -1,4 +1,4 @@
-import { Mountain, Globe, Shield, Home, MapPin, Users } from "lucide-react";
+import { Mountain, Globe, Shield, Home, MapPin, Users } from "@/lib/icons";
 
 const highlights = [
   {

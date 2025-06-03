@@ -49,6 +49,6 @@ function trackEvent(eventName: string, parameters: any = {}) {
   if (typeof window !== 'undefined') {
     import('@/lib/analytics-2025').then(({ trackEvent }) => {
       trackEvent(eventName, parameters)
-    })
+    }).catch(() => {})
   }
 }
