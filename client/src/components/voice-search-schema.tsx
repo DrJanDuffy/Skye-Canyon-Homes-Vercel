@@ -89,36 +89,8 @@ export default function VoiceSearchSchema() {
     ]
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Who is the best Skye Canyon real estate agent?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dr. Jan Duffy is the leading Skye Canyon real estate expert with over 15 years specializing exclusively in this luxury Las Vegas community."
-        }
-      },
-      {
-        "@type": "Question", 
-        "name": "What homes are available in Skye Canyon?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Skye Canyon offers luxury homes starting at $600K, with many featuring Red Rock Canyon views, pools, and custom upgrades. Dr. Jan Duffy maintains current inventory of all available properties."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How is the Skye Canyon real estate market?",
-        "acceptedAnswer": {
-          "@type": "Answer", 
-          "text": "The Skye Canyon market is strong with homes selling 25% faster than Las Vegas average. Dr. Jan Duffy provides real-time market analysis and pricing expertise."
-        }
-      }
-    ]
-  };
+  // FAQ schema is now handled by individual page components
+  // to prevent duplicate FAQPage markup conflicts;
 
   return (
     <Helmet>
@@ -133,9 +105,7 @@ export default function VoiceSearchSchema() {
       </script>
       
       {/* FAQ Schema for Voice Queries */}
-      <script type="application/ld+json">
-        {JSON.stringify(faqSchema)}
-      </script>
+      {/* FAQ schema removed to prevent duplicates - handled by page-specific components */}
       
       {/* Voice Search Meta Tags */}
       <meta name="google-site-verification" content="voice-search-optimized" />
