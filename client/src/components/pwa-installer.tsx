@@ -94,7 +94,7 @@ export default function PWAInstaller() {
                   size="sm"
                   className="w-full bg-blue-600 hover:bg-blue-700"
                 >
-                  <Download className="w-4 h-4 mr-2" />
+                  <span className="mr-2">📱</span>
                   Install Guide App
                 </Button>
               </div>
@@ -115,7 +115,7 @@ export default function PWAInstaller() {
             size="sm"
             className="text-blue-600 hover:text-blue-800 p-1"
           >
-            <X className="w-4 h-4" />
+            ✕
           </Button>
         </div>
       </CardContent>

@@ -270,7 +270,7 @@ export default function SkyeCanyonParks() {
               
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Dumbbell className="w-8 h-8 text-green-600" />
+                  <span className="text-3xl text-green-600">💪</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Fitness Focused</h3>
                 <p className="text-gray-600">Walking paths, sports courts, and fitness amenities for an active lifestyle.</p>
@@ -278,7 +278,7 @@ export default function SkyeCanyonParks() {
               
               <div className="text-center">
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TreePine className="w-8 h-8 text-purple-600" />
+                  <span className="text-3xl text-purple-600">🌲</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Community Events</h3>
                 <p className="text-gray-600">Central gathering spaces perfect for neighborhood events and celebrations.</p>

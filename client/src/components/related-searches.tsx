@@ -65,7 +65,7 @@ export default function RelatedSearches({ searchType }: RelatedSearchesProps) {
                   <div className="flex-shrink-0">
                     {search.category === "Location" && <MapPin className="w-5 h-5 text-realscout-blue mt-1" />}
                     {search.category === "New Homes" && <Home className="w-5 h-5 text-realscout-blue mt-1" />}
-                    {search.category === "Market Trends" && <TrendingUp className="w-5 h-5 text-realscout-blue mt-1" />}
+                    {search.category === "Market Trends" && <span className="text-realscout-blue mt-1">📈</span>}
                     {!["Location", "New Homes", "Market Trends"].includes(search.category) && 
                       <Search className="w-5 h-5 text-realscout-blue mt-1" />}
                   </div>

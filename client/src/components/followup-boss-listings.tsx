@@ -137,7 +137,7 @@ export default function FollowUpBossListings() {
               )}
               {listing.sqft && (
                 <span className="flex items-center">
-                  <Square className="w-4 h-4 mr-1" />
+                  <span className="mr-1">📐</span>
                   {listing.sqft.toLocaleString()} sqft
                 </span>
               )}
