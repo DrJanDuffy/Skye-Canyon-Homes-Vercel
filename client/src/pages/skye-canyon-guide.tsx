@@ -13,7 +13,7 @@ export default function SkyeCanyonGuide() {
   return (
     <>
       <Helmet>
-        <title>Skye Canyon Community Guide | Living in Las Vegas NV 89166 | Dr. Jan Duffy REALTOR®</title>
+        <title>Skye Canyon Community Guide | Living in Las Vegas NV 89166</title>
         <meta name="description" content="Complete Skye Canyon community guide covering amenities, schools, parks, dining, and lifestyle. Expert neighborhood insights from Dr. Jan Duffy, local REALTOR®." />
         <meta name="keywords" content="Skye Canyon community, Las Vegas 89166, neighborhood guide, schools, amenities, lifestyle" />
         <meta property="og:title" content="Skye Canyon Community Guide | Dr. Jan Duffy REALTOR®" />

@@ -12,7 +12,7 @@ export default function Properties() {
   return (
     <>
       <Helmet>
-        <title>Skye Canyon Properties for Sale | Luxury Homes Las Vegas | Dr. Jan Duffy REALTOR®</title>
+        <title>Skye Canyon Properties for Sale | Luxury Homes Las Vegas</title>
         <meta name="description" content="Browse luxury Skye Canyon properties for sale. Current MLS listings, exclusive client portfolio, and Las Vegas area homes. Expert service by Dr. Jan Duffy REALTOR®." />
         <meta name="keywords" content="Skye Canyon properties, luxury homes for sale, Las Vegas MLS listings, Nevada 89166, real estate" />
         <meta property="og:title" content="Skye Canyon Properties for Sale | Dr. Jan Duffy REALTOR®" />

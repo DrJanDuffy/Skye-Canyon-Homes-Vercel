@@ -12,7 +12,7 @@ export default function MarketAnalysis() {
   return (
     <>
       <Helmet>
-        <title>Skye Canyon Market Analysis | Real Estate Trends | Dr. Jan Duffy REALTOR®</title>
+        <title>Skye Canyon Market Analysis | Real Estate Trends</title>
         <meta name="description" content="Current Skye Canyon real estate market analysis, pricing trends, and investment insights. Expert market intelligence from Dr. Jan Duffy, licensed Nevada REALTOR®." />
         <meta name="keywords" content="Skye Canyon market analysis, Las Vegas real estate trends, Nevada 89166 market data, property values" />
         <meta property="og:title" content="Skye Canyon Market Analysis | Dr. Jan Duffy REALTOR®" />

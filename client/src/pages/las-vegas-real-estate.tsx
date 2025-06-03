@@ -13,7 +13,7 @@ export default function LasVegasRealEstate() {
   return (
     <>
       <Helmet>
-        <title>Las Vegas Real Estate | Nevada Homes for Sale | Dr. Jan Duffy REALTOR®</title>
+        <title>Las Vegas Real Estate | Nevada Homes for Sale</title>
         <meta name="description" content="Las Vegas real estate for sale including Henderson, Summerlin, and Northwest communities. Expert Nevada real estate service from Dr. Jan Duffy, licensed REALTOR®." />
         <meta name="keywords" content="Las Vegas real estate, Nevada homes for sale, Henderson properties, Summerlin homes, Northwest Las Vegas" />
         <meta property="og:title" content="Las Vegas Real Estate | Dr. Jan Duffy REALTOR®" />

@@ -13,7 +13,7 @@ export default function LuxuryHomesLasVegas() {
   return (
     <>
       <Helmet>
-        <title>Luxury Homes Las Vegas | High-End Real Estate | Dr. Jan Duffy REALTOR®</title>
+        <title>Luxury Homes Las Vegas | High-End Real Estate</title>
         <meta name="description" content="Luxury homes for sale in Las Vegas featuring Skye Canyon, The Ridges, and exclusive communities. Expert service from Dr. Jan Duffy, licensed Nevada REALTOR®." />
         <meta name="keywords" content="luxury homes Las Vegas, high-end real estate, exclusive communities, Nevada luxury properties" />
         <meta property="og:title" content="Luxury Homes Las Vegas | Dr. Jan Duffy REALTOR®" />

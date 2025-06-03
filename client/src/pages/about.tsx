@@ -77,7 +77,7 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Expert | Las Vegas NV</title>
+        <title>About Your Skye Canyon Real Estate Expert | Las Vegas NV</title>
         <meta name="description" content="Meet Dr. Jan Duffy, your trusted Skye Canyon real estate specialist. Licensed Nevada REALTOR® with 15+ years experience in Las Vegas luxury homes. License S.0197614." />
         <meta name="keywords" content="Dr. Jan Duffy, Skye Canyon REALTOR, Las Vegas real estate agent, Nevada license S.0197614, luxury home specialist" />
         <meta property="og:title" content="About Dr. Jan Duffy REALTOR® | Skye Canyon Expert" />
