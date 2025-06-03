@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
 import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSitemap } from "./google-indexing";
+import { handleUrlValidation, validateGoogleSearchConsoleUrls, requestUrlInspection } from "./google-search-console-fixes";
 
 
 // AI Lead Scoring Functions
@@ -322,6 +323,14 @@ When users ask about properties, analyze their request and:
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Force HTTPS redirect in production
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
+      res.redirect(301, `https://${req.header('host')}${req.url}`);
+    } else {
+      next();
+    }
+  });
   
   // Get all properties
   app.get("/api/properties", async (req, res) => {
@@ -823,6 +832,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       urls,
       count: urls.length
     });
+  });
+
+  // Google Search Console URL validation and 404 fixes
+  app.get("/api/google/validate-urls", handleUrlValidation);
+  
+  app.post("/api/google/request-url-inspection", async (req, res) => {
+    try {
+      const { urls } = req.body;
+      const result = await requestUrlInspection(urls || getAllSiteUrls());
+      res.json(result);
+    } catch (error) {
+      console.error('URL inspection request error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to request URL inspection'
+      });
+    }
   });
 
   // Analytics endpoint
