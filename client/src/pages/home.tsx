@@ -24,6 +24,7 @@ import GeoEnhancedSchema from "@/components/geo-enhanced-schema";
 import EnhancedPropertyFallback from "@/components/enhanced-property-fallback";
 import CriticalCSS from "@/components/critical-css";
 import RealScoutSearchWidget from "@/components/realscout-search-widget";
+import RealScoutAnalytics from "@/components/realscout-analytics";
 
 export default function Home() {
   return (
@@ -77,6 +78,7 @@ export default function Home() {
       <CriticalPerformanceLoader />
       <LocalBusinessSchema />
       <GeoEnhancedSchema />
+      <RealScoutAnalytics />
       <div className="min-h-screen bg-white">
         <Navigation />
         <HeroSection />
@@ -168,6 +170,27 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Tell Us What You're Looking For</h2>
           <PreferenceCollector />
+        </div>
+      </section>
+
+      {/* RealScout Search CTA */}
+      <section className="py-12 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Find Your Perfect Home?</h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Search Skye Canyon properties or get your home's current market value instantly
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors shadow-lg">
+              Search Available Homes
+            </button>
+            <button className="bg-blue-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-400 border-2 border-blue-400 transition-colors shadow-lg">
+              Get Home Valuation
+            </button>
+          </div>
+          <p className="text-sm text-blue-200 mt-4">
+            Powered by RealScout MLS • Updated in real-time
+          </p>
         </div>
       </section>
 
