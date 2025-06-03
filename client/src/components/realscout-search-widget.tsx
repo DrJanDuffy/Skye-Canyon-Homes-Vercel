@@ -47,11 +47,22 @@ export default function RealScoutSearchWidget({
           
           <div className="bg-green-50 p-6 rounded-lg text-center">
             <h3 className="font-semibold text-green-900 mb-3">Get Your Home's Value</h3>
-            <realscout-cma 
-              agent-encoded-id="QWdlbnQtMjI1MDUw"
-              location="Skye Canyon, Las Vegas, NV"
-              data-production="true"
-            ></realscout-cma>
+            <div id="homebot_homeowner_3"></div>
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                (function (h,b) { 
+                  var w = window, d = document, s = 'script', x, y; 
+                  w['__hb_namespace'] = h; 
+                  w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; 
+                  y = d.createElement(s); 
+                  x = d.getElementsByTagName(s)[0]; 
+                  y.async = 1; 
+                  y.src = b; 
+                  x.parentNode.insertBefore(y,x) 
+                })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); 
+                Homebot('#homebot_homeowner_3', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
+              `
+            }} />
             <p className="text-sm text-green-700 mt-3">
               Instant market analysis with recent comparable sales
             </p>
@@ -98,12 +109,22 @@ export default function RealScoutSearchWidget({
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Home Valuation
             </label>
-            <realscout-cma 
-              agent-encoded-id="QWdlbnQtMjI1MDUw"
-              location="Skye Canyon, Las Vegas, NV"
-              compact="true"
-              data-production="true"
-            ></realscout-cma>
+            <div id="homebot_homeowner_5"></div>
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                (function (h,b) { 
+                  var w = window, d = document, s = 'script', x, y; 
+                  w['__hb_namespace'] = h; 
+                  w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; 
+                  y = d.createElement(s); 
+                  x = d.getElementsByTagName(s)[0]; 
+                  y.async = 1; 
+                  y.src = b; 
+                  x.parentNode.insertBefore(y,x) 
+                })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); 
+                Homebot('#homebot_homeowner_5', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
+              `
+            }} />
           </div>
         </div>
       </div>
@@ -129,13 +150,24 @@ export default function RealScoutSearchWidget({
             data-production="true"
           ></realscout-search>
           
-          <realscout-cma 
-            agent-encoded-id="QWdlbnQtMjI1MDUw"
-            location="Skye Canyon, Las Vegas, NV"
-            button-text="Get Home Value"
-            button-style="outline-white"
-            data-production="true"
-          ></realscout-cma>
+          <div className="inline-block">
+            <div id="homebot_homeowner_4"></div>
+            <script dangerouslySetInnerHTML={{
+              __html: `
+                (function (h,b) { 
+                  var w = window, d = document, s = 'script', x, y; 
+                  w['__hb_namespace'] = h; 
+                  w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; 
+                  y = d.createElement(s); 
+                  x = d.getElementsByTagName(s)[0]; 
+                  y.async = 1; 
+                  y.src = b; 
+                  x.parentNode.insertBefore(y,x) 
+                })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); 
+                Homebot('#homebot_homeowner_4', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
+              `
+            }} />
+          </div>
         </div>
       </div>
     </div>
