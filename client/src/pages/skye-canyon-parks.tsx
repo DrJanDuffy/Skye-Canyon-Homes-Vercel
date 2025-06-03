@@ -126,16 +126,13 @@ export default function SkyeCanyonParks() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
               <span className="flex items-center gap-2">
-                <TreePine className="w-4 h-4" />
-                5 Community Parks
+                🌲 5 Community Parks
               </span>
               <span className="flex items-center gap-2">
-                <Waves className="w-4 h-4" />
-                Splash Pads & Pool
+                🌊 Splash Pads & Pool
               </span>
               <span className="flex items-center gap-2">
-                <Dumbbell className="w-4 h-4" />
-                Sports Courts & Fields
+                💪 Sports Courts & Fields
               </span>
             </div>
           </div>
@@ -171,7 +168,7 @@ export default function SkyeCanyonParks() {
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-blue-600" />
+                    <span className="text-blue-600">🕕</span>
                     <span className="text-gray-700">Open 6:00am – 9:00pm daily</span>
                   </div>
                   <div className="flex items-start gap-3">
@@ -202,11 +199,11 @@ export default function SkyeCanyonParks() {
                     <span className="text-gray-700">Community event hosting venue</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Waves className="w-5 h-5 text-blue-600 mt-1" />
+                    <span className="text-blue-600">🌊</span>
                     <span className="text-gray-700">Junior Olympic pool with resident-only access</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <TreePine className="w-5 h-5 text-blue-600 mt-1" />
+                    <span className="text-blue-600">🌲</span>
                     <span className="text-gray-700">½ mile walking path through scenic areas</span>
                   </li>
                 </ul>

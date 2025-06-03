@@ -125,13 +125,13 @@ export default function FollowUpBossListings() {
             <div className="flex justify-between text-sm text-gray-600 mb-4">
               {listing.bedrooms && (
                 <span className="flex items-center">
-                  <Bed className="w-4 h-4 mr-1" />
+                  <span className="mr-1">🛏️</span>
                   {listing.bedrooms} bed
                 </span>
               )}
               {listing.bathrooms && (
                 <span className="flex items-center">
-                  <Bath className="w-4 h-4 mr-1" />
+                  <span className="mr-1">🛁</span>
                   {listing.bathrooms} bath
                 </span>
               )}

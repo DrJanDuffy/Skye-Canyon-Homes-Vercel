@@ -19,17 +19,17 @@ export default function Footer() {
               Specializing in premium properties with exceptional service.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a href="https://facebook.com/skyecanyonhomes" className="text-gray-400 hover:text-white transition-colors">
+                Facebook
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-5 h-5" />
+              <a href="https://instagram.com/skyecanyonhomes" className="text-gray-400 hover:text-white transition-colors">
+                Instagram
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="w-5 h-5" />
+              <a href="https://linkedin.com/in/drjanduffy" className="text-gray-400 hover:text-white transition-colors">
+                LinkedIn
               </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Youtube className="w-5 h-5" />
+              <a href="https://youtube.com/@skyecanyonhomes" className="text-gray-400 hover:text-white transition-colors">
+                YouTube
               </a>
             </div>
           </div>
