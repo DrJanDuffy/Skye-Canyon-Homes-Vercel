@@ -47,7 +47,7 @@ export default function Properties() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Current MLS Listings
+              Current Skye Canyon MLS Listings Las Vegas Nevada
             </h2>
             <p className="text-xl text-gray-600">
               Latest properties for sale from Dr. Jan Duffy's active portfolio
@@ -63,7 +63,7 @@ export default function Properties() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              All Available Properties
+              All Available Skye Canyon Properties Nevada 89166
             </h2>
             <p className="text-xl text-gray-600">
               Complete listing of Skye Canyon homes and Las Vegas area properties
@@ -79,7 +79,7 @@ export default function Properties() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Client Portfolio
+              Exclusive Skye Canyon Client Portfolio Nevada
             </h2>
             <p className="text-xl text-gray-600">
               Properties managed through Dr. Jan Duffy's CRM system
