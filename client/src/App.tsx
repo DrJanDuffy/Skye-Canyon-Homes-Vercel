@@ -30,6 +30,9 @@ import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
 import About from "@/pages/about";
+import Contact from "@/pages/contact";
+import PrivacyPolicy from "@/pages/privacy-policy";
+import TermsOfService from "@/pages/terms-of-service";
 import VoiceSearchPage from "@/pages/voice-search";
 import NotFound from "@/pages/not-found";
 import NorthwestLasVegas from "@/pages/northwest-las-vegas";
@@ -49,6 +52,9 @@ function Router() {
       <Route path="/property/:id" component={PropertyDetail} />
       <Route path="/voice-search" component={VoiceSearchPage} />
       <Route path="/about" component={About} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/northwest-las-vegas" component={NorthwestLasVegas} />
       <Route path="/las-vegas-real-estate" component={LasVegasRealEstate} />
       <Route path="/luxury-homes-las-vegas" component={LuxuryHomesLasVegas} />

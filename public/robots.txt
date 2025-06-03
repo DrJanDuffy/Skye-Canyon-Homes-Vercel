@@ -16,6 +16,9 @@ Allow: /market-analysis
 Allow: /las-vegas-real-estate
 Allow: /northwest-las-vegas
 Allow: /about
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms-of-service
 
 # Block admin and API endpoints from indexing
 Disallow: /api/
