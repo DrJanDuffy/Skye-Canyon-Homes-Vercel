@@ -23,6 +23,7 @@ import CriticalPerformanceLoader from "@/components/critical-performance-loader"
 import GeoEnhancedSchema from "@/components/geo-enhanced-schema";
 import EnhancedPropertyFallback from "@/components/enhanced-property-fallback";
 import CriticalCSS from "@/components/critical-css";
+import RealScoutSearchWidget from "@/components/realscout-search-widget";
 
 export default function Home() {
   return (
@@ -136,6 +137,13 @@ export default function Home() {
           >
             View Complete Market Analysis →
           </a>
+        </div>
+      </section>
+
+      {/* Home Valuation CTA Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <RealScoutSearchWidget variant="inline" className="mb-8" />
         </div>
       </section>
 
