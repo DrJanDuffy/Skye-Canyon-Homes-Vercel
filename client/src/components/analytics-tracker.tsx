@@ -1,56 +1,44 @@
 import { useEffect } from 'react'
 import { useLocation } from 'wouter'
-import { initWebVitals, trackPageView, trackTouchpoint } from '@/lib/analytics-2025'
 
 export default function AnalyticsTracker() {
   const [location] = useLocation()
 
   useEffect(() => {
-    // Initialize Core Web Vitals tracking
-    initWebVitals()
+    // Load analytics functions dynamically to prevent build issues
+    const loadAnalytics = async () => {
+      try {
+        const analyticsModule = await import('@/lib/analytics-2025')
+        const { initWebVitals, trackPageView, trackTouchpoint } = analyticsModule
+        
+        // Initialize Core Web Vitals tracking
+        initWebVitals()
 
-    // Track initial page load
-    trackPageView(location)
+        // Track initial page load
+        trackPageView(location)
 
-    // Track attribution from URL parameters
-    const urlParams = new URLSearchParams(window.location.search)
-    const source = urlParams.get('utm_source') || urlParams.get('source') || 'direct'
-    const medium = urlParams.get('utm_medium') || urlParams.get('medium') || 'none'
-    const campaign = urlParams.get('utm_campaign') || urlParams.get('campaign')
+        // Track attribution from URL parameters
+        const urlParams = new URLSearchParams(window.location.search)
+        const source = urlParams.get('utm_source') || urlParams.get('source') || 'direct'
+        const medium = urlParams.get('utm_medium') || urlParams.get('medium') || 'none'
+        const campaign = urlParams.get('utm_campaign') || urlParams.get('campaign')
 
-    if (source !== 'direct') {
-      trackTouchpoint(source, medium, campaign || undefined)
-    }
-
-    // Track engagement events
-    const trackEngagement = () => {
-      const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
-      if (scrollDepth > 75) {
-        trackEvent('high_engagement', { scroll_depth: scrollDepth })
+        if (source !== 'direct') {
+          trackTouchpoint(source, medium, campaign || undefined)
+        }
+      } catch (error) {
+        console.warn('Analytics loading failed:', error)
       }
     }
 
-    const trackTimeOnPage = () => {
-      const timeSpent = Date.now() - pageLoadTime
-      if (timeSpent > 60000) { // 1 minute
-        trackEvent('engaged_session', { time_on_page: timeSpent })
-      }
-    }
-
-    const pageLoadTime = Date.now()
-    
-    window.addEventListener('scroll', trackEngagement, { passive: true })
-    window.addEventListener('beforeunload', trackTimeOnPage)
-
-    return () => {
-      window.removeEventListener('scroll', trackEngagement)
-      window.removeEventListener('beforeunload', trackTimeOnPage)
-    }
+    loadAnalytics()
   }, [])
 
   useEffect(() => {
-    // Track page changes
-    trackPageView(location)
+    // Track page changes dynamically
+    import('@/lib/analytics-2025').then(({ trackPageView }) => {
+      trackPageView(location)
+    }).catch(() => {})
   }, [location])
 
   return null // This component only handles tracking
