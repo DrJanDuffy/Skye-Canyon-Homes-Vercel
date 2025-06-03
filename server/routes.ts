@@ -190,7 +190,7 @@ async function processVoiceSearch(query: string, conversationHistory: Array<{rol
   
   // Create context for AI about available properties
   const propertyContext = allProperties.map(p => 
-    `${p.address} - $${p.price.toLocaleString()} - ${p.bedrooms}bed/${p.bathrooms}bath - ${p.sqft}sqft - ${p.type}`
+    `${p.address} - $${p.price.toLocaleString()} - ${p.bedrooms}bed/${p.bathrooms}bath - ${p.sqft}sqft - ${p.status || 'For Sale'}`
   ).join('\n');
 
   const systemPrompt = `You are a professional real estate assistant for Dr. Jan Duffy, specializing in Skye Canyon and Las Vegas properties. 
@@ -224,7 +224,7 @@ When users ask about properties, analyze their request and:
     });
 
     // Parse the AI response to extract search criteria and conversational response
-    const aiResponse = response.content[0].text;
+    const aiResponse = response.content[0].type === 'text' ? response.content[0].text : 'I can help you find properties that match your criteria.';
     
     // Extract search criteria using simple parsing (could be enhanced with more AI)
     const searchCriteria: any = {};
@@ -506,6 +506,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Voice Property Search endpoint
+  app.post("/api/voice-property-search", async (req, res) => {
+    try {
+      const { query, conversationHistory } = req.body;
+      
+      if (!query || typeof query !== 'string') {
+        return res.status(400).json({ message: "Query is required" });
+      }
+
+      const results = await processVoiceSearch(query, conversationHistory || []);
+      res.json(results);
+    } catch (error) {
+      console.error('Voice search error:', error);
+      res.status(500).json({ 
+        message: "Failed to process voice search",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
   // User preferences endpoint
   app.post("/api/user-preferences", async (req, res) => {
     try {
@@ -516,7 +536,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         preferences: JSON.stringify(preferences),
         timestamp,
         source,
-        sessionId: req.sessionID || 'anonymous'
+        sessionId: (req as any).sessionID || 'anonymous'
       };
       
       // Send enhanced lead to FollowUp Boss with preferences

@@ -67,6 +67,9 @@ export default function Navigation() {
                 <a href="/properties" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   All Properties
                 </a>
+                <a href="/voice-search" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                  Voice Search
+                </a>
                 <a href="/luxury-homes-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Luxury Homes
                 </a>
