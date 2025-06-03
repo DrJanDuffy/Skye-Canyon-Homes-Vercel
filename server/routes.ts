@@ -331,6 +331,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       next();
     }
   });
+
+  // Google Search Console URL validation and 404 fixes
+  app.get("/api/google/validate-urls", handleUrlValidation);
+  
+  app.post("/api/google/request-url-inspection", async (req, res) => {
+    try {
+      const { urls } = req.body;
+      const result = await requestUrlInspection(urls || getAllSiteUrls());
+      res.json(result);
+    } catch (error) {
+      console.error('URL inspection request error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to request URL inspection'
+      });
+    }
+  });
   
   // Get all properties
   app.get("/api/properties", async (req, res) => {
@@ -834,22 +851,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  // Google Search Console URL validation and 404 fixes
-  app.get("/api/google/validate-urls", handleUrlValidation);
-  
-  app.post("/api/google/request-url-inspection", async (req, res) => {
-    try {
-      const { urls } = req.body;
-      const result = await requestUrlInspection(urls || getAllSiteUrls());
-      res.json(result);
-    } catch (error) {
-      console.error('URL inspection request error:', error);
-      res.status(500).json({
-        success: false,
-        message: 'Failed to request URL inspection'
-      });
-    }
-  });
+
 
   // Analytics endpoint
   app.post("/api/analytics", async (req, res) => {
