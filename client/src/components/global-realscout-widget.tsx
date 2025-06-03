@@ -21,6 +21,8 @@ export default function GlobalRealScoutWidget() {
       script.src = 'https://em.realscout.com/js/realscout-widgets.js';
       script.async = true;
       script.crossOrigin = 'anonymous';
+      script.defer = true;
+      script.setAttribute('data-widgets-loaded', 'true');
       
       script.onload = () => {
         console.log('RealScout widgets loaded globally');
