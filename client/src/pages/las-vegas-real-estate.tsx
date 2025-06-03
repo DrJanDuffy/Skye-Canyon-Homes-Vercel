@@ -41,7 +41,7 @@ export default function LasVegasRealEstate() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Current Las Vegas Listings
+                Current Las Vegas Real Estate MLS Listings Nevada
               </h2>
               <p className="text-xl text-gray-600">
                 Available properties across all Las Vegas communities
@@ -54,7 +54,7 @@ export default function LasVegasRealEstate() {
         {/* Areas */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">Las Vegas Communities</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">Las Vegas Real Estate Communities Nevada MLS</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <Card>
                 <CardContent className="p-6">
