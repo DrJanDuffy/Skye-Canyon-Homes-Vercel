@@ -4,13 +4,14 @@ export default function LocalBusinessSchema() {
   const businessSchema = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
-    "name": "Dr. Jan Duffy",
-    "alternateName": "Jan Duffy REALTOR®",
-    "description": "Expert REALTOR® specializing in Skye Canyon luxury homes and Las Vegas real estate with 15+ years of experience.",
+    "name": "Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®",
+    "alternateName": "Dr. Jan Duffy REALTOR®",
+    "description": "Looking for the best real estate agent in Skye Canyon or Northwest Las Vegas? Dr. Jan Duffy is a top-rated Nevada REALTOR®, specializing in luxury homes, new construction, custom builds, and resales. She partners with leading home builders like Toll Brothers and Lennar to provide expert guidance for buying or selling high-end homes. With extensive knowledge of Skye Canyon neighborhoods, amenities, and market trends, her listings sell 12% faster and at 98% of the asking price.",
     "image": "https://skyecanyonhomesforsale.com/images/jan-duffy-headshot.jpg",
     "telephone": "(702) 500-1902",
     "email": "jan@skyecanyonhomesforsale.com",
     "url": "https://skyecanyonhomesforsale.com",
+    "foundingDate": "2009-09-20",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "10111 W. Skye Canyon Park Drive",
@@ -25,7 +26,11 @@ export default function LocalBusinessSchema() {
       "longitude": "-115.3275"
     },
     "openingHours": [
-      "Mo-Fr 09:00-18:00",
+      "Mo 09:00-18:00",
+      "Tu 09:00-18:00",
+      "We 09:00-18:00",
+      "Th 09:00-18:00",
+      "Fr 09:00-18:00",
       "Sa 09:00-17:00", 
       "Su 11:00-16:00"
     ],
@@ -39,6 +44,15 @@ export default function LocalBusinessSchema() {
           "addressLocality": "Las Vegas",
           "addressRegion": "NV",
           "postalCode": "89166"
+        }
+      },
+      {
+        "@type": "Place",
+        "name": "Centennial Hills",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Las Vegas",
+          "addressRegion": "NV"
         }
       },
       {

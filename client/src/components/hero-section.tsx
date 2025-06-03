@@ -61,7 +61,7 @@ export default function HeroSection() {
             Skye Canyon Homes for Sale | Dr. Jan Duffy, REALTOR®
           </h1>
           <p className="text-lg opacity-90 mb-8">
-            Luxury Real Estate Expert in Las Vegas, Nevada 89166
+            Luxury Real Estate Expert | Toll Brothers & Lennar Partner | Serving Skye Canyon, Centennial Hills & Northwest Las Vegas Since 2009
           </p>
           
           {/* Quick Stats */}
