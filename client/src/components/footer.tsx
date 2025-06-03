@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube } from "@/lib/icons";
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
