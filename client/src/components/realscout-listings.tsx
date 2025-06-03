@@ -109,7 +109,7 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
           property-types="SFR,MF,TC" 
           price-min="450000"
           data-production="true"
-          style="display: block; width: 100%; height: auto;"
+
         ></realscout-office-listings>
         
         {/* Fallback content if widget fails to load */}
