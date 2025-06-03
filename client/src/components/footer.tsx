@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin, Youtube } from "@/lib/icons";
+// Social media links with text labels
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
