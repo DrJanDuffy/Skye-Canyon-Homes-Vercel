@@ -20,7 +20,7 @@ export default function HeroSection() {
   return (
     <section 
       id="search" 
-      className="relative bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-20"
+      className="relative hero-section text-white py-20 min-h-[600px] flex items-center"
     >
       <div className="absolute inset-0 bg-black opacity-10"></div>
       

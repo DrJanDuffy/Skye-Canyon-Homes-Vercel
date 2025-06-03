@@ -224,7 +224,7 @@
   }
 
   realscout-office-listings .property-price {
-    @apply text-2xl font-bold text-realscout-blue;
+    @apply text-2xl font-bold text-blue-600;
   }
 
   realscout-office-listings .property-address {
