@@ -2,8 +2,9 @@
 
 process.env.NODE_ENV = 'production';
 
-// Import the deployment-optimized server configuration
-import('./deployment-sync-fix.js').catch((err) => {
+// Use the compiled server bundle for production deployment
+import('./dist/index.js').catch((err) => {
   console.error('Failed to start server:', err);
+  console.error('Make sure to run: npm run build');
   process.exit(1);
 });

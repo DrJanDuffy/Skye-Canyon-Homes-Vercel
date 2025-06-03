@@ -16,19 +16,15 @@ const port = process.env.PORT || 5000;
 let registerRoutes, securityHeaders, geoHeaders, seoHeaders, realEstateContext;
 
 try {
-  // Try production build first
-  const routes = await import('./dist/routes.js');
-  const middleware = await import('./dist/middleware.js');
+  // Import from TypeScript source files
+  const routes = await import('./server/routes.ts');
+  const middleware = await import('./server/middleware.ts');
   registerRoutes = routes.registerRoutes;
   ({ securityHeaders, geoHeaders, seoHeaders, realEstateContext } = middleware);
-  console.log('✓ Using production build');
+  console.log('✓ Using TypeScript server files');
 } catch (error) {
-  // Fallback to development files
-  const routes = await import('./server/routes.js');
-  const middleware = await import('./server/middleware.js');
-  registerRoutes = routes.registerRoutes;
-  ({ securityHeaders, geoHeaders, seoHeaders, realEstateContext } = middleware);
-  console.log('✓ Using development files');
+  console.error('Failed to import server modules:', error);
+  process.exit(1);
 }
 
 // Apply middleware in the same order as development
