@@ -25,13 +25,48 @@ export default function Home() {
     <>
       <Helmet>
         <title>Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR® | Las Vegas NV</title>
-        <meta name="description" content="Find luxury Skye Canyon homes for sale with Dr. Jan Duffy, REALTOR®. Expert real estate services in Las Vegas, Nevada 89166. Schedule your tour today!" />
-        <meta name="keywords" content="Skye Canyon homes for sale, Las Vegas real estate, Nevada 89166, luxury homes, Dr. Jan Duffy REALTOR" />
+        <meta name="description" content="Find luxury Skye Canyon homes for sale with Dr. Jan Duffy, REALTOR®. Expert real estate services in Las Vegas, Nevada 89166. Call (702) 500-1902 today!" />
+        <meta name="keywords" content="Skye Canyon homes for sale, Las Vegas real estate, Nevada 89166, luxury homes, Dr. Jan Duffy REALTOR, Toll Brothers, Lennar, new construction" />
+        
+        {/* Geo-specific meta tags */}
+        <meta name="geo.region" content="US-NV" />
+        <meta name="geo.placename" content="Las Vegas" />
+        <meta name="geo.position" content="36.2648;-115.3275" />
+        <meta name="ICBM" content="36.2648, -115.3275" />
+        <meta name="geo.locality" content="Skye Canyon" />
+        <meta name="geo.zipcode" content="89166" />
+        
+        {/* Local business meta tags */}
+        <meta name="business.phone" content="(702) 500-1902" />
+        <meta name="business.address" content="10111 W Skye Canyon Park Dr, Las Vegas, NV 89166" />
+        <meta name="business.hours" content="Mo-Fr 09:00-18:00, Sa 09:00-17:00, Su 11:00-16:00" />
+        
+        {/* Enhanced Open Graph tags */}
         <meta property="og:title" content="Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR®" />
         <meta property="og:description" content="Find luxury Skye Canyon homes for sale with Dr. Jan Duffy, REALTOR®. Expert real estate services in Las Vegas, Nevada 89166." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://skyecanyonhomesforsale.com" />
+        <meta property="og:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Dr. Jan Duffy Real Estate" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR®" />
+        <meta name="twitter:description" content="Find luxury Skye Canyon homes for sale with Dr. Jan Duffy, REALTOR®. Expert real estate services in Las Vegas, Nevada 89166." />
+        <meta name="twitter:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        
+        {/* Canonical and alternate URLs */}
         <link rel="canonical" href="https://skyecanyonhomesforsale.com" />
+        <link rel="alternate" hrefLang="en-US" href="https://skyecanyonhomesforsale.com" />
+        
+        {/* Additional SEO meta tags */}
+        <meta name="author" content="Dr. Jan Duffy" />
+        <meta name="coverage" content="Worldwide" />
+        <meta name="distribution" content="Global" />
+        <meta name="rating" content="General" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       </Helmet>
       <LocalBusinessSchema />
       <div className="min-h-screen bg-white">

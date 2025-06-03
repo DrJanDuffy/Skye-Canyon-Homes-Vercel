@@ -1,28 +1,31 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemaps
 Sitemap: https://skyecanyonhomesforsale.com/sitemap.xml
 
-# Allow all search engines to index real estate content
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow indexing of all property pages
 Allow: /properties
-Allow: /voice-search
 Allow: /luxury-homes-las-vegas
 Allow: /skye-canyon-guide
 Allow: /skye-canyon-schools
 Allow: /skye-canyon-parks
 Allow: /skye-canyon-communities
 Allow: /market-analysis
-Allow: /las-vegas-real-estate
 Allow: /northwest-las-vegas
+Allow: /las-vegas-real-estate
 Allow: /about
 Allow: /contact
-Allow: /privacy-policy
-Allow: /terms-of-service
 
-# Block admin and API endpoints from indexing
+# Block admin or sensitive areas (if any exist)
 Disallow: /api/
-Disallow: /admin/
+Disallow: /.well-known/
 
-# Crawl delay for respectful crawling
-Crawl-delay: 1
+# Cache control
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /admin/
+Disallow: /private/

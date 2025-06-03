@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://skyecanyonhomesforsale.com/</loc>
-    <lastmod>2025-06-02</lastmod>
+    <lastmod>2025-06-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <geo:geo>
+      <geo:format>W3C-Basic</geo:format>
+      <geo:lat>36.2648</geo:lat>
+      <geo:lon>-115.3275</geo:lon>
+    </geo:geo>
   </url>
   <url>
     <loc>https://skyecanyonhomesforsale.com/properties</loc>
