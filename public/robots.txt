@@ -6,6 +6,7 @@ Sitemap: https://skyecanyonhomesforsale.com/sitemap.xml
 
 # Allow all search engines to index real estate content
 Allow: /properties
+Allow: /voice-search
 Allow: /luxury-homes-las-vegas
 Allow: /skye-canyon-guide
 Allow: /skye-canyon-schools
