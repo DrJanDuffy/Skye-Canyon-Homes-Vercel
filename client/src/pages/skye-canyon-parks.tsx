@@ -4,7 +4,7 @@ import Footer from "@/components/footer";
 import FAQSection from "@/components/faq-section";
 import EnhancedStructuredData from "@/components/enhanced-structured-data";
 import RealScoutListings from "@/components/realscout-listings";
-import { MapPin, Clock, Users, TreePine, Waves, Dumbbell } from "@/lib/icons";
+import { MapPin, Users } from "@/lib/icons";
 
 export default function SkyeCanyonParks() {
   const parksData = [

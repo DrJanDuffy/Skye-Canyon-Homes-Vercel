@@ -124,7 +124,7 @@ export default function AISearchAssistant() {
             size="lg"
             className={`p-4 rounded-xl ${voiceActive ? 'animate-pulse' : ''}`}
           >
-            {voiceActive ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
+            {voiceActive ? "🔇" : "🎤"}
           </Button>
           <Button
             onClick={handleSearch}
@@ -151,7 +151,7 @@ export default function AISearchAssistant() {
             variant={context === 'selling' ? 'default' : 'outline'}
             className="flex items-center space-x-2"
           >
-            <DollarSign className="w-4 h-4" />
+            <span>💰</span>
             <span>Selling</span>
           </Button>
           <Button
@@ -159,7 +159,7 @@ export default function AISearchAssistant() {
             variant={context === 'value' ? 'default' : 'outline'}
             className="flex items-center space-x-2"
           >
-            <TrendingUp className="w-4 h-4" />
+            <span>📈</span>
             <span>Home Value</span>
           </Button>
         </div>

@@ -91,14 +91,14 @@ export default function SkyeCanyonGuide() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <Card>
                 <CardContent className="p-6">
-                  <Shield className="w-8 h-8 text-realscout-blue mb-4" />
+                  <span className="text-3xl mb-4 block">🛡️</span>
                   <h3 className="text-xl font-semibold mb-2">24/7 Guard-Gated Security</h3>
                   <p className="text-gray-600">Controlled access with roving security patrols ensuring residents' safety and privacy</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6">
-                  <TreePine className="w-8 h-8 text-realscout-blue mb-4" />
+                  <span className="text-3xl mb-4 block">🌲</span>
                   <h3 className="text-xl font-semibold mb-2">Desert Highlands Golf Course</h3>
                   <p className="text-gray-600">Championship 18-hole golf course with stunning mountain views and clubhouse amenities</p>
                 </CardContent>
