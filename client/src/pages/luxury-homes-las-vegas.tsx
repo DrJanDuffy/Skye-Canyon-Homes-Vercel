@@ -28,7 +28,7 @@ export default function LuxuryHomesLasVegas() {
         <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Luxury Homes Las Vegas
+              Luxury Homes Las Vegas Skye Canyon Summerlin
             </h1>
             <p className="text-xl opacity-90 mb-8">
               Discover exclusive properties in Las Vegas's most prestigious communities

@@ -28,7 +28,7 @@ export default function LasVegasRealEstate() {
         <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Las Vegas Real Estate
+              Las Vegas Real Estate Homes for Sale Nevada MLS
             </h1>
             <p className="text-xl opacity-90 mb-8">
               Comprehensive real estate services across all Las Vegas communities

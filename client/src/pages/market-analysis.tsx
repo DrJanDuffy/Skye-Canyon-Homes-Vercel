@@ -27,7 +27,7 @@ export default function MarketAnalysis() {
       <section className="bg-gradient-to-br from-realscout-blue via-realscout-light to-realscout-navy text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Skye Canyon Market Analysis
+            Skye Canyon Real Estate Market Trends Nevada 89166
           </h1>
           <p className="text-xl opacity-90 mb-8">
             Comprehensive real estate market insights and trends for Skye Canyon, Las Vegas
