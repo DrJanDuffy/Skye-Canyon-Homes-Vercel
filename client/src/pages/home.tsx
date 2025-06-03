@@ -19,6 +19,10 @@ import PreferenceCollector from "@/components/preference-collector";
 import LocalBusinessSchema from "@/components/local-business-schema";
 import RelatedSearches from "@/components/related-searches";
 import NeighborhoodHeatmap from "@/components/neighborhood-heatmap";
+import CriticalPerformanceLoader from "@/components/critical-performance-loader";
+import GeoEnhancedSchema from "@/components/geo-enhanced-schema";
+import EnhancedPropertyFallback from "@/components/enhanced-property-fallback";
+import CriticalCSS from "@/components/critical-css";
 
 export default function Home() {
   return (
@@ -68,7 +72,10 @@ export default function Home() {
         <meta name="revisit-after" content="7 days" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       </Helmet>
+      <CriticalCSS />
+      <CriticalPerformanceLoader />
       <LocalBusinessSchema />
+      <GeoEnhancedSchema />
       <div className="min-h-screen bg-white">
         <Navigation />
         <HeroSection />
@@ -84,7 +91,12 @@ export default function Home() {
               Live inventory of available homes
             </p>
           </div>
-          <RealScoutListings className="w-full" />
+          <div className="realscout-container">
+            <RealScoutListings className="w-full" />
+            <div className="realscout-fallback hidden">
+              <EnhancedPropertyFallback />
+            </div>
+          </div>
         </div>
       </section>
       

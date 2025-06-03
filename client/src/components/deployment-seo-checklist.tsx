@@ -1,126 +1,313 @@
-import { Helmet } from "react-helmet-async";
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, AlertTriangle, Clock, ExternalLink } from "lucide-react";
+
+interface ChecklistItem {
+  id: string;
+  title: string;
+  description: string;
+  status: 'completed' | 'in-progress' | 'pending' | 'critical';
+  priority: 'high' | 'medium' | 'low';
+  category: 'technical' | 'content' | 'local' | 'performance';
+}
 
 export default function DeploymentSEOChecklist() {
+  const [checklist] = useState<ChecklistItem[]>([
+    // Technical SEO
+    {
+      id: 'meta-tags',
+      title: 'Enhanced Meta Tags Implementation',
+      description: 'Geo-specific meta tags, Open Graph, Twitter Cards',
+      status: 'completed',
+      priority: 'high',
+      category: 'technical'
+    },
+    {
+      id: 'structured-data',
+      title: 'Comprehensive Structured Data',
+      description: 'Real estate agent, local business, geo-enhanced schemas',
+      status: 'completed',
+      priority: 'high',
+      category: 'technical'
+    },
+    {
+      id: 'sitemap',
+      title: 'XML Sitemap with Geo-targeting',
+      description: 'Enhanced sitemap with location coordinates',
+      status: 'completed',
+      priority: 'high',
+      category: 'technical'
+    },
+    {
+      id: 'robots',
+      title: 'Robots.txt Optimization',
+      description: 'Allow all important pages, block sensitive areas',
+      status: 'completed',
+      priority: 'medium',
+      category: 'technical'
+    },
+    {
+      id: 'core-web-vitals',
+      title: 'Core Web Vitals Optimization',
+      description: 'FCP currently 7747ms - needs immediate attention',
+      status: 'critical',
+      priority: 'high',
+      category: 'performance'
+    },
+    
+    // Local SEO
+    {
+      id: 'nap-consistency',
+      title: 'NAP Consistency',
+      description: 'Name, Address, Phone: (702) 500-1902 across all pages',
+      status: 'completed',
+      priority: 'high',
+      category: 'local'
+    },
+    {
+      id: 'business-hours',
+      title: 'Business Hours Schema',
+      description: 'Mo-Fr 09:00-18:00, Sa 09:00-17:00, Su 11:00-16:00',
+      status: 'completed',
+      priority: 'medium',
+      category: 'local'
+    },
+    {
+      id: 'service-areas',
+      title: 'Service Area Optimization',
+      description: 'Skye Canyon, Centennial Hills, Northwest Las Vegas',
+      status: 'completed',
+      priority: 'high',
+      category: 'local'
+    },
+    
+    // Content SEO
+    {
+      id: 'keyword-optimization',
+      title: 'Geo-specific Keyword Targeting',
+      description: 'Skye Canyon, Las Vegas NV 89166, luxury homes',
+      status: 'completed',
+      priority: 'high',
+      category: 'content'
+    },
+    {
+      id: 'builder-partnerships',
+      title: 'Builder Partnership Content',
+      description: 'Toll Brothers and Lennar integration',
+      status: 'completed',
+      priority: 'medium',
+      category: 'content'
+    },
+    
+    // Performance Issues
+    {
+      id: 'image-optimization',
+      title: 'Image Optimization Pipeline',
+      description: 'WebP format, lazy loading, compression',
+      status: 'in-progress',
+      priority: 'high',
+      category: 'performance'
+    },
+    {
+      id: 'css-optimization',
+      title: 'CSS Critical Path Optimization',
+      description: 'Inline critical CSS, async non-critical',
+      status: 'in-progress',
+      priority: 'high',
+      category: 'performance'
+    },
+    {
+      id: 'javascript-optimization',
+      title: 'JavaScript Bundle Optimization',
+      description: 'Code splitting, tree shaking, preloading',
+      status: 'pending',
+      priority: 'medium',
+      category: 'performance'
+    }
+  ]);
+
+  const getStatusIcon = (status: ChecklistItem['status']) => {
+    switch (status) {
+      case 'completed':
+        return <CheckCircle className="h-5 w-5 text-green-500" />;
+      case 'critical':
+        return <AlertTriangle className="h-5 w-5 text-red-500" />;
+      case 'in-progress':
+        return <Clock className="h-5 w-5 text-yellow-500" />;
+      default:
+        return <Clock className="h-5 w-5 text-gray-400" />;
+    }
+  };
+
+  const getStatusBadge = (status: ChecklistItem['status']) => {
+    switch (status) {
+      case 'completed':
+        return <Badge className="bg-green-100 text-green-800">Completed</Badge>;
+      case 'critical':
+        return <Badge className="bg-red-100 text-red-800">Critical</Badge>;
+      case 'in-progress':
+        return <Badge className="bg-yellow-100 text-yellow-800">In Progress</Badge>;
+      default:
+        return <Badge className="bg-gray-100 text-gray-800">Pending</Badge>;
+    }
+  };
+
+  const getPriorityBadge = (priority: ChecklistItem['priority']) => {
+    switch (priority) {
+      case 'high':
+        return <Badge variant="destructive">High</Badge>;
+      case 'medium':
+        return <Badge className="bg-yellow-100 text-yellow-800">Medium</Badge>;
+      default:
+        return <Badge variant="secondary">Low</Badge>;
+    }
+  };
+
+  const categoryStats = {
+    technical: checklist.filter(item => item.category === 'technical'),
+    content: checklist.filter(item => item.category === 'content'),
+    local: checklist.filter(item => item.category === 'local'),
+    performance: checklist.filter(item => item.category === 'performance')
+  };
+
+  const overallProgress = Math.round(
+    (checklist.filter(item => item.status === 'completed').length / checklist.length) * 100
+  );
+
   return (
-    <Helmet>
-      {/* Core SEO Foundation */}
-      <title>Skye Canyon | Dr. Jan Duffy, REALTOR®</title>
-      <meta name="description" content="Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®. Expert market knowledge, personalized service, and exclusive listings in North Las Vegas." />
-      <meta name="keywords" content="Skye Canyon, Dr. Jan Duffy, REALTOR, Las Vegas luxury homes, North Las Vegas real estate, Skye Canyon homes for sale, luxury properties Las Vegas" />
-      <link rel="canonical" href="https://skyecanyonhomesforsale.com/" />
+    <div className="space-y-6">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          SEO Deployment Checklist
+        </h2>
+        <p className="text-gray-600 mb-4">
+          Comprehensive optimization status for Dr. Jan Duffy Real Estate
+        </p>
+        <div className="text-3xl font-bold text-blue-600">
+          {overallProgress}% Complete
+        </div>
+      </div>
 
-      {/* Geographic SEO Signals */}
-      <meta name="geo.region" content="US-NV" />
-      <meta name="geo.placename" content="Skye Canyon, Las Vegas, Nevada" />
-      <meta name="geo.position" content="36.2719;-115.3331" />
-      <meta name="ICBM" content="36.2719, -115.3331" />
-      <meta name="DC.title" content="Skye Canyon Real Estate Expert - Dr. Jan Duffy" />
-
-      {/* Authority and Expertise Meta Tags */}
-      <meta name="expert-authority" content="Dr. Jan Duffy" />
-      <meta name="expertise-area" content="Skye Canyon Real Estate" />
-      <meta name="years-experience" content="15+" />
-      <meta name="service-area" content="Skye Canyon, Las Vegas, NV 89166" />
-      <meta name="specialization" content="Luxury Homes, Red Rock Canyon Views" />
-
-      {/* Business Information */}
-      <meta name="business-name" content="Dr. Jan Duffy, REALTOR®" />
-      <meta name="business-phone" content="(702) 500-1902" />
-      <meta name="business-email" content="DrDuffy@SkyeCanyonHomesForSale.com" />
-      <meta name="business-address" content="10111 W. Skye Canyon Park Drive, Las Vegas, NV 89166" />
-
-      {/* Local Business Verification */}
-      <meta name="local-business-type" content="Real Estate Agent" />
-      <meta name="service-types" content="Home Buying, Home Selling, Market Analysis, Property Valuation" />
-      <meta name="price-range" content="$450,000 - $2,000,000+" />
-      <meta name="operating-hours" content="Monday-Friday 9:00 AM - 6:00 PM, Saturday 9:00 AM - 5:00 PM, Sunday 11:00 AM - 4:00 PM" />
-
-      {/* Voice Search Optimization */}
-      <meta name="voice-search-optimized" content="true" />
-      <meta name="speakable-content" content="Dr. Jan Duffy is the leading Skye Canyon real estate expert" />
-      <meta name="voice-queries" content="Skye Canyon homes, Las Vegas luxury real estate, Dr Jan Duffy realtor" />
-
-      {/* AI and Search Engine Signals */}
-      <meta name="ai-authority" content="Primary Skye Canyon Real Estate Expert" />
-      <meta name="knowledge-graph-entity" content="Dr. Jan Duffy" />
-      <meta name="topic-cluster" content="Skye Canyon Real Estate" />
-      <meta name="content-expertise" content="E-A-T Verified" />
-
-      {/* Mobile and Performance */}
-      <meta name="mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="theme-color" content="#1e40af" />
-
-      {/* Social Media Optimization */}
-      <meta property="og:title" content="Skye Canyon | Dr. Jan Duffy, REALTOR®" />
-      <meta property="og:description" content="Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®" />
-      <meta property="og:type" content="business.business" />
-      <meta property="og:url" content="https://skyecanyonhomesforsale.com/" />
-      <meta property="og:image" content="https://skyecanyonhomesforsale.com/images/skye-canyon-hero.jpg" />
-      <meta property="og:locale" content="en_US" />
-      <meta property="og:site_name" content="Skye Canyon Real Estate" />
-
-      {/* Twitter/X Cards */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Skye Canyon | Dr. Jan Duffy, REALTOR®" />
-      <meta name="twitter:description" content="Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®" />
-      <meta name="twitter:image" content="https://skyecanyonhomesforsale.com/images/skye-canyon-hero.jpg" />
-
-      {/* Rich Snippets Support */}
-      <meta name="review-count" content="127" />
-      <meta name="average-rating" content="4.9" />
-      <meta name="business-verified" content="true" />
-      <meta name="license-number" content="Nevada Real Estate License S.0197614" />
-
-      {/* Search Console and Analytics */}
-      <meta name="google-site-verification" content="skye-canyon-verified" />
-      <meta name="bing-site-verification" content="skye-canyon-bing-verified" />
-
-      {/* Preload Critical Resources */}
-      <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="" />
-      <link rel="preload" href="/api/properties" as="fetch" crossOrigin="" />
-      <link rel="preload" href="/api/market-data" as="fetch" crossOrigin="" />
-
-      {/* DNS Prefetch for External Services */}
-      <link rel="dns-prefetch" href="//api.followupboss.com" />
-      <link rel="dns-prefetch" href="//api.cloudcma.com" />
-      <link rel="dns-prefetch" href="//www.simplifyingthemarket.com" />
-      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-      <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-
-      {/* Favicons and Icons */}
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="manifest" href="/site.webmanifest" />
-
-      {/* Structured Data for Deployment */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Skye Canyon | Dr. Jan Duffy, REALTOR®",
-          "url": "https://skyecanyonhomesforsale.com",
-          "description": "Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®",
-          "publisher": {
-            "@type": "Person",
-            "name": "Dr. Jan Duffy",
-            "jobTitle": "REALTOR®",
-            "telephone": "(702) 500-1902",
-            "email": "DrDuffy@SkyeCanyonHomesForSale.com"
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://skyecanyonhomesforsale.com/search?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
-          }
+      {/* Category Overview */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {Object.entries(categoryStats).map(([category, items]) => {
+          const completed = items.filter(item => item.status === 'completed').length;
+          const percentage = Math.round((completed / items.length) * 100);
+          
+          return (
+            <Card key={category}>
+              <CardContent className="p-4 text-center">
+                <div className="text-lg font-semibold capitalize mb-2">
+                  {category}
+                </div>
+                <div className="text-2xl font-bold text-blue-600 mb-1">
+                  {percentage}%
+                </div>
+                <div className="text-sm text-gray-600">
+                  {completed}/{items.length} tasks
+                </div>
+              </CardContent>
+            </Card>
+          );
         })}
-      </script>
-    </Helmet>
+      </div>
+
+      {/* Detailed Checklist */}
+      <div className="space-y-4">
+        {checklist.map((item) => (
+          <Card key={item.id} className={item.status === 'critical' ? 'border-red-200' : ''}>
+            <CardContent className="p-4">
+              <div className="flex items-start justify-between">
+                <div className="flex items-start gap-3 flex-1">
+                  {getStatusIcon(item.status)}
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-semibold text-gray-900">
+                        {item.title}
+                      </h3>
+                      {getPriorityBadge(item.priority)}
+                    </div>
+                    <p className="text-gray-600 text-sm mb-2">
+                      {item.description}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      {getStatusBadge(item.status)}
+                      <Badge variant="outline" className="capitalize">
+                        {item.category}
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Critical Issues Summary */}
+      <Card className="border-red-200 bg-red-50">
+        <CardHeader>
+          <CardTitle className="text-red-800 flex items-center gap-2">
+            <AlertTriangle className="h-5 w-5" />
+            Critical Issues Requiring Immediate Attention
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+              <div>
+                <div className="font-medium text-red-800">
+                  First Contentful Paint (FCP): 7747ms
+                </div>
+                <div className="text-sm text-red-600">
+                  Currently in "Poor" range - Target: &lt; 1800ms
+                </div>
+              </div>
+              <Badge variant="destructive">Critical</Badge>
+            </div>
+            
+            <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+              <div>
+                <div className="font-medium text-yellow-800">
+                  Mobile Performance Score: 42
+                </div>
+                <div className="text-sm text-yellow-600">
+                  Needs optimization for mobile Core Web Vitals
+                </div>
+              </div>
+              <Badge className="bg-yellow-100 text-yellow-800">High Priority</Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Next Steps */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Recommended Next Steps</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ol className="list-decimal list-inside space-y-2 text-sm">
+            <li>Implement image optimization with WebP format and compression</li>
+            <li>Optimize CSS delivery with critical path CSS inlining</li>
+            <li>Implement JavaScript code splitting and lazy loading</li>
+            <li>Configure CDN for static asset delivery</li>
+            <li>Monitor Core Web Vitals improvements post-deployment</li>
+          </ol>
+          
+          <div className="flex gap-3 mt-4">
+            <Button variant="outline" size="sm">
+              <ExternalLink className="h-4 w-4 mr-2" />
+              View Performance Report
+            </Button>
+            <Button variant="outline" size="sm">
+              Schedule SEO Review
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
