@@ -6,10 +6,11 @@ export default function GoogleRichSnippets() {
     const realEstateAgentSchema = {
       "@context": "https://schema.org",
       "@type": "RealEstateAgent",
-      "name": "Dr. Jan Duffy",
-      "alternateName": "Jan Duffy REALTOR",
-      "description": "Luxury Home Specialists | Experienced Las Vegas Realtor specializing in Skye Canyon properties, new construction, and Northwest Las Vegas real estate.",
+      "name": "Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®",
+      "alternateName": "Dr. Jan Duffy REALTOR®",
+      "description": "Looking for the best real estate agent in Skye Canyon or Northwest Las Vegas? Dr. Jan Duffy is a top-rated Nevada REALTOR®, specializing in luxury homes, new construction, custom builds, and resales. She partners with leading home builders like Toll Brothers and Lennar.",
       "url": "https://skyecanyonhomesforsale.com",
+      "foundingDate": "2009-09-20",
       "image": [
         {
           "@type": "ImageObject",
@@ -46,13 +47,14 @@ export default function GoogleRichSnippets() {
         "width": 400,
         "height": 400
       },
-      "telephone": "+1-702-XXX-XXXX",
+      "telephone": "(702) 500-1902",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "10111 W Skye Canyon Park Dr",
         "addressLocality": "Las Vegas",
-        "addressRegion": "Nevada",
+        "addressRegion": "NV",
         "addressCountry": "US",
-        "postalCode": "89149"
+        "postalCode": "89166"
       },
       "areaServed": [
         {
@@ -70,6 +72,14 @@ export default function GoogleRichSnippets() {
             "@type": "City",
             "name": "Las Vegas"
           }
+        },
+        {
+          "@type": "Neighborhood", 
+          "name": "Centennial Hills",
+          "containedInPlace": {
+            "@type": "City",
+            "name": "Las Vegas"
+          }
         }
       ],
       "knowsAbout": [
@@ -77,6 +87,10 @@ export default function GoogleRichSnippets() {
         "New Construction Homes", 
         "Skye Canyon Properties",
         "Northwest Las Vegas",
+        "Centennial Hills",
+        "Toll Brothers Homes",
+        "Lennar Homes",
+        "Custom Builds",
         "Investment Properties"
       ],
       "makesOffer": [
