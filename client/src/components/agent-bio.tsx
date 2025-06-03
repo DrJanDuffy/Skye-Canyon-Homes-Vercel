@@ -98,6 +98,7 @@ export default function AgentBio() {
               <Button 
                 variant="outline"
                 className="border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"
+                onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
               >
                 View Testimonials
               </Button>

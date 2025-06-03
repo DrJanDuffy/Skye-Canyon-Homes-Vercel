@@ -30,13 +30,15 @@ export default function CallToAction() {
               Get Started
             </Button>
           </a>
-          <Button 
-            variant="outline"
-            className="border-2 border-white text-white px-8 py-4 hover:bg-white hover:text-realscout-blue"
-          >
-            <Phone className="w-5 h-5 mr-2" />
-            Call (702) 500-1902
-          </Button>
+          <a href="tel:+17025001902">
+            <Button 
+              variant="outline"
+              className="border-2 border-white text-white px-8 py-4 hover:bg-white hover:text-realscout-blue"
+            >
+              <Phone className="w-5 h-5 mr-2" />
+              Call (702) 500-1902
+            </Button>
+          </a>
         </div>
         
         <div className="mt-8 text-sm opacity-80">
