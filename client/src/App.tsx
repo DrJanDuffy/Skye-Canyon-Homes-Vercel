@@ -25,6 +25,9 @@ import ImageCompression from "@/components/image-compression";
 import ProductionReadiness from "@/components/production-readiness";
 import GoogleRichSnippets from "@/components/google-rich-snippets";
 import GlobalRealScoutWidget from "@/components/global-realscout-widget";
+import BusinessAuthoritySchema from "@/components/business-authority-schema";
+import ReviewSchema from "@/components/review-schema";
+import PropertyListingSchema from "@/components/property-listing-schema";
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -92,6 +95,9 @@ function App() {
           <CriticalCSS />
           <AnalyticsTracker />
           <GoogleRichSnippets />
+          <BusinessAuthoritySchema />
+          <ReviewSchema />
+          <PropertyListingSchema />
           <StructuredData />
           <Router />
           
