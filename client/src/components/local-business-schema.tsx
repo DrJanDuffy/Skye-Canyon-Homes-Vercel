@@ -7,7 +7,7 @@ export default function LocalBusinessSchema() {
     "name": "Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®",
     "alternateName": "Dr. Jan Duffy REALTOR®",
     "description": "Looking for the best real estate agent in Skye Canyon or Northwest Las Vegas? Dr. Jan Duffy is a top-rated Nevada REALTOR®, specializing in luxury homes, new construction, custom builds, and resales. She partners with leading home builders like Toll Brothers and Lennar to provide expert guidance for buying or selling high-end homes. With extensive knowledge of Skye Canyon neighborhoods, amenities, and market trends, her listings sell 12% faster and at 98% of the asking price.",
-    "image": "https://skyecanyonhomesforsale.com/images/jan-duffy-headshot.jpg",
+    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     "telephone": "(702) 500-1902",
     "email": "jan@skyecanyonhomesforsale.com",
     "url": "https://skyecanyonhomesforsale.com",
