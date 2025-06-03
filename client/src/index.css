@@ -117,10 +117,10 @@
   --ring: 20 14.3% 4.1%;
   --radius: 0.5rem;
   
-  /* Custom RealScout colors */
-  --realscout-blue: 213 74% 35%; /* #235D89 */
-  --realscout-light: 210 70% 55%; /* #4A90E2 */
-  --realscout-navy: 224 76% 48%; /* #1E40AF */
+  /* Custom RealScout colors - Fixed HSL values */
+  --realscout-blue: 207 90% 54%; /* #4A90E2 */
+  --realscout-light: 210 100% 85%; /* Light blue */
+  --realscout-navy: 213 74% 35%; /* #235D89 */
 }
 
 .dark {

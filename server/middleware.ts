@@ -16,16 +16,17 @@ export function securityHeaders(req: Request, res: Response, next: NextFunction)
     'camera=(), microphone=(self), geolocation=(self), payment=()'
   );
   
-  // Content Security Policy for enhanced security
+  // Content Security Policy for enhanced security - Updated for RealScout widgets
   res.setHeader(
     'Content-Security-Policy',
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://em.realscout.com; " +
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://em.realscout.com https://*.realscout.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.realscout.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
-    "img-src * data: blob:; " +
-    "connect-src 'self' https://api.followupboss.com https://api.cloudcma.com https://www.simplifyingthemarket.com https://*.realscout.com https://em.realscout.com; " +
+    "img-src * data: blob: https://*.realscout.com; " +
+    "connect-src 'self' https://api.followupboss.com https://api.cloudcma.com https://www.simplifyingthemarket.com https://*.realscout.com https://em.realscout.com https://api.perplexity.ai; " +
     "frame-src 'self' https://www.google.com https://*.realscout.com; " +
+    "child-src 'self' https://*.realscout.com; " +
     "object-src 'none';"
   );
   

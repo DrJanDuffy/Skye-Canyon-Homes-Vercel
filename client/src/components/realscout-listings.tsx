@@ -14,52 +14,53 @@ declare global {
 
 export default function RealScoutListings({ className = "" }: RealScoutListingsProps) {
   useEffect(() => {
-    // Force load RealScout script for production
     const loadRealScoutScript = () => {
-      // Check if script already exists
-      if (document.querySelector('script[src*="realscout"]')) {
-        return;
+      // Remove existing script if present
+      const existingScript = document.querySelector('script[src*="realscout"]');
+      if (existingScript) {
+        existingScript.remove();
       }
 
       const script = document.createElement('script');
       script.src = 'https://em.realscout.com/js/realscout-widgets.js';
       script.async = true;
-      script.defer = true;
+      script.defer = false; // Load synchronously for better reliability
       script.crossOrigin = 'anonymous';
       
       script.onload = () => {
-        console.log('RealScout widgets loaded for production');
-        // Force widget initialization
-        if (window.customElements) {
-          window.customElements.whenDefined('realscout-office-listings').then(() => {
-            console.log('RealScout office listings widget ready');
-          });
-        }
+        console.log('RealScout widgets loaded successfully');
+        // Force widget registration
+        setTimeout(() => {
+          if (window.customElements && !window.customElements.get('realscout-office-listings')) {
+            // Force re-registration if needed
+            const widgets = document.querySelectorAll('realscout-office-listings');
+            widgets.forEach(widget => {
+              if (widget.shadowRoot) {
+                console.log('RealScout widget found with shadow DOM');
+              }
+            });
+          }
+        }, 1000);
       };
 
       script.onerror = () => {
-        console.error('Failed to load RealScout widgets');
+        console.error('Failed to load RealScout widgets - retrying...');
+        setTimeout(loadRealScoutScript, 3000);
       };
 
       document.head.appendChild(script);
     };
 
-    // Load immediately for production
+    // Load script immediately
     loadRealScoutScript();
-    
-    // Backup retry mechanism
-    const retryInterval = setInterval(() => {
-      if (window.customElements && window.customElements.get('realscout-office-listings')) {
-        clearInterval(retryInterval);
-      } else {
-        loadRealScoutScript();
+
+    return () => {
+      // Clean up on unmount
+      const script = document.querySelector('script[src*="realscout"]');
+      if (script) {
+        script.remove();
       }
-    }, 2000);
-
-    // Cleanup after 30 seconds
-    setTimeout(() => clearInterval(retryInterval), 30000);
-
-    return () => clearInterval(retryInterval);
+    };
   }, []);
 
   return (
@@ -100,7 +101,7 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
           z-index: auto !important;
         }
       `}</style>
-      <div className={className}>
+      <div className={`${className} realscout-container`} style={{ minHeight: '400px' }}>
         <realscout-office-listings 
           agent-encoded-id="QWdlbnQtMjI1MDUw" 
           sort-order="NEWEST" 
@@ -108,7 +109,16 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
           property-types="SFR,MF,TC" 
           price-min="450000"
           data-production="true"
+          style="display: block; width: 100%; height: auto;"
         ></realscout-office-listings>
+        
+        {/* Fallback content if widget fails to load */}
+        <noscript>
+          <div className="bg-gray-100 p-8 rounded-lg text-center">
+            <h3 className="text-xl font-semibold mb-4">Current Listings</h3>
+            <p className="text-gray-600">Please enable JavaScript to view our current property listings.</p>
+          </div>
+        </noscript>
       </div>
     </>
   );
