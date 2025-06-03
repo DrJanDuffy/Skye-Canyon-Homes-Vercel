@@ -536,6 +536,105 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Neighborhood heatmap endpoint
+  app.get("/api/neighborhood-heatmap", async (req, res) => {
+    try {
+      const heatmapData = {
+        neighborhoods: [
+          {
+            neighborhood: "Skye Canyon",
+            coordinates: { lat: 36.2469, lng: -115.3242 },
+            priceRange: "$800K - $1.5M",
+            averagePrice: 1250000,
+            marketActivity: 'hot',
+            daysOnMarket: 15,
+            priceChange: 8.5,
+            schoolRating: 9,
+            walkScore: 45,
+            crimeRating: 'low',
+            amenities: ['Golf Course', 'Parks', 'Shopping', 'Hiking Trails'],
+            recentSales: 24
+          },
+          {
+            neighborhood: "Centennial Hills",
+            coordinates: { lat: 36.2633, lng: -115.3086 },
+            priceRange: "$700K - $1.2M",
+            averagePrice: 950000,
+            marketActivity: 'warm',
+            daysOnMarket: 22,
+            priceChange: 5.2,
+            schoolRating: 8,
+            walkScore: 52,
+            crimeRating: 'low',
+            amenities: ['Shopping Centers', 'Recreation', 'Schools'],
+            recentSales: 18
+          },
+          {
+            neighborhood: "Summerlin West",
+            coordinates: { lat: 36.1716, lng: -115.3447 },
+            priceRange: "$600K - $1.8M",
+            averagePrice: 1100000,
+            marketActivity: 'hot',
+            daysOnMarket: 18,
+            priceChange: 7.1,
+            schoolRating: 9,
+            walkScore: 48,
+            crimeRating: 'low',
+            amenities: ['Red Rock Canyon', 'Golf', 'Dining', 'Entertainment'],
+            recentSales: 31
+          },
+          {
+            neighborhood: "Mountains Edge",
+            coordinates: { lat: 36.0853, lng: -115.3447 },
+            priceRange: "$500K - $1.1M",
+            averagePrice: 780000,
+            marketActivity: 'warm',
+            daysOnMarket: 28,
+            priceChange: 4.3,
+            schoolRating: 7,
+            walkScore: 41,
+            crimeRating: 'medium',
+            amenities: ['Parks', 'Shopping', 'Community Centers'],
+            recentSales: 15
+          },
+          {
+            neighborhood: "Aliante",
+            coordinates: { lat: 36.2897, lng: -115.2419 },
+            priceRange: "$400K - $900K",
+            averagePrice: 650000,
+            marketActivity: 'cool',
+            daysOnMarket: 35,
+            priceChange: 2.1,
+            schoolRating: 6,
+            walkScore: 38,
+            crimeRating: 'medium',
+            amenities: ['Golf Course', 'Casino', 'Dining'],
+            recentSales: 12
+          }
+        ],
+        insights: {
+          marketTrends: {
+            direction: 'up',
+            percentage: 6.2,
+            timeframe: 'last 6 months'
+          },
+          hotspots: ['Skye Canyon', 'Summerlin West', 'Centennial Hills'],
+          investmentOpportunity: 'high',
+          demographicInsights: {
+            averageAge: 42,
+            familyFriendly: true,
+            incomeLevel: 'high'
+          }
+        }
+      };
+      
+      res.json(heatmapData);
+    } catch (error) {
+      console.error("Error fetching neighborhood heatmap data:", error);
+      res.status(500).json({ error: "Failed to fetch neighborhood heatmap data" });
+    }
+  });
+
   // Voice Property Search endpoint
   app.post("/api/voice-property-search", async (req, res) => {
     try {

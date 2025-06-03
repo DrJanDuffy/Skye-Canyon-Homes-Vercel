@@ -18,6 +18,7 @@ import SkyeCanyonAuthority from "@/components/skye-canyon-authority";
 import PreferenceCollector from "@/components/preference-collector";
 import LocalBusinessSchema from "@/components/local-business-schema";
 import RelatedSearches from "@/components/related-searches";
+import NeighborhoodHeatmap from "@/components/neighborhood-heatmap";
 
 export default function Home() {
   return (
@@ -88,6 +89,22 @@ export default function Home() {
           >
             View Complete Market Analysis →
           </a>
+        </div>
+      </section>
+
+      {/* Neighborhood Heatmap */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Neighborhood Market Analytics
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Explore interactive data on Las Vegas neighborhoods including price trends, market activity, 
+              school ratings, and local insights to make informed decisions.
+            </p>
+          </div>
+          <NeighborhoodHeatmap />
         </div>
       </section>
 
