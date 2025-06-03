@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
-import Anthropic from '@anthropic-ai/sdk';
+
 
 // AI Lead Scoring Functions
 async function scoreLeadWithAI(leadData: any) {
@@ -179,11 +179,11 @@ async function processAISearch(query: string, context: string) {
   };
 }
 
-// Voice Search with Anthropic AI
+// Voice Search with Perplexity AI
 async function processVoiceSearch(query: string, conversationHistory: Array<{role: 'user' | 'assistant', content: string}>) {
-  const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY
-  });
+  if (!process.env.PERPLEXITY_API_KEY) {
+    throw new Error("Perplexity API key not configured");
+  }
 
   // Get available properties from storage
   const allProperties = await storage.getProperties();
@@ -212,19 +212,48 @@ When users ask about properties, analyze their request and:
 4. Suggest relevant follow-up questions or alternatives`;
 
   try {
-    // the newest Anthropic model is "claude-3-7-sonnet-20250219" which was released February 24, 2025
-    const response = await anthropic.messages.create({
-      model: 'claude-3-7-sonnet-20250219',
-      max_tokens: 1500,
-      system: systemPrompt,
-      messages: [
-        ...conversationHistory,
-        { role: 'user', content: query }
-      ]
+    // Prepare messages for Perplexity
+    const messages = [
+      { role: 'system', content: systemPrompt }
+    ];
+
+    if (conversationHistory.length > 0) {
+      // Add recent conversation history
+      const recentHistory = conversationHistory.slice(-4);
+      messages.push(...recentHistory.map(h => ({ role: h.role, content: h.content })));
+    }
+
+    messages.push({ role: 'user', content: query });
+
+    const response = await fetch('https://api.perplexity.ai/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-sonar-small-128k-online',
+        messages: messages,
+        max_tokens: 1000,
+        temperature: 0.2,
+        top_p: 0.9,
+        search_domain_filter: ["realtor.com", "zillow.com", "redfin.com", "vegas.com", "lvrealtors.com"],
+        return_images: false,
+        return_related_questions: false,
+        search_recency_filter: "month",
+        top_k: 0,
+        stream: false,
+        presence_penalty: 0,
+        frequency_penalty: 1
+      })
     });
 
-    // Parse the AI response to extract search criteria and conversational response
-    const aiResponse = response.content[0].type === 'text' ? response.content[0].text : 'I can help you find properties that match your criteria.';
+    if (!response.ok) {
+      throw new Error(`Perplexity API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const aiResponse = data.choices[0]?.message?.content || 'I can help you find properties that match your criteria.';
     
     // Extract search criteria using simple parsing (could be enhanced with more AI)
     const searchCriteria: any = {};
@@ -275,7 +304,8 @@ When users ask about properties, analyze their request and:
     return {
       properties: filteredProperties.slice(0, 6), // Limit to 6 results
       conversationalResponse: aiResponse,
-      searchCriteria
+      searchCriteria,
+      citations: data.citations || []
     };
 
   } catch (error) {
