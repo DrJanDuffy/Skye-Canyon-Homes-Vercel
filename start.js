@@ -6,8 +6,12 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Import the main server setup
-const { registerRoutes } = await import('./server/routes.js');
-const { securityHeaders, geoHeaders, seoHeaders, realEstateContext } = await import('./server/middleware.js');
+// Check if we need to use the compiled version
+const routesPath = process.env.NODE_ENV === 'production' ? './dist/routes.js' : './server/routes.js';
+const middlewarePath = process.env.NODE_ENV === 'production' ? './dist/middleware.js' : './server/middleware.js';
+
+const { registerRoutes } = await import(routesPath);
+const { securityHeaders, geoHeaders, seoHeaders, realEstateContext } = await import(middlewarePath);
 
 const app = express();
 const port = process.env.PORT || 5000;

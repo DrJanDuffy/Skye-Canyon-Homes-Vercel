@@ -2,7 +2,8 @@
 
 process.env.NODE_ENV = 'production';
 
-import('./dist/index.js').catch((err) => {
+// Import the deployment-optimized server configuration
+import('./deployment-sync-fix.js').catch((err) => {
   console.error('Failed to start server:', err);
   process.exit(1);
 });
