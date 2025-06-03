@@ -17,6 +17,28 @@ process.env.NODE_ENV = 'production';
 
 console.log('Starting production server...');
 
+// Graceful shutdown handling
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, shutting down gracefully');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT received, shutting down gracefully');
+  process.exit(0);
+});
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
+
 // Import server components using dynamic imports with proper error handling
 let registerRoutes, securityHeaders, geoHeaders, seoHeaders, realEstateContext;
 
@@ -113,11 +135,65 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-httpServer.listen(port, '0.0.0.0', () => {
-  console.log(`🚀 Production server running on port ${port}`);
-  console.log(`🌐 Environment: ${process.env.NODE_ENV}`);
-  console.log(`📂 Static files: ${staticPath}`);
-});
+// Function to check if port is available
+const isPortAvailable = (port) => {
+  return new Promise((resolve) => {
+    const server = createServer();
+    server.listen(port, () => {
+      server.close(() => resolve(true));
+    });
+    server.on('error', () => resolve(false));
+  });
+};
+
+// Start server with port conflict handling
+const startServer = async () => {
+  try {
+    // Check if port is available
+    const available = await isPortAvailable(port);
+    if (!available) {
+      console.log(`Port ${port} is busy, attempting graceful restart...`);
+      
+      // Try alternative ports if main port is busy
+      const alternativePorts = [port + 1, port + 2, port + 3];
+      let selectedPort = port;
+      
+      for (const altPort of alternativePorts) {
+        if (await isPortAvailable(altPort)) {
+          selectedPort = altPort;
+          console.log(`Using alternative port: ${selectedPort}`);
+          break;
+        }
+      }
+      
+      if (selectedPort === port && !available) {
+        console.error('No available ports found, forcing cleanup...');
+        process.exit(1);
+      }
+    }
+    
+    httpServer.listen(port, '0.0.0.0', () => {
+      console.log(`Production server running on port ${port}`);
+      console.log(`Environment: ${process.env.NODE_ENV}`);
+      console.log(`Static files: ${staticPath}`);
+    });
+    
+    httpServer.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${port} is already in use`);
+        process.exit(1);
+      } else {
+        console.error('Server error:', err);
+        process.exit(1);
+      }
+    });
+    
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  }
+};
+
+startServer();
 
 export default app;
