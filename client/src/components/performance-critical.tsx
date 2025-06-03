@@ -17,7 +17,7 @@ export default function PerformanceCritical() {
       const agentImageLink = document.createElement('link');
       agentImageLink.rel = 'preload';
       agentImageLink.as = 'image';
-      agentImageLink.href = '/dr-jan-duffy-headshot.jpg';
+      agentImageLink.href = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
       document.head.appendChild(agentImageLink);
 
       // Preload critical fonts

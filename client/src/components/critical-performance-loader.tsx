@@ -10,7 +10,7 @@ export default function CriticalPerformanceLoader() {
       
       // Preload Dr. Jan Duffy headshot
       const agentPhoto = new Image();
-      agentPhoto.src = '/dr-jan-duffy-headshot.jpg';
+      agentPhoto.src = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
       
       // Preconnect to external domains
       const preconnectDomains = [

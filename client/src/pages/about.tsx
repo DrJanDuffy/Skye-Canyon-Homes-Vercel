@@ -3,7 +3,7 @@ import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import drDuffyPhoto from "@assets/design 05_new 2.jpg";
+// Using professional headshot from reliable source
 import { 
   Phone, 
   Mail, 
@@ -133,7 +133,7 @@ export default function About() {
               <div className="bg-gradient-to-br from-realscout-blue to-realscout-navy rounded-2xl p-1 shadow-2xl">
                 <div className="bg-white rounded-xl p-4">
                   <img 
-                    src={drDuffyPhoto}
+                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Dr. Jan Duffy REALTOR professional portrait" 
                     className="rounded-lg w-full max-w-md mx-auto object-cover"
                     style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}

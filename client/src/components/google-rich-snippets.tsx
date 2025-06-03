@@ -14,7 +14,7 @@ export default function GoogleRichSnippets() {
       "image": [
         {
           "@type": "ImageObject",
-          "url": "https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg",
+          "url": "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
           "caption": "Dr. Jan Duffy - Las Vegas REALTOR",
           "width": 400,
           "height": 400
