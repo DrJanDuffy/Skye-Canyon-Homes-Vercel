@@ -45,34 +45,5 @@ export default function GlobalRealScoutWidget() {
     };
   }, []);
 
-  return (
-    <>
-      <style>{`
-        /* Global RealScout Widget Fixes */
-        realscout-office-listings,
-        realscout-office-listings *,
-        realscout-office-listings img,
-        realscout-office-listings picture {
-          display: block !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-          transform: none !important;
-          position: relative !important;
-          overflow: visible !important;
-        }
-
-        realscout-office-listings img {
-          max-width: 100% !important;
-          height: auto !important;
-          object-fit: cover !important;
-          border-radius: 8px !important;
-        }
-
-        realscout-office-listings {
-          width: 100% !important;
-          min-height: 400px !important;
-        }
-      `}</style>
-    </>
-  );
+  return null;
 }
