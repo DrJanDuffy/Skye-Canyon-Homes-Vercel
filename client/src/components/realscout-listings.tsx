@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 interface RealScoutListingsProps {
   className?: string;
 }
@@ -13,55 +11,6 @@ declare global {
 }
 
 export default function RealScoutListings({ className = "" }: RealScoutListingsProps) {
-  useEffect(() => {
-    const loadRealScoutScript = () => {
-      // Remove existing script if present
-      const existingScript = document.querySelector('script[src*="realscout"]');
-      if (existingScript) {
-        existingScript.remove();
-      }
-
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/js/realscout-widgets.js';
-      script.async = true;
-      script.defer = false; // Load synchronously for better reliability
-      script.crossOrigin = 'anonymous';
-      
-      script.onload = () => {
-        console.log('RealScout widgets loaded successfully');
-        // Force widget registration
-        setTimeout(() => {
-          if (window.customElements && !window.customElements.get('realscout-office-listings')) {
-            // Force re-registration if needed
-            const widgets = document.querySelectorAll('realscout-office-listings');
-            widgets.forEach(widget => {
-              if (widget.shadowRoot) {
-                console.log('RealScout widget found with shadow DOM');
-              }
-            });
-          }
-        }, 1000);
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load RealScout widgets - retrying...');
-        setTimeout(loadRealScoutScript, 3000);
-      };
-
-      document.head.appendChild(script);
-    };
-
-    // Load script immediately
-    loadRealScoutScript();
-
-    return () => {
-      // Clean up on unmount
-      const script = document.querySelector('script[src*="realscout"]');
-      if (script) {
-        script.remove();
-      }
-    };
-  }, []);
 
   return (
     <>
