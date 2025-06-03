@@ -68,28 +68,17 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <PerformanceCriticalLoader />
           <CriticalCSS />
           <AnalyticsTracker />
           <GoogleRichSnippets />
           <StructuredData />
           <Router />
           
-          {/* Load non-critical components after initial render */}
+          {/* Load essential SEO components */}
           <Suspense fallback={null}>
-            <DeploymentSEOChecklist />
-            <SEOOptimizer />
-            <MobileOptimizer />
-            <PerformanceOptimizer />
-            <PerformanceMonitor />
-            <PerformanceCritical />
-            <ImageCompression />
-            <ProductionReadiness />
             <EnhancedStructuredData />
-            <AIContentOptimizer />
             <GEOAuthoritySignals />
             <VoiceSearchSchema />
-            <VoiceAssistant />
             <PWAInstaller />
           </Suspense>
           <Toaster />
