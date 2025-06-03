@@ -4,7 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import StructuredData from "@/components/structured-data";
 import PWAInstaller from "@/components/pwa-installer";
 import PerformanceOptimizer from "@/components/performance-optimizer";
@@ -72,6 +72,17 @@ function Router() {
 
 function App() {
   usePredictiveLoading();
+
+  // Initialize Google Analytics when app loads
+  useEffect(() => {
+    if (import.meta.env.VITE_GA_MEASUREMENT_ID) {
+      import('./lib/google-analytics').then(({ initGA }) => {
+        initGA();
+      });
+    } else {
+      console.warn('Google Analytics Measurement ID not configured');
+    }
+  }, []);
 
   return (
     <HelmetProvider>

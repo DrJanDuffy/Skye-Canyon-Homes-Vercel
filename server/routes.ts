@@ -782,6 +782,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return Math.min(score, 100);
   }
 
+  // Google Search Console and Indexing endpoints
+  app.post("/api/google/request-indexing", handleIndexingRequest);
+  
+  app.post("/api/google/index-all-pages", async (req, res) => {
+    try {
+      const urls = getAllSiteUrls();
+      const result = await requestGoogleIndexing(urls);
+      res.json({
+        success: true,
+        message: `Requested indexing for ${urls.length} pages`,
+        results: result
+      });
+    } catch (error) {
+      console.error('Bulk indexing error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to request bulk indexing'
+      });
+    }
+  });
+
+  app.post("/api/google/submit-sitemap", async (req, res) => {
+    try {
+      const result = await submitSitemap();
+      res.json(result);
+    } catch (error) {
+      console.error('Sitemap submission error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Failed to submit sitemap'
+      });
+    }
+  });
+
+  app.get("/api/google/site-urls", (req, res) => {
+    const urls = getAllSiteUrls();
+    res.json({
+      success: true,
+      urls,
+      count: urls.length
+    });
+  });
+
   // Analytics endpoint
   app.post("/api/analytics", async (req, res) => {
     try {
