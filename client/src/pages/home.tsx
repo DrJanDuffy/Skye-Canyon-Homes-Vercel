@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR® | Las Vegas NV</title>
+        <title>Skye Canyon Homes for Sale | Las Vegas NV Real Estate</title>
         <meta name="description" content="Find luxury Skye Canyon homes for sale with Dr. Jan Duffy, REALTOR®. Expert real estate services in Las Vegas, Nevada 89166. Call (702) 500-1902 today!" />
         <meta name="keywords" content="Skye Canyon homes for sale, Las Vegas real estate, Nevada 89166, luxury homes, Dr. Jan Duffy REALTOR, Toll Brothers, Lennar, new construction" />
         

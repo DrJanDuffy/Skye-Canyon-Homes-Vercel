@@ -58,7 +58,7 @@ export default function HeroSection() {
             <span className="text-sm font-medium text-white">🏆 Top Skye Canyon Specialist</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Skye Canyon Homes for Sale | Dr. Jan Duffy, REALTOR®
+            Skye Canyon Homes for Sale
           </h1>
           <p className="text-lg opacity-90 mb-8">
             Luxury Real Estate Expert | Toll Brothers & Lennar Partner | Serving Skye Canyon, Centennial Hills & Northwest Las Vegas Since 2009

@@ -66,9 +66,6 @@ const clientJS = `
             <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.1;">
               Skye Canyon Homes for Sale
             </h1>
-            <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1rem; opacity: 0.95;">
-              Dr. Jan Duffy, REALTOR®
-            </h2>
             <p style="font-size: 1.125rem; opacity: 0.9; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
               Luxury Real Estate Expert | Toll Brothers & Lennar Partner | Las Vegas, Nevada 89166
             </p>
