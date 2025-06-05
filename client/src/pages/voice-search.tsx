@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import VoicePropertySearch from "@/components/voice-property-search";
+import VoiceSearchIntegration from "@/components/voice-search-integration";
 
 export default function VoiceSearchPage() {
   return (
@@ -47,7 +47,12 @@ export default function VoiceSearchPage() {
           </div>
         </div>
 
-        <VoicePropertySearch />
+        <VoiceSearchIntegration 
+          maxSearches={3}
+          onSearchLimitReached={() => {
+            console.log('Voice search limit reached - user redirected to RealScout onboarding');
+          }}
+        />
 
         <div className="mt-12 max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-sm border p-8">

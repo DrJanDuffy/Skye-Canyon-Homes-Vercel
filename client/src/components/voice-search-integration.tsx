@@ -87,11 +87,15 @@ export default function VoiceSearchIntegration({
     setIsProcessing(true);
     
     try {
-      // Simulate AI processing of voice search
-      const response = await fetch('/api/voice-search', {
+      // Process voice search with AI and get property results
+      const response = await fetch('/api/voice-property-search', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })
+        body: JSON.stringify({ 
+          query, 
+          searchCount,
+          conversationHistory: []
+        })
       });
 
       const results = await response.json();
@@ -169,7 +173,11 @@ export default function VoiceSearchIntegration({
         <a href="http://drjanduffy.realscout.com/onboarding" 
            target="_blank" 
            rel="noopener noreferrer"
-           style="background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; display: inline-block;">
+           onclick="trackConversionClick('realscout_onboarding', 'voice_limit_popup')"
+           style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 1rem 2rem; border-radius: 0.75rem; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+          </svg>
           Search All Properties
         </a>
         <button onclick="document.getElementById('realscout-voice-overlay').remove()" 
