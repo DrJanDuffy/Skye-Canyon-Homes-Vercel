@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin } from "lucide-react";
-import drDuffyPhoto from "@assets/design 05_new 2.jpg";
+// Using public directory for reliable image loading
 
 export default function AgentBio() {
   const scrollToContact = () => {
@@ -16,7 +16,7 @@ export default function AgentBio() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <img 
-              src={drDuffyPhoto} 
+              src="/dr-jan-duffy.jpg" 
               alt="Dr. Jan Duffy REALTOR professional headshot" 
               className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0"
               style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
