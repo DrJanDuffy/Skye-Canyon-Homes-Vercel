@@ -1198,66 +1198,138 @@ User Question: ${sanitizedQuery}`;
       }
       
       res.json({ success: true, message: 'Successfully synced to GitHub' });
-      
     } catch (error) {
-      res.status(500).json({ error: 'Sync failed' });
+      console.error('Git sync error:', error);
+      res.status(500).json({ error: 'Failed to sync to GitHub' });
     }
   });
 
-  // Post-deployment success webhook
-  app.post("/api/deployment-success", async (req, res) => {
+  // Post-deployment webhook endpoint
+  app.post("/api/deployment-webhook", async (req, res) => {
     try {
       const { execSync } = require('child_process');
       const fs = require('fs');
       
-      // Mark deployment as successful
-      const deploymentInfo = {
-        timestamp: new Date().toISOString(),
-        success: true,
-        version: process.env.npm_package_version || '1.0.0'
-      };
+      // Verify this is a successful deployment
+      const { status, deployment_id } = req.body;
       
-      fs.writeFileSync('.deployment-success', JSON.stringify(deploymentInfo));
+      if (status !== 'success') {
+        return res.json({ message: 'Deployment not successful, skipping git sync' });
+      }
+      
+      console.log(`[Deployment Webhook] Successful deployment ${deployment_id}, triggering git sync`);
       
       // Check if git is configured
       try {
         execSync('git status', { stdio: 'pipe' });
       } catch {
-        return res.json({ 
-          success: true, 
-          message: 'Deployment recorded, but Git not configured for auto-sync' 
-        });
+        console.log('[Deployment Webhook] Git not configured, skipping sync');
+        return res.json({ message: 'Git not configured' });
       }
       
-      // Check if remote exists
+      // Add all changes
+      execSync('git add .', { stdio: 'pipe' });
+      
+      // Create deployment commit
+      const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+      const commitMessage = `Post-deployment sync: ${timestamp} (deployment: ${deployment_id})`;
+      
       try {
-        execSync('git remote get-url origin', { stdio: 'pipe' });
+        execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
+        console.log(`[Deployment Webhook] Created commit: ${commitMessage}`);
       } catch {
-        return res.json({ 
-          success: true, 
-          message: 'Deployment recorded, but no Git remote configured' 
-        });
+        console.log('[Deployment Webhook] No changes to commit');
       }
       
-      // Trigger post-deployment sync
+      // Push to remote repository
       try {
-        execSync('node post-deployment-sync.js --deployment-success', { 
-          stdio: 'inherit' 
-        });
-        
-        res.json({ 
-          success: true, 
-          message: 'Deployment successful and synced to GitHub' 
-        });
-      } catch (error) {
-        res.json({ 
-          success: true, 
-          message: 'Deployment successful, but Git sync failed' 
-        });
+        execSync('git push origin main', { stdio: 'pipe' });
+        console.log('[Deployment Webhook] Successfully pushed to main branch');
+      } catch {
+        try {
+          execSync('git push origin master', { stdio: 'pipe' });
+          console.log('[Deployment Webhook] Successfully pushed to master branch');
+        } catch (error) {
+          console.error('[Deployment Webhook] Failed to push to remote:', error);
+          return res.status(500).json({ error: 'Failed to push to remote repository' });
+        }
       }
+      
+      // Create deployment record
+      const deploymentRecord = {
+        timestamp: new Date().toISOString(),
+        deployment_id,
+        git_sync: true,
+        commit_message: commitMessage
+      };
+      
+      fs.writeFileSync('.last-deployment.json', JSON.stringify(deploymentRecord, null, 2));
+      
+      res.json({ 
+        success: true, 
+        message: 'Post-deployment git sync completed successfully',
+        deployment_id,
+        commit_message: commitMessage
+      });
       
     } catch (error) {
-      res.status(500).json({ error: 'Failed to process deployment success' });
+      console.error('[Deployment Webhook] Error:', error);
+      res.status(500).json({ error: 'Post-deployment sync failed' });
+    }
+  });
+
+  // Test deployment webhook endpoint
+  app.post("/api/test-deployment-webhook", async (req, res) => {
+    try {
+      const { execSync } = require('child_process');
+      
+      console.log('[Test Webhook] Simulating successful deployment, triggering git sync');
+      
+      // Check if git is configured
+      try {
+        execSync('git status', { stdio: 'pipe' });
+      } catch {
+        console.log('[Test Webhook] Git not configured');
+        return res.json({ message: 'Git not configured, but webhook endpoint working' });
+      }
+      
+      // Add changes
+      execSync('git add .', { stdio: 'pipe' });
+      
+      // Create test commit
+      const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+      const commitMessage = `Test deployment sync: ${timestamp}`;
+      
+      try {
+        execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
+        console.log(`[Test Webhook] Created commit: ${commitMessage}`);
+      } catch {
+        console.log('[Test Webhook] No changes to commit');
+      }
+      
+      // Push to remote
+      try {
+        execSync('git push origin main', { stdio: 'pipe' });
+        console.log('[Test Webhook] Successfully pushed to main branch');
+      } catch {
+        try {
+          execSync('git push origin master', { stdio: 'pipe' });
+          console.log('[Test Webhook] Successfully pushed to master branch');
+        } catch (error) {
+          console.error('[Test Webhook] Failed to push to remote:', error);
+          return res.status(500).json({ error: 'Failed to push to remote repository' });
+        }
+      }
+      
+      res.json({ 
+        success: true, 
+        message: 'Test deployment webhook triggered git sync successfully',
+        commit_message: commitMessage
+      });
+      
+    } catch (error) {
+      console.error('[Test Webhook] Error:', error);
+      res.status(500).json({ error: 'Test webhook failed' });
     }
   });
 
