@@ -26,6 +26,7 @@ import CriticalCSS from "@/components/critical-css";
 import RealScoutSearchWidget from "@/components/realscout-search-widget";
 import RealScoutAnalytics from "@/components/realscout-analytics";
 import VoiceSearchIntegration from "@/components/voice-search-integration";
+import ErrorBoundary from "@/components/error-boundary";
 
 export default function Home() {
   return (
@@ -119,19 +120,21 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Voice-Activated Property Search</h2>
             <p className="text-xl text-gray-600">Search for your dream home using natural language</p>
           </div>
-          <VoiceSearchIntegration 
-            maxSearches={3}
-            onSearchLimitReached={() => {
-              // Track conversion event when limit is reached
-              if (window.gtag) {
-                window.gtag('event', 'voice_search_conversion', {
-                  event_category: 'lead_generation',
-                  event_label: 'realscout_onboarding_redirect'
-                });
-              }
-              console.log('Voice search limit reached - automated RealScout popup triggered');
-            }}
-          />
+          <ErrorBoundary>
+            <VoiceSearchIntegration 
+              maxSearches={3}
+              onSearchLimitReached={() => {
+                // Track conversion event when limit is reached
+                if (window.gtag) {
+                  window.gtag('event', 'voice_search_conversion', {
+                    event_category: 'lead_generation',
+                    event_label: 'realscout_onboarding_redirect'
+                  });
+                }
+                console.log('Voice search limit reached - automated RealScout popup triggered');
+              }}
+            />
+          </ErrorBoundary>
         </div>
       </section>
       

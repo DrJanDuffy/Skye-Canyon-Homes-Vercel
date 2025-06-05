@@ -707,30 +707,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Query is required" });
       }
 
+      // Sanitize input for security
+      const sanitizedQuery = query.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                                  .replace(/<[^>]*>?/gm, '')
+                                  .trim();
+
+      // Rate limiting check for voice search
+      if (searchCount >= 3) {
+        return res.status(429).json({
+          message: "Voice search limit reached for today",
+          shouldTriggerPopup: true,
+          maxSearches: 3
+        });
+      }
+
       // Process voice search with AI
-      const aiResults = await processVoiceSearch(query, conversationHistory || []);
+      const aiResults = await processVoiceSearch(sanitizedQuery, conversationHistory || []);
       
       // Extract search criteria from voice query
-      const searchCriteria = extractSearchCriteria(query);
+      const searchCriteria = extractSearchCriteria(sanitizedQuery);
       
-      // Get matching properties from database
-      const properties = await storage.searchProperties(searchCriteria);
+      // Validate search parameters for security
+      const isValidSearch = !/(UNION|OR|AND)\s+\d+\s*=\s*\d+/i.test(JSON.stringify(searchCriteria));
+      if (!isValidSearch) {
+        return res.status(400).json({ message: "Invalid search parameters" });
+      }
 
-      // Track voice search analytics
+      // Get matching properties from database with optimization
+      const properties = await storage.searchProperties({
+        ...searchCriteria,
+        limit: 6 // Limit results for voice search
+      });
+
+      // Track voice search analytics with performance monitoring
       const searchData = {
-        query,
+        query: sanitizedQuery,
         searchCount: searchCount + 1,
         timestamp: new Date().toISOString(),
         userAgent: req.headers['user-agent'],
-        ip: req.ip
+        ip: req.ip,
+        resultCount: properties.length
       };
 
-      // Log search for analytics
       console.log('Voice search:', searchData);
 
       const response = {
         ...aiResults,
-        properties: properties.slice(0, 6), // Limit results for voice search
+        properties: properties,
         searchCount: searchCount + 1,
         maxSearches: 3,
         shouldTriggerPopup: (searchCount + 1) >= 3,
