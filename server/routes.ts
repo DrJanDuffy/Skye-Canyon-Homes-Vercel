@@ -1005,16 +1005,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Query is required" });
       }
 
+      // Sanitize input
+      const sanitizedQuery = query.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                                  .replace(/<[^>]*>?/gm, '')
+                                  .trim();
+
       // If Perplexity API key is not configured, provide intelligent fallback responses
       if (!process.env.PERPLEXITY_API_KEY) {
         const fallbackResponse = generateIntelligentFallback(sanitizedQuery, context);
         return res.json(fallbackResponse);
       }
-
-      // Sanitize input
-      const sanitizedQuery = query.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-                                  .replace(/<[^>]*>?/gm, '')
-                                  .trim();
 
       // Create context-aware prompt
       let contextPrompt = `You are a knowledgeable real estate AI assistant specializing in Skye Canyon, Las Vegas, Nevada 89166. `;
