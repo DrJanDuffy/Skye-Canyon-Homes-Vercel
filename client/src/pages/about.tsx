@@ -133,7 +133,7 @@ export default function About() {
               <div className="bg-gradient-to-br from-realscout-blue to-realscout-navy rounded-2xl p-1 shadow-2xl">
                 <div className="bg-white rounded-xl p-4">
                   <img 
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    src="/attached_assets/design 05_new 2.jpg"
                     alt="Dr. Jan Duffy REALTOR professional portrait" 
                     className="rounded-lg w-full max-w-md mx-auto object-cover"
                     style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
@@ -333,7 +333,7 @@ export default function About() {
               <Phone className="w-6 h-6 mr-3" />
               <div>
                 <div className="font-semibold">Call Direct</div>
-                <div className="opacity-90">(702) 555-0123</div>
+                <div className="opacity-90">(702) 500-1902</div>
               </div>
             </div>
             <div className="flex items-center justify-center">

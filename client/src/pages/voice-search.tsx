@@ -1,9 +1,11 @@
 import { Helmet } from "react-helmet-async";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 import VoiceSearchIntegration from "@/components/voice-search-integration";
 
 export default function VoiceSearchPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
       <Helmet>
         <title>Voice Property Search | AI-Powered Real Estate | Dr. Jan Duffy</title>
         <meta name="description" content="Search for properties using voice commands with our AI-powered assistant. Find luxury homes in Skye Canyon and Las Vegas with natural language queries." />
@@ -14,8 +16,11 @@ export default function VoiceSearchPage() {
         <meta property="og:url" content="https://skyecanyonhomesforsale.com/voice-search" />
       </Helmet>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
+      <Navigation />
+      
+      <div className="min-h-screen bg-gray-50">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Voice-Activated Property Search
           </h1>
@@ -89,6 +94,8 @@ export default function VoiceSearchPage() {
           </div>
         </div>
       </div>
-    </div>
+      
+      <Footer />
+    </>
   );
 }

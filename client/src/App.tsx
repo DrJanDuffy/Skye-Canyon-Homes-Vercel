@@ -48,7 +48,7 @@ import SkyeCanyonParks from "@/pages/skye-canyon-parks";
 import SkyeCanyonCommunities from "@/pages/skye-canyon-communities";
 import MarketAnalysis from "@/pages/market-analysis";
 import NeighborhoodAnalysis from "@/pages/neighborhood-analysis";
-import DeploymentSyncPage from "@/pages/deployment-sync";
+
 
 function Router() {
   return (
