@@ -189,6 +189,18 @@ export default function VoiceSearchIntegration({
       <p style="font-size: 0.875rem; color: #9ca3af; margin-top: 1rem;">
         Voice searches reset daily
       </p>
+      
+      <script>
+        function trackConversionClick(platform, source) {
+          if (window.gtag) {
+            window.gtag('event', 'conversion_click', {
+              event_category: 'lead_generation',
+              event_label: platform + '_from_' + source,
+              value: 1
+            });
+          }
+        }
+      </script>
     `;
 
     overlay.appendChild(popup);
