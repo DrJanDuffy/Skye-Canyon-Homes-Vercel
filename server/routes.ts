@@ -6,6 +6,7 @@ import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
 import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSitemap } from "./google-indexing";
 import { handleUrlValidation, validateGoogleSearchConsoleUrls, requestUrlInspection } from "./google-search-console-fixes";
+import { validateFollowUpBossAPI, testFollowUpBossLead } from "./followup-boss-validator";
 
 
 // AI Lead Scoring Functions
@@ -631,17 +632,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         today: leads.filter(lead => lead.createdAt && new Date(lead.createdAt) > yesterday).length,
         thisWeek: leads.filter(lead => lead.createdAt && new Date(lead.createdAt) > lastWeek).length,
         thisMonth: leads.filter(lead => lead.createdAt && new Date(lead.createdAt) > lastMonth).length,
-        bySource: leads.reduce((acc, lead) => {
+        bySource: leads.reduce((acc: Record<string, number>, lead) => {
           const source = lead.source || 'unknown';
           acc[source] = (acc[source] || 0) + 1;
           return acc;
         }, {}),
-        byTimeframe: leads.reduce((acc, lead) => {
+        byTimeframe: leads.reduce((acc: Record<string, number>, lead) => {
           const timeframe = lead.timeframe || 'not specified';
           acc[timeframe] = (acc[timeframe] || 0) + 1;
           return acc;
         }, {}),
-        byPriceRange: leads.reduce((acc, lead) => {
+        byPriceRange: leads.reduce((acc: Record<string, number>, lead) => {
           const priceRange = lead.priceRange || 'not specified';
           acc[priceRange] = (acc[priceRange] || 0) + 1;
           return acc;

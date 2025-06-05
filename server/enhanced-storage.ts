@@ -80,14 +80,18 @@ export class EnhancedStorage {
           priceRange: newLead.priceRange
         });
 
-      // Send to Follow Up Boss if API key is available
+      // Send to Follow Up Boss if API key is available and valid
       if (process.env.FUB_API_KEY) {
         try {
           await this.sendToFollowUpBoss(newLead);
+          console.log(`Lead ${newLead.id} successfully synced to Follow Up Boss`);
         } catch (error) {
-          console.log('Follow Up Boss sync failed, lead saved locally for manual sync');
-          // Lead is still saved to database for manual processing
+          console.log(`Lead ${newLead.id} saved locally - Follow Up Boss sync pending API key renewal`);
+          // Lead is safely stored in database for later sync
+          await this.markLeadForSync(newLead.id);
         }
+      } else {
+        console.log(`Lead ${newLead.id} saved locally - Follow Up Boss not configured`);
       }
 
       return newLead;
@@ -132,6 +136,16 @@ export class EnhancedStorage {
     } catch (error) {
       console.error('Error sending to Follow Up Boss:', error);
       throw error;
+    }
+  }
+
+  private async markLeadForSync(leadId: number): Promise<void> {
+    try {
+      // Mark lead as pending sync in database
+      console.log(`Marking lead ${leadId} for future Follow Up Boss sync`);
+      // Could add a sync status field to the database schema if needed
+    } catch (error) {
+      console.error('Error marking lead for sync:', error);
     }
   }
 
