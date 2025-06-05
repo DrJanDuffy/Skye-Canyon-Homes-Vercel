@@ -656,6 +656,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Follow Up Boss API validation endpoint
+  app.get("/api/followup-boss/validate", async (req, res) => {
+    try {
+      const validation = await validateFollowUpBossAPI();
+      res.json(validation);
+    } catch (error) {
+      res.status(500).json({
+        isValid: false,
+        status: 'error',
+        message: 'Failed to validate Follow Up Boss API'
+      });
+    }
+  });
+
+  // Follow Up Boss API test endpoint
+  app.post("/api/followup-boss/test", async (req, res) => {
+    try {
+      const testData = {
+        firstName: 'API',
+        lastName: 'Test',
+        email: 'test@drjanduffy.com',
+        phone: '(702) 500-1902'
+      };
+      
+      const result = await testFollowUpBossLead(testData);
+      res.json({
+        success: true,
+        message: 'Follow Up Boss API test successful',
+        result
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error instanceof Error ? error.message : 'Follow Up Boss API test failed'
+      });
+    }
+  });
+
   // FollowUp Boss lead management only (no listings)
   app.get("/api/followup-boss/leads", async (req, res) => {
     try {

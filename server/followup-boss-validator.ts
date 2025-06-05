@@ -56,7 +56,7 @@ export async function validateFollowUpBossAPI(): Promise<FollowUpBossValidationR
       isValid: false,
       status: 'network_error',
       message: 'Network error connecting to Follow Up Boss',
-      errorDetails: error.message
+      errorDetails: error instanceof Error ? error.message : 'Unknown error'
     };
   }
 }
