@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import { execSync } from "child_process";
 import { storage } from "./storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
@@ -1164,42 +1165,55 @@ User Question: ${sanitizedQuery}`;
 
   app.post("/api/trigger-git-sync", async (req, res) => {
     try {
-      const { execSync } = require('child_process');
+      
+      console.log('[Git Sync] Starting manual git synchronization');
       
       // Check if git is available
       try {
         execSync('git status', { stdio: 'pipe' });
+        console.log('[Git Sync] Git repository detected');
       } catch {
+        console.log('[Git Sync] Git not configured');
         return res.status(400).json({ error: 'Git not configured' });
       }
       
       // Add changes
       execSync('git add .', { stdio: 'pipe' });
+      console.log('[Git Sync] Added changes to staging');
       
       // Create commit
       const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-      const commitMessage = `Manual sync: ${timestamp}`;
+      const commitMessage = `Post-deployment sync: ${timestamp}`;
       
       try {
         execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
+        console.log(`[Git Sync] Created commit: ${commitMessage}`);
       } catch {
-        // No changes to commit
+        console.log('[Git Sync] No changes to commit');
       }
       
       // Push to remote
       try {
         execSync('git push origin main', { stdio: 'pipe' });
+        console.log('[Git Sync] Successfully pushed to main branch');
       } catch {
         try {
           execSync('git push origin master', { stdio: 'pipe' });
+          console.log('[Git Sync] Successfully pushed to master branch');
         } catch (error) {
+          console.error('[Git Sync] Failed to push to remote:', error);
           return res.status(500).json({ error: 'Failed to push to remote repository' });
         }
       }
       
-      res.json({ success: true, message: 'Successfully synced to GitHub' });
+      res.json({ 
+        success: true, 
+        message: 'Successfully synced to GitHub',
+        commit_message: commitMessage,
+        timestamp: new Date().toISOString()
+      });
     } catch (error) {
-      console.error('Git sync error:', error);
+      console.error('[Git Sync] Error:', error);
       res.status(500).json({ error: 'Failed to sync to GitHub' });
     }
   });
@@ -1281,7 +1295,7 @@ User Question: ${sanitizedQuery}`;
   // Test deployment webhook endpoint
   app.post("/api/test-deployment-webhook", async (req, res) => {
     try {
-      const { execSync } = require('child_process');
+      const { execSync } = await import('child_process');
       
       console.log('[Test Webhook] Simulating successful deployment, triggering git sync');
       
