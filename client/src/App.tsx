@@ -28,7 +28,7 @@ import GlobalRealScoutWidget from "@/components/global-realscout-widget";
 import BusinessAuthoritySchema from "@/components/business-authority-schema";
 import ReviewSchema from "@/components/review-schema";
 import PropertyListingSchema from "@/components/property-listing-schema";
-import DeploymentStatus from "@/components/deployment-status";
+
 import { usePredictiveLoading } from "@/hooks/use-predictive-loading";
 import Home from "@/pages/home";
 import Properties from "@/pages/properties";
@@ -109,7 +109,6 @@ function App() {
             <GEOAuthoritySignals />
             <VoiceSearchSchema />
             <PWAInstaller />
-            <DeploymentStatus />
           </Suspense>
           <Toaster />
         </TooltipProvider>
