@@ -182,6 +182,42 @@ async function processAISearch(query: string, context: string) {
 }
 
 // Voice Search with Perplexity AI
+// Extract search criteria from natural language voice query
+function extractSearchCriteria(query: string) {
+  const criteria: any = {};
+  const lowerQuery = query.toLowerCase();
+
+  // Extract price range
+  const priceMatches = lowerQuery.match(/(\$?[\d,]+)\s*(?:to|-|and)\s*(\$?[\d,]+)/);
+  if (priceMatches) {
+    criteria.priceMin = parseInt(priceMatches[1].replace(/[\$,]/g, ''));
+    criteria.priceMax = parseInt(priceMatches[2].replace(/[\$,]/g, ''));
+  } else {
+    // Single price indicators
+    if (lowerQuery.includes('under') || lowerQuery.includes('below')) {
+      const underMatch = lowerQuery.match(/(?:under|below)\s*\$?([\d,]+)/);
+      if (underMatch) {
+        criteria.priceMax = parseInt(underMatch[1].replace(/[\$,]/g, ''));
+      }
+    }
+    if (lowerQuery.includes('over') || lowerQuery.includes('above')) {
+      const overMatch = lowerQuery.match(/(?:over|above)\s*\$?([\d,]+)/);
+      if (overMatch) {
+        criteria.priceMin = parseInt(overMatch[1].replace(/[\$,]/g, ''));
+      }
+    }
+  }
+
+  // Extract property type
+  if (lowerQuery.includes('condo') || lowerQuery.includes('townhome')) {
+    criteria.type = 'Condo';
+  } else if (lowerQuery.includes('single family') || lowerQuery.includes('house')) {
+    criteria.type = 'Single Family';
+  }
+
+  return criteria;
+}
+
 async function processVoiceSearch(query: string, conversationHistory: Array<{role: 'user' | 'assistant', content: string}>) {
   if (!process.env.PERPLEXITY_API_KEY) {
     throw new Error("Perplexity API key not configured");
@@ -662,17 +698,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Voice Property Search endpoint
+  // Enhanced Voice Property Search endpoint with limits and conversion tracking
   app.post("/api/voice-property-search", async (req, res) => {
     try {
-      const { query, conversationHistory } = req.body;
+      const { query, conversationHistory, searchCount = 0 } = req.body;
       
       if (!query || typeof query !== 'string') {
         return res.status(400).json({ message: "Query is required" });
       }
 
-      const results = await processVoiceSearch(query, conversationHistory || []);
-      res.json(results);
+      // Process voice search with AI
+      const aiResults = await processVoiceSearch(query, conversationHistory || []);
+      
+      // Extract search criteria from voice query
+      const searchCriteria = extractSearchCriteria(query);
+      
+      // Get matching properties from database
+      const properties = await storage.searchProperties(searchCriteria);
+
+      // Track voice search analytics
+      const searchData = {
+        query,
+        searchCount: searchCount + 1,
+        timestamp: new Date().toISOString(),
+        userAgent: req.headers['user-agent'],
+        ip: req.ip
+      };
+
+      // Log search for analytics
+      console.log('Voice search:', searchData);
+
+      const response = {
+        ...aiResults,
+        properties: properties.slice(0, 6), // Limit results for voice search
+        searchCount: searchCount + 1,
+        maxSearches: 3,
+        shouldTriggerPopup: (searchCount + 1) >= 3,
+        remainingSearches: Math.max(0, 3 - (searchCount + 1)),
+        searchCriteria
+      };
+
+      res.json(response);
     } catch (error) {
       console.error('Voice search error:', error);
       res.status(500).json({ 
