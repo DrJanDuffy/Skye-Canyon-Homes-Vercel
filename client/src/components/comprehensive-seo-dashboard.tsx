@@ -49,12 +49,6 @@ export default function ComprehensiveSEODashboard() {
       pageSpeed: { desktop: 65, mobile: 42 },
       rankings: { improved: 14, total: 23 },
       technicalIssues: 3
-    },
-    deployment: {
-      readiness: 85,
-      criticalIssues: 2,
-      completedTasks: 17,
-      totalTasks: 20
     }
   });
 
