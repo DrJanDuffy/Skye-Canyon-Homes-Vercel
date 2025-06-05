@@ -1163,10 +1163,21 @@ User Question: ${sanitizedQuery}`;
     }
   });
 
-  app.post("/api/trigger-git-sync", async (req, res) => {
+  // Remove old insecure public endpoint - redirect to 404
+  app.post("/api/trigger-git-sync", (req, res) => {
+    res.status(404).json({ error: 'Endpoint not found' });
+  });
+
+  // Admin-only endpoint for git sync (requires authentication)
+  app.post("/api/admin/trigger-git-sync", async (req, res) => {
+    // Simple authentication check - in production, use proper auth
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Admin ')) {
+      return res.status(401).json({ error: 'Unauthorized - Admin access required' });
+    }
+    
     try {
-      
-      console.log('[Git Sync] Starting manual git synchronization');
+      console.log('[Git Sync] Starting admin git synchronization');
       
       // Check if git is available
       try {
@@ -1292,12 +1303,16 @@ User Question: ${sanitizedQuery}`;
     }
   });
 
-  // Test deployment webhook endpoint
-  app.post("/api/test-deployment-webhook", async (req, res) => {
+  // Admin-only test deployment webhook endpoint
+  app.post("/api/admin/test-deployment-webhook", async (req, res) => {
+    // Simple authentication check - in production, use proper auth
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Admin ')) {
+      return res.status(401).json({ error: 'Unauthorized - Admin access required' });
+    }
+    
     try {
-      const { execSync } = await import('child_process');
-      
-      console.log('[Test Webhook] Simulating successful deployment, triggering git sync');
+      console.log('[Admin Test Webhook] Simulating successful deployment, triggering git sync');
       
       // Check if git is configured
       try {

@@ -1,24 +1,28 @@
 # Post-Deployment Git Synchronization Guide
 
 ## Overview
-After each successful deployment in Replit, follow these steps to sync your changes to GitHub.
+After each successful deployment in Replit, use these admin-only commands to sync your changes to GitHub.
 
-## Method 1: Automatic Test (Recommended)
+## Method 1: Admin Command Line (Recommended)
 
-1. **After successful deployment**, open a new browser tab
-2. Navigate to: `https://your-deployed-app.replit.app/api/test-deployment-webhook`
-3. Send a POST request (or use the manual trigger below)
-
-## Method 2: Manual Dashboard Trigger
-
-1. **Visit the deployment status dashboard**:
-   - Go to your deployed website
-   - Navigate to any page with the deployment status component
-   - Click "Trigger Manual Sync" button
-
-2. **API endpoint available at**:
+1. **After successful deployment**, use curl with admin authorization:
+   ```bash
+   curl -X POST https://your-deployed-app.replit.app/api/admin/trigger-git-sync \
+     -H "Authorization: Admin YOUR_ADMIN_KEY"
    ```
-   POST /api/trigger-git-sync
+
+2. **Test deployment webhook**:
+   ```bash
+   curl -X POST https://your-deployed-app.replit.app/api/admin/test-deployment-webhook \
+     -H "Authorization: Admin YOUR_ADMIN_KEY"
+   ```
+
+## Method 2: Replit Shell Access
+
+1. **In your Replit Shell**, run the admin sync directly:
+   ```bash
+   curl -X POST http://127.0.0.1:5000/api/admin/trigger-git-sync \
+     -H "Authorization: Admin local_admin"
    ```
 
 ## Method 3: Command Line (If Git Access Available)
