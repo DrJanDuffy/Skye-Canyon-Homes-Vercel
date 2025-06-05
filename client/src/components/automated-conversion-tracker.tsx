@@ -193,7 +193,10 @@ export default function AutomatedConversionTracker({
     setTimeout(() => {
       const popup = document.getElementById('realscout-conversion-popup');
       if (popup) {
-        popup.querySelector('button').click();
+        const closeButton = popup.querySelector('button');
+        if (closeButton) {
+          closeButton.click();
+        }
       }
     }, 45000);
   };
