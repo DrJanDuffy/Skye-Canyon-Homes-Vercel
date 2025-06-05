@@ -108,6 +108,105 @@ async function sendToFollowUpBoss(lead: any, leadScore: any) {
   }
 }
 
+// Intelligent fallback function for AI search
+function generateIntelligentFallback(query: string, context: string) {
+  const queryLower = query.toLowerCase();
+  
+  // School-related queries
+  if (queryLower.includes('school')) {
+    return {
+      suggestions: [
+        "Show me homes near top-rated schools",
+        "Properties in Canyon Springs High School zone",
+        "Family-friendly neighborhoods in Skye Canyon",
+        "Elementary schools with highest ratings",
+        "School district boundaries in Las Vegas 89166"
+      ],
+      marketInsights: `Skye Canyon is served by the Clark County School District with several highly-rated schools nearby. Canyon Springs High School and Red Rock Elementary are among the top-rated schools in the area. Families often choose Skye Canyon for its excellent educational opportunities and family-friendly community atmosphere.
+
+For specific school ratings and detailed information about district boundaries, I recommend contacting Dr. Jan Duffy who has extensive knowledge of the local school systems and can provide current enrollment data and performance metrics.`,
+      properties: [],
+      citations: []
+    };
+  }
+  
+  // Market trends and pricing
+  if (queryLower.includes('market') || queryLower.includes('price') || queryLower.includes('trend')) {
+    return {
+      suggestions: [
+        "Current median home prices in Skye Canyon",
+        "Market appreciation rates in Las Vegas 89166",
+        "Best time to buy in Skye Canyon",
+        "Luxury home market trends",
+        "Investment property opportunities"
+      ],
+      marketInsights: `The Skye Canyon real estate market has shown consistent growth with median home prices around $1.2M for luxury properties. The area continues to attract buyers seeking newer construction, mountain views, and proximity to TPC Las Vegas golf course.
+
+Current market conditions favor buyers who are prepared to move quickly on quality properties. The community's master-planned design and ongoing development make it a strong long-term investment.
+
+Contact Dr. Jan Duffy for the most current market analysis and pricing strategies specific to your timeline and budget.`,
+      properties: [],
+      citations: []
+    };
+  }
+  
+  // Luxury homes
+  if (queryLower.includes('luxury') || queryLower.includes('premium') || queryLower.includes('high-end')) {
+    return {
+      suggestions: [
+        "Luxury homes with mountain views",
+        "Properties with pools and outdoor entertainment",
+        "Gated communities in Skye Canyon",
+        "Homes near TPC Las Vegas golf course",
+        "Custom built luxury properties"
+      ],
+      marketInsights: `Skye Canyon offers some of Las Vegas's most desirable luxury properties, featuring contemporary designs, mountain views, and resort-style amenities. Many homes include pools, outdoor kitchens, and proximity to world-class golf.
+
+The community attracts discerning buyers seeking quality construction, privacy, and access to recreational amenities. Properties typically range from $800K to $2M+ depending on size, location, and custom features.
+
+Dr. Jan Duffy specializes in luxury properties and can provide exclusive access to off-market listings and new construction opportunities.`,
+      properties: [],
+      citations: []
+    };
+  }
+  
+  // Buying process
+  if (queryLower.includes('buy') || queryLower.includes('purchase') || context === 'buying') {
+    return {
+      suggestions: [
+        "First-time buyer programs in Nevada",
+        "Best neighborhoods for families",
+        "Home inspection checklist",
+        "Financing options for luxury homes",
+        "Timeline for buying in Skye Canyon"
+      ],
+      marketInsights: `Buying in Skye Canyon typically involves working with experienced agents familiar with the community's unique features and pricing. The process often moves quickly due to high demand for quality properties.
+
+Key considerations include HOA requirements, utility connections, and proximity to amenities like schools and golf courses. Many buyers appreciate the newer construction standards and energy-efficient features common in the area.
+
+Dr. Jan Duffy provides comprehensive buyer representation and can guide you through each step of the purchasing process, from initial search to closing.`,
+      properties: [],
+      citations: []
+    };
+  }
+  
+  // Default response for other queries
+  return {
+    suggestions: [
+      "Show me available properties in Skye Canyon",
+      "What makes Skye Canyon special?",
+      "Community amenities and lifestyle",
+      "Properties with specific features",
+      "Schedule a private showing"
+    ],
+    marketInsights: `Skye Canyon is a premier master-planned community in northwest Las Vegas, known for its luxury homes, mountain views, and proximity to recreational amenities. The area offers excellent schools, golf courses, and hiking trails.
+
+For specific property information and personalized recommendations, Dr. Jan Duffy provides expert guidance based on extensive local market knowledge and can arrange private showings of available properties.`,
+    properties: [],
+    citations: []
+  };
+}
+
 // AI Search Processing Function
 async function processAISearch(query: string, context: string) {
   const lowerQuery = query.toLowerCase();
@@ -906,11 +1005,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Query is required" });
       }
 
+      // If Perplexity API key is not configured, provide intelligent fallback responses
       if (!process.env.PERPLEXITY_API_KEY) {
-        return res.status(500).json({
-          suggestions: ["Search temporarily unavailable. Please try again."],
-          marketInsights: "Connect with Dr. Jan Duffy directly for personalized property recommendations."
-        });
+        const fallbackResponse = generateIntelligentFallback(sanitizedQuery, context);
+        return res.json(fallbackResponse);
       }
 
       // Sanitize input
@@ -947,7 +1045,7 @@ User Question: ${sanitizedQuery}`;
         body: JSON.stringify({
           model: 'llama-3.1-sonar-small-128k-online',
           messages: [
-            { role: 'system', content: contextPrompt }
+            { role: 'user', content: `${contextPrompt}\n\nUser Question: ${sanitizedQuery}` }
           ],
           max_tokens: 800,
           temperature: 0.2,
