@@ -48,6 +48,7 @@ import SkyeCanyonParks from "@/pages/skye-canyon-parks";
 import SkyeCanyonCommunities from "@/pages/skye-canyon-communities";
 import MarketAnalysis from "@/pages/market-analysis";
 import NeighborhoodAnalysis from "@/pages/neighborhood-analysis";
+import DeploymentSyncPage from "@/pages/deployment-sync";
 
 function Router() {
   return (
@@ -69,6 +70,7 @@ function Router() {
       <Route path="/skye-canyon-communities" component={SkyeCanyonCommunities} />
       <Route path="/market-analysis" component={MarketAnalysis} />
       <Route path="/neighborhood-analysis" component={NeighborhoodAnalysis} />
+      <Route path="/deployment-sync" component={DeploymentSyncPage} />
       <Route component={NotFound} />
     </Switch>
   );
