@@ -37,25 +37,9 @@ export default function DeploymentStatus() {
   };
 
   const triggerSync = async () => {
-    setStatus(prev => ({ ...prev, syncStatus: 'syncing' }));
-    
-    try {
-      const response = await fetch('/api/trigger-git-sync', { method: 'POST' });
-      const result = await response.json();
-      
-      if (response.ok) {
-        setStatus(prev => ({ 
-          ...prev, 
-          syncStatus: 'success',
-          lastSync: new Date().toISOString(),
-          commitCount: prev.commitCount + 1
-        }));
-      } else {
-        setStatus(prev => ({ ...prev, syncStatus: 'error' }));
-      }
-    } catch (error) {
-      setStatus(prev => ({ ...prev, syncStatus: 'error' }));
-    }
+    // Security: Sync functionality moved to admin-only endpoints
+    setStatus(prev => ({ ...prev, syncStatus: 'error' }));
+    console.log('Git sync functionality restricted to admin access only');
   };
 
   const triggerDeploymentSuccess = async () => {
