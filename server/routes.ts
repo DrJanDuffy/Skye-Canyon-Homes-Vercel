@@ -1204,6 +1204,63 @@ User Question: ${sanitizedQuery}`;
     }
   });
 
+  // Post-deployment success webhook
+  app.post("/api/deployment-success", async (req, res) => {
+    try {
+      const { execSync } = require('child_process');
+      const fs = require('fs');
+      
+      // Mark deployment as successful
+      const deploymentInfo = {
+        timestamp: new Date().toISOString(),
+        success: true,
+        version: process.env.npm_package_version || '1.0.0'
+      };
+      
+      fs.writeFileSync('.deployment-success', JSON.stringify(deploymentInfo));
+      
+      // Check if git is configured
+      try {
+        execSync('git status', { stdio: 'pipe' });
+      } catch {
+        return res.json({ 
+          success: true, 
+          message: 'Deployment recorded, but Git not configured for auto-sync' 
+        });
+      }
+      
+      // Check if remote exists
+      try {
+        execSync('git remote get-url origin', { stdio: 'pipe' });
+      } catch {
+        return res.json({ 
+          success: true, 
+          message: 'Deployment recorded, but no Git remote configured' 
+        });
+      }
+      
+      // Trigger post-deployment sync
+      try {
+        execSync('node post-deployment-sync.js --deployment-success', { 
+          stdio: 'inherit' 
+        });
+        
+        res.json({ 
+          success: true, 
+          message: 'Deployment successful and synced to GitHub' 
+        });
+      } catch (error) {
+        res.json({ 
+          success: true, 
+          message: 'Deployment successful, but Git sync failed' 
+        });
+      }
+      
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to process deployment success' });
+    }
+  });
+
   // Google Search Console and Indexing endpoints
   app.post("/api/google/request-indexing", handleIndexingRequest);
   

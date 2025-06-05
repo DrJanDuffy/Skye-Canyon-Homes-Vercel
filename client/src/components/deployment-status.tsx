@@ -58,6 +58,24 @@ export default function DeploymentStatus() {
     }
   };
 
+  const triggerDeploymentSuccess = async () => {
+    try {
+      const response = await fetch('/api/deployment-success', { method: 'POST' });
+      const result = await response.json();
+      
+      if (response.ok) {
+        setStatus(prev => ({ 
+          ...prev, 
+          lastSync: new Date().toISOString(),
+          commitCount: prev.commitCount + 1
+        }));
+        console.log('Post-deployment sync triggered:', result.message);
+      }
+    } catch (error) {
+      console.error('Failed to trigger deployment success:', error);
+    }
+  };
+
   if (!isVisible && status.gitConfigured) return null;
 
   return (

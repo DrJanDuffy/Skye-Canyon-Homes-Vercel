@@ -1,14 +1,15 @@
-# Automated Git Push for Deployment
+# Automated Git Push After Successful Deployment
 
-Your Skye Canyon real estate website now automatically syncs with GitHub when you deploy. This ensures your code is always backed up and version-controlled.
+Your Skye Canyon real estate website now automatically syncs with GitHub only after successful deployments. This ensures failed deployments don't get pushed to your repository.
 
 ## What's New
 
-When you deploy your site, the system now:
-- Automatically commits your latest changes
-- Pushes code to your GitHub repository
-- Maintains a complete deployment history
+The system now triggers Git sync ONLY after successful deployment:
+- Waits for deployment completion before syncing
+- Only pushes code to GitHub if deployment succeeds
+- Creates deployment records with timestamps
 - Shows deployment status in the web interface
+- Prevents unsuccessful deployments from reaching GitHub
 
 ## Quick Setup
 
@@ -43,9 +44,18 @@ When you deploy your site, the system now:
 
 ## How It Works
 
-1. **Before deployment**: Code automatically commits with timestamp
-2. **During deployment**: Changes push to your GitHub repository
-3. **After deployment**: Status updates in the dashboard
+1. **Deploy normally**: Use Replit's Deploy button as usual
+2. **After successful deployment**: System automatically triggers GitHub sync
+3. **Post-deployment sync**: Creates timestamped commit and pushes to GitHub
+4. **Status updates**: Dashboard shows sync status and deployment history
+
+## Deployment Workflow
+
+1. Make your code changes in Replit
+2. Click Deploy in Replit
+3. **Wait for deployment to complete successfully**
+4. System automatically syncs to GitHub (only on success)
+5. Check dashboard for sync confirmation
 
 ## Benefits
 
