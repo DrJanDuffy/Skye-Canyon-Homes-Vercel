@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import FeaturedListings from "@/components/featured-listings";
+import AuthenticPropertyListings from "@/components/authentic-property-listings";
 import MarketStats from "@/components/market-stats";
 import LeadCaptureForm from "@/components/lead-capture-form";
 import AgentBio from "@/components/agent-bio";
@@ -138,7 +138,12 @@ export default function Home() {
         </div>
       </section>
       
-      <FeaturedListings />
+      {/* Authentic Property Listings */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AuthenticPropertyListings />
+        </div>
+      </section>
       
       {/* Quick Market Stats Preview */}
       <section className="py-12 bg-gray-50">

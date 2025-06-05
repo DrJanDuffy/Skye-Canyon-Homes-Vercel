@@ -129,74 +129,8 @@ export class MemStorage implements IStorage {
   }
 
   private initializeData() {
-    // Sample properties for Skye Canyon
-    const sampleProperties: InsertProperty[] = [
-      {
-        address: "123 Skye Canyon Drive",
-        price: 1285000,
-        bedrooms: 4,
-        bathrooms: "3.5",
-        sqft: 3240,
-        description: "Stunning single-story home with panoramic mountain views, upgraded kitchen, and premium finishes throughout.",
-        imageUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        status: "active",
-        featured: true
-      },
-      {
-        address: "456 Canyon Vista Lane",
-        price: 1495000,
-        bedrooms: 5,
-        bathrooms: "4",
-        sqft: 4120,
-        description: "Contemporary masterpiece with resort-style backyard, chef's kitchen, and smart home technology.",
-        imageUrl: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        status: "active",
-        featured: true
-      },
-      {
-        address: "789 Desert Bloom Court",
-        price: 1750000,
-        bedrooms: 6,
-        bathrooms: "5.5",
-        sqft: 5200,
-        description: "Prestigious estate home with wine cellar, home theater, and breathtaking city lights views.",
-        imageUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        status: "active",
-        featured: true
-      },
-      {
-        address: "321 Mountain Ridge Way",
-        price: 2100000,
-        bedrooms: 5,
-        bathrooms: "4.5",
-        sqft: 4800,
-        description: "Luxury custom home with infinity pool, outdoor kitchen, and spectacular golf course views.",
-        imageUrl: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        status: "active",
-        featured: false
-      },
-      {
-        address: "654 Summit Heights Drive",
-        price: 1650000,
-        bedrooms: 4,
-        bathrooms: "4",
-        sqft: 3850,
-        description: "Modern architectural design with floor-to-ceiling windows and private courtyard.",
-        imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-        status: "active",
-        featured: false
-      }
-    ];
-
-    sampleProperties.forEach(property => {
-      const id = this.currentPropertyId++;
-      this.properties.set(id, { 
-        ...property, 
-        id,
-        status: property.status || "active",
-        featured: property.featured || false
-      });
-    });
+    // No placeholder properties initialized - awaiting authentic MLS data connection
+    // All property listings will come from verified real estate sources only
 
     // Initialize market stats
     this.marketStatsData = {
