@@ -1,20 +1,27 @@
 # Automated Git Push for Deployments
 
-This project now includes automated Git synchronization that pushes your changes to GitHub whenever you deploy.
+Your Skye Canyon real estate website now includes automated Git synchronization that pushes changes to GitHub before deployment.
 
-## Quick Setup
+## How It Works
 
-1. **Configure your GitHub repository**:
+When you deploy your site, the system automatically:
+- Commits all your latest changes with a timestamp
+- Pushes the code to your GitHub repository
+- Ensures your GitHub repo stays synchronized with deployments
+
+## Setup Instructions
+
+1. **First, connect your GitHub repository**:
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+   git remote add origin https://github.com/YOUR_USERNAME/skye-canyon-realestate.git
    ```
 
-2. **Before deploying, run**:
+2. **To manually sync before deployment**:
    ```bash
-   ./deploy-with-git-sync.sh
+   node replit-deploy-sync.js --sync
    ```
 
-3. **Then deploy normally** using Replit's Deploy button
+3. **Deploy normally** using Replit's Deploy button
 
 ## Available Scripts
 

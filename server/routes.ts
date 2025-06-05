@@ -1116,6 +1116,94 @@ User Question: ${sanitizedQuery}`;
     }
   });
 
+  // Deployment and Git sync endpoints
+  app.get("/api/deployment-status", async (req, res) => {
+    try {
+      const { execSync } = require('child_process');
+      
+      let gitConfigured = false;
+      let remoteUrl = null;
+      let commitCount = 0;
+      
+      try {
+        // Check if git is initialized
+        execSync('git status', { stdio: 'pipe' });
+        gitConfigured = true;
+        
+        // Get remote URL
+        try {
+          remoteUrl = execSync('git remote get-url origin', { encoding: 'utf8', stdio: 'pipe' }).trim();
+        } catch {
+          remoteUrl = null;
+        }
+        
+        // Get commit count
+        try {
+          const commits = execSync('git rev-list --count HEAD', { encoding: 'utf8', stdio: 'pipe' });
+          commitCount = parseInt(commits.trim()) || 0;
+        } catch {
+          commitCount = 0;
+        }
+        
+      } catch {
+        gitConfigured = false;
+      }
+      
+      res.json({
+        gitConfigured,
+        remoteUrl,
+        commitCount,
+        lastSync: null, // This would be stored in a database in production
+        syncStatus: 'idle'
+      });
+      
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to check deployment status' });
+    }
+  });
+
+  app.post("/api/trigger-git-sync", async (req, res) => {
+    try {
+      const { execSync } = require('child_process');
+      
+      // Check if git is available
+      try {
+        execSync('git status', { stdio: 'pipe' });
+      } catch {
+        return res.status(400).json({ error: 'Git not configured' });
+      }
+      
+      // Add changes
+      execSync('git add .', { stdio: 'pipe' });
+      
+      // Create commit
+      const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+      const commitMessage = `Manual sync: ${timestamp}`;
+      
+      try {
+        execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
+      } catch {
+        // No changes to commit
+      }
+      
+      // Push to remote
+      try {
+        execSync('git push origin main', { stdio: 'pipe' });
+      } catch {
+        try {
+          execSync('git push origin master', { stdio: 'pipe' });
+        } catch (error) {
+          return res.status(500).json({ error: 'Failed to push to remote repository' });
+        }
+      }
+      
+      res.json({ success: true, message: 'Successfully synced to GitHub' });
+      
+    } catch (error) {
+      res.status(500).json({ error: 'Sync failed' });
+    }
+  });
+
   // Google Search Console and Indexing endpoints
   app.post("/api/google/request-indexing", handleIndexingRequest);
   
