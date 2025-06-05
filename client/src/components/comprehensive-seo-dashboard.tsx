@@ -33,12 +33,6 @@ interface DashboardMetrics {
     rankings: { improved: number; total: number };
     technicalIssues: number;
   };
-  deployment: {
-    readiness: number;
-    criticalIssues: number;
-    completedTasks: number;
-    totalTasks: number;
-  };
 }
 
 export default function ComprehensiveSEODashboard() {
@@ -64,7 +58,7 @@ export default function ComprehensiveSEODashboard() {
     }
   });
 
-  const [activeTab, setActiveTab] = useState<'overview' | 'performance' | 'deployment'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'performance'>('overview');
 
   const getScoreColor = (score: number) => {
     if (score >= 80) return 'text-green-600';
@@ -101,7 +95,7 @@ export default function ComprehensiveSEODashboard() {
           <p className="text-gray-600">Real-time monitoring of Dr. Jan Duffy's website performance</p>
         </div>
         <div className="flex gap-2">
-          {(['overview', 'performance', 'deployment'] as const).map((tab) => (
+          {(['overview', 'performance'] as const).map((tab) => (
             <Button
               key={tab}
               variant={activeTab === tab ? 'default' : 'outline'}
@@ -269,104 +263,7 @@ export default function ComprehensiveSEODashboard() {
         </div>
       )}
 
-      {activeTab === 'deployment' && (
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5" />
-                Deployment Readiness
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-medium">Overall Readiness</span>
-                  <span className={`text-2xl font-bold ${getScoreColor(metrics.deployment.readiness)}`}>
-                    {metrics.deployment.readiness}%
-                  </span>
-                </div>
-                <Progress value={metrics.deployment.readiness} className="h-3" />
-                
-                <div className="grid grid-cols-2 gap-4 pt-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">
-                      {metrics.deployment.completedTasks}
-                    </div>
-                    <p className="text-sm text-gray-600">Tasks Completed</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">
-                      {metrics.deployment.criticalIssues}
-                    </div>
-                    <p className="text-sm text-gray-600">Critical Issues</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-green-600 flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5" />
-                  Completed Tasks
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    Enhanced meta tags implementation
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    Geo-specific structured data
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    Business profile optimization
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    XML sitemap with geo targeting
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
-                    Robots.txt optimization
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-orange-600 flex items-center gap-2">
-                  <AlertTriangle className="h-5 w-5" />
-                  Remaining Issues
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-orange-500" />
-                    Core Web Vitals optimization
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-orange-500" />
-                    Mobile performance enhancement
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-yellow-500" />
-                    Image optimization pipeline
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
