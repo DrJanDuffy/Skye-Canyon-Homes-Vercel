@@ -1,0 +1,170 @@
+# Skye Canyon Real Estate Website - Cursor AI Rules
+
+## Project Context
+This is a comprehensive real estate website for Dr. Jan Duffy, specializing in Skye Canyon Las Vegas properties (89166). The site features property listings, home valuations, market analysis, and lead generation.
+
+## Tech Stack
+- Frontend: React 18 + TypeScript + Vite
+- Backend: Express + TypeScript + PostgreSQL
+- UI: Tailwind CSS + Shadcn/ui components
+- Database: Drizzle ORM with PostgreSQL
+- Integrations: RealScout MLS, Homebot valuations, Google Analytics
+
+## Code Standards
+
+### TypeScript
+- Use strict TypeScript for all new code
+- Define interfaces for all props and API responses
+- Use proper type exports from shared/schema.ts
+- Avoid any types - prefer proper typing
+
+### React Components
+- Use functional components with hooks
+- Export default for main component, named exports for utilities
+- Props should be properly typed interfaces
+- Use React.memo for performance optimization where needed
+
+### File Structure
+```
+client/src/
+├── components/ - Reusable UI components
+├── pages/ - Route components
+├── lib/ - Utility functions and configurations
+├── hooks/ - Custom React hooks
+server/
+├── routes.ts - API endpoints
+├── storage.ts - Database operations
+├── middleware.ts - Express middleware
+shared/
+├── schema.ts - Database schema and types
+```
+
+### Naming Conventions
+- Components: PascalCase (PropertyCard.tsx)
+- Files: kebab-case for utilities, PascalCase for components
+- Variables: camelCase
+- Constants: UPPER_SNAKE_CASE
+- CSS classes: Tailwind utilities
+
+## Business Logic
+
+### Property Search
+- All property search buttons link to RealScout onboarding: http://drjanduffy.realscout.com/onboarding
+- Use target="_blank" and rel="noopener noreferrer" for external links
+
+### Home Valuations
+- Replace all "Get Home Value" buttons with Homebot widgets
+- Use unique widget IDs: homebot_homeowner, homebot_homeowner_1, etc.
+- Widget code: Homebot('#widget_id', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
+
+### Contact Information
+- Phone: (702) 500-1902
+- Email: DrDuffy@SkyeCanyonHomesForSale.com
+- Address: 10111 W. Skye Canyon Park Drive, Las Vegas, NV 89166
+- Use tel: protocol for phone links
+
+### SEO Requirements
+- Include "Skye Canyon", "Las Vegas", "Nevada", "89166" in headings
+- H1 tags should be geo-specific
+- Meta descriptions under 160 characters
+- Canonical URLs for all pages
+
+## Database Schema
+Use types from shared/schema.ts:
+- User, InsertUser
+- Property, InsertProperty
+- Lead, InsertLead
+- MarketStats, InsertMarketStats
+
+## API Patterns
+- Use storage interface methods, not direct database calls
+- Validate input with Zod schemas from drizzle-zod
+- Return proper HTTP status codes
+- Handle errors gracefully with try/catch
+
+## Styling Guidelines
+- Use Tailwind CSS utilities, avoid custom CSS
+- Use Shadcn/ui components: Button, Card, Input, etc.
+- Responsive design: mobile-first approach
+- Color scheme: realscout-blue, realscout-light, realscout-navy
+
+## External Integrations
+
+### RealScout Widgets
+```html
+<realscout-search 
+  agent-encoded-id="QWdlbnQtMjI1MDUw"
+  search-type="buy"
+  location="Skye Canyon, Las Vegas, NV"
+  data-production="true">
+</realscout-search>
+```
+
+### Homebot Widgets
+```javascript
+(function (h,b) { 
+  var w = window, d = document, s = 'script', x, y; 
+  w['__hb_namespace'] = h; 
+  w[h] = w[h] || function () { (w[h].q=w[h].q||[]).push(arguments) }; 
+  y = d.createElement(s); 
+  x = d.getElementsByTagName(s)[0]; 
+  y.async = 1; 
+  y.src = b; 
+  x.parentNode.insertBefore(y,x) 
+})('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); 
+Homebot('#homebot_homeowner', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
+```
+
+## Performance
+- Use React.lazy for code splitting on routes
+- Implement proper loading states
+- Optimize images with proper alt text
+- Use semantic HTML for accessibility
+
+## Security
+- Validate all user inputs
+- Use environment variables for sensitive data
+- Implement rate limiting on API endpoints
+- Sanitize data before database operations
+
+## Common Patterns
+
+### Page Component Structure
+```typescript
+export default function PageName() {
+  return (
+    <>
+      <Helmet>
+        <title>Page Title | Dr. Jan Duffy REALTOR®</title>
+        <meta name="description" content="..." />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <main>
+          {/* Page content */}
+        </main>
+        <Footer />
+        <BackToTop />
+      </div>
+    </>
+  );
+}
+```
+
+### API Route Pattern
+```typescript
+app.get('/api/endpoint', async (req, res) => {
+  try {
+    const result = await storage.getMethod();
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+```
+
+## Debugging
+- Use console.log sparingly, prefer proper error handling
+- Check network requests in browser dev tools
+- Verify environment variables are set correctly
+- Test responsive design on multiple screen sizes
