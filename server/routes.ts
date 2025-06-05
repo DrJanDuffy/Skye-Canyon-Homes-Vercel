@@ -611,6 +611,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get lead statistics
+  app.get("/api/lead-stats", async (req, res) => {
+    try {
+      const leads = await storage.getLeads();
+      
+      const today = new Date();
+      const yesterday = new Date(today);
+      yesterday.setDate(yesterday.getDate() - 1);
+      
+      const lastWeek = new Date(today);
+      lastWeek.setDate(lastWeek.getDate() - 7);
+      
+      const lastMonth = new Date(today);
+      lastMonth.setMonth(lastMonth.getMonth() - 1);
+
+      const stats = {
+        total: leads.length,
+        today: leads.filter(lead => lead.createdAt && new Date(lead.createdAt) > yesterday).length,
+        thisWeek: leads.filter(lead => lead.createdAt && new Date(lead.createdAt) > lastWeek).length,
+        thisMonth: leads.filter(lead => lead.createdAt && new Date(lead.createdAt) > lastMonth).length,
+        bySource: leads.reduce((acc, lead) => {
+          const source = lead.source || 'unknown';
+          acc[source] = (acc[source] || 0) + 1;
+          return acc;
+        }, {}),
+        byTimeframe: leads.reduce((acc, lead) => {
+          const timeframe = lead.timeframe || 'not specified';
+          acc[timeframe] = (acc[timeframe] || 0) + 1;
+          return acc;
+        }, {}),
+        byPriceRange: leads.reduce((acc, lead) => {
+          const priceRange = lead.priceRange || 'not specified';
+          acc[priceRange] = (acc[priceRange] || 0) + 1;
+          return acc;
+        }, {})
+      };
+
+      res.json(stats);
+    } catch (error) {
+      console.error('Error fetching lead stats:', error);
+      res.status(500).json({ message: "Failed to fetch lead statistics" });
+    }
+  });
+
   // FollowUp Boss lead management only (no listings)
   app.get("/api/followup-boss/leads", async (req, res) => {
     try {

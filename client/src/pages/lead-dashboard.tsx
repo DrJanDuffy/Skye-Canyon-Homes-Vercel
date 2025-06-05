@@ -107,7 +107,8 @@ export default function LeadDashboard() {
           <CardContent>
             <div className="text-2xl font-bold">
               {leads.filter(lead => {
-                const leadDate = new Date(lead.createdAt);
+                if (!lead.createdAt) return false;
+                const leadDate = new Date(lead.createdAt.toString());
                 const yesterday = new Date();
                 yesterday.setDate(yesterday.getDate() - 1);
                 return leadDate > yesterday;
@@ -144,7 +145,7 @@ export default function LeadDashboard() {
                     <CardDescription className="flex items-center gap-4 mt-1">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-                        {new Date(lead.createdAt).toLocaleDateString()}
+{lead.createdAt ? new Date(lead.createdAt.toString()).toLocaleDateString() : 'No date'}
                       </span>
                       <Badge variant="outline">{lead.source}</Badge>
                     </CardDescription>
