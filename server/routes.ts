@@ -7,6 +7,7 @@ import { z } from "zod";
 import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSitemap } from "./google-indexing";
 import { handleUrlValidation, validateGoogleSearchConsoleUrls, requestUrlInspection } from "./google-search-console-fixes";
 import { validateFollowUpBossAPI, testFollowUpBossLead } from "./followup-boss-validator";
+import { performanceMonitor } from "./performance-monitor";
 
 
 // AI Lead Scoring Functions
@@ -460,6 +461,9 @@ When users ask about properties, analyze their request and:
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Performance monitoring middleware
+  app.use(performanceMonitor.middleware());
+
   // Force HTTPS redirect in production
   app.use((req, res, next) => {
     if (req.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
@@ -691,6 +695,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false,
         message: error instanceof Error ? error.message : 'Follow Up Boss API test failed'
       });
+    }
+  });
+
+  // Performance monitoring endpoints
+  app.get("/api/performance/metrics", (req, res) => {
+    try {
+      const analytics = performanceMonitor.getAnalytics();
+      res.json(analytics);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch performance metrics" });
+    }
+  });
+
+  app.get("/api/performance/slow-endpoints", (req, res) => {
+    try {
+      const slowEndpoints = performanceMonitor.getSlowEndpoints();
+      res.json(slowEndpoints);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch slow endpoints" });
     }
   });
 
