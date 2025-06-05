@@ -82,7 +82,12 @@ export class EnhancedStorage {
 
       // Send to Follow Up Boss if API key is available
       if (process.env.FUB_API_KEY) {
-        await this.sendToFollowUpBoss(newLead);
+        try {
+          await this.sendToFollowUpBoss(newLead);
+        } catch (error) {
+          console.log('Follow Up Boss sync failed, lead saved locally for manual sync');
+          // Lead is still saved to database for manual processing
+        }
       }
 
       return newLead;
@@ -94,11 +99,14 @@ export class EnhancedStorage {
 
   private async sendToFollowUpBoss(lead: Lead) {
     try {
+      console.log('Sending lead to Follow Up Boss:', lead.email);
+      
       const response = await fetch('https://api.followupboss.com/v1/people', {
         method: 'POST',
         headers: {
-          'Authorization': `Basic ${Buffer.from(process.env.FUB_API_KEY + ':').toString('base64')}`,
-          'Content-Type': 'application/json'
+          'Authorization': `Bearer ${process.env.FUB_API_KEY}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           firstName: lead.firstName,
@@ -107,15 +115,23 @@ export class EnhancedStorage {
           phones: lead.phone ? [{ value: lead.phone, type: 'mobile' }] : [],
           source: 'Dr Jan Duffy Website',
           tags: ['Website Lead', 'Skye Canyon'],
-          note: lead.message || `Lead from Dr. Jan Duffy website. Interest: ${lead.priceRange || 'Not specified'}`
+          notes: lead.message || `Lead from Dr. Jan Duffy website. Interest: ${lead.priceRange || 'Not specified'}. Timeframe: ${lead.timeframe || 'Not specified'}`
         })
       });
 
+      const responseText = await response.text();
+      
       if (!response.ok) {
-        console.error('Follow Up Boss API error:', response.statusText);
+        console.error('Follow Up Boss API error:', response.status, response.statusText);
+        console.error('Response body:', responseText);
+        throw new Error(`Failed to send lead to FollowUp Boss: ${response.statusText}`);
       }
+      
+      console.log('Successfully sent lead to Follow Up Boss');
+      return JSON.parse(responseText);
     } catch (error) {
       console.error('Error sending to Follow Up Boss:', error);
+      throw error;
     }
   }
 

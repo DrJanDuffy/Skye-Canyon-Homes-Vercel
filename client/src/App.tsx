@@ -38,6 +38,7 @@ import Contact from "@/pages/contact";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import VoiceSearchPage from "@/pages/voice-search";
+import LeadDashboard from "@/pages/lead-dashboard";
 import NotFound from "@/pages/not-found";
 import NorthwestLasVegas from "@/pages/northwest-las-vegas";
 import LasVegasRealEstate from "@/pages/las-vegas-real-estate";
