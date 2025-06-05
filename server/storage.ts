@@ -236,4 +236,7 @@ export class MemStorage implements IStorage {
   }
 }
 
+import { enhancedStorage } from './enhanced-storage';
+
 export const storage = new DatabaseStorage();
+export { enhancedStorage };
