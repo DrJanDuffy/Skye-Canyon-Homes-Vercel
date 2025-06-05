@@ -897,6 +897,127 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return Math.min(score, 100);
   }
 
+  // AI Search endpoint with Perplexity integration
+  app.post("/api/ai-search", async (req, res) => {
+    try {
+      const { query, context } = req.body;
+      
+      if (!query || typeof query !== 'string') {
+        return res.status(400).json({ message: "Query is required" });
+      }
+
+      if (!process.env.PERPLEXITY_API_KEY) {
+        return res.status(500).json({
+          suggestions: ["Search temporarily unavailable. Please try again."],
+          marketInsights: "Connect with Dr. Jan Duffy directly for personalized property recommendations."
+        });
+      }
+
+      // Sanitize input
+      const sanitizedQuery = query.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                                  .replace(/<[^>]*>?/gm, '')
+                                  .trim();
+
+      // Create context-aware prompt
+      let contextPrompt = `You are a knowledgeable real estate AI assistant specializing in Skye Canyon, Las Vegas, Nevada 89166. `;
+      
+      switch (context) {
+        case 'buying':
+          contextPrompt += `Help buyers find properties and provide market insights for purchasing decisions. `;
+          break;
+        case 'selling':
+          contextPrompt += `Assist sellers with market analysis, pricing strategies, and selling advice. `;
+          break;
+        case 'value':
+          contextPrompt += `Provide home valuation insights and market comparisons. `;
+          break;
+      }
+
+      contextPrompt += `Focus on Skye Canyon community, luxury homes, market trends, schools, and local amenities. Provide practical, actionable advice.
+
+User Question: ${sanitizedQuery}`;
+
+      // Call Perplexity API
+      const response = await fetch('https://api.perplexity.ai/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-sonar-small-128k-online',
+          messages: [
+            { role: 'system', content: contextPrompt }
+          ],
+          max_tokens: 800,
+          temperature: 0.2,
+          top_p: 0.9,
+          search_domain_filter: ["realtor.com", "zillow.com", "redfin.com", "vegas.com", "lvrealtors.com", "niche.com", "greatschools.org"],
+          return_images: false,
+          return_related_questions: false,
+          search_recency_filter: "month",
+          top_k: 0,
+          stream: false,
+          presence_penalty: 0,
+          frequency_penalty: 1
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Perplexity API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const aiResponse = data.choices[0]?.message?.content || 'I can help you with real estate questions about Skye Canyon.';
+      
+      // Get relevant properties from storage
+      const properties = await storage.getProperties();
+      let relevantProperties = properties.slice(0, 3); // Default to first 3
+
+      // Extract search criteria and filter properties
+      const queryLower = sanitizedQuery.toLowerCase();
+      
+      if (queryLower.includes('school')) {
+        // For school queries, return properties near good schools
+        relevantProperties = properties.filter(p => 
+          p.address.toLowerCase().includes('skye') || p.address.toLowerCase().includes('canyon')
+        ).slice(0, 3);
+      } else if (queryLower.includes('luxury') || queryLower.includes('premium')) {
+        relevantProperties = properties.filter(p => p.price > 800000).slice(0, 3);
+      } else if (queryLower.includes('under') && queryLower.includes('k')) {
+        const priceMatch = queryLower.match(/under\s+\$?(\d+)k/);
+        if (priceMatch) {
+          const maxPrice = parseInt(priceMatch[1]) * 1000;
+          relevantProperties = properties.filter(p => p.price <= maxPrice).slice(0, 3);
+        }
+      }
+
+      // Generate contextual suggestions
+      const suggestions = [
+        "Show me luxury homes in Skye Canyon",
+        "What are the best schools in the area?",
+        "Current market trends and pricing",
+        "Properties with pools and mountain views",
+        "Homes near TPC Las Vegas golf course"
+      ];
+
+      const searchResults = {
+        properties: relevantProperties,
+        suggestions: suggestions,
+        marketInsights: aiResponse,
+        citations: data.citations || []
+      };
+
+      res.json(searchResults);
+    } catch (error) {
+      console.error('AI search error:', error);
+      res.status(500).json({
+        suggestions: ["Search temporarily unavailable. Please try again."],
+        marketInsights: "Connect with Dr. Jan Duffy directly for personalized property recommendations."
+      });
+    }
+  });
+
   // Google Search Console and Indexing endpoints
   app.post("/api/google/request-indexing", handleIndexingRequest);
   
