@@ -1,0 +1,71 @@
+name: Replit-Cursor Sync Workflow
+
+on:
+  push:
+    branches: [ main, development ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  sync-validation:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Type check
+      run: npm run type-check
+      
+    - name: Build validation
+      run: npm run build
+      
+    - name: Notify environments
+      run: |
+        echo "✅ Code validated and ready for sync"
+        echo "🔄 Both Replit and Cursor can safely pull latest changes"
+
+  auto-format:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Format code
+      run: |
+        npx prettier --write "**/*.{ts,tsx,js,jsx,json,css,md}"
+        
+    - name: Commit formatting changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        if git diff --staged --quiet; then
+          echo "No formatting changes needed"
+        else
+          git commit -m "Auto-format code for Replit-Cursor sync"
+          git push
+        fi
