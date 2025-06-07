@@ -40,6 +40,7 @@ import TermsOfService from "@/pages/terms-of-service";
 import VoiceSearchPage from "@/pages/voice-search";
 import LeadDashboard from "@/pages/lead-dashboard";
 import FollowUpBossStatus from "@/pages/followup-boss-status";
+import WebsiteDashboard from "@/pages/website-dashboard";
 import NotFound from "@/pages/not-found";
 import NorthwestLasVegas from "@/pages/northwest-las-vegas";
 import LasVegasRealEstate from "@/pages/las-vegas-real-estate";
@@ -61,6 +62,7 @@ function Router() {
       <Route path="/voice-search" component={VoiceSearchPage} />
       <Route path="/leads" component={LeadDashboard} />
       <Route path="/followup-boss-status" component={FollowUpBossStatus} />
+      <Route path="/website-dashboard" component={WebsiteDashboard} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
