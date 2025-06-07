@@ -8,6 +8,8 @@ import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSit
 import { handleUrlValidation, validateGoogleSearchConsoleUrls, requestUrlInspection } from "./google-search-console-fixes";
 import { validateFollowUpBossAPI, testFollowUpBossLead } from "./followup-boss-validator";
 import { performanceMonitor } from "./performance-monitor";
+import { registerSitemapRoutes } from "./sitemap-generator";
+import { seoOptimizer, handleSEOAudit, handleSEOReport } from "./seo-optimizer";
 
 
 // AI Lead Scoring Functions
@@ -461,6 +463,9 @@ When users ask about properties, analyze their request and:
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Register sitemap and robots.txt routes first
+  registerSitemapRoutes(app);
+
   // Performance monitoring middleware
   app.use(performanceMonitor.middleware());
 
