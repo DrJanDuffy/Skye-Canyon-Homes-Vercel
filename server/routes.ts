@@ -10,6 +10,7 @@ import { validateFollowUpBossAPI, testFollowUpBossLead } from "./followup-boss-v
 import { performanceMonitor } from "./performance-monitor";
 import { registerSitemapRoutes } from "./sitemap-generator";
 import { seoOptimizer, handleSEOAudit, handleSEOReport } from "./seo-optimizer";
+import { websiteOptimizer } from "./website-optimizer";
 
 
 // AI Lead Scoring Functions
@@ -466,6 +467,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register sitemap and robots.txt routes first
   registerSitemapRoutes(app);
 
+  // Website optimization middleware
+  app.use(websiteOptimizer.optimizeResponse());
+  app.use(websiteOptimizer.compressionMiddleware());
+
   // Performance monitoring middleware
   app.use(performanceMonitor.middleware());
 
@@ -495,11 +500,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
-  // Get all properties
-  app.get("/api/properties", async (req, res) => {
+  // Get all properties with caching
+  app.get("/api/properties", websiteOptimizer.cacheMiddleware({ maxAge: 300000 }), async (req, res) => {
     try {
       const properties = await storage.getProperties();
-      res.json(properties);
+      const optimizedProperties = websiteOptimizer.optimizeRealEstateData(properties);
+      res.json(optimizedProperties);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch properties" });
     }
@@ -719,6 +725,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(slowEndpoints);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch slow endpoints" });
+    }
+  });
+
+  // Website optimization metrics
+  app.get("/api/optimization/metrics", (req, res) => {
+    try {
+      const metrics = websiteOptimizer.getPerformanceMetrics();
+      res.json(metrics);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch optimization metrics" });
+    }
+  });
+
+  // Combined performance and SEO dashboard
+  app.get("/api/dashboard/overview", async (req, res) => {
+    try {
+      const performanceMetrics = performanceMonitor.getAnalytics();
+      const optimizationMetrics = websiteOptimizer.getPerformanceMetrics();
+      const seoSummary = seoOptimizer.getAuditSummary();
+      
+      res.json({
+        performance: performanceMetrics,
+        optimization: optimizationMetrics,
+        seo: seoSummary,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch dashboard overview" });
+    }
+  });
+
+  // SEO monitoring endpoints
+  app.post("/api/seo/audit", handleSEOAudit);
+  app.get("/api/seo/report", handleSEOReport);
+
+  // SEO audit for all main pages
+  app.get("/api/seo/audit-all", async (req, res) => {
+    try {
+      const mainPages = ['/', '/about', '/contact', '/properties', '/voice-search'];
+      const results = await Promise.all(
+        mainPages.map(page => seoOptimizer.auditPage(page))
+      );
+      res.json({ audits: results, summary: seoOptimizer.getAuditSummary() });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to audit pages" });
     }
   });
 

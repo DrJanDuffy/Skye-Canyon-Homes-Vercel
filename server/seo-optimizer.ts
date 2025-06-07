@@ -52,7 +52,7 @@ export class SEOOptimizer {
     }
 
     // Performance
-    if (pageMetrics.loadTime > 3000) {
+    if (pageMetrics.loadTime && pageMetrics.loadTime > 3000) {
       issues.push('Page load time exceeds 3 seconds');
       recommendations.push('Optimize images and reduce server response time');
       score -= 20;
@@ -66,7 +66,7 @@ export class SEOOptimizer {
     }
 
     // Structured data
-    if (pageMetrics.structuredData.length === 0) {
+    if (!pageMetrics.structuredData || pageMetrics.structuredData.length === 0) {
       issues.push('Missing structured data');
       recommendations.push('Add relevant schema markup for better search visibility');
       score -= 10;
