@@ -1,0 +1,42 @@
+[
+  {
+    "id": "property-performance-monitor",
+    "title": "Monitor Property Listing Performance",
+    "description": "Track response times and user engagement for property listings",
+    "category": "property-management",
+    "priority": "high",
+    "status": "pending"
+  },
+  {
+    "id": "lead-scoring-enhancement",
+    "title": "AI Lead Scoring Enhancement",
+    "description": "Improve lead quality scoring algorithm using machine learning",
+    "category": "lead-generation",
+    "priority": "critical",
+    "status": "in-progress"
+  },
+  {
+    "id": "skye-canyon-seo-rankings",
+    "title": "Skye Canyon SEO Rankings",
+    "description": "Maintain top 3 Google rankings for key Skye Canyon search terms",
+    "category": "seo-optimization",
+    "priority": "critical",
+    "status": "pending"
+  },
+  {
+    "id": "response-time-optimization",
+    "title": "Response Time Optimization",
+    "description": "Maintain sub-500ms response times across all API endpoints",
+    "category": "performance-monitoring",
+    "priority": "high",
+    "status": "in-progress"
+  },
+  {
+    "id": "voice-search-conversion",
+    "title": "Voice Search Conversion Optimization",
+    "description": "Optimize voice search to RealScout conversion rates",
+    "category": "ai-integration",
+    "priority": "medium",
+    "status": "pending"
+  }
+]
