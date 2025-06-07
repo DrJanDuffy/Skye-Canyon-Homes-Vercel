@@ -467,6 +467,154 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register enhanced sitemap and robots.txt routes first
   registerSitemapRoutes(app);
   
+  // Override robots.txt with June 2025 optimizations
+  app.get('/robots.txt', (req, res) => {
+    const baseUrl = process.env.NODE_ENV === 'production' 
+      ? 'https://skyecanyonhomesforsale.com' 
+      : 'http://localhost:5000';
+
+    const robotsContent = `# Robots.txt - Advanced 2025 Configuration for Real Estate Website
+# Dr. Jan Duffy REALTOR® - Skye Canyon Las Vegas Specialist
+# Generated: ${new Date().toISOString()}
+
+# Primary search engine crawlers - optimized for real estate content
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+Request-rate: 1/10s
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+Request-rate: 1/15s
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 3
+
+# AI Training Crawlers - June 2025 Directives
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+# Social Media Crawlers - Allow for sharing optimization
+User-agent: facebookexternalhit
+Allow: /
+User-agent: Twitterbot
+Allow: /
+User-agent: LinkedInBot
+Allow: /
+
+# Real Estate Specific Crawlers
+User-agent: RealEstateBot
+Allow: /properties
+Allow: /luxury-homes-las-vegas
+Allow: /skye-canyon-guide
+
+# Default for all other crawlers
+User-agent: *
+Allow: /
+Crawl-delay: 5
+
+# Sitemaps - Multiple formats for enhanced indexing
+Sitemap: ${baseUrl}/sitemap.xml
+Sitemap: ${baseUrl}/sitemap-images.xml
+Sitemap: ${baseUrl}/sitemap-properties.xml
+
+# Preferred domain and canonical URL
+Host: ${baseUrl.replace('http://', '').replace('https://', '')}
+
+# Security - Block sensitive and admin areas
+Disallow: /api/
+Disallow: /leads
+Disallow: /followup-boss-status
+Disallow: /website-dashboard
+Disallow: /_vite/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /server/
+Disallow: /build/
+Disallow: /dist/
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /administrator/
+Disallow: /login/
+Disallow: /dashboard/
+Disallow: /config/
+Disallow: /.env*
+Disallow: /.htaccess
+Disallow: /backup/
+Disallow: /cache/
+Disallow: /tmp/
+
+# Block malicious patterns and scraping attempts
+Disallow: /*.tmp$
+Disallow: /*.log$
+Disallow: /*.bak$
+Disallow: /*?debug=*
+Disallow: /*?test=*
+Disallow: /*?admin=*
+Disallow: /*?password=*
+Disallow: /*?token=*
+
+# Performance optimization - prevent crawling of duplicate content
+Disallow: /*?utm_*
+Disallow: /*?ref=*
+Disallow: /*?source=*
+Disallow: /*?campaign=*
+Disallow: /*?gclid=*
+Disallow: /*?fbclid=*
+
+# Real Estate Business Optimization
+# Allow priority pages for Las Vegas real estate market
+Allow: /properties$
+Allow: /luxury-homes-las-vegas$
+Allow: /skye-canyon-guide$
+Allow: /northwest-las-vegas$
+Allow: /las-vegas-real-estate$
+Allow: /market-analysis$
+Allow: /contact$
+
+# Noindex parameters (for crawlers that support it)
+Noindex: /*?sort=*
+Noindex: /*?filter=*
+Noindex: /*?page=*
+
+# Clean-param directive (supported by Yandex and some others)
+Clean-param: utm_source&utm_medium&utm_campaign&gclid&fbclid
+
+# Request rate throttling for resource protection
+Request-rate: 1/10s 0600-2100
+Request-rate: 1/30s 2100-0600
+
+# Visit-time optimization for better user experience
+Visit-time: 0600-2100
+
+# Crawling window for maintenance (PST timezone)
+Disallow: / 0300-0400`;
+
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.send(robotsContent);
+  });
+
   // Override sitemap route with enhanced version
   app.get('/sitemap.xml', (req, res) => {
     const baseUrl = process.env.NODE_ENV === 'production' 
