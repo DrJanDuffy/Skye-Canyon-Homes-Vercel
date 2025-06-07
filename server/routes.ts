@@ -11,6 +11,16 @@ import { performanceMonitor } from "./performance-monitor";
 import { registerSitemapRoutes, generateSitemap } from "./sitemap-generator";
 import { seoOptimizer, handleSEOAudit, handleSEOReport } from "./seo-optimizer";
 import { websiteOptimizer } from "./website-optimizer";
+import { 
+  taskManager, 
+  handleGetTasks, 
+  handleCreateTask, 
+  handleUpdateTask, 
+  handleDeleteTask, 
+  handleGetTaskDashboard,
+  handleGetAutomations,
+  handleTriggerAutomation 
+} from "./task-manager";
 
 
 // AI Lead Scoring Functions
@@ -938,6 +948,15 @@ ${urls.map(url => {
       res.status(500).json({ message: "Failed to fetch slow endpoints" });
     }
   });
+
+  // Task Master AI Management Endpoints
+  app.get("/api/tasks", handleGetTasks);
+  app.post("/api/tasks", handleCreateTask);
+  app.put("/api/tasks/:id", handleUpdateTask);
+  app.delete("/api/tasks/:id", handleDeleteTask);
+  app.get("/api/tasks/dashboard", handleGetTaskDashboard);
+  app.get("/api/automations", handleGetAutomations);
+  app.post("/api/automations/trigger", handleTriggerAutomation);
 
   // Website optimization metrics
   app.get("/api/optimization/metrics", (req, res) => {

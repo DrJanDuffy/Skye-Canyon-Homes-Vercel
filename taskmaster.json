@@ -1,0 +1,105 @@
+{
+  "project": {
+    "name": "Dr. Jan Duffy REALTOR - Skye Canyon Real Estate",
+    "description": "Comprehensive real estate website with AI-powered search, lead management, and property automation for Las Vegas Skye Canyon market",
+    "version": "1.0.0",
+    "type": "real-estate-platform"
+  },
+  "ai": {
+    "provider": "anthropic",
+    "model": "claude-3-sonnet-20240229",
+    "temperature": 0.1,
+    "maxTokens": 4000
+  },
+  "context": {
+    "codebase": {
+      "language": "typescript",
+      "framework": "react",
+      "backend": "express",
+      "database": "supabase-postgresql",
+      "styling": "tailwindcss"
+    },
+    "domain": "real-estate",
+    "location": "Las Vegas, Nevada - Skye Canyon",
+    "target_audience": "luxury home buyers, real estate investors"
+  },
+  "tasks": {
+    "categories": [
+      "property-management",
+      "lead-generation",
+      "seo-optimization", 
+      "performance-monitoring",
+      "ai-integration",
+      "crm-sync"
+    ],
+    "priority_levels": ["critical", "high", "medium", "low"],
+    "automation": {
+      "enabled": true,
+      "recurring_tasks": true,
+      "notifications": true
+    }
+  },
+  "integrations": {
+    "supabase": {
+      "enabled": true,
+      "database_url": "env:DATABASE_URL"
+    },
+    "followup_boss": {
+      "enabled": true,
+      "api_key": "env:FUB_API_KEY",
+      "status": "requires_renewal"
+    },
+    "perplexity": {
+      "enabled": true,
+      "api_key": "env:PERPLEXITY_API_KEY"
+    },
+    "realscout": {
+      "enabled": true,
+      "widget_integration": true,
+      "agent_id": "QWdlbnQtMjI1MDUw"
+    }
+  },
+  "monitoring": {
+    "performance": {
+      "target_response_time": "< 500ms",
+      "uptime_target": "99.9%",
+      "core_web_vitals": true
+    },
+    "seo": {
+      "sitemap_monitoring": true,
+      "rank_tracking": true,
+      "local_search": "Las Vegas NV 89166"
+    },
+    "leads": {
+      "conversion_tracking": true,
+      "ai_scoring": true,
+      "followup_automation": true
+    }
+  },
+  "workflows": {
+    "lead_capture": {
+      "trigger": "form_submission",
+      "actions": ["ai_scoring", "crm_sync", "notification"]
+    },
+    "property_updates": {
+      "trigger": "hourly",
+      "actions": ["cache_refresh", "sitemap_update"]
+    },
+    "performance_audit": {
+      "trigger": "daily",
+      "actions": ["response_time_check", "seo_audit", "error_monitoring"]
+    }
+  },
+  "goals": {
+    "primary": [
+      "Optimize lead conversion rates for Skye Canyon properties",
+      "Maintain sub-500ms response times across all endpoints",
+      "Achieve top 3 Google rankings for 'Skye Canyon homes for sale'"
+    ],
+    "secondary": [
+      "Automate Follow Up Boss CRM synchronization",
+      "Implement voice search conversion optimization",
+      "Enhance mobile Core Web Vitals scores"
+    ]
+  }
+}
