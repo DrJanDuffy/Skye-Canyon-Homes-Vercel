@@ -1,0 +1,158 @@
+{
+  "version": "0.16.1",
+  "projectRoot": "/home/runner/workspace",
+  "configPath": "/home/runner/workspace/.taskmaster.config.json",
+  "name": "Skye Canyon Real Estate Task Manager",
+  "description": "Automated task management for Las Vegas real estate operations",
+  "author": "Dr. Jan Duffy REALTOR",
+  "environment": "development",
+  "logging": {
+    "level": "info",
+    "enableConsole": true,
+    "enableFile": false,
+    "format": "json"
+  },
+  "tasks": {
+    "enabled": true,
+    "categories": [
+      "property-management",
+      "lead-generation", 
+      "seo-optimization",
+      "performance-monitoring",
+      "ai-integration",
+      "crm-sync"
+    ],
+    "priorities": ["critical", "high", "medium", "low"],
+    "defaultPriority": "medium",
+    "maxConcurrent": 10,
+    "retryAttempts": 3,
+    "retryDelay": 1000
+  },
+  "automations": {
+    "enabled": true,
+    "triggers": {
+      "form_submission": {
+        "enabled": true,
+        "actions": ["ai_scoring", "crm_sync", "notification"]
+      },
+      "hourly": {
+        "enabled": true,
+        "actions": ["cache_refresh", "sitemap_update", "performance_check"]
+      },
+      "daily": {
+        "enabled": true,
+        "actions": ["seo_audit", "performance_report", "optimization_recommendations"]
+      },
+      "manual": {
+        "enabled": true,
+        "actions": ["custom_workflow"]
+      }
+    },
+    "scheduledTasks": {
+      "property_updates": {
+        "schedule": "0 */1 * * *",
+        "enabled": true,
+        "priority": "medium"
+      },
+      "performance_audit": {
+        "schedule": "0 6 * * *",
+        "enabled": true,
+        "priority": "high"
+      },
+      "seo_monitoring": {
+        "schedule": "0 8 * * *",
+        "enabled": true,
+        "priority": "critical"
+      }
+    }
+  },
+  "integrations": {
+    "database": {
+      "type": "supabase",
+      "connectionString": "env:DATABASE_URL",
+      "poolSize": 10,
+      "timeout": 30000
+    },
+    "apis": {
+      "followupBoss": {
+        "enabled": true,
+        "baseUrl": "https://api.followupboss.com/v1",
+        "apiKey": "env:FUB_API_KEY",
+        "timeout": 10000,
+        "retryAttempts": 3
+      },
+      "perplexity": {
+        "enabled": true,
+        "baseUrl": "https://api.perplexity.ai",
+        "apiKey": "env:PERPLEXITY_API_KEY",
+        "model": "llama-3.1-sonar-small-128k-online",
+        "timeout": 30000
+      },
+      "realscout": {
+        "enabled": true,
+        "agentId": "QWdlbnQtMjI1MDUw",
+        "conversionLimit": 3,
+        "trackingEnabled": true
+      }
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics": {
+      "performance": {
+        "responseTimeThreshold": 500,
+        "errorRateThreshold": 0.01,
+        "uptimeTarget": 0.999
+      },
+      "tasks": {
+        "trackExecution": true,
+        "trackDuration": true,
+        "trackSuccess": true,
+        "trackErrors": true
+      }
+    },
+    "alerts": {
+      "enabled": false,
+      "channels": {
+        "console": true,
+        "webhook": false,
+        "email": false
+      }
+    }
+  },
+  "security": {
+    "encryptionEnabled": true,
+    "apiKeyRotation": false,
+    "auditLogging": true,
+    "accessControl": {
+      "roles": ["admin", "operator", "viewer"],
+      "defaultRole": "operator"
+    }
+  },
+  "cache": {
+    "enabled": true,
+    "ttl": 3600,
+    "maxSize": 1000,
+    "strategy": "lru"
+  },
+  "notifications": {
+    "enabled": true,
+    "channels": {
+      "console": true,
+      "database": true,
+      "webhook": false
+    },
+    "levels": ["critical", "high", "medium"],
+    "throttling": {
+      "enabled": true,
+      "maxPerMinute": 10
+    }
+  },
+  "features": {
+    "realTimeUpdates": true,
+    "bulkOperations": true,
+    "taskDependencies": true,
+    "workflowEngine": true,
+    "analyticsReporting": true
+  }
+}
