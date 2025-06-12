@@ -3,83 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR® | Las Vegas NV</title>
-    <meta name="description" content="Exclusive Skye Canyon real estate specialist in Las Vegas, NV. Find luxury homes with Dr. Jan Duffy, your trusted REALTOR® with 15+ years experience. Guard-gated community properties $450K+." />
+    <title>Skye Canyon | Dr. Jan Duffy, REALTOR®</title>
+    <meta name="description" content="Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®. Expert market knowledge, personalized service, and exclusive listings in North Las Vegas." />
     
-    <!-- Enhanced SEO Meta Tags -->
-    <meta name="keywords" content="Skye Canyon homes, Las Vegas real estate, guard gated community, luxury homes Las Vegas, Dr Jan Duffy REALTOR, Nevada real estate, northwest Las Vegas" />
-    <meta name="author" content="Dr. Jan Duffy, REALTOR®" />
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <link rel="canonical" href="https://skyecanyonhomesforsale.com/" />
+    <!-- RealScout Widget Integration with Enhanced Image Loading -->
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <script 
+      src="https://em.realscout.com/js/realscout-widgets.js"
+      crossorigin="anonymous"
+      async
+    ></script>
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://skyecanyonhomesforsale.com/" />
-    <meta property="og:title" content="Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR®" />
-    <meta property="og:description" content="Exclusive Skye Canyon real estate specialist in Las Vegas, NV. Find luxury homes in this premier guard-gated community." />
-    <meta property="og:image" content="https://skyecanyonhomesforsale.com/images/skye-canyon-homes-og.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Skye Canyon Homes for Sale" />
-    <meta property="og:locale" content="en_US" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://skyecanyonhomesforsale.com/" />
-    <meta name="twitter:title" content="Skye Canyon Homes for Sale | Dr. Jan Duffy REALTOR®" />
-    <meta name="twitter:description" content="Exclusive Skye Canyon real estate specialist in Las Vegas, NV. Find luxury homes in this premier guard-gated community." />
-    <meta name="twitter:image" content="https://skyecanyonhomesforsale.com/images/skye-canyon-homes-twitter.jpg" />
-    
-    <!-- Local Business Schema Preview -->
-    <meta name="geo.region" content="US-NV" />
-    <meta name="geo.placename" content="Las Vegas" />
-    <meta name="geo.position" content="36.2887;-115.3366" />
-    <meta name="ICBM" content="36.2887, -115.3366" />
-    
-    <!-- PWA Configuration -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#4a90e2">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Skye Canyon Homes">
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    
-    <!-- Resource Hints for Performance -->
-    <link rel="dns-prefetch" href="//em.realscout.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="prefetch" href="/dr-jan-duffy-headshot.jpg">
-    
-    <!-- RealScout Widget Integration -->
-    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module" async crossorigin="anonymous"></script>
-    <script src="https://em.realscout.com/js/realscout-widgets.js" async defer crossorigin="anonymous"></script>
-    <script>
-      // Production domain compatibility for RealScout widgets
-      window.addEventListener('load', function() {
-        // Verify widget loading for skyecanyonhomesforsale.com
-        setTimeout(function() {
-          if (window.customElements && window.customElements.get('realscout-office-listings')) {
-            console.log('RealScout widgets ready on production domain');
-          } else {
-            console.log('RealScout widgets loading...');
-          }
-        }, 2000);
-      });
-    </script>
     <style>
       realscout-office-listings {
         --rs-listing-divider-color: #4a90e2;
         width: 100%;
-        display: block;
-        min-height: 400px;
+      }
+      
+      /* Enhanced image loading for RealScout widgets */
+      realscout-office-listings img {
+        display: block !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+        transition: opacity 0.3s ease !important;
+      }
+      
+      realscout-office-listings img[src=""],
+      realscout-office-listings img:not([src]) {
+        opacity: 0 !important;
+      }
+      
+      realscout-office-listings img[src]:not([src=""]) {
+        opacity: 1 !important;
       }
     </style>
-
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
   </body>
 </html>
