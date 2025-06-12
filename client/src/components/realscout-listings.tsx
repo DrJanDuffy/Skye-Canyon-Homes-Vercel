@@ -47,7 +47,10 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
         <realscout-office-listings 
           agent-encoded-id="QWdlbnQtMjI1MDUw" 
           sort-order="NEWEST" 
-          listing-status="For Sale" 
+          listing-status="For Sale"
+          display-images="true"
+          image-loading="eager"
+          max-listings="12" 
           property-types="SFR,MF,TC,LAND" 
           price-min="400000"
           price-max="3000000"
