@@ -1,113 +1,145 @@
 #!/usr/bin/env node
 
 import express from 'express';
-import path from 'path';
 import { fileURLToPath } from 'url';
+import path from 'path';
 import fs from 'fs';
+import compression from 'compression';
+import cors from 'cors';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const app = express();
-const PORT = process.env.PORT || 3000;
 
 function log(message) {
   const timestamp = new Date().toLocaleTimeString();
-  console.log(`[${timestamp}] 🚀 ${message}`);
+  console.log(`${timestamp} [PROD] ${message}`);
 }
 
-// Security middleware
-app.use((req, res, next) => {
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  next();
-});
+async function createProductionServer() {
+  const app = express();
+  const PORT = process.env.PORT || 3000;
 
-// Serve static files from dist/public
-app.use(express.static(path.join(__dirname, 'dist', 'public'), {
-  maxAge: '1y',
-  etag: true,
-  lastModified: true
-}));
+  // Security and performance middleware
+  app.use(compression());
+  app.use(cors());
+  app.use(express.json({ limit: '10mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// API routes - try to load from built server if available
-const serverPath = path.join(__dirname, 'dist', 'server.js');
-if (fs.existsSync(serverPath)) {
-  try {
-    const serverModule = await import(serverPath);
-    if (serverModule.setupApiRoutes) {
-      serverModule.setupApiRoutes(app);
-      log('API routes loaded from built server');
-    }
-  } catch (error) {
-    log(`Warning: Could not load API routes from built server: ${error.message}`);
-  }
-} else {
-  // Fallback API routes for basic functionality
-  app.use(express.json());
-  
-  app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  // Security headers
+  app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    next();
   });
-  
-  app.get('/api/properties', (req, res) => {
+
+  // Serve static files from dist/public
+  const staticPath = path.join(__dirname, 'dist', 'public');
+  app.use(express.static(staticPath, {
+    maxAge: '1y',
+    etag: true,
+    lastModified: true
+  }));
+
+  // Health check endpoint
+  app.get('/health', (req, res) => {
     res.json({ 
-      message: 'API server not fully built. Please run the complete build process.',
-      status: 'fallback'
+      status: 'healthy', 
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime()
     });
   });
-  
-  log('Using fallback API routes');
+
+  // Load and apply middleware from the built server
+  let serverRoutes;
+  try {
+    const serverModule = await import('./dist/server.js');
+    if (serverModule.default || serverModule.registerRoutes) {
+      log('✅ Server module loaded successfully');
+      serverRoutes = serverModule.registerRoutes || serverModule.default;
+    }
+  } catch (error) {
+    log(`⚠️  Could not load server module: ${error.message}`);
+  }
+
+  // Setup routes if available
+  if (serverRoutes && typeof serverRoutes === 'function') {
+    try {
+      await serverRoutes(app);
+      log('✅ API routes registered successfully');
+    } catch (error) {
+      log(`⚠️  Error setting up routes: ${error.message}`);
+    }
+  } else {
+    // Minimal fallback API routes
+    app.get('/api/health', (req, res) => {
+      res.json({ status: 'ok', server: 'production-fallback' });
+    });
+    
+    app.get('/api/properties', (req, res) => {
+      res.json([]);
+    });
+    
+    app.get('/api/market-insights', (req, res) => {
+      res.json({ insights: [] });
+    });
+  }
+
+  // Serve React app for all other routes (SPA fallback)
+  app.get('*', (req, res) => {
+    const indexPath = path.join(staticPath, 'index.html');
+    
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      res.status(404).json({ 
+        error: 'Application not built', 
+        message: 'Run build-esbuild.js first' 
+      });
+    }
+  });
+
+  // Error handling middleware
+  app.use((err, req, res, next) => {
+    log(`❌ Error: ${err.message}`);
+    res.status(500).json({ 
+      error: 'Internal server error',
+      message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+    });
+  });
+
+  // Start server
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    log(`🚀 Production server running on port ${PORT}`);
+    log(`📁 Serving static files from: ${staticPath}`);
+    log(`🌐 Access your app at: http://localhost:${PORT}`);
+  });
+
+  // Graceful shutdown
+  process.on('SIGTERM', () => {
+    log('🛑 Received SIGTERM, shutting down gracefully');
+    server.close(() => {
+      log('✅ Process terminated');
+      process.exit(0);
+    });
+  });
+
+  process.on('SIGINT', () => {
+    log('🛑 Received SIGINT, shutting down gracefully');
+    server.close(() => {
+      log('✅ Process terminated');
+      process.exit(0);
+    });
+  });
+
+  return server;
 }
 
-// SPA fallback - serve index.html for all non-API routes
-app.get('*', (req, res) => {
-  const indexPath = path.join(__dirname, 'dist', 'public', 'index.html');
-  
-  if (fs.existsSync(indexPath)) {
-    res.sendFile(indexPath);
-  } else {
-    res.status(404).send(`
-      <html>
-        <head><title>Build Required</title></head>
-        <body>
-          <h1>Build Required</h1>
-          <p>Please run the build process first:</p>
-          <pre>node build-esbuild.js</pre>
-        </body>
-      </html>
-    `);
-  }
-});
-
-// Error handling
-app.use((err, req, res, next) => {
-  console.error('Server error:', err);
-  res.status(500).json({ 
-    error: 'Internal server error',
-    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+if (import.meta.url === `file://${process.argv[1]}`) {
+  createProductionServer().catch(error => {
+    console.error('❌ Failed to start production server:', error);
+    process.exit(1);
   });
-});
+}
 
-app.listen(PORT, '0.0.0.0', () => {
-  log(`Production server running on port ${PORT}`);
-  log(`Access at: http://localhost:${PORT}`);
-  log(`Serving static files from: ${path.join(__dirname, 'dist', 'public')}`);
-  
-  // Check if build artifacts exist
-  const buildFiles = [
-    'dist/public/index.html',
-    'dist/public/assets/main.js',
-    'dist/public/assets/main.css'
-  ];
-  
-  const missingFiles = buildFiles.filter(file => !fs.existsSync(path.join(__dirname, file)));
-  
-  if (missingFiles.length > 0) {
-    log('⚠️  Missing build artifacts:');
-    missingFiles.forEach(file => log(`   - ${file}`));
-    log('Run: node build-esbuild.js');
-  } else {
-    log('✅ All build artifacts found');
-  }
-});
+export { createProductionServer };
