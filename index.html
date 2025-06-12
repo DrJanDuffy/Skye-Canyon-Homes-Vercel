@@ -6,16 +6,37 @@
     <title>Skye Canyon | Dr. Jan Duffy, REALTOR®</title>
     <meta name="description" content="Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®. Expert market knowledge, personalized service, and exclusive listings in North Las Vegas." />
     
-    <!-- RealScout Widget Integration -->
+    <!-- RealScout Widget Integration with Enhanced Image Loading -->
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <script 
-      src="https://em.realscout.com/widgets/realscout-web-components.umd.js" 
-      type="module"
+      src="https://em.realscout.com/js/realscout-widgets.js"
+      crossorigin="anonymous"
+      async
     ></script>
     
     <style>
       realscout-office-listings {
         --rs-listing-divider-color: #4a90e2;
         width: 100%;
+      }
+      
+      /* Enhanced image loading for RealScout widgets */
+      realscout-office-listings img {
+        display: block !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+        transition: opacity 0.3s ease !important;
+      }
+      
+      realscout-office-listings img[src=""],
+      realscout-office-listings img:not([src]) {
+        opacity: 0 !important;
+      }
+      
+      realscout-office-listings img[src]:not([src=""]) {
+        opacity: 1 !important;
       }
     </style>
   </head>

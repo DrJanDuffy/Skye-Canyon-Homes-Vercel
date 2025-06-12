@@ -28,8 +28,8 @@ export function securityHeaders(req: Request, res: Response, next: NextFunction)
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://em.realscout.com https://*.realscout.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.realscout.com; " +
     "font-src 'self' https://fonts.gstatic.com; " +
-    "img-src * data: blob: https://*.realscout.com; " +
-    "connect-src 'self' https://api.followupboss.com https://api.cloudcma.com https://www.simplifyingthemarket.com https://*.realscout.com https://em.realscout.com https://api.perplexity.ai; " +
+    "img-src * data: blob: https://*.realscout.com https://images.realscout.com https://cdn.realscout.com https://static.realscout.com https://media.realscout.com; " +
+    "connect-src 'self' https://api.followupboss.com https://api.cloudcma.com https://www.simplifyingthemarket.com https://*.realscout.com https://em.realscout.com https://api.perplexity.ai https://api.realscout.com https://widgets.realscout.com; " +
     "frame-src 'self' https://www.google.com https://*.realscout.com; " +
     "child-src 'self' https://*.realscout.com; " +
     "object-src 'none';"
