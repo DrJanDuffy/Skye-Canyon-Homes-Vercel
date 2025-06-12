@@ -97,44 +97,33 @@ async function main() {
     // Copy public assets if they exist
     log('Copying public assets...');
     if (fs.existsSync('public')) {
+      const copyRecursive = (src, dest) => {
+        const stat = fs.statSync(src);
+        if (stat.isDirectory()) {
+          if (!fs.existsSync(dest)) {
+            fs.mkdirSync(dest, { recursive: true });
+          }
+          fs.readdirSync(src).forEach(item => {
+            copyRecursive(path.join(src, item), path.join(dest, item));
+          });
+        } else {
+          fs.copyFileSync(src, dest);
+        }
+      };
+
       const publicFiles = fs.readdirSync('public');
       publicFiles.forEach(file => {
         if (file !== 'index.html') {
-          fs.copyFileSync(path.join('public', file), path.join('dist/public', file));
+          const srcPath = path.join('public', file);
+          const destPath = path.join('dist/public', file);
+          copyRecursive(srcPath, destPath);
         }
       });
     }
 
-    // Build server
+    // Build server using traditional ESBuild command
     log('Building server...');
-    await build({
-      entryPoints: ['server/index.ts'],
-      bundle: true,
-      minify: false,
-      sourcemap: true,
-      target: ['node18'],
-      format: 'esm',
-      platform: 'node',
-      outdir: 'dist',
-      external: [
-        'pg-native',
-        'sqlite3',
-        'better-sqlite3',
-        'mysql2',
-        'mysql',
-        'oracledb',
-        'tedious',
-        'pg-query-stream',
-        'bufferutil',
-        'utf-8-validate'
-      ],
-      define: {
-        'process.env.NODE_ENV': '"production"'
-      },
-      loader: {
-        '.node': 'copy'
-      }
-    });
+    executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist --sourcemap --target=node18');
 
     log('Production build completed successfully!');
     log('Files generated:');
