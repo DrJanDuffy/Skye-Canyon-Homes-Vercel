@@ -8,6 +8,7 @@ import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSit
 import { handleUrlValidation, validateGoogleSearchConsoleUrls, requestUrlInspection } from "./google-search-console-fixes";
 import { validateFollowUpBossAPI, testFollowUpBossLead } from "./followup-boss-validator";
 import { performanceMonitor } from "./performance-monitor";
+import { setupPerformanceRoutes } from "./performance-dashboard";
 import { registerSitemapRoutes } from "./sitemap-generator";
 import { seoOptimizer, handleSEOAudit, handleSEOReport } from "./seo-optimizer";
 
@@ -478,7 +479,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register sitemap and robots.txt routes first
   registerSitemapRoutes(app);
 
-  // Performance monitoring middleware
+  // Setup performance monitoring and dashboard
+  setupPerformanceRoutes(app);
   app.use(performanceMonitor.middleware());
 
   // Force HTTPS redirect in production

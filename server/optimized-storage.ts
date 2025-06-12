@@ -112,10 +112,9 @@ export class OptimizedStorage {
     priceMax?: number;
     type?: string;
     bedrooms?: number;
-    bathrooms?: number;
     limit?: number;
   }): Promise<Property[]> {
-    const { priceMin, priceMax, type, bedrooms, bathrooms, limit = 20 } = filters;
+    const { priceMin, priceMax, type, bedrooms, limit = 20 } = filters;
     const cacheKey = `search_${JSON.stringify(filters)}`;
     
     const cached = this.cache.get(cacheKey);
@@ -133,15 +132,29 @@ export class OptimizedStorage {
       // Build efficient WHERE conditions
       if (priceMin) conditions.push(gte(properties.price, priceMin));
       if (priceMax) conditions.push(lte(properties.price, priceMax));
-      if (type) conditions.push(eq(properties.type, type));
+      if (type) conditions.push(eq(properties.status, type));
       if (bedrooms) conditions.push(gte(properties.bedrooms, bedrooms));
-      if (bathrooms) conditions.push(gte(properties.bathrooms, bathrooms));
       
       if (conditions.length > 0) {
-        query = query.where(and(...conditions));
+        const results = await db
+          .select()
+          .from(properties)
+          .where(and(...conditions))
+          .orderBy(desc(properties.featured), asc(properties.price))
+          .limit(limit);
+        
+        const duration = Date.now() - startTime;
+        console.log(`Property search query: ${duration}ms`);
+        
+        // Cache search results for 2 minutes
+        this.cache.set(cacheKey, results, 120000);
+        
+        return results;
       }
       
-      const results = await query
+      const results = await db
+        .select()
+        .from(properties)
         .orderBy(desc(properties.featured), asc(properties.price))
         .limit(limit);
       
@@ -270,7 +283,7 @@ export class OptimizedStorage {
   
   getCacheStats() {
     return {
-      cacheSize: this.cache.cache.size,
+      cacheSize: this.cache['cache'].size,
       timestamp: new Date().toISOString()
     };
   }
