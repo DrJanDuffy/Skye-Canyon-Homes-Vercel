@@ -54,7 +54,6 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
           property-types="SFR,MF,TC,LAND" 
           price-min="400000"
           price-max="3000000"
-          max-listings="12"
           show-photos="true"
           show-details="true"
           layout="grid"

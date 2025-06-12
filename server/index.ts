@@ -71,17 +71,15 @@ app.use(express.static(path.join(process.cwd(), 'public')));
     serveStatic(app);
   }
 
-  // Configure for external Replit domain access
+  // Configure for all Replit domain access including preview
   const port = parseInt(process.env.PORT || "5000", 10);
-  const host = process.env.REPL_SLUG ? "0.0.0.0" : "localhost";
   
   server.listen({
     port,
-    host,
+    host: "0.0.0.0",
   }, () => {
-    log(`serving on port ${port} and host ${host}`);
-    if (process.env.REPL_SLUG) {
-      log(`External access: https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`);
-    }
+    log(`serving on port ${port} and host 0.0.0.0`);
+    log(`Preview access: Available on all Replit domains`);
+    log(`Production access: https://skyecanyonhomes.replit.app/`);
   });
 })();
