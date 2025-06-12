@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <base href="/" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#4a90e2" />
+    <link rel="canonical" href="/" />
+    <title>Skye Canyon | Dr. Jan Duffy, REALTOR®</title>
+    <meta name="description" content="Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®. Expert market knowledge, personalized service, and exclusive listings in North Las Vegas." />
+    
+    <!-- RealScout Widget Integration with Enhanced Image Loading -->
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <script 
+      src="https://em.realscout.com/js/realscout-widgets.js"
+      crossorigin="anonymous"
+      async
+    ></script>
+    
+    <style>
+      realscout-office-listings {
+        --rs-listing-divider-color: #4a90e2;
+        width: 100%;
+      }
+      
+      /* Enhanced image loading for RealScout widgets */
+      realscout-office-listings img {
+        display: block !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        border-radius: 8px !important;
+        transition: opacity 0.3s ease !important;
+      }
+      
+      realscout-office-listings img[src=""],
+      realscout-office-listings img:not([src]) {
+        opacity: 0 !important;
+      }
+      
+      realscout-office-listings img[src]:not([src=""]) {
+        opacity: 1 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Prevent external page collapse by breaking out of frames
+      if (window.parent && window.parent !== window) {
+        window.parent.location.href = window.location.href;
+      }
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
