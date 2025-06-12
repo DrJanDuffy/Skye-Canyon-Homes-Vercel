@@ -21,34 +21,35 @@ async function testServer(port = 3000, timeout = 10000) {
   log(`Testing server on port ${port}...`);
   
   return new Promise((resolve) => {
-    const { spawn } = require('child_process');
-    const server = spawn('node', ['server-production.js'], {
-      env: { ...process.env, PORT: port, NODE_ENV: 'production' },
-      stdio: 'pipe'
-    });
+    import('child_process').then(({ spawn }) => {
+      const server = spawn('node', ['server-production.js'], {
+        env: { ...process.env, PORT: port, NODE_ENV: 'production' },
+        stdio: 'pipe'
+      });
 
-    let serverStarted = false;
-    
-    const timer = setTimeout(() => {
-      if (!serverStarted) {
-        server.kill();
-        resolve(false);
-      }
-    }, timeout);
+      let serverStarted = false;
+      
+      const timer = setTimeout(() => {
+        if (!serverStarted) {
+          server.kill();
+          resolve(false);
+        }
+      }, timeout);
 
-    server.stdout.on('data', (data) => {
-      if (data.toString().includes('Production server running')) {
-        serverStarted = true;
+      server.stdout.on('data', (data) => {
+        if (data.toString().includes('Production server running')) {
+          serverStarted = true;
+          clearTimeout(timer);
+          server.kill();
+          resolve(true);
+        }
+      });
+
+      server.on('error', () => {
         clearTimeout(timer);
-        server.kill();
-        resolve(true);
-      }
-    });
-
-    server.on('error', () => {
-      clearTimeout(timer);
-      resolve(false);
-    });
+        resolve(false);
+      });
+    }).catch(() => resolve(false));
   });
 }
 
