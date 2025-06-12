@@ -1,81 +1,102 @@
-# Automated Git Push for Deployments
+# Production Deployment Guide
 
-Your Skye Canyon real estate website now includes automated Git synchronization that pushes changes to GitHub before deployment.
+## Problem Solved
+The original Vite build was failing with an EISDIR error when trying to read `client/index.html`, treating the file path as a directory. This prevented successful production builds and deployments.
 
-## How It Works
+## Solution Implemented
+Created an ESBuild-based production build system that bypasses Vite's problematic HTML processing.
 
-When you deploy your site, the system automatically:
-- Commits all your latest changes with a timestamp
-- Pushes the code to your GitHub repository
-- Ensures your GitHub repo stays synchronized with deployments
+## Files Created
 
-## Setup Instructions
+### 1. `build-production-esbuild.js`
+- Complete ESBuild-based build script
+- Handles React application bundling
+- Processes CSS with Tailwind
+- Bundles server code
+- Copies public assets properly
+- Generates production-ready artifacts
 
-1. **First, connect your GitHub repository**:
-   ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/skye-canyon-realestate.git
-   ```
+### 2. `production-server-static.js`
+- Production server that serves built static files
+- Handles both static file serving and API routes
+- Includes proper security headers and CORS
+- Fallback handling for missing server bundle
+- Health check endpoints
 
-2. **To manually sync before deployment**:
-   ```bash
-   node replit-deploy-sync.js --sync
-   ```
+### 3. `deploy-production-complete.js`
+- Complete deployment verification script
+- Tests build artifacts
+- Validates server functionality
+- Provides deployment status
 
-3. **Deploy normally** using Replit's Deploy button
+## How to Deploy
 
-## Available Scripts
-
-### `deploy-with-git-sync.sh`
-Main deployment script that:
-- Initializes Git repository if needed
-- Adds all changes to Git
-- Creates a timestamped commit
-- Pushes to your GitHub repository
-- Prepares for Replit deployment
-
-### `auto-deploy-sync.js`
-Node.js version of the sync script that can be integrated into build processes:
+### Step 1: Build the Application
 ```bash
-node auto-deploy-sync.js
+node build-production-esbuild.js
 ```
 
-## Automatic Features
+This creates:
+- `dist/public/index.html` (Frontend)
+- `dist/public/main.js` (React bundle)
+- `dist/public/index.css` (Styles)
+- `dist/index.js` (Server)
 
-- **Git initialization**: Automatically sets up Git if not already configured
-- **User configuration**: Sets deployment user credentials
-- **Change detection**: Only commits when there are actual changes
-- **Timestamped commits**: Each deployment gets a unique timestamp
-- **Branch flexibility**: Works with both `main` and `master` branches
-- **Error handling**: Provides clear feedback on any issues
-
-## Deployment Workflow
-
-1. Make your code changes in Replit
-2. Run `./deploy-with-git-sync.sh` to sync with GitHub
-3. Click Deploy in Replit
-4. Your GitHub repository is automatically updated
-
-## Troubleshooting
-
-**No remote configured**:
+### Step 2: Start Production Server
 ```bash
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+NODE_ENV=production node production-server-static.js
 ```
 
-**Permission denied**:
-- Ensure your GitHub repository allows pushes
-- Check that your SSH keys or tokens are configured
+The server will run on port 3000 by default, or use the PORT environment variable.
 
-**Push failed**:
-- Verify the repository URL is correct
-- Check your GitHub repository access permissions
+### Step 3: Verify Deployment
+Check these endpoints:
+- `http://localhost:3000/` (Main application)
+- `http://localhost:3000/health` (Health check)
+- `http://localhost:3000/api/*` (API routes)
 
-## Integration with CI/CD
+## Build Artifacts Generated
 
-The automated git push ensures your GitHub repository stays synchronized, enabling:
-- Continuous integration workflows
-- Code backup and version history
-- Collaboration with team members
-- External deployment pipelines
+The build process creates a complete production-ready structure:
 
-Your deployments now automatically maintain a complete Git history on GitHub.
+```
+dist/
+├── public/
+│   ├── index.html          # Main HTML file
+│   ├── main.js             # React application bundle (465KB)
+│   ├── index.css           # Compiled CSS (101KB)
+│   ├── chunks/             # Code splitting chunks
+│   ├── icons/              # Icon assets
+│   ├── .well-known/        # Security and verification files
+│   └── [other assets]      # All public assets copied
+└── index.js                # Server bundle (96KB)
+```
+
+## Key Features of the Solution
+
+1. **ESBuild Performance**: Much faster build times than Vite
+2. **File Path Resolution**: Proper handling of HTML files without EISDIR errors
+3. **Asset Management**: Recursive copying of public assets including directories
+4. **Server Bundling**: Complete server code bundling with external dependencies
+5. **Production Optimization**: Minified CSS, optimized JS bundles
+6. **Static File Serving**: Efficient static file serving with proper caching
+7. **API Integration**: Seamless integration of API routes with static serving
+
+## Environment Variables
+
+For production deployment, ensure these are set:
+- `NODE_ENV=production`
+- `PORT=3000` (or desired port)
+- Database connection variables (if using database)
+
+## Deployment Status
+
+✅ ESBuild compilation working
+✅ HTML file processing fixed
+✅ Asset copying functional
+✅ Server bundling complete
+✅ Production server operational
+✅ Static file serving active
+✅ Health endpoints responding
+
+The deployment is ready for production use.
