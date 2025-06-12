@@ -60,19 +60,26 @@ async function main() {
       throw new Error(`client/index.html is not readable: ${error.message}`);
     }
 
-    // Step 3: Build client from the correct directory
-    log('Building client assets...');
-    process.chdir('client');
-    
-    // Ensure we're using the correct Vite config
-    executeCommand('npx vite build --config ../vite.config.ts --mode production', {
-      cwd: process.cwd()
-    });
-    
-    // Return to root directory
-    process.chdir('..');
+    // Step 3: Create a temporary index.html to avoid path conflicts
+    log('Preparing build environment...');
+    const tempIndexPath = path.join(__dirname, 'temp-index.html');
+    const originalIndexContent = fs.readFileSync(indexPath, 'utf-8');
+    fs.writeFileSync(tempIndexPath, originalIndexContent);
 
-    // Step 4: Verify build output
+    // Step 4: Build client using a different approach
+    log('Building client assets...');
+    
+    // Build TypeScript/React files first
+    executeCommand('npx vite build --mode production', {
+      cwd: path.join(__dirname, 'client')
+    });
+
+    // Clean up temporary file
+    if (fs.existsSync(tempIndexPath)) {
+      fs.unlinkSync(tempIndexPath);
+    }
+
+    // Step 5: Verify build output
     log('Verifying build output...');
     const distPublicPath = path.join(__dirname, 'dist', 'public');
     if (!fs.existsSync(distPublicPath)) {
@@ -84,11 +91,11 @@ async function main() {
       throw new Error('Built index.html not found in dist/public');
     }
 
-    // Step 5: Build server
+    // Step 6: Build server
     log('Building server...');
     executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist');
 
-    // Step 6: Copy additional assets if they exist
+    // Step 7: Copy additional assets if they exist
     log('Copying additional assets...');
     const publicDir = path.join(__dirname, 'public');
     if (fs.existsSync(publicDir)) {
