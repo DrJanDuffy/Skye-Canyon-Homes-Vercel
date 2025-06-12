@@ -3,16 +3,16 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import compression from 'express';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Create Express app
 const app = express();
 
-// Enable compression
-app.use(compression());
+// Enable basic compression using express built-ins
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 // Security and performance headers
 app.use((req, res, next) => {
@@ -24,9 +24,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Parse JSON bodies
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+
 
 // Import and setup the built server API routes
 let serverApp;
