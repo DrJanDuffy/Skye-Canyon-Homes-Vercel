@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# ESBuild replacement script for npm run build
+# This script bypasses the broken Vite build completely
+
+echo "🚀 Starting ESBuild deployment process..."
+echo "⚠️  Bypassing broken Vite build command..."
+
+# Run the ESBuild-based build process
+node build-esbuild.js
+
+if [ $? -eq 0 ]; then
+    echo "✅ ESBuild deployment completed successfully!"
+    echo "📁 Production build ready in dist/ folder"
+    echo "🖥️  Start server: cd dist && node server.js"
+else
+    echo "❌ ESBuild deployment failed"
+    exit 1
+fi
