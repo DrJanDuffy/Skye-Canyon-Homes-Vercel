@@ -282,8 +282,8 @@ const startServer = async () => {
     // Check build artifacts
     const artifacts = [
       { path: path.join(config.publicDir, 'index.html'), name: 'HTML template' },
-      { path: path.join(config.publicDir, 'assets', 'main.js'), name: 'React bundle' },
-      { path: path.join(config.publicDir, 'assets', 'main.css'), name: 'CSS bundle' },
+      { path: path.join(config.publicDir, 'assets', 'app.js'), name: 'React bundle' },
+      { path: path.join(config.publicDir, 'assets', 'styles.css'), name: 'CSS bundle' },
       { path: path.join(config.distDir, 'server.js'), name: 'Server bundle' }
     ];
     
