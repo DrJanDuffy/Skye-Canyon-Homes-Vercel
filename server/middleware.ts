@@ -30,7 +30,7 @@ export function securityHeaders(req: Request, res: Response, next: NextFunction)
     "font-src 'self' https://fonts.gstatic.com; " +
     "img-src * data: blob: https://*.realscout.com; " +
     "connect-src 'self' https://api.followupboss.com https://api.cloudcma.com https://www.simplifyingthemarket.com https://*.realscout.com https://em.realscout.com https://api.perplexity.ai; " +
-    "frame-src 'self' https://www.google.com https://*.realscout.com; " +
+    "frame-src 'self' https://www.google.com https://*.realscout.com https://storage.googleapis.com; " +
     "child-src 'self' https://*.realscout.com; " +
     "object-src 'none';"
   );
