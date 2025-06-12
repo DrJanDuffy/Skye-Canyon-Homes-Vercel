@@ -27,7 +27,6 @@ import RealScoutSearchWidget from "@/components/realscout-search-widget";
 import RealScoutAnalytics from "@/components/realscout-analytics";
 import VoiceSearchIntegration from "@/components/voice-search-integration";
 import ErrorBoundary from "@/components/error-boundary";
-import GoogleBusinessProfile from "@/components/google-business-profile";
 
 export default function Home() {
   return (
@@ -181,9 +180,6 @@ export default function Home() {
           <RealScoutSearchWidget variant="inline" className="mb-8" />
         </div>
       </section>
-
-      {/* Google Business Profile Neighborhood Discovery */}
-      <GoogleBusinessProfile />
 
       {/* Neighborhood Heatmap */}
       <section className="py-16 bg-white">

@@ -8,19 +8,8 @@ import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSit
 import { handleUrlValidation, validateGoogleSearchConsoleUrls, requestUrlInspection } from "./google-search-console-fixes";
 import { validateFollowUpBossAPI, testFollowUpBossLead } from "./followup-boss-validator";
 import { performanceMonitor } from "./performance-monitor";
-import { registerSitemapRoutes, generateSitemap } from "./sitemap-generator";
+import { registerSitemapRoutes } from "./sitemap-generator";
 import { seoOptimizer, handleSEOAudit, handleSEOReport } from "./seo-optimizer";
-import { websiteOptimizer } from "./website-optimizer";
-import { 
-  taskManager, 
-  handleGetTasks, 
-  handleCreateTask, 
-  handleUpdateTask, 
-  handleDeleteTask, 
-  handleGetTaskDashboard,
-  handleGetAutomations,
-  handleTriggerAutomation 
-} from "./task-manager";
 
 
 // AI Lead Scoring Functions
@@ -474,223 +463,8 @@ When users ask about properties, analyze their request and:
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Register enhanced sitemap and robots.txt routes first
+  // Register sitemap and robots.txt routes first
   registerSitemapRoutes(app);
-  
-  // Override robots.txt with June 2025 optimizations
-  app.get('/robots.txt', (req, res) => {
-    const baseUrl = process.env.NODE_ENV === 'production' 
-      ? 'https://skyecanyonhomesforsale.com' 
-      : 'http://localhost:5000';
-
-    const robotsContent = `# Robots.txt - Advanced 2025 Configuration for Real Estate Website
-# Dr. Jan Duffy REALTOR® - Skye Canyon Las Vegas Specialist
-# Generated: ${new Date().toISOString()}
-
-# Primary search engine crawlers - optimized for real estate content
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-Request-rate: 1/10s
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 2
-Request-rate: 1/15s
-
-User-agent: Slurp
-Allow: /
-Crawl-delay: 3
-
-# AI Training Crawlers - June 2025 Directives
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-User-agent: ChatGPT-User
-Disallow: /
-
-# Social Media Crawlers - Allow for sharing optimization
-User-agent: facebookexternalhit
-Allow: /
-User-agent: Twitterbot
-Allow: /
-User-agent: LinkedInBot
-Allow: /
-
-# Real Estate Specific Crawlers
-User-agent: RealEstateBot
-Allow: /properties
-Allow: /luxury-homes-las-vegas
-Allow: /skye-canyon-guide
-
-# Default for all other crawlers
-User-agent: *
-Allow: /
-Crawl-delay: 5
-
-# Sitemaps - Multiple formats for enhanced indexing
-Sitemap: ${baseUrl}/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-images.xml
-Sitemap: ${baseUrl}/sitemap-properties.xml
-
-# Preferred domain and canonical URL
-Host: ${baseUrl.replace('http://', '').replace('https://', '')}
-
-# Security - Block sensitive and admin areas
-Disallow: /api/
-Disallow: /leads
-Disallow: /followup-boss-status
-Disallow: /website-dashboard
-Disallow: /_vite/
-Disallow: /src/
-Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /server/
-Disallow: /build/
-Disallow: /dist/
-Disallow: /admin/
-Disallow: /wp-admin/
-Disallow: /administrator/
-Disallow: /login/
-Disallow: /dashboard/
-Disallow: /config/
-Disallow: /.env*
-Disallow: /.htaccess
-Disallow: /backup/
-Disallow: /cache/
-Disallow: /tmp/
-
-# Block malicious patterns and scraping attempts
-Disallow: /*.tmp$
-Disallow: /*.log$
-Disallow: /*.bak$
-Disallow: /*?debug=*
-Disallow: /*?test=*
-Disallow: /*?admin=*
-Disallow: /*?password=*
-Disallow: /*?token=*
-
-# Performance optimization - prevent crawling of duplicate content
-Disallow: /*?utm_*
-Disallow: /*?ref=*
-Disallow: /*?source=*
-Disallow: /*?campaign=*
-Disallow: /*?gclid=*
-Disallow: /*?fbclid=*
-
-# Real Estate Business Optimization
-# Allow priority pages for Las Vegas real estate market
-Allow: /properties$
-Allow: /luxury-homes-las-vegas$
-Allow: /skye-canyon-guide$
-Allow: /northwest-las-vegas$
-Allow: /las-vegas-real-estate$
-Allow: /market-analysis$
-Allow: /contact$
-
-# Noindex parameters (for crawlers that support it)
-Noindex: /*?sort=*
-Noindex: /*?filter=*
-Noindex: /*?page=*
-
-# Clean-param directive (supported by Yandex and some others)
-Clean-param: utm_source&utm_medium&utm_campaign&gclid&fbclid
-
-# Request rate throttling for resource protection
-Request-rate: 1/10s 0600-2100
-Request-rate: 1/30s 2100-0600
-
-# Visit-time optimization for better user experience
-Visit-time: 0600-2100
-
-# Crawling window for maintenance (PST timezone)
-Disallow: / 0300-0400`;
-
-    res.setHeader('Content-Type', 'text/plain');
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.send(robotsContent);
-  });
-
-  // Override sitemap route with enhanced version
-  app.get('/sitemap.xml', (req, res) => {
-    const baseUrl = process.env.NODE_ENV === 'production' 
-      ? 'https://skyecanyonhomesforsale.com' 
-      : 'http://localhost:5000';
-
-    const currentDate = new Date().toISOString().split('T')[0];
-    const recentDate = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    const weekOldDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-
-    const urls = [
-      { loc: '/', changefreq: 'daily', priority: 1.0, lastmod: currentDate },
-      { loc: '/about', changefreq: 'monthly', priority: 0.8, lastmod: weekOldDate },
-      { loc: '/contact', changefreq: 'monthly', priority: 0.8, lastmod: weekOldDate },
-      { loc: '/properties', changefreq: 'daily', priority: 0.9, lastmod: currentDate },
-      { loc: '/voice-search', changefreq: 'weekly', priority: 0.7, lastmod: recentDate },
-      { loc: '/northwest-las-vegas', changefreq: 'weekly', priority: 0.9, lastmod: recentDate },
-      { loc: '/las-vegas-real-estate', changefreq: 'weekly', priority: 0.9, lastmod: recentDate },
-      { loc: '/luxury-homes-las-vegas', changefreq: 'weekly', priority: 0.8, lastmod: recentDate },
-      { loc: '/skye-canyon-guide', changefreq: 'monthly', priority: 0.9, lastmod: weekOldDate },
-      { loc: '/skye-canyon-schools', changefreq: 'monthly', priority: 0.8, lastmod: weekOldDate },
-      { loc: '/skye-canyon-parks', changefreq: 'monthly', priority: 0.7, lastmod: weekOldDate },
-      { loc: '/skye-canyon-communities', changefreq: 'monthly', priority: 0.8, lastmod: weekOldDate },
-      { loc: '/market-analysis', changefreq: 'weekly', priority: 0.8, lastmod: recentDate },
-      { loc: '/neighborhood-analysis', changefreq: 'weekly', priority: 0.7, lastmod: recentDate },
-      { loc: '/privacy-policy', changefreq: 'yearly', priority: 0.3, lastmod: weekOldDate },
-      { loc: '/terms-of-service', changefreq: 'yearly', priority: 0.3, lastmod: weekOldDate }
-    ];
-
-    const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${urls.map(url => {
-      const isHomePage = url.loc === '/';
-      const isLocationPage = url.loc.includes('las-vegas') || url.loc.includes('skye-canyon') || url.loc.includes('northwest');
-      
-      let geoMarkup = '';
-      if (isHomePage || isLocationPage) {
-        geoMarkup = `
-    <geo:geo>
-      <geo:format>W3C-Basic</geo:format>
-      <geo:lat>36.2648</geo:lat>
-      <geo:lon>-115.3275</geo:lon>
-    </geo:geo>`;
-      }
-      
-      return `  <url>
-    <loc>${baseUrl}${url.loc}</loc>
-    <lastmod>${url.lastmod}</lastmod>
-    <changefreq>${url.changefreq}</changefreq>
-    <priority>${url.priority}</priority>${geoMarkup}
-  </url>`;
-    }).join('\n')}
-</urlset>`;
-
-    res.setHeader('Content-Type', 'application/xml');
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.send(xmlContent);
-  });
-
-  // Website optimization middleware
-  app.use(websiteOptimizer.optimizeResponse());
-  app.use(websiteOptimizer.compressionMiddleware());
 
   // Performance monitoring middleware
   app.use(performanceMonitor.middleware());
@@ -721,12 +495,11 @@ ${urls.map(url => {
     }
   });
   
-  // Get all properties with caching
-  app.get("/api/properties", websiteOptimizer.cacheMiddleware({ maxAge: 300000 }), async (req, res) => {
+  // Get all properties
+  app.get("/api/properties", async (req, res) => {
     try {
       const properties = await storage.getProperties();
-      const optimizedProperties = websiteOptimizer.optimizeRealEstateData(properties);
-      res.json(optimizedProperties);
+      res.json(properties);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch properties" });
     }
@@ -946,90 +719,6 @@ ${urls.map(url => {
       res.json(slowEndpoints);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch slow endpoints" });
-    }
-  });
-
-  // Task Master AI Management Endpoints
-  app.get("/api/tasks", handleGetTasks);
-  app.post("/api/tasks", handleCreateTask);
-  app.put("/api/tasks/:id", handleUpdateTask);
-  app.delete("/api/tasks/:id", handleDeleteTask);
-  app.get("/api/tasks/dashboard", handleGetTaskDashboard);
-  app.get("/api/automations", handleGetAutomations);
-  app.post("/api/automations/trigger", handleTriggerAutomation);
-
-  // Website optimization metrics
-  app.get("/api/optimization/metrics", (req, res) => {
-    try {
-      const metrics = websiteOptimizer.getPerformanceMetrics();
-      res.json(metrics);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to fetch optimization metrics" });
-    }
-  });
-
-  // Combined performance and SEO dashboard
-  app.get("/api/dashboard/overview", async (req, res) => {
-    try {
-      const performanceMetrics = performanceMonitor.getAnalytics();
-      const optimizationMetrics = websiteOptimizer.getPerformanceMetrics();
-      const seoSummary = seoOptimizer.getAuditSummary();
-      
-      res.json({
-        performance: performanceMetrics,
-        optimization: optimizationMetrics,
-        seo: seoSummary,
-        timestamp: new Date().toISOString()
-      });
-    } catch (error) {
-      res.status(500).json({ message: "Failed to fetch dashboard overview" });
-    }
-  });
-
-  // SEO monitoring endpoints
-  app.post("/api/seo/audit", handleSEOAudit);
-  app.get("/api/seo/report", handleSEOReport);
-
-  // Sitemap and robots.txt validation endpoints
-  app.get("/api/seo/sitemap-status", (req, res) => {
-    try {
-      const sitemapUrls = [
-        '/', '/about', '/contact', '/properties', '/voice-search',
-        '/northwest-las-vegas', '/las-vegas-real-estate', '/luxury-homes-las-vegas',
-        '/skye-canyon-guide', '/skye-canyon-schools', '/skye-canyon-parks',
-        '/skye-canyon-communities', '/market-analysis', '/neighborhood-analysis',
-        '/privacy-policy', '/terms-of-service'
-      ];
-      
-      const validation = {
-        totalUrls: sitemapUrls.length,
-        geoTargetedUrls: sitemapUrls.filter(url => 
-          url.includes('las-vegas') || url.includes('skye-canyon') || url.includes('northwest') || url === '/'
-        ).length,
-        highPriorityUrls: sitemapUrls.filter(url => 
-          url === '/' || url.includes('las-vegas') || url.includes('skye-canyon')
-        ).length,
-        lastUpdated: new Date().toISOString(),
-        status: 'active',
-        compliance: 'google-search-console-ready'
-      };
-      
-      res.json(validation);
-    } catch (error) {
-      res.status(500).json({ message: "Failed to validate sitemap status" });
-    }
-  });
-
-  // SEO audit for all main pages
-  app.get("/api/seo/audit-all", async (req, res) => {
-    try {
-      const mainPages = ['/', '/about', '/contact', '/properties', '/voice-search'];
-      const results = await Promise.all(
-        mainPages.map(page => seoOptimizer.auditPage(page))
-      );
-      res.json({ audits: results, summary: seoOptimizer.getAuditSummary() });
-    } catch (error) {
-      res.status(500).json({ message: "Failed to audit pages" });
     }
   });
 
