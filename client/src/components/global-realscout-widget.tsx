@@ -35,13 +35,15 @@ export default function GlobalRealScoutWidget() {
       script.onload = () => {
         console.log('RealScout widgets loaded globally');
         
-        // Configure RealScout for proper image loading
+        // Configure RealScout for optimal image loading
         if ((window as any).RealScout) {
           (window as any).RealScout.configure({
             imageLoadingPolicy: 'eager',
             crossOrigin: 'anonymous',
             allowImageFallback: true,
-            enableLazyLoading: false
+            enableLazyLoading: false,
+            imageQuality: 'high',
+            preloadImages: true
           });
         }
         

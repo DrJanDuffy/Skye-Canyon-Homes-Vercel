@@ -1,0 +1,131 @@
+> rest-express@1.0.0 dev
+6:37:41 AM [express] serving on port 5000 and host 0.0.0.0
+6:37:41 AM [express] Preview access: Available on all Replit domains
+6:37:41 AM [express] Production access: https://skyecanyonhomes.replit.app/
+6:37:42 AM [express] GET /api/market-data 200 in 523ms
+6:37:46 AM [express] GET /api/neighborhood-heatmap 304 in 3ms :: {"neighborhoods":[{"neighborhood":"…
+Slow request detected: GET /api/properties - 4500ms
+6:37:46 AM [express] GET /api/properties 200 in 4507ms :: []
+Analytics Event: {
+  "event": "page_view",
+  "parameters": {
+    "page_path": "/",
+    "page_title": "Skye Canyon Homes for Sale | Las Vegas NV Real Estate",
+    "user_journey_stage": "engagement",
+    "visit_count": 1,
+    "is_returning_visitor": false
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-12T06:37:46.275Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:37:46 AM [express] POST /api/analytics 200 in 1ms :: {"success":true}
+Analytics Event: {
+  "event": "page_view",
+  "parameters": {
+    "page_path": "/",
+    "page_title": "Skye Canyon Homes for Sale | Las Vegas NV Real Estate",
+    "user_journey_stage": "engagement",
+    "visit_count": 1,
+    "is_returning_visitor": false
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-12T06:37:46.277Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:37:46 AM [express] POST /api/analytics 200 in 0ms :: {"success":true}
+Analytics Event: {
+  "event": "web_vital",
+  "parameters": {
+    "metric_name": "FCP",
+    "metric_value": 4401.899999976158,
+    "metric_rating": "poor",
+    "metric_delta": 4401.899999976158
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-12T06:37:46.278Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:37:46 AM [express] POST /api/analytics 200 in 1ms :: {"success":true}
+Analytics Event: {
+  "event": "web_vital",
+  "parameters": {
+    "metric_name": "TTFB",
+    "metric_value": 0.8999999761581421,
+    "metric_rating": "good",
+    "metric_delta": 0.8999999761581421
+  },
+  "context": {
+    "url": "http://127.0.0.1:5000/",
+    "referrer": "",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "device": {
+      "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36",
+      "language": "en-US",
+      "screen_resolution": "1280x720",
+      "viewport_size": "1280x720",
+      "is_mobile": false,
+      "connection_type": "4g"
+    }
+  },
+  "timestamp": "2025-06-12T06:37:46.280Z",
+  "ip": "127.0.0.1",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/118.0.5993.88 Safari/537.36"
+}
+6:37:46 AM [express] POST /api/analytics 200 in 1ms :: {"success":true}
+6:37:46 AM [express] GET /api/properties 304 in 74ms :: []
+6:37:46 AM [express] GET /api/community-data 200 in 26ms
+6:37:46 AM [express] GET /api/agent-bio 200 in 26ms
+6:37:46 AM [express] GET /api/properties/featured 304 in 85ms :: []
+6:37:47 AM [express] GET /api/market-insights 200 in 478ms :: {"insights":[{"title":"Is Inventory Ge…
