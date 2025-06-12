@@ -16,11 +16,14 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
     rollupOptions: {
-      input: path.resolve(import.meta.dirname, "client", "index.html"),
-    },
+      input: {
+        main: path.resolve(import.meta.dirname, "client", "index.html")
+      }
+    }
   },
   server: {
-    host: "0.0.0.0",
-    port: 5000,
-  },
+    fs: {
+      allow: ['..']
+    }
+  }
 });
