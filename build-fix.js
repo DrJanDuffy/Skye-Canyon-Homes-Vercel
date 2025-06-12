@@ -22,7 +22,7 @@ try {
 
   // Build with explicit configuration to avoid directory conflicts
   console.log('⚡ Building client assets...');
-  execSync('npx vite build --config vite.config.ts --mode production --outDir ../dist/public', {
+  execSync('npx vite build --config ../vite.config.ts --mode production --outDir ../dist/public', {
     cwd: 'client',
     stdio: 'inherit',
     timeout: 300000
