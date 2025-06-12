@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { execSync } from "child_process";
-import { optimizedStorage as storage } from "./optimized-storage";
+import { cachedStorage as storage } from "./cached-storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
 import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSitemap } from "./google-indexing";
@@ -556,9 +556,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { priceMin, priceMax, type } = req.query;
       const filters = {
-        priceMin: priceMin ? Number(priceMin) : undefined,
-        priceMax: priceMax ? Number(priceMax) : undefined,
-        type: type as string | undefined
+        minPrice: priceMin ? Number(priceMin) : undefined,
+        maxPrice: priceMax ? Number(priceMax) : undefined,
+        status: type as string | undefined
       };
       
       const properties = await storage.searchProperties(filters);
@@ -746,6 +746,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(analytics);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch performance metrics" });
+    }
+  });
+
+  // Cache monitoring endpoints
+  app.get("/api/performance/cache", (req, res) => {
+    try {
+      const cacheStats = storage.getCacheStats();
+      res.json(cacheStats);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch cache statistics" });
+    }
+  });
+
+  app.post("/api/performance/cache/clear", (req, res) => {
+    try {
+      storage.clearCache();
+      res.json({ message: "Cache cleared successfully" });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to clear cache" });
+    }
+  });
+
+  app.post("/api/performance/cache/invalidate", (req, res) => {
+    try {
+      const { pattern } = req.body;
+      if (!pattern) {
+        return res.status(400).json({ message: "Pattern is required" });
+      }
+      const deletedCount = storage.invalidateCache(pattern);
+      res.json({ 
+        message: `Invalidated ${deletedCount} cache entries`,
+        deletedCount
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to invalidate cache" });
     }
   });
 

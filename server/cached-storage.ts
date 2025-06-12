@@ -174,6 +174,33 @@ export class CachedStorage {
     }
   }
 
+  async getProperty(id: number): Promise<Property | undefined> {
+    const start = Date.now();
+    
+    try {
+      const property = await performanceCache.getOrSet(
+        CacheKeys.propertyById(id),
+        async () => {
+          const dbStart = Date.now();
+          // Use enhanced storage getProperties and filter by ID
+          const properties = await enhancedStorage.getProperties();
+          const result = properties.find(p => p.id === id);
+          console.log(`Single property query: ${Date.now() - dbStart}ms`);
+          return result;
+        },
+        CacheTTL.PROPERTIES
+      );
+      
+      this.logSlowQueries('getProperty', Date.now() - start);
+      return property;
+    } catch (error) {
+      console.error('Error in cached getProperty:', error);
+      // Fallback to direct database call
+      const properties = await enhancedStorage.getProperties();
+      return properties.find(p => p.id === id);
+    }
+  }
+
   async updateMarketStats(stats: InsertMarketStats): Promise<MarketStats> {
     try {
       const result = await enhancedStorage.updateMarketStats(stats);
