@@ -5,15 +5,16 @@ export function securityHeaders(req: Request, res: Response, next: NextFunction)
   // Basic security headers
   res.setHeader('X-DNS-Prefetch-Control', 'on');
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-  res.setHeader('X-Frame-Options', 'SAMEORIGIN'); // Allow frames from same origin
+  res.setHeader('X-Frame-Options', 'ALLOWALL'); // Allow external browser access
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'origin-when-cross-origin');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   
-  // CORS headers for RealScout widget
+  // CORS headers for external access and RealScout widget
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+  res.setHeader('Access-Control-Allow-Credentials', 'false');
   
   // Permissions policy for real estate features
   res.setHeader(

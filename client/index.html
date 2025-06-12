@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <base href="/" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#4a90e2" />
+    <link rel="canonical" href="/" />
     <title>Skye Canyon | Dr. Jan Duffy, REALTOR®</title>
     <meta name="description" content="Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®. Expert market knowledge, personalized service, and exclusive listings in North Las Vegas." />
     
@@ -42,9 +46,15 @@
     </style>
   </head>
   <body>
+    <script>
+      // Prevent external page collapse by breaking out of frames
+      if (window.parent && window.parent !== window) {
+        window.parent.location.href = window.location.href;
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    <!-- Replit development banner disabled for external access -->
+    <!-- <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script> -->
   </body>
 </html>
