@@ -71,11 +71,17 @@ app.use(express.static(path.join(process.cwd(), 'public')));
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = process.env.PORT || 5000;
-  server.listen(port, "0.0.0.0", () => {
-    log(`serving on port ${port} and host 0.0.0.0`);
+  // Configure for external Replit domain access
+  const port = parseInt(process.env.PORT || "5000", 10);
+  const host = process.env.REPL_SLUG ? "0.0.0.0" : "localhost";
+  
+  server.listen({
+    port,
+    host,
+  }, () => {
+    log(`serving on port ${port} and host ${host}`);
+    if (process.env.REPL_SLUG) {
+      log(`External access: https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`);
+    }
   });
 })();
