@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { execSync } from "child_process";
-import { storage } from "./storage";
+import { optimizedStorage as storage } from "./optimized-storage";
 import { insertLeadSchema, insertPropertySchema } from "@shared/schema";
 import { z } from "zod";
 import { handleIndexingRequest, requestGoogleIndexing, getAllSiteUrls, submitSitemap } from "./google-indexing";
@@ -463,6 +463,18 @@ When users ask about properties, analyze their request and:
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Performance monitoring middleware
+  app.use((req: any, res, next) => {
+    req.startTime = Date.now();
+    res.on('finish', () => {
+      const duration = Date.now() - (req.startTime || 0);
+      if (duration > 1000) { // Log slow requests
+        console.log(`Slow request: ${req.method} ${req.path} - ${duration}ms`);
+      }
+    });
+    next();
+  });
+
   // Register sitemap and robots.txt routes first
   registerSitemapRoutes(app);
 
@@ -495,13 +507,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
-  // Get all properties
+  // Get all properties - OPTIMIZED with performance monitoring
   app.get("/api/properties", async (req, res) => {
+    const startTime = Date.now();
+    console.log('Properties request started');
+    
     try {
+      // Add database query timing
+      const dbStart = Date.now();
       const properties = await storage.getProperties();
+      const dbDuration = Date.now() - dbStart;
+      console.log(`DB query took: ${dbDuration}ms`);
+      
+      // Log slow database queries
+      if (dbDuration > 1000) {
+        console.warn(`SLOW DB QUERY: /api/properties - ${dbDuration}ms`);
+      }
+      
       res.json(properties);
     } catch (error) {
+      console.error('Properties endpoint error:', error);
       res.status(500).json({ message: "Failed to fetch properties" });
+    } finally {
+      const totalDuration = Date.now() - startTime;
+      console.log(`Total request time: ${totalDuration}ms`);
+      
+      // Alert on slow requests
+      if (totalDuration > 2000) {
+        console.warn(`PERFORMANCE ALERT: /api/properties took ${totalDuration}ms`);
+      }
     }
   });
 
