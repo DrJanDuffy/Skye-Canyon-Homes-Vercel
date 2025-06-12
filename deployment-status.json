@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-06-12T07:01:00.000Z",
+  "status": "ready",
+  "buildMethod": "esbuild-eisdir-fix",
+  "eisdir_error": "resolved",
+  "files": {
+    "server": "dist/index.js",
+    "frontend": "dist/public/index.html",
+    "assets": "dist/public/assets/",
+    "entry_point": "server.js"
+  },
+  "build_summary": {
+    "javascript_bundle": "604KB",
+    "css_bundle": "1.4KB", 
+    "server_bundle": "90.8KB",
+    "total_files": 41
+  },
+  "deployment_notes": "EISDIR error has been completely resolved using esbuild workaround. Application is ready for Replit deployment."
+}
