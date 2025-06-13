@@ -6,108 +6,49 @@ declare global {
       'realscout-office-listings': any;
     }
   }
-  
-  interface Window {
-    RealScout?: {
-      configure: (config: any) => void;
-      init: () => void;
-      refresh: () => void;
-    };
-  }
 }
 
 export default function GlobalRealScoutWidget() {
   useEffect(() => {
-    const loadRealScoutScript = () => {
-      // Remove existing script if present
-      const existingScript = document.querySelector('script[src*="realscout"]');
-      if (existingScript) {
-        existingScript.remove();
-      }
+    // Check if script already exists
+    const existingScript = document.querySelector('script[src*="realscout-web-components"]');
+    if (existingScript) {
+      console.log('RealScout script already loaded');
+      return;
+    }
 
-      const script = document.createElement('script');
-      script.src = 'https://em.realscout.com/js/realscout-widgets.js';
-      script.async = true;
-      script.crossOrigin = 'anonymous';
-      script.defer = true;
-      script.setAttribute('data-widgets-loaded', 'true');
-      
-      script.onload = () => {
-        console.log('RealScout widgets loaded globally');
-        
-        // Configure RealScout for optimal image loading
-        if ((window as any).RealScout) {
-          (window as any).RealScout.configure({
-            imageLoadingPolicy: 'eager',
-            crossOrigin: 'anonymous',
-            allowImageFallback: true,
-            enableLazyLoading: false,
-            imageQuality: 'high',
-            preloadImages: true
-          });
-        }
-        
-        // Force widget initialization and image loading
-        setTimeout(() => {
-          const widgets = document.querySelectorAll('realscout-office-listings');
-          widgets.forEach((widget: any) => {
-            // Trigger widget refresh
-            if (widget.reinitialize) {
-              widget.reinitialize();
-            }
-            
-            // Force image loading by setting crossorigin attribute
-            const images = widget.querySelectorAll('img');
-            images.forEach((img: HTMLImageElement) => {
-              img.crossOrigin = 'anonymous';
-              img.loading = 'eager';
-              
-              // Reload image if it failed to load
-              if (!img.complete || img.naturalHeight === 0) {
-                const originalSrc = img.src;
-                img.src = '';
-                img.src = originalSrc;
-              }
-            });
-          });
-          
-          // Also apply to any images that might load later
-          const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-              if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach((node) => {
-                  if (node.nodeType === Node.ELEMENT_NODE) {
-                    const element = node as Element;
-                    const images = element.querySelectorAll('img');
-                    images.forEach((img: HTMLImageElement) => {
-                      img.crossOrigin = 'anonymous';
-                      img.loading = 'eager';
-                    });
-                  }
-                });
-              }
-            });
-          });
-          
-          widgets.forEach((widget) => {
-            observer.observe(widget, { childList: true, subtree: true });
-          });
-        }, 1000);
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load RealScout widgets');
-      };
-
-      document.head.appendChild(script);
+    const script = document.createElement('script');
+    script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
+    script.type = 'module';
+    
+    script.onload = () => {
+      console.log('RealScout web components loaded successfully');
     };
 
-    loadRealScoutScript();
+    script.onerror = () => {
+      console.error('Failed to load RealScout web components');
+    };
+
+    document.head.appendChild(script);
+
+    // Add global styles for RealScout widgets
+    if (!document.querySelector('#realscout-styles')) {
+      const style = document.createElement('style');
+      style.id = 'realscout-styles';
+      style.textContent = `
+        realscout-office-listings {
+          --rs-listing-divider-color: rgb(101, 141, 172);
+          width: 100%;
+          display: block;
+        }
+      `;
+      document.head.appendChild(style);
+    }
 
     return () => {
-      const script = document.querySelector('script[src*="realscout"]');
-      if (script) {
-        script.remove();
+      const scriptToRemove = document.querySelector('script[src*="realscout-web-components"]');
+      if (scriptToRemove) {
+        scriptToRemove.remove();
       }
     };
   }, []);
