@@ -194,7 +194,7 @@ export default function SkyeCanyonSchools() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Homes Near Top-Rated Schools
+                Skye Canyon Homes Near Top-Rated Schools
               </h2>
               <p className="text-xl text-gray-600">
                 Properties in excellent school districts
@@ -209,7 +209,7 @@ export default function SkyeCanyonSchools() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                K-5 Elementary Schools
+                Skye Canyon K-5 Elementary Schools
               </h2>
               <p className="text-xl text-gray-600">
                 Three excellent elementary schools serve Skye Canyon families
@@ -269,7 +269,7 @@ export default function SkyeCanyonSchools() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Senior High School
+                Skye Canyon Senior High School
               </h2>
               <p className="text-xl text-gray-600">
                 Arbor View High School - Skye Canyon's premier high school destination

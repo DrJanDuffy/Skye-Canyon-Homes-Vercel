@@ -117,7 +117,7 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Voice-Activated Property Search</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Voice-Activated Skye Canyon Property Search</h2>
             <p className="text-xl text-gray-600">Search for your dream home using natural language</p>
           </div>
           <ErrorBoundary>
@@ -186,7 +186,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Neighborhood Market Analytics
+              Skye Canyon Neighborhood Market Analytics
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Explore interactive data on Las Vegas neighborhoods including price trends, market activity, 
@@ -200,7 +200,7 @@ export default function Home() {
       {/* Preference Collector */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Tell Us What You're Looking For</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Tell Us What Skye Canyon Features You're Looking For</h2>
           <PreferenceCollector />
         </div>
       </section>
@@ -208,7 +208,7 @@ export default function Home() {
       {/* RealScout Search CTA */}
       <section className="py-12 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Find Your Perfect Home?</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready to Find Your Perfect Skye Canyon Home?</h2>
           <p className="text-xl text-blue-100 mb-8">
             Search Skye Canyon properties or get your home's current market value instantly
           </p>
