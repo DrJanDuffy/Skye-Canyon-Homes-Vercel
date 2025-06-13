@@ -63,26 +63,12 @@ function HomePage() {
           <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#1e40af' }}>
             Featured Skye Canyon Listings - $550K+
           </h2>
-          <div 
-            data-realscout="office-listings"
+          <realscout-office-listings
             agent-encoded-id="QWdlbnQtMjI1MDUw"
             price-min="550000"
             price-max="9999999"
-            style={{ minHeight: '500px' }}
-          >
-            <div style={{ 
-              padding: '40px', 
-              textAlign: 'center', 
-              backgroundColor: '#f1f5f9',
-              border: '2px dashed #cbd5e1',
-              borderRadius: '8px'
-            }}>
-              <p style={{ fontSize: '18px', color: '#64748b' }}>Loading RealScout listings...</p>
-              <p style={{ fontSize: '14px', color: '#94a3b8', marginTop: '10px' }}>
-                Premium Skye Canyon properties starting at $550,000
-              </p>
-            </div>
-          </div>
+            style={{ minHeight: '500px', width: '100%', display: 'block' }}
+          ></realscout-office-listings>
         </div>
         
         {/* Contact Section */}
@@ -146,28 +132,12 @@ function PropertiesPage() {
           <h2 style={{ fontSize: '28px', marginBottom: '20px', color: '#1e40af' }}>
             Complete Property Listings - Starting at $400K
           </h2>
-          <div 
-            data-realscout="office-listings"
+          <realscout-office-listings
             agent-encoded-id="QWdlbnQtMjI1MDUw"
             price-min="400000"
             price-max="9999999"
-            style={{ minHeight: '800px' }}
-          >
-            <div style={{ 
-              padding: '60px', 
-              textAlign: 'center', 
-              backgroundColor: '#f1f5f9',
-              border: '2px dashed #cbd5e1',
-              borderRadius: '8px'
-            }}>
-              <p style={{ fontSize: '18px', color: '#64748b', marginBottom: '10px' }}>
-                Loading all available Skye Canyon properties...
-              </p>
-              <p style={{ fontSize: '14px', color: '#94a3b8' }}>
-                Complete inventory including luxury homes, new construction, and resale properties
-              </p>
-            </div>
-          </div>
+            style={{ minHeight: '800px', width: '100%', display: 'block' }}
+          ></realscout-office-listings>
         </div>
       </div>
     </div>

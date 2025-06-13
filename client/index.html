@@ -26,12 +26,7 @@
     </style>
   </head>
   <body>
-    <script>
-      // Prevent external page collapse by breaking out of frames
-      if (window.parent && window.parent !== window) {
-        window.parent.location.href = window.location.href;
-      }
-    </script>
+    <!-- RealScout initialization will be handled by React -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
