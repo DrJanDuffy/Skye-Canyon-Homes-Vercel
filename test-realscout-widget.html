@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealScout Widget Test</title>
+    <script src="https://em.realscout.com/widgets/realscout-web-components.umd.js" type="module"></script>
+</head>
+<body>
+    <h1>RealScout Widget Format Test</h1>
+    
+    <h2>Your Specified Format:</h2>
+    <realscout-office-listings 
+        agent-encoded-id="QWdlbnQtMjI1MDUw" 
+        sort-order="STATUS_AND_SIGNIFICANT_CHANGE" 
+        listing-status="For Sale" 
+        property-types="SFR,MF,TC,MOBILE" 
+        price-min="500500" 
+        price-max="1200000">
+    </realscout-office-listings>
+    
+    <h2>Homepage Widget (Current Implementation):</h2>
+    <realscout-office-listings 
+        agent-encoded-id="QWdlbnQtMjI1MDUw" 
+        sort-order="STATUS_AND_SIGNIFICANT_CHANGE" 
+        listing-status="For Sale" 
+        property-types="SFR,MF,TC,MOBILE" 
+        price-min="550000">
+    </realscout-office-listings>
+    
+    <h2>Luxury Widget:</h2>
+    <realscout-office-listings 
+        agent-encoded-id="QWdlbnQtMjI1MDUw" 
+        sort-order="PRICE_HIGH_TO_LOW" 
+        listing-status="For Sale" 
+        property-types="SFR,MF,TC" 
+        price-min="800000">
+    </realscout-office-listings>
+    
+    <h2>Entry-Level Widget:</h2>
+    <realscout-office-listings 
+        agent-encoded-id="QWdlbnQtMjI1MDUw" 
+        sort-order="PRICE_LOW_TO_HIGH" 
+        listing-status="For Sale" 
+        property-types="SFR,TC,MOBILE" 
+        price-min="500000" 
+        price-max="650000">
+    </realscout-office-listings>
+</body>
+</html>
