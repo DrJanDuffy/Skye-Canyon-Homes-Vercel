@@ -51,7 +51,7 @@ export default function NorthwestLasVegas() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Northwest Las Vegas Real Estate
+              Northwest Las Vegas Skye Canyon Homes Real Estate
             </h1>
             <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
               Discover luxury homes in Las Vegas's most desirable northwest communities. 

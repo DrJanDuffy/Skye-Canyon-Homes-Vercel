@@ -100,7 +100,7 @@ export default function SkyeCanyonCommunities() {
         <section className="pt-20 pb-16 px-4">
           <div className="max-w-6xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Skye Canyon New Construction Communities
+              Skye Canyon Homes New Construction Communities
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Discover luxury new construction homes by Century Communities in Skye Canyon. With spacious one and two-story homes featuring up to six bedrooms and flexible floor plans for every life stage.
