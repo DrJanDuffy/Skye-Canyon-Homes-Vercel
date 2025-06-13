@@ -54,7 +54,7 @@ export default function Properties() {
             </p>
             <h3 className="text-lg font-medium text-gray-700 mb-4">Featured Listings</h3>
           </div>
-          <RealScoutListings className="w-full" />
+          <RealScoutListings className="w-full" variant="mid-range" />
         </div>
       </section>
 
@@ -70,7 +70,7 @@ export default function Properties() {
             </p>
             <h3 className="text-lg font-medium text-gray-700 mb-4">Browse All Properties</h3>
           </div>
-          <RealScoutListings className="w-full" />
+          <RealScoutListings className="w-full" variant="all-properties" />
         </div>
       </section>
 

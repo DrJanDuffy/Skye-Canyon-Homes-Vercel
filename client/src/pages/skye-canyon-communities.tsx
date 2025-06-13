@@ -133,7 +133,7 @@ export default function SkyeCanyonCommunities() {
                 Available properties in Skye Canyon communities
               </p>
             </div>
-            <RealScoutListings className="w-full" />
+            <RealScoutListings className="w-full" variant="new-construction" />
           </div>
         </section>
 

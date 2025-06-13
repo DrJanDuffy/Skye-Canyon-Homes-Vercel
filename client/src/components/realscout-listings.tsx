@@ -1,5 +1,10 @@
 interface RealScoutListingsProps {
   className?: string;
+  priceMin?: string;
+  priceMax?: string;
+  propertyTypes?: string;
+  sortOrder?: string;
+  variant?: 'homepage' | 'luxury' | 'entry-level' | 'mid-range' | 'new-construction' | 'all-properties';
 }
 
 declare global {
@@ -10,13 +15,81 @@ declare global {
   }
 }
 
-export default function RealScoutListings({ className = "" }: RealScoutListingsProps) {
+export default function RealScoutListings({ 
+  className = "", 
+  priceMin,
+  priceMax,
+  propertyTypes,
+  sortOrder,
+  variant = 'homepage'
+}: RealScoutListingsProps) {
+  // Define price ranges and configurations based on variant
+  const getWidgetConfig = () => {
+    switch (variant) {
+      case 'luxury':
+        return {
+          priceMin: priceMin || "800000",
+          priceMax: priceMax || undefined,
+          propertyTypes: propertyTypes || "SFR,MF,TC",
+          sortOrder: sortOrder || "PRICE_HIGH_TO_LOW",
+          title: "Luxury Skye Canyon Homes",
+          description: "Premium properties starting at $800K+"
+        };
+      case 'entry-level':
+        return {
+          priceMin: priceMin || "500000",
+          priceMax: priceMax || "650000",
+          propertyTypes: propertyTypes || "SFR,TC,MOBILE",
+          sortOrder: sortOrder || "PRICE_LOW_TO_HIGH",
+          title: "Starter Homes in Skye Canyon",
+          description: "Affordable options from $500K-$650K"
+        };
+      case 'mid-range':
+        return {
+          priceMin: priceMin || "650000",
+          priceMax: priceMax || "800000",
+          propertyTypes: propertyTypes || "SFR,MF,TC",
+          sortOrder: sortOrder || "STATUS_AND_SIGNIFICANT_CHANGE",
+          title: "Mid-Range Skye Canyon Properties",
+          description: "Quality homes from $650K-$800K"
+        };
+      case 'new-construction':
+        return {
+          priceMin: priceMin || "600000",
+          priceMax: priceMax || undefined,
+          propertyTypes: propertyTypes || "SFR,MF",
+          sortOrder: sortOrder || "NEWEST",
+          title: "New Construction Homes",
+          description: "Brand new properties from $600K+"
+        };
+      case 'all-properties':
+        return {
+          priceMin: priceMin || "400000",
+          priceMax: priceMax || undefined,
+          propertyTypes: propertyTypes || "SFR,MF,TC,MOBILE",
+          sortOrder: sortOrder || "STATUS_AND_SIGNIFICANT_CHANGE",
+          title: "All Available Properties",
+          description: "Complete inventory starting at $400K+"
+        };
+      default: // homepage
+        return {
+          priceMin: priceMin || "550000",
+          priceMax: priceMax || undefined,
+          propertyTypes: propertyTypes || "SFR,MF,TC,MOBILE",
+          sortOrder: sortOrder || "STATUS_AND_SIGNIFICANT_CHANGE",
+          title: "Featured Skye Canyon Homes",
+          description: "Current listings starting at $550K+"
+        };
+    }
+  };
+
+  const config = getWidgetConfig();
   return (
     <div className={`${className} realscout-container bg-white rounded-lg shadow-lg overflow-hidden`}>
       {/* Enhanced Header with Strong CTA */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6">
-        <h3 className="text-2xl font-bold mb-2">Search Skye Canyon Homes</h3>
-        <p className="text-blue-100 mb-4">Browse available properties and find your dream home</p>
+        <h3 className="text-2xl font-bold mb-2">{config.title}</h3>
+        <p className="text-blue-100 mb-4">{config.description}</p>
         <div className="flex flex-col sm:flex-row gap-3">
           <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-center">
             Search All Homes
@@ -46,10 +119,11 @@ export default function RealScoutListings({ className = "" }: RealScoutListingsP
       <div className="p-6">
         <realscout-office-listings 
           agent-encoded-id="QWdlbnQtMjI1MDUw" 
-          sort-order="STATUS_AND_SIGNIFICANT_CHANGE" 
+          sort-order={config.sortOrder} 
           listing-status="For Sale"
-          property-types="SFR,MF,TC,MOBILE" 
-          price-min="500500"
+          property-types={config.propertyTypes} 
+          price-min={config.priceMin}
+          {...(config.priceMax && { 'price-max': config.priceMax })}
         ></realscout-office-listings>
       </div>
       
