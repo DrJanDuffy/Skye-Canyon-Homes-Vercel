@@ -1,75 +1,79 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
+/**
+ * Production server starter for Replit deployment
+ * Ensures proper port binding and static asset serving
+ */
+
+import { spawn } from 'child_process';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
 import path from 'path';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
 function log(message) {
-  const timestamp = new Date().toLocaleTimeString();
-  console.log(`${timestamp} [START] ${message}`);
+  console.log(`[Production] ${message}`);
 }
 
-function findAvailablePort(startPort = 3001) {
-  for (let port = startPort; port < startPort + 100; port++) {
-    try {
-      execSync(`lsof -i :${port}`, { stdio: 'ignore' });
-    } catch {
-      return port; // Port is available
+function checkBuildArtifacts() {
+  const requiredFiles = [
+    'dist/server.js',
+    'dist/public/index.html',
+    'dist/public/assets/main.js',
+    'dist/public/assets/main.css'
+  ];
+
+  for (const file of requiredFiles) {
+    if (!fs.existsSync(file)) {
+      log(`❌ Missing build artifact: ${file}`);
+      log('Run: node build-esbuild.js first');
+      process.exit(1);
     }
   }
-  return startPort; // Fallback
-}
-
-function killProcessOnPort(port) {
-  try {
-    execSync(`lsof -ti:${port} | xargs kill -9`, { stdio: 'ignore' });
-    log(`Killed process on port ${port}`);
-  } catch {
-    // No process to kill or permission denied
-  }
-}
-
-async function main() {
-  log('🚀 Starting production deployment...');
-
-  // Find available port
-  const PORT = process.env.PORT || findAvailablePort(3001);
   
-  // Kill any existing process on the port
-  killProcessOnPort(PORT);
+  log('✅ All build artifacts verified');
+}
 
-  // Check if build exists, if not build first
-  if (!fs.existsSync('dist/public/index.html')) {
-    log('📦 No build found, running build first...');
-    try {
-      execSync('node build-esbuild.js', { stdio: 'inherit' });
-    } catch (error) {
-      log('❌ Build failed, falling back to deployment script');
-      process.env.PORT = PORT;
-      execSync('node deploy-production.js', { stdio: 'inherit' });
-      return;
+function startProductionServer() {
+  log('Starting production server from dist/server.js...');
+  
+  const serverProcess = spawn('node', ['server.js'], {
+    cwd: 'dist',
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      NODE_ENV: 'production'
     }
-  }
+  });
 
-  // Start production server
-  log(`🚀 Starting production server on port ${PORT}...`);
-  process.env.PORT = PORT;
-  process.env.NODE_ENV = 'production';
-  
-  try {
-    execSync('node production-server.js', { stdio: 'inherit' });
-  } catch (error) {
-    log('⚠️ Production server failed, falling back to deployment script');
-    execSync('node deploy-production.js', { stdio: 'inherit' });
-  }
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(error => {
-    console.error('❌ Failed to start production:', error);
+  serverProcess.on('error', (error) => {
+    log(`❌ Server error: ${error.message}`);
     process.exit(1);
   });
+
+  serverProcess.on('exit', (code) => {
+    log(`Server exited with code: ${code}`);
+    process.exit(code || 0);
+  });
+
+  // Handle graceful shutdown
+  process.on('SIGTERM', () => {
+    log('Received SIGTERM, shutting down gracefully...');
+    serverProcess.kill('SIGTERM');
+  });
+
+  process.on('SIGINT', () => {
+    log('Received SIGINT, shutting down gracefully...');
+    serverProcess.kill('SIGINT');
+  });
 }
+
+function main() {
+  log('Replit production deployment starting...');
+  
+  // Verify build artifacts exist
+  checkBuildArtifacts();
+  
+  // Start the production server
+  startProductionServer();
+}
+
+main();

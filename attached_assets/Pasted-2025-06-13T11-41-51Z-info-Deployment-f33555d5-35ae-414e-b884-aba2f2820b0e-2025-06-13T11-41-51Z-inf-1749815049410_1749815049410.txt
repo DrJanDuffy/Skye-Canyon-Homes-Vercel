@@ -1,0 +1,94 @@
+2025-06-13T11:41:51Z info: Deployment: f33555d5-35ae-414e-b884-aba2f2820b0e
+2025-06-13T11:41:51Z info: Connecting to builder
+2025-06-13T11:41:52Z info: Builder connected
+2025-06-13T11:41:53Z info: Installing packages
+--> npm install
+
+
+up to date, audited 789 packages in 5s
+
+140 packages are looking for funding
+  run `npm fund` for details
+
+
+8 vulnerabilities (1 low, 7 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+npm notice
+npm notice New major version of npm available! 10.8.2 -> 11.4.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.4.2
+npm notice To update run: npm install -g npm@11.4.2
+npm notice
+
+2025-06-13T11:41:59Z info: Starting Build
+
+> rest-express@1.0.0 build
+> node build-esbuild.js
+
+
+🚀 Starting complete ESBuild process...
+
+🚀 Project structure analysis:
+
+🚀 ✓ Found client/index.html
+
+🚀 ✓ Found client/src/main.tsx
+
+🚀 Building client with ESBuild...
+
+🚀 ✓ Client build completed
+🚀 Building CSS with Tailwind...
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+Rebuilding...
+
+Done in 2446ms.
+
+🚀 ✓ CSS build completed
+
+🚀 Creating HTML (bypassing Vite processing)...
+
+🚀 Copying public assets...
+
+🚀 ✓ Public assets copied
+
+🚀 Building server with ESBuild...
+
+🚀 ✓ Server build completed
+
+🚀 ✓ dist/public/index.html (2 KB)
+
+🚀 ✓ dist/public/assets/main.js (604 KB)
+
+🚀 ✓ dist/server.js (69 KB)
+
+Build time: 8.393s
+
+Run: cd dist && node server.js
+
+2025-06-13T11:42:08Z info: Pushing pid1 binary layer...
+2025-06-13T11:42:09Z info: Pushing Repl layer...
+2025-06-13T11:42:09Z info: Pushing hosting layer...
+2025-06-13T11:42:09Z info: Retrieved cached nix layer
+2025-06-13T11:42:09Z info: Created hosting layer
+2025-06-13T11:42:10Z info: Created pid1 binary layer
+2025-06-13T11:42:35Z info: Created Repl layer
+2025-06-13T11:42:36Z info: Pushed image manifest
+2025-06-13T11:42:36Z info: Pushed soci index manifest
+2025-06-13T11:42:40Z info: Creating Autoscale service
+error proxying request error=dial tcp 127.0.0.1:5000: connect: connection refused
+error proxying request error=dial tcp 127.0.0.1:5000: connect: connection refused
+    at finalizeResolution (node:internal/modules/esm/resolve:265:11)
+error proxying request error=dial tcp 127.0.0.1:5000: connect: connection refused
+command finished successfully with exit code 0
+2025-06-13T11:43:50Z error: The deployment is failing health checks. This can happen if the application isn't responding, responds with an error, or doesn't respond in time. Health checks are sent to the / endpoint by default and must respond as soon as possible. Make sure that the / endpoint is implemented and returns a 200 status code in a timely manner. Avoid doing expensive or long running operations on the / endpoint, prefer deferring them to a different route. Check the logs for more information.
