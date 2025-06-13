@@ -63,12 +63,16 @@ function HomePage() {
           <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#1e40af' }}>
             Featured Skye Canyon Listings - $550K+
           </h2>
-          <realscout-office-listings
-            agent-encoded-id="QWdlbnQtMjI1MDUw"
-            price-min="550000"
-            price-max="9999999"
-            style={{ minHeight: '500px', width: '100%', display: 'block' }}
-          ></realscout-office-listings>
+          <div 
+            dangerouslySetInnerHTML={{
+              __html: `<realscout-office-listings 
+                agent-encoded-id="QWdlbnQtMjI1MDUw" 
+                price-min="550000" 
+                price-max="9999999"
+                style="min-height: 500px; width: 100%; display: block;">
+              </realscout-office-listings>`
+            }}
+          ></div>
         </div>
         
         {/* Contact Section */}
@@ -132,12 +136,16 @@ function PropertiesPage() {
           <h2 style={{ fontSize: '28px', marginBottom: '20px', color: '#1e40af' }}>
             Complete Property Listings - Starting at $400K
           </h2>
-          <realscout-office-listings
-            agent-encoded-id="QWdlbnQtMjI1MDUw"
-            price-min="400000"
-            price-max="9999999"
-            style={{ minHeight: '800px', width: '100%', display: 'block' }}
-          ></realscout-office-listings>
+          <div 
+            dangerouslySetInnerHTML={{
+              __html: `<realscout-office-listings 
+                agent-encoded-id="QWdlbnQtMjI1MDUw" 
+                price-min="400000" 
+                price-max="9999999"
+                style="min-height: 800px; width: 100%; display: block;">
+              </realscout-office-listings>`
+            }}
+          ></div>
         </div>
       </div>
     </div>
