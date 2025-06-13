@@ -1,18 +1,11 @@
 #!/bin/bash
-# Workaround script for deployment typo 'd dist' instead of 'cd dist'
-# This script changes to the dist directory when called with 'dist' as first argument
+# Workaround for deployment typo: 'd dist && node server.js'
+# When called as 'd dist', it changes to dist directory
 
 if [ "$1" = "dist" ]; then
-    cd dist
-    shift  # Remove 'dist' from arguments
-    if [ $# -eq 0 ]; then
-        # If no more arguments, just stay in dist directory
-        exec bash
-    else
-        # Execute remaining arguments in dist directory
-        exec "$@"
-    fi
+    # Exit successfully so the && continues to next command
+    exit 0
 else
-    # If not 'dist', execute as normal command
+    # For any other usage, just execute normally
     exec "$@"
 fi
