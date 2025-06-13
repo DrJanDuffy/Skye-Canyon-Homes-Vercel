@@ -145,7 +145,7 @@ async function buildServer() {
   await build({
     entryPoints: ['server/index.ts'],
     bundle: true,
-    outfile: 'dist/server.js',
+    outfile: 'dist/index.js',
     format: 'esm',
     target: 'node18',
     platform: 'node',
@@ -194,7 +194,7 @@ async function createPackageJson() {
     version: originalPackage.version,
     type: 'module',
     scripts: {
-      start: 'node server.js'
+      start: 'node index.js'
     },
     dependencies: {
       express: originalPackage.dependencies.express,
@@ -229,7 +229,7 @@ async function verifyBuild() {
     'dist/public/index.html',
     'dist/public/assets/main.js',
     'dist/public/assets/main.css', 
-    'dist/server.js',
+    'dist/index.js',
     'dist/package.json'
   ];
   
@@ -273,7 +273,7 @@ async function main() {
     log('Build completed successfully!');
     
     // Show build summary
-    const serverSize = Math.round(fs.statSync('dist/server.js').size / 1024);
+    const serverSize = Math.round(fs.statSync('dist/index.js').size / 1024);
     const clientSize = Math.round(fs.statSync('dist/public/assets/main.js').size / 1024);
     const cssSize = Math.round(fs.statSync('dist/public/assets/main.css').size / 1024);
     
@@ -283,7 +283,7 @@ async function main() {
     console.log(`CSS: ${cssSize} KB`);
     
     console.log(`\n✅ Ready for deployment!`);
-    console.log(`Run: cd dist && node server.js`);
+    console.log(`Run: cd dist && node index.js`);
     
   } catch (error) {
     console.error('❌ Build failed:', error.message);
