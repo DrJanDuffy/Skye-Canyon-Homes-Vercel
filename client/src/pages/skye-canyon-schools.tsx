@@ -200,7 +200,7 @@ export default function SkyeCanyonSchools() {
                 Properties in excellent school districts
               </p>
             </div>
-            <RealScoutListings className="w-full" />
+            <RealScoutListings className="w-full" variant="mid-range" />
           </div>
         </section>
 

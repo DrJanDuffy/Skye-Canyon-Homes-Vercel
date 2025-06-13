@@ -76,7 +76,7 @@ export default function NorthwestLasVegas() {
               Available properties in northwest communities
             </p>
           </div>
-          <RealScoutListings className="w-full" />
+          <RealScoutListings className="w-full" variant="all-properties" />
         </div>
       </section>
 

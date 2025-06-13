@@ -47,7 +47,7 @@ export default function SkyeCanyonGuide() {
                 Available homes in this exclusive community
               </p>
             </div>
-            <RealScoutListings className="w-full" />
+            <RealScoutListings className="w-full" variant="luxury" />
           </div>
         </section>
 

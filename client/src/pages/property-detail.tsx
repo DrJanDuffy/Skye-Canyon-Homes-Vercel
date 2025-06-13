@@ -301,7 +301,7 @@ export default function PropertyDetail() {
               Other listings you might be interested in
             </p>
           </div>
-          <RealScoutListings className="w-full" />
+          <RealScoutListings className="w-full" variant="mid-range" />
         </div>
       </section>
       
