@@ -8,7 +8,7 @@ channel = "stable-24_05"
 [deployment]
 deploymentTarget = "cloudrun"
 build = ["npm", "run", "build"]
-run = ["sh", "-c", "d dist && node server.js"]
+run = ["sh", "-c", "cd dist && node server.js"]
 
 [[ports]]
 localPort = 3000

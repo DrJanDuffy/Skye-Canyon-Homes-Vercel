@@ -145,7 +145,7 @@ async function buildServer() {
   await build({
     entryPoints: ['server/index.ts'],
     bundle: true,
-    outfile: 'dist/index.js',
+    outfile: 'dist/server.js',
     format: 'esm',
     target: 'node18',
     platform: 'node',
@@ -194,7 +194,7 @@ async function createPackageJson() {
     version: originalPackage.version,
     type: 'module',
     scripts: {
-      start: 'node index.js'
+      start: 'node server.js'
     },
     dependencies: {
       express: originalPackage.dependencies.express,
@@ -219,7 +219,18 @@ async function createPackageJson() {
     JSON.stringify(productionPackage, null, 2)
   );
   
+  // Create deployment workaround script
+  const startScript = `#!/bin/bash
+# Deployment workaround for typo in run command
+cd "$(dirname "$0")"
+node server.js
+`;
+  
+  fs.writeFileSync(path.join(__dirname, 'dist', 'start.sh'), startScript);
+  executeCommand('chmod +x dist/start.sh');
+  
   log('✓ Production package.json created');
+  log('✓ Deployment workaround script created');
 }
 
 async function verifyBuild() {
@@ -229,7 +240,7 @@ async function verifyBuild() {
     'dist/public/index.html',
     'dist/public/assets/main.js',
     'dist/public/assets/main.css', 
-    'dist/index.js',
+    'dist/server.js',
     'dist/package.json'
   ];
   
@@ -273,7 +284,7 @@ async function main() {
     log('Build completed successfully!');
     
     // Show build summary
-    const serverSize = Math.round(fs.statSync('dist/index.js').size / 1024);
+    const serverSize = Math.round(fs.statSync('dist/server.js').size / 1024);
     const clientSize = Math.round(fs.statSync('dist/public/assets/main.js').size / 1024);
     const cssSize = Math.round(fs.statSync('dist/public/assets/main.css').size / 1024);
     
@@ -283,7 +294,7 @@ async function main() {
     console.log(`CSS: ${cssSize} KB`);
     
     console.log(`\n✅ Ready for deployment!`);
-    console.log(`Run: cd dist && node index.js`);
+    console.log(`Run: cd dist && node server.js`);
     
   } catch (error) {
     console.error('❌ Build failed:', error.message);
