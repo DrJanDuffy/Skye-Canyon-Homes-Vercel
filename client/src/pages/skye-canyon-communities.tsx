@@ -127,7 +127,7 @@ export default function SkyeCanyonCommunities() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                New Construction & Resale Homes
+                Skye Canyon New Construction & Resale Homes
               </h2>
               <p className="text-xl text-gray-600">
                 Available properties in Skye Canyon communities
@@ -191,7 +191,7 @@ export default function SkyeCanyonCommunities() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Flexible Floor Plans & Customization
+                  Skye Canyon Flexible Floor Plans & Customization
                 </h2>
                 <p className="text-gray-600 mb-6">
                   Generous outdoor space gives buyers multiple access points to interact with their natural surroundings and enjoy the desert's favorable climate year-round. Every home is designed with flexibility in mind.

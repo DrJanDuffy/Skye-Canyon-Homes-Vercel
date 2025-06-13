@@ -70,7 +70,7 @@ export default function NorthwestLasVegas() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Northwest Las Vegas Listings
+              Northwest Las Vegas Skye Canyon Listings
             </h2>
             <p className="text-xl text-gray-600">
               Available properties in northwest communities
@@ -85,7 +85,7 @@ export default function NorthwestLasVegas() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Northwest Las Vegas Market Overview
+              Northwest Las Vegas Skye Canyon Market Overview
             </h2>
             <p className="text-xl text-gray-600">
               Current market trends and statistics for Northwest Las Vegas communities
@@ -117,7 +117,7 @@ export default function NorthwestLasVegas() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Featured Northwest Communities
+              Featured Northwest Las Vegas Skye Canyon Communities
             </h2>
             <p className="text-xl text-gray-600">
               Explore the premier neighborhoods of Northwest Las Vegas
