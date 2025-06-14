@@ -202,12 +202,18 @@ export default function NorthwestLasVegas() {
                 Get expert guidance from Dr. Jan Duffy, your Northwest Las Vegas 
                 real estate specialist with deep local market knowledge.
               </p>
-              <Button 
-                className="w-full bg-realscout-blue text-white hover:bg-realscout-navy"
-                onClick={() => window.location.href = '/about'}
+              <a 
+                href="https://g.co/kgs/nbUf6Pj"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full"
               >
-                Schedule Your Consultation
-              </Button>
+                <Button 
+                  className="w-full bg-realscout-blue text-white hover:bg-realscout-navy"
+                >
+                  Schedule Your Consultation
+                </Button>
+              </a>
             </div>
           </div>
         </div>

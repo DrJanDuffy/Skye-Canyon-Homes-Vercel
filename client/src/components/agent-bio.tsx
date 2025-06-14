@@ -89,12 +89,17 @@ export default function AgentBio() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                onClick={scrollToContact}
-                className="bg-realscout-blue text-white hover:bg-realscout-navy"
+              <a 
+                href="https://g.co/kgs/nbUf6Pj"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Schedule Consultation
-              </Button>
+                <Button 
+                  className="bg-realscout-blue text-white hover:bg-realscout-navy"
+                >
+                  Schedule Consultation
+                </Button>
+              </a>
               <Button 
                 variant="outline"
                 className="border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"

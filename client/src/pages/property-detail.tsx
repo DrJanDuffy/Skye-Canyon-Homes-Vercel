@@ -242,10 +242,17 @@ export default function PropertyDetail() {
                     <Mail className="w-4 h-4 mr-2" />
                     Send Email
                   </Button>
-                  <Button variant="outline" className="w-full">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Schedule Showing
-                  </Button>
+                  <a 
+                    href="https://g.co/kgs/nbUf6Pj"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <Button variant="outline" className="w-full">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Schedule Showing
+                    </Button>
+                  </a>
                 </div>
                 
                 <div className="mt-6 pt-6 border-t">

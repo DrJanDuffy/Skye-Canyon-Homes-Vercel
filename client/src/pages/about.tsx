@@ -113,13 +113,18 @@ export default function About() {
                 and investors with personalized attention and local market expertise.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  onClick={scrollToContact}
-                  className="bg-realscout-blue text-white hover:bg-realscout-navy"
+                <a 
+                  href="https://g.co/kgs/nbUf6Pj"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Schedule Consultation
-                </Button>
+                  <Button 
+                    className="bg-realscout-blue text-white hover:bg-realscout-navy"
+                  >
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Schedule Consultation
+                  </Button>
+                </a>
                 <Button 
                   variant="outline"
                   className="border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"
