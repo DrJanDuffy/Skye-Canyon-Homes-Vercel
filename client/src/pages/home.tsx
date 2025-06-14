@@ -35,8 +35,8 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Skye Canyon Homes for Sale Las Vegas NV 89166 | Dr. Jan Duffy REALTOR®</title>
-        <meta name="description" content="Discover luxury Skye Canyon homes for sale in Las Vegas, NV 89166. Dr. Jan Duffy offers expert real estate services, new construction, and golf course properties. Schedule consultation today!" />
+        <title>Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Expert Las Vegas NV 89166</title>
+        <meta name="description" content="Expert Skye Canyon real estate agent Dr. Jan Duffy specializes in luxury homes, new construction & golf course properties in Las Vegas NV 89166. Call (702) 500-1902!" />
         <meta name="keywords" content="Skye Canyon homes for sale, Las Vegas NV 89166, luxury real estate, Dr. Jan Duffy REALTOR, golf course homes, guard gated community, new construction, Desert Highlands Golf Course" />
         
         {/* Geo-specific meta tags */}
@@ -53,8 +53,8 @@ export default function Home() {
         <meta name="business.hours" content="Mo-Fr 09:00-18:00, Sa 09:00-17:00, Su 11:00-16:00" />
         
         {/* Enhanced Open Graph tags */}
-        <meta property="og:title" content="Skye Canyon Homes for Sale Las Vegas NV 89166 | Dr. Jan Duffy REALTOR®" />
-        <meta property="og:description" content="Discover luxury Skye Canyon homes for sale in Las Vegas, NV 89166. Dr. Jan Duffy offers expert real estate services, new construction, and golf course properties." />
+        <meta property="og:title" content="Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Expert Las Vegas NV 89166" />
+        <meta property="og:description" content="Expert Skye Canyon real estate agent Dr. Jan Duffy specializes in luxury homes, new construction & golf course properties in Las Vegas NV 89166." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://skyecanyonhomesforsale.com" />
         <meta property="og:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
@@ -65,8 +65,8 @@ export default function Home() {
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Skye Canyon Homes for Sale Las Vegas NV 89166 | Dr. Jan Duffy REALTOR®" />
-        <meta name="twitter:description" content="Discover luxury Skye Canyon homes for sale in Las Vegas, NV 89166. Expert real estate services and golf course properties." />
+        <meta name="twitter:title" content="Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Expert Las Vegas NV 89166" />
+        <meta name="twitter:description" content="Expert Skye Canyon real estate agent specializing in luxury homes, new construction & golf course properties. Call (702) 500-1902!" />
         <meta name="twitter:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
         
         {/* Canonical and alternate URLs */}
@@ -254,6 +254,102 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">Tell Us What Skye Canyon Features You're Looking For</h2>
           <PreferenceCollector />
+        </div>
+      </section>
+
+      {/* Local Area Coverage */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Skye Canyon & Northwest Las Vegas Service Areas
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Dr. Jan Duffy specializes in Skye Canyon and surrounding Northwest Las Vegas communities, providing expert real estate services in the most sought-after neighborhoods.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="bg-gray-50 p-6 rounded-lg text-center">
+              <h3 className="font-semibold text-lg mb-2">Skye Canyon (89166)</h3>
+              <p className="text-sm text-gray-600">Guard-gated luxury community with Desert Highlands Golf Course</p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg text-center">
+              <h3 className="font-semibold text-lg mb-2">Centennial Hills</h3>
+              <p className="text-sm text-gray-600">Master-planned community with top-rated schools and amenities</p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg text-center">
+              <h3 className="font-semibold text-lg mb-2">Providence</h3>
+              <p className="text-sm text-gray-600">Family-friendly neighborhoods with parks and recreation</p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg text-center">
+              <h3 className="font-semibold text-lg mb-2">Northwest Las Vegas</h3>
+              <p className="text-sm text-gray-600">Established communities near shopping and entertainment</p>
+            </div>
+          </div>
+
+          {/* Key Landmarks & Features */}
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-lg">
+            <h3 className="text-2xl font-bold text-center mb-8">Why Choose Skye Canyon?</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2-5V7m0 4V9" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold mb-2">24/7 Guard-Gated Security</h4>
+                <p className="text-sm text-gray-600">Premium security with controlled access and roving patrols</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold mb-2">Desert Highlands Golf Course</h4>
+                <p className="text-sm text-gray-600">18-hole championship golf course with clubhouse amenities</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                </div>
+                <h4 className="font-semibold mb-2">Top-Rated Schools</h4>
+                <p className="text-sm text-gray-600">Highly-rated Clark County schools serving the community</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact CTA */}
+          <div className="text-center mt-12">
+            <div className="bg-white border-2 border-blue-200 p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold mb-4">Ready to Explore Skye Canyon?</h3>
+              <p className="text-gray-600 mb-6">
+                Contact Dr. Jan Duffy for expert guidance on Skye Canyon homes and Northwest Las Vegas real estate opportunities.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="tel:+17025001902"
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
+                  Call (702) 500-1902
+                </a>
+                <a 
+                  href="https://g.co/kgs/nbUf6Pj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                >
+                  Schedule Consultation
+                </a>
+              </div>
+              <p className="text-sm text-gray-500 mt-4">
+                📍 10111 W Skye Canyon Park Dr, Las Vegas, NV 89166
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
