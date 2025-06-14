@@ -18,6 +18,7 @@ const leadFormSchema = z.object({
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().optional(),
+  address: z.string().optional(),
   timeframe: z.string().optional(),
   priceRange: z.string().optional(),
   message: z.string().optional(),
@@ -38,6 +39,7 @@ export default function LeadCaptureForm() {
       lastName: "",
       email: "",
       phone: "",
+      address: "",
       timeframe: undefined,
       priceRange: undefined,
       message: "",
@@ -150,6 +152,26 @@ export default function LeadCaptureForm() {
                       <FormControl>
                         <Input 
                           placeholder="Enter your last name" 
+                          className="focus:ring-realscout-blue focus:border-realscout-blue"
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              
+              <div className="grid grid-cols-1 gap-6">
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Current Address (Optional)</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Enter your address for personalized market insights" 
                           className="focus:ring-realscout-blue focus:border-realscout-blue"
                           {...field} 
                         />
