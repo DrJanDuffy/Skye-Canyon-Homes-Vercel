@@ -14,6 +14,7 @@ import PerformanceCriticalLoader from "@/components/performance-critical-loader"
 import VoiceAssistant from "@/components/voice-assistant";
 import VoiceSearchSchema from "@/components/voice-search-schema";
 import EnhancedStructuredData from "@/components/enhanced-structured-data";
+import ComprehensiveSchemaMarkup from "@/components/comprehensive-schema";
 import AIContentOptimizer from "@/components/ai-content-optimizer";
 import GEOAuthoritySignals from "@/components/geo-authority-signals";
 import MobileOptimizer from "@/components/mobile-optimizer";

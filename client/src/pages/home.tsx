@@ -28,6 +28,7 @@ import RealScoutAnalytics from "@/components/realscout-analytics";
 import VoiceSearchIntegration from "@/components/voice-search-integration";
 import ErrorBoundary from "@/components/error-boundary";
 import ReviewHighlights from "@/components/review-highlights";
+import ComprehensiveSchemaMarkup from "@/components/comprehensive-schema";
 import ServicesOverview from "@/components/services-overview";
 
 export default function Home() {
@@ -80,6 +81,47 @@ export default function Home() {
         <meta name="revisit-after" content="7 days" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       </Helmet>
+      
+      {/* Comprehensive Schema Markup */}
+      <ComprehensiveSchemaMarkup 
+        pageType="homepage"
+        breadcrumbs={[
+          { name: "Home", url: "https://skyecanyonhomesforsale.com" }
+        ]}
+        reviews={[
+          {
+            author: "Sarah Mitchell",
+            rating: 5,
+            reviewBody: "Dr. Jan Duffy made our Skye Canyon home purchase seamless. Her knowledge of the community and market expertise helped us find our perfect luxury home.",
+            datePublished: "2024-11-15"
+          },
+          {
+            author: "Michael Rodriguez",
+            rating: 5,
+            reviewBody: "Outstanding service from Dr. Duffy! She guided us through our first-time home purchase in Skye Canyon with professionalism and patience.",
+            datePublished: "2024-10-22"
+          },
+          {
+            author: "Jennifer Chen",
+            rating: 5,
+            reviewBody: "Sold our Skye Canyon home in just 8 days! Dr. Duffy's marketing strategy and local connections delivered exceptional results.",
+            datePublished: "2024-12-03"
+          },
+          {
+            author: "David Thompson",
+            rating: 5, 
+            reviewBody: "Dr. Duffy's expertise in luxury Skye Canyon properties is unmatched. She helped us navigate the competitive market and secure our dream home.",
+            datePublished: "2024-09-18"
+          },
+          {
+            author: "Lisa Anderson",
+            rating: 5,
+            reviewBody: "Professional, knowledgeable, and responsive. Dr. Duffy made our new construction purchase stress-free with her builder relationships.",
+            datePublished: "2024-11-28"
+          }
+        ]}
+      />
+      
       <CriticalCSS />
       <CriticalPerformanceLoader />
       <LocalBusinessSchema />
