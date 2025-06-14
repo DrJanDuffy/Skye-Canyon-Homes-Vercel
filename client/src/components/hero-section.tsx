@@ -57,6 +57,7 @@ export default function HeroSection() {
           <div className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-4 animate-pulse">
             <span className="text-sm font-medium text-white">🏆 Top Skye Canyon Specialist</span>
           </div>
+          {/* Cache refresh */}
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®
           </h1>
