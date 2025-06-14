@@ -109,7 +109,7 @@ export default function LuxuryPropertyServices() {
                   Certified Luxury Specialist
                 </Badge>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  Skye Canyon Luxury Real Estate Expert
+                  Skye Canyon Homes Luxury Real Estate Expert
                 </h1>
                 <p className="text-xl mb-8 opacity-90">
                   Dr. Jan Duffy specializes in Skye Canyon's premium market with $50M+ in luxury 

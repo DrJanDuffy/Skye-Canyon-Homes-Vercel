@@ -110,7 +110,7 @@ export default function FirstTimeBuyerServices() {
                   200+ First-Time Buyers Helped
                 </Badge>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  Skye Canyon First-Time Buyer Specialist
+                  Skye Canyon Homes First-Time Buyer Specialist
                 </h1>
                 <p className="text-xl mb-8 opacity-90">
                   Dr. Jan Duffy provides comprehensive guidance for new homebuyers navigating 

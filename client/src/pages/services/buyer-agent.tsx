@@ -133,7 +133,7 @@ export default function BuyerAgentServices() {
                   15+ Years Exclusive Specialization
                 </Badge>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  Skye Canyon Expert Buyer Agent
+                  Skye Canyon Homes Expert Buyer Agent
                 </h1>
                 <p className="text-xl mb-8 opacity-90">
                   Dr. Jan Duffy provides exclusive buyer representation in Las Vegas' premier 

@@ -110,7 +110,7 @@ export default function NewConstructionServices() {
                   Only Exclusive Skye Canyon Focus
                 </Badge>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  Skye Canyon New Construction Expert
+                  Skye Canyon Homes New Construction Expert
                 </h1>
                 <p className="text-xl mb-8 opacity-90">
                   Dr. Jan Duffy maintains direct partnerships with Toll Brothers, Lennar, DR Horton, 
