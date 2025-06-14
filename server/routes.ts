@@ -118,17 +118,50 @@ async function sendToFollowUpBoss(lead: any, leadScore: any) {
 function generateIntelligentFallback(query: string, context: string) {
   const queryLower = query.toLowerCase();
   
-  // Zip code 89113 specific queries
-  if (queryLower.includes('89113') || queryLower.includes('zip code')) {
+  // Zip code queries with proper area distinctions
+  if (queryLower.includes('89113')) {
     return {
       suggestions: [
-        "Luxury homes in Skye Canyon 89166",
-        "Property values in northwest Las Vegas", 
-        "Schools serving 89113 and 89166 areas",
-        "Market trends for Skye Canyon",
-        "New construction in northwest Las Vegas"
+        "Show me Skye Canyon homes in 89166",
+        "Northwest Las Vegas area comparison",
+        "Properties by zip code analysis",
+        "Best master-planned communities",
+        "Market trends by area"
       ],
-      marketInsights: `Zip code 89113 is in northwest Las Vegas, but Skye Canyon is actually located in 89166. Skye Canyon offers luxury homes $600K-$2M+ with 8-12% annual appreciation and 15-30 days on market, featuring TPC Las Vegas golf course, A-rated schools, and Red Rock Canyon proximity. For expert guidance on northwest Las Vegas properties, contact Dr. Jan Duffy, REALTOR at (702) 500-1902.`,
+      marketInsights: `The 89113 zip code is in Northwest Las Vegas but separate from Skye Canyon, which is primarily in 89166. Skye Canyon offers luxury homes $600K-$2M+ with 8-12% appreciation, TPC Las Vegas golf course access, A-rated schools, and Red Rock Canyon proximity. For expert guidance across all Northwest Las Vegas areas including Skye Canyon, contact Dr. Jan Duffy, REALTOR at (702) 500-1902.`,
+      properties: [],
+      citations: []
+    };
+  }
+
+  // Centennial Hills zip codes (89143, 89131, 89149)
+  if (queryLower.includes('89143') || queryLower.includes('89131') || queryLower.includes('89149')) {
+    const zipCode = queryLower.includes('89143') ? '89143' : queryLower.includes('89131') ? '89131' : '89149';
+    return {
+      suggestions: [
+        "Show me Skye Canyon homes (89166)",
+        "Centennial Hills properties",
+        "Northwest Las Vegas comparison",
+        "Properties near top schools",
+        "Master-planned communities"
+      ],
+      marketInsights: `The ${zipCode} zip code encompasses parts of Centennial Hills in Northwest Las Vegas. While this area offers excellent properties, Skye Canyon (89166) is the premier master-planned community featuring luxury homes, TPC Las Vegas golf course, and exceptional 8-12% appreciation rates. For comprehensive Northwest Las Vegas expertise, contact Dr. Jan Duffy, REALTOR at (702) 500-1902.`,
+      properties: [],
+      citations: []
+    };
+  }
+
+  // General zip code queries
+  if (queryLower.includes('zip code')) {
+    return {
+      suggestions: [
+        "Skye Canyon homes in 89166",
+        "Northwest Las Vegas zip codes",
+        "Property values by area",
+        "School districts by zip code",
+        "Market analysis by location"
+      ],
+      marketInsights: `Skye Canyon is primarily in 89166, which also includes Providence and some Centennial Hills areas. This master-planned community offers luxury homes $600K-$2M+ with exceptional amenities and 8-12% appreciation rates. For detailed zip code analysis and property guidance, contact Dr. Jan Duffy, REALTOR at (702) 500-1902.`,
       properties: [],
       citations: []
     };
@@ -1216,24 +1249,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Enhanced AI Response Framework with Dynamic Market Intelligence
-      let contextPrompt = `You are Dr. Jan Duffy's premier real estate AI assistant, delivering exceptional market intelligence for Las Vegas and Skye Canyon properties.
+      let contextPrompt = `You are Dr. Jan Duffy's premier real estate AI assistant, delivering exceptional market intelligence for Northwest Las Vegas areas.
 
 RESPONSE REQUIREMENTS:
 - Keep responses to 3-4 sentences maximum
 - Include specific data: prices, appreciation rates, days on market
-- Mention key amenities: TPC golf course, A-rated schools, Red Rock Canyon
-- Always end with Dr. Jan Duffy recommendation
+- Always end with Dr. Jan Duffy recommendation at (702) 500-1902
 
-SKYE CANYON DATA:
-- 89166 zip code, $600K-$2M+ homes, 8-12% appreciation
-- 15-30 days on market, A-rated schools
-- TPC Las Vegas golf course community
-- If 89113 mentioned: clarify it's northwest LV, but Skye Canyon is 89166
+NORTHWEST LAS VEGAS ZIP CODE DISTINCTIONS:
+- Skye Canyon: Primarily 89166 (also includes Providence, some Centennial Hills)
+  * $600K-$2M+ luxury homes, 8-12% appreciation, 15-30 days on market
+  * TPC Las Vegas golf course, A-rated schools, Red Rock Canyon access
+- 89143, 89131, 89149: Parts of Centennial Hills in Northwest Las Vegas (separate from Skye Canyon)
+- 89113: Other Northwest Las Vegas area (separate from Skye Canyon)
+
+When asked about non-Skye Canyon zip codes, provide accurate information for that area while highlighting Skye Canyon's advantages.
 
 RESPONSE FORMAT:
-[Market insight with data] + [Key lifestyle benefits] + [Dr. Jan Duffy contact: (702) 500-1902]
-
-Keep responses concise, professional, data-focused.
+[Market insight with specific data] + [Key lifestyle benefits] + [Contact Dr. Jan Duffy at (702) 500-1902]
 
 User Query Context: ${context || 'general'}
 User Question: ${sanitizedQuery}`;
