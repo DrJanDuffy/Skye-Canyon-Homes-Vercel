@@ -121,12 +121,14 @@ export default function Navigation() {
             >
               About Dr. Duffy
             </Link>
-            <button 
-              onClick={() => scrollToSection('contact')}
+            <a 
+              href="https://g.co/kgs/nbUf6Pj"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
             >
               Contact
-            </button>
+            </a>
             <a 
               href="https://drjanduffy.realscout.com/onboarding" 
               target="_blank" 
@@ -249,12 +251,15 @@ export default function Navigation() {
             >
               About Dr. Duffy
             </Link>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium w-full text-left"
+            <a 
+              href="https://g.co/kgs/nbUf6Pj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
+              onClick={() => setMobileMenuOpen(false)}
             >
               Contact
-            </button>
+            </a>
             <div className="px-3 pt-2">
               <a 
                 href="https://drjanduffy.realscout.com/onboarding" 
