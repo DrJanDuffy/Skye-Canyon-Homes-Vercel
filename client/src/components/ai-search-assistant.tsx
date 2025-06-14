@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Search, Home } from "lucide-react";
+import { useLeadScoring } from "@/hooks/useLeadScoring";
 
 interface AISearchResults {
   properties?: any[];
@@ -17,6 +18,7 @@ export default function AISearchAssistant() {
   const [voiceActive, setVoiceActive] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [results, setResults] = useState<AISearchResults | null>(null);
+  const { trackAISearch } = useLeadScoring();
 
   const suggestions = [
     "Homes under $800k in Skye Canyon",
@@ -53,10 +55,28 @@ export default function AISearchAssistant() {
     }
   }, [voiceActive]);
 
+  // Extract price range from search query for lead scoring
+  const extractPriceRange = (searchQuery: string): string | undefined => {
+    const query = searchQuery.toLowerCase();
+    if (query.includes('1.5m') || query.includes('1500000') || query.includes('million and half')) return '$1.5M+';
+    if (query.includes('1m') || query.includes('1000000') || query.includes('million')) return '$1M-$1.5M';
+    if (query.includes('800k') || query.includes('800000')) return '$800K-$1M';
+    if (query.includes('700k') || query.includes('700000')) return '$700K-$800K';
+    if (query.includes('600k') || query.includes('600000')) return '$600K-$700K';
+    if (query.includes('500k') || query.includes('500000')) return '$500K-$600K';
+    if (query.includes('400k') || query.includes('400000')) return '$400K-$500K';
+    if (query.includes('luxury') || query.includes('premium') || query.includes('high-end')) return '$800K+';
+    return undefined;
+  };
+
   const handleSearch = async () => {
     if (!query.trim()) return;
     
     setIsSearching(true);
+    
+    // Track AI search for lead scoring
+    const priceRange = extractPriceRange(query);
+    trackAISearch(query, priceRange);
     
     try {
       const response = await fetch('/api/ai-search', {
