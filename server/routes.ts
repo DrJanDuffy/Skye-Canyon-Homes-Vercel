@@ -11,6 +11,7 @@ import { performanceMonitor } from "./performance-monitor";
 import { setupPerformanceRoutes } from "./performance-dashboard";
 import { registerSitemapRoutes } from "./sitemap-generator";
 import { seoOptimizer, handleSEOAudit, handleSEOReport } from "./seo-optimizer";
+import { leadScoring, BehaviorAction } from "./leadScoring";
 
 
 // AI Lead Scoring Functions
@@ -752,6 +753,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false,
         message: error instanceof Error ? error.message : 'Follow Up Boss API test failed'
       });
+    }
+  });
+
+  // Smart Lead Scoring Dashboard Endpoints
+  app.get("/api/lead-scoring/analytics", (req, res) => {
+    try {
+      const analytics = leadScoring.getLeadAnalytics();
+      res.json(analytics);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch lead scoring analytics" });
+    }
+  });
+
+  app.get("/api/lead-scoring/user/:sessionId", (req, res) => {
+    try {
+      const { sessionId } = req.params;
+      const userBehavior = leadScoring.getUserBehavior(sessionId);
+      
+      if (!userBehavior) {
+        return res.status(404).json({ message: "User behavior not found" });
+      }
+      
+      res.json(userBehavior);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch user behavior" });
+    }
+  });
+
+  // Track specific high-intent actions
+  app.post("/api/track-intent", async (req, res) => {
+    try {
+      const { action, data } = req.body;
+      const sessionId = (req as any).sessionID || `${req.ip || 'unknown'}-${Date.now()}`;
+      const userInfo = { ip: req.ip || 'unknown', userAgent: req.get('User-Agent') || '' };
+
+      const behaviorAction: BehaviorAction = {
+        type: action,
+        timestamp: new Date(),
+        data
+      };
+
+      // Add specific data based on action type
+      if (action === 'property_view' && data.propertyId) {
+        behaviorAction.propertyId = data.propertyId;
+        behaviorAction.priceRange = data.priceRange;
+      } else if (action === 'ai_search' && data.query) {
+        behaviorAction.searchQuery = data.query;
+        behaviorAction.priceRange = data.priceRange;
+      }
+
+      await leadScoring.trackBehavior(sessionId, behaviorAction, userInfo);
+      
+      res.json({ success: true, sessionId });
+    } catch (error) {
+      console.error('Intent tracking error:', error);
+      res.status(500).json({ message: "Failed to track intent" });
     }
   });
 
@@ -1622,7 +1679,7 @@ User Question: ${sanitizedQuery}`;
 
 
 
-  // Analytics endpoint
+  // Enhanced Analytics endpoint with Smart Lead Scoring
   app.post("/api/analytics", async (req, res) => {
     try {
       const { event, parameters, context } = req.body;
@@ -1639,6 +1696,60 @@ User Question: ${sanitizedQuery}`;
       
       // Log for analysis (in production, send to analytics service)
       console.log('Analytics Event:', JSON.stringify(analyticsData, null, 2));
+
+      // Smart Lead Scoring Integration
+      const sessionId = (req as any).sessionID || `${req.ip || 'unknown'}-${Date.now()}`;
+      const userInfo = { ip: req.ip || 'unknown', userAgent: req.get('User-Agent') || '' };
+
+      // Convert analytics events to behavior actions for lead scoring
+      let behaviorAction: BehaviorAction | null = null;
+
+      switch (event) {
+        case 'realscout_interaction':
+          behaviorAction = {
+            type: 'realscout_interaction',
+            timestamp: new Date(analyticsData.timestamp),
+            data: parameters,
+            sessionDuration: parameters.time_spent_seconds
+          };
+          break;
+
+        case 'property_view':
+          behaviorAction = {
+            type: 'property_view',
+            timestamp: new Date(analyticsData.timestamp),
+            data: parameters,
+            propertyId: parameters.property_id,
+            priceRange: parameters.price_range
+          };
+          break;
+
+        case 'contact_action':
+          const actionType = parameters.action_type === 'phone' ? 'phone_click' : 
+                           parameters.action_type === 'email' ? 'email_click' : 'contact_form';
+          behaviorAction = {
+            type: actionType as any,
+            timestamp: new Date(analyticsData.timestamp),
+            data: parameters
+          };
+          break;
+
+        case 'ai_search':
+        case 'search_query':
+          behaviorAction = {
+            type: 'ai_search',
+            timestamp: new Date(analyticsData.timestamp),
+            data: parameters,
+            searchQuery: parameters.query || parameters.search_term,
+            priceRange: parameters.price_range
+          };
+          break;
+      }
+
+      // Track behavior for lead scoring if it's a scoreable action
+      if (behaviorAction) {
+        await leadScoring.trackBehavior(sessionId, behaviorAction, userInfo);
+      }
       
       // Send to external analytics if configured
       const analyticsKey = process.env.ANALYTICS_API_KEY;
