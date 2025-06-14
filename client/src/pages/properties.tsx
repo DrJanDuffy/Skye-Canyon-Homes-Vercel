@@ -12,13 +12,33 @@ export default function Properties() {
   return (
     <>
       <Helmet>
-        <title>Skye Canyon Properties for Sale | Luxury Homes Las Vegas</title>
-        <meta name="description" content="Browse luxury Skye Canyon properties for sale. Current MLS listings, exclusive client portfolio, and Las Vegas area homes. Expert service by Dr. Jan Duffy REALTOR®." />
-        <meta name="keywords" content="Skye Canyon properties, luxury homes for sale, Las Vegas MLS listings, Nevada 89166, real estate" />
-        <meta property="og:title" content="Skye Canyon Properties for Sale | Dr. Jan Duffy REALTOR®" />
-        <meta property="og:description" content="Browse luxury Skye Canyon properties for sale with current MLS listings and exclusive client portfolio." />
+        <title>Skye Canyon Properties for Sale MLS Listings 89166 | Dr. Jan Duffy REALTOR®</title>
+        <meta name="description" content="Browse current Skye Canyon MLS properties for sale in Las Vegas, NV 89166. Luxury homes, golf course properties, and new construction. Expert service by Dr. Jan Duffy REALTOR®." />
+        <meta name="keywords" content="Skye Canyon properties, MLS listings 89166, luxury homes Las Vegas, golf course properties, new construction, Desert Highlands Golf Course, guard gated community" />
+        
+        {/* Geo-specific meta tags */}
+        <meta name="geo.region" content="US-NV" />
+        <meta name="geo.placename" content="Las Vegas" />
+        <meta name="geo.position" content="36.2648;-115.3275" />
+        <meta name="geo.zipcode" content="89166" />
+        
+        {/* Enhanced Open Graph tags */}
+        <meta property="og:title" content="Skye Canyon Properties for Sale MLS Listings 89166 | Dr. Jan Duffy REALTOR®" />
+        <meta property="og:description" content="Browse current Skye Canyon MLS properties for sale in Las Vegas, NV 89166. Luxury homes, golf course properties, and new construction." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://skyecanyonhomesforsale.com/properties" />
+        <meta property="og:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:site_name" content="Skye Canyon Homes for Sale" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Skye Canyon Properties MLS Listings 89166" />
+        <meta name="twitter:description" content="Browse current Skye Canyon MLS properties for sale in Las Vegas, NV 89166. Expert service by Dr. Jan Duffy REALTOR®." />
+        <meta name="twitter:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/properties" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
       </Helmet>
       <div className="min-h-screen bg-gray-50">
         <Navigation />
