@@ -49,9 +49,6 @@ export default function Navigation() {
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            <div className="text-sm text-gray-600 font-medium">
-              10111 W Skye Canyon Park Dr, Las Vegas, NV 89166
-            </div>
             <a 
               href="tel:+17025001902"
               className="flex items-center text-realscout-blue hover:text-realscout-navy transition-colors font-medium"
