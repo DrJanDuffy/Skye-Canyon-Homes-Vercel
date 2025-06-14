@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,12 +56,12 @@ export default function Navigation() {
               <Phone className="w-4 h-4 mr-2" />
               (702) 500-1902
             </a>
-            <a 
+            <Link 
               href="/"
               className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
             >
               Home
-            </a>
+            </Link>
             <div className="relative group">
               <button className="text-gray-700 hover:text-realscout-blue transition-colors font-medium flex items-center">
                 Properties
