@@ -1,0 +1,395 @@
+Owner avatar
+Sky-Canyon-Homes
+Public
+DrJanDuffy/Sky-Canyon-Homes
+Go to file
+t
+Name		
+DrJanDuffyDrJanDuffy
+DrJanDuffy
+and
+DrJanDuffy
+Improve website performance using Cloudflare caching and DNS settings
+3f74cf4
+ · 
+9 minutes ago
+.github/workflows
+Enable seamless code synchronization between Replit and Cursor AI
+last week
+attached_assets
+Improve website performance using Cloudflare caching and DNS settings
+9 minutes ago
+client
+Use a simplified version of the main application user interface
+11 hours ago
+deploy-hooks
+Enable automatic code backups to GitHub with each deployment
+last week
+public
+Ensure Dr. Jan Duffy's photo reliably appears on the agent bio section
+last week
+server
+Improve website speed and reliability with smart caching system
+2 days ago
+shared
+Create real estate website with property listings and lead capture forms
+2 weeks ago
+.cursorrules
+Add project documentation to help AI tools understand the application
+last week
+.gitignore
+Enable seamless code synchronization between Replit and Cursor AI
+last week
+.replit
+Fixes the application deployment process and improves build configura…
+13 hours ago
+AUTO-DEPLOY-README.md
+Enable automatic syncing to GitHub after successful website deployment
+last week
+BUILD-FIX-SUMMARY.md
+Replace faulty build system with new, reliable system ready for deplo…
+yesterday
+COMPLETE-DEPLOYMENT-GUIDE.md
+Implement complete build system, resolves deployment errors and impro…
+yesterday
+COMPREHENSIVE-AUDIT-REPORT.md
+Integrate live property listings and remove placeholder data
+last week
+DEPLOYMENT-EISDIR-FIXED.md
+Implement fixes to allow the application to deploy successfully
+2 days ago
+DEPLOYMENT-FIXED.md
+Replace faulty build system with new system and prepare for deployment
+yesterday
+DEPLOYMENT-FIXES-APPLIED.md
+Fix deployment issues and ensure application starts correctly
+13 hours ago
+DEPLOYMENT-FIXES-COMPLETE.md
+Fix deployment errors and improve build process for production
+2 days ago
+DEPLOYMENT-GIT-SYNC-GUIDE.md
+Restrict access to deployment and Git synchronization features to admins
+last week
+DEPLOYMENT-GUIDE.md
+Implement production build process that bypasses Vite to fix deployment
+2 days ago
+DEPLOYMENT-SOLUTION.md
+Replace Vite with ESBuild to fix deployment errors and improve build …
+yesterday
+DEPLOYMENT.md
+Solve deployment errors and improve build process for production
+yesterday
+DEPLOYMENT_SOLUTION.md
+Automate the production deployment process and resolve build errors
+2 days ago
+FINAL-AUDIT-REPORT.md
+Restored to 'bab1fecebcdad5d6a384bf8209006a7d0d9fd4f2'
+2 days ago
+FINAL-DATA-INTEGRITY-REPORT.md
+Show Dr. Duffy's actual photo and confirm website now uses real data
+last week
+H1-TAGS-UPDATE-SUMMARY.md
+Update main titles on all pages to include specific real estate keywords
+13 hours ago
+H2-TAGS-UPDATE-SUMMARY.md
+Improve website SEO by adding "Skye Canyon" to secondary page titles
+12 hours ago
+PERFORMANCE-FIXES-COMPLETE.md
+Improve platform performance and reliability with caching and monitoring
+2 days ago
+PRODUCTION-READINESS-COMPLETE.md
+Prepare application for deployment with enhanced performance and moni…
+2 days ago
+QUICK-SYNC-COMMANDS.md
+Document commands to synchronize code between Replit and Cursor AI
+last week
+REALSCOUT-WIDGET-PRICE-AUDIT.md
+Tailor property listings to each page for a more relevant user experi…
+13 hours ago
+REPLIT-DEPLOYMENT-INSTRUCTIONS.md
+Ensure the site launches properly by using built code for deployment
+13 hours ago
+SECURE-DEPLOYMENT-SYNC-SUMMARY.md
+Deployed your application
+last week
+accessibility-audit-report.md
+Add project documentation to help AI tools understand the application
+last week
+audit-implementation-summary.md
+Improve application performance and security with various optimizations
+last week
+auto-deploy-sync.js
+Enable automatic code backups to GitHub with each deployment
+last week
+build
+Replace faulty build system with new system and prepare for deployment
+yesterday
+build-bypass.js
+Resolve build errors by adjusting build process and configurations
+2 days ago
+build-client-production.js
+Update website to highlight general information and remove specific r…
+last week
+build-complete-solution.js
+Fix deployment errors by building client and server separately
+2 days ago
+build-deployment-final.js
+Fix deployment errors by building client and server separately
+2 days ago
+build-deployment.js
+Resolve build errors by adjusting build process and configurations
+2 days ago
+build-eisdir-fix.js
+Improve application deployment process and resolve build errors
+2 days ago
+build-esbuild.js
+Fixes the application deployment process and improves build configura…
+13 hours ago
+build-fix.js
+Improve build process and fix deployment issues for production release
+2 days ago
+build-fixed-deployment.js
+Fix build errors and improve deployment process for production enviro…
+2 days ago
+build-for-deployment.js
+Solve deployment errors and improve build process for production
+yesterday
+build-manual.js
+Resolve build errors by adjusting build process and configurations
+2 days ago
+build-production-complete.js
+Enable production deployment using a new, more robust build process
+yesterday
+build-production-esbuild.js
+Improve build process and server configuration for production deployment
+2 days ago
+build-production-fix.js
+Improve application deployment process and resolve build errors
+2 days ago
+build-production-fixed.js
+Fix build errors and improve deployment stability for production
+2 days ago
+build-production-ready.js
+Fix deployment errors by building client and server separately
+2 days ago
+build-production.js
+Improve production build and deployment process for increased reliabi…
+2 days ago
+components.json
+Create real estate website with property listings and lead capture forms
+2 weeks ago
+comprehensive-audit-report.md
+Confirm website is ready for launch and meets all quality standards
+last week
+comprehensive-button-audit-report.md
+Complete button audit across the site to verify user experience funct…
+last week
+comprehensive-code-audit.md
+Improve app performance and fix errors based on full code audit
+last week
+comprehensive-seo-summary.md
+Deployed your application
+2 weeks ago
+cursor-ai-audit-report.md
+Add project documentation to help AI tools understand the application
+last week
+d
+Fix deployment issues and ensure application starts correctly
+13 hours ago
+deploy-complete.js
+Replace Vite with ESBuild for faster and more reliable builds
+yesterday
+deploy-esbuild-complete.js
+Enable production deployment using a new, more robust build process
+yesterday
+deploy-final.js
+Solve deployment errors and improve build process for production
+yesterday
+deploy-fixed.js
+Ensure the application builds correctly and deploys without file syst…
+2 days ago
+deploy-production-complete.js
+Resolve build errors and deploy the complete application stack
+2 days ago
+deploy-production-fixed.js
+Improve deployment reliability and fix build errors for production apps
+2 days ago
+deploy-production.js
+Improve build and deployment process for better reliability
+yesterday
+deploy-production.sh
+Update production environment with latest features and optimizations
+last week
+deploy-with-eisdir-fix.js
+Automate and verify the deployment process, resolving file system errors
+2 days ago
+deploy-with-git-sync.sh
+Enable automatic code backups to GitHub with each deployment
+last week
+deployment-checklist.md
+Prepare the platform for deployment with enhancements and optimizations
+2 weeks ago
+deployment-final-summary.md
+Deployed your application
+last week
+deployment-fixes.md
+Improve website appearance and property listings on the live platform
+last week
+deployment-module-resolution-fix.md
+Improve module loading and fix deployment issues in production enviro…
+last week
+deployment-readiness-checklist.md
+Update deployment checklist to ensure website is fully ready for launch
+last week
+deployment-status-summary.md
+Update production environment with latest features and optimizations
+last week
+deployment-status.json
+Improve application deployment process and ensure build integrity
+2 days ago
+deployment-sync-fix.js
+Correct server startup process to use compiled code and improve error…
+last week
+drizzle.config.ts
+Create real estate website with property listings and lead capture forms
+2 weeks ago
+esbuild.config.js
+Fix build errors and improve deployment stability for production
+2 days ago
+final-comprehensive-audit-report.md
+Improve site speed and search engine optimization for better visibility
+last week
+git-deployment-guide.md
+Provide a detailed guide to resolve build and deployment errors
+13 hours ago
+github-audit-report.md
+Generate report that audits and assesses the codebase and configuration
+last week
+index-backup.html
+Fix website deployment by implementing a custom build script for prod…
+2 days ago
+index-build-backup.html
+Fix deployment errors by building client and server separately
+2 days ago
+manual-build.js
+Improve build process and fix deployment issues for production release
+2 days ago
+master-deployment-readiness-report.md
+Add project documentation to help AI tools understand the application
+last week
+npm-run-build
+Replace faulty build system with new system and prepare for deployment
+yesterday
+package-lock.json
+Restored to '2f4170e4b5c26b6698bd6976a6994916b2847868'
+14 hours ago
+package.json
+Ensure the site launches properly by using built code for deployment
+13 hours ago
+performance-audit-report.md
+Add project documentation to help AI tools understand the application
+last week
+post-deployment-sync.js
+Enable automatic syncing to GitHub after successful website deployment
+last week
+postcss.config.js
+Create real estate website with property listings and lead capture forms
+2 weeks ago
+production-server-complete.js
+Improve deployment reliability and fix build errors for production apps
+2 days ago
+production-server-enhanced.js
+Update the application to use the new build system output
+yesterday
+production-server-static.js
+Improve performance and stability with monitoring and caching
+2 days ago
+production-server.js
+Improve build and deployment process for better reliability
+yesterday
+replit-cursor-sync-guide.md
+Enable seamless code synchronization between Replit and Cursor AI
+last week
+replit-deploy-sync.js
+Enable automatic code backups to GitHub repository during deployments
+last week
+replit-deploy.sh
+Replace faulty build system with new system and prepare for deployment
+yesterday
+replit-deployment-fix.md
+Ensure the site launches properly by using built code for deployment
+13 hours ago
+rich-snippets-implementation-summary.md
+Expand site to cover Las Vegas market with dedicated FAQs and searches
+2 weeks ago
+run-production.js
+Replace Vite with ESBuild to fix deployment errors and improve build …
+yesterday
+security-audit-report.md
+Add project documentation to help AI tools understand the application
+last week
+seo-audit-report.md
+Improve website visibility and search engine ranking for key local terms
+2 weeks ago
+seo-geo-audit-report.md
+Improve site visibility on search engines and optimize user experience
+last week
+server-external.js
+Enable the website to be accessed from external Replit domains
+2 days ago
+server-production-complete.js
+Enable production deployment using a new, more robust build process
+yesterday
+server-production.js
+Fix build errors and improve deployment stability for production
+2 days ago
+server.js
+Fixes server startup by correcting the path to the main application file
+13 hours ago
+skye-canyon-authority-summary.md
+Expand community expertise with details on new home construction
+2 weeks ago
+start-production.js
+Ensure the site launches properly by using built code for deployment
+13 hours ago
+start.js
+Deployed your application
+last week
+sync-git-workflow.sh
+Enable seamless code synchronization between Replit and Cursor AI
+last week
+tailwind.config.ts
+Restored to '86a6954f5bafddff158f114b5c60dbd3a9f57c94'
+2 weeks ago
+temp-build-index.html
+Improve application deployment process and resolve build errors
+2 days ago
+temp-build.js
+Fix build errors and improve deployment stability for production
+2 days ago
+test-db-connection.js
+Verify database connectivity and confirm successful connection to the…
+last week
+test-production-build.js
+Implement production build process that bypasses Vite to fix deployment
+2 days ago
+test-production-performance.js
+Improve website speed and reliability with smart caching system
+2 days ago
+test-realscout-widget.html
+Add a test page to check how RealScout widgets will appear on the web…
+13 hours ago
+tsconfig.json
+Create real estate website with property listings and lead capture forms
+2 weeks ago
+verify-build-fix.js
+Add script to validate and confirm that the build process is working …
+yesterday
+vite.config.production.ts
+Fix build errors and improve deployment stability for production
+2 days ago
+vite.config.ts
+Create real estate website with property listings and lead capture forms
+2 weeks ago
+Repository files navigation
+README
