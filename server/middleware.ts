@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { generateSchemaMarkup, defaultHomepageReviews } from './schema-generator';
 
 // Security headers middleware
 export function securityHeaders(req: Request, res: Response, next: NextFunction) {
@@ -169,4 +170,60 @@ declare global {
       };
     }
   }
+}
+
+// Schema injection middleware
+export function schemaInjection(req: Request, res: Response, next: NextFunction) {
+  // Only inject schema for HTML responses
+  if (req.path.startsWith('/api/') || req.path.includes('.')) {
+    return next();
+  }
+
+  const originalSend = res.send;
+  
+  res.send = function(body: any) {
+    if (typeof body === 'string' && body.includes('<html')) {
+      // Determine page type and configuration
+      let schemaConfig: any = {};
+      
+      if (req.path === '/') {
+        schemaConfig = {
+          pageType: 'homepage',
+          breadcrumbs: [{ name: "Home", url: "https://skyecanyonhomesforsale.com" }],
+          reviews: defaultHomepageReviews
+        };
+      } else if (req.path.startsWith('/services/')) {
+        const serviceName = req.path.split('/')[2];
+        const serviceNames: Record<string, string> = {
+          'buyer-agent': 'Buyer Agent Services',
+          'first-time-buyer': 'First-Time Buyer Services',
+          'luxury-properties': 'Luxury Properties',
+          'new-construction': 'New Construction'
+        };
+        
+        schemaConfig = {
+          pageType: 'service',
+          serviceName: serviceNames[serviceName],
+          breadcrumbs: [
+            { name: "Home", url: "https://skyecanyonhomesforsale.com" },
+            { name: "Services", url: "https://skyecanyonhomesforsale.com/services" },
+            { name: serviceNames[serviceName], url: `https://skyecanyonhomesforsale.com/services/${serviceName}` }
+          ]
+        };
+      }
+      
+      // Generate schema markup
+      const schemaMarkup = generateSchemaMarkup(schemaConfig);
+      
+      // Inject schema into the head section
+      const headClosingTag = '</head>';
+      if (body.includes(headClosingTag) && schemaMarkup) {
+        body = body.replace(headClosingTag, `${schemaMarkup}\n${headClosingTag}`);
+      }
+    }
+    
+    return originalSend.call(this, body);
+  };
+  
+  next();
 }
