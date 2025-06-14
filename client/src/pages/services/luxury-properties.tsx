@@ -162,7 +162,7 @@ export default function LuxuryPropertyServices() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Premium Luxury Services
+                Premium Skye Canyon Luxury Services
               </h2>
               <p className="text-xl text-gray-600">
                 White-glove service for discerning clients
@@ -219,7 +219,7 @@ export default function LuxuryPropertyServices() {
         <section className="py-16 bg-purple-600 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold mb-4">
-              Ready for Luxury Market Success?
+              Ready for Skye Canyon Luxury Market Success?
             </h2>
             <p className="text-xl opacity-90 mb-8">
               Experience certified luxury expertise with proven premium market results

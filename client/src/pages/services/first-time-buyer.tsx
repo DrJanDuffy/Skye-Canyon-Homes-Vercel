@@ -163,7 +163,7 @@ export default function FirstTimeBuyerServices() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Comprehensive First-Time Buyer Support
+                Comprehensive Skye Canyon First-Time Buyer Support
               </h2>
               <p className="text-xl text-gray-600">
                 Everything you need to successfully purchase in Skye Canyon
@@ -190,7 +190,7 @@ export default function FirstTimeBuyerServices() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Loan Program Guidance
+                Skye Canyon Loan Program Guidance
               </h2>
               <p className="text-xl text-gray-600">
                 Expert assistance with all financing options

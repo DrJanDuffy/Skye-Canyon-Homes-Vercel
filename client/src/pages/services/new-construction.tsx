@@ -163,7 +163,7 @@ export default function NewConstructionServices() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Direct Builder Partnerships
+                Direct Skye Canyon Builder Partnerships
               </h2>
               <p className="text-xl text-gray-600">
                 Exclusive relationships with Skye Canyon's premier builders
@@ -198,7 +198,7 @@ export default function NewConstructionServices() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                New Construction Services
+                Skye Canyon New Construction Services
               </h2>
               <p className="text-xl text-gray-600">
                 Comprehensive support from contract to keys
@@ -224,7 +224,7 @@ export default function NewConstructionServices() {
         <section className="py-16 bg-orange-600 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold mb-4">
-              Ready to Build Your Dream Home?
+              Ready to Build Your Dream Skye Canyon Home?
             </h2>
             <p className="text-xl opacity-90 mb-8">
               Leverage exclusive builder relationships for the best new construction experience
