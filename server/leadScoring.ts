@@ -424,11 +424,11 @@ class SmartLeadScoring {
   cleanupOldData(daysToKeep: number = 30): void {
     const cutoffDate = new Date(Date.now() - daysToKeep * 24 * 60 * 60 * 1000);
     
-    for (const [sessionId, user] of this.userBehaviors) {
+    Array.from(this.userBehaviors.entries()).forEach(([sessionId, user]) => {
       if (user.lastActivity < cutoffDate) {
         this.userBehaviors.delete(sessionId);
       }
-    }
+    });
   }
 }
 
