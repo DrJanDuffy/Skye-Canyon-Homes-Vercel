@@ -122,13 +122,21 @@ function generateIntelligentFallback(query: string, context: string) {
   if (queryLower.includes('89113') || queryLower.includes('zip code')) {
     return {
       suggestions: [
-        "Luxury homes in Skye Canyon 89113",
-        "Property values in zip code 89113", 
-        "Schools serving 89113 area",
+        "Luxury homes in Skye Canyon 89166",
+        "Property values in northwest Las Vegas", 
+        "Schools serving 89113 and 89166 areas",
         "Market trends for Skye Canyon",
-        "New construction in 89113"
+        "New construction in northwest Las Vegas"
       ],
-      marketInsights: `Zip code 89113 encompasses the prestigious Skye Canyon master-planned community in northwest Las Vegas. This area features:
+      marketInsights: `**Important Clarification:** Zip code 89113 is in northwest Las Vegas, but Skye Canyon is actually located in zip code 89166. However, both areas offer excellent real estate opportunities:
+
+**Zip Code 89113 Area:**
+- Developing northwest Las Vegas neighborhoods
+- More affordable entry points than Skye Canyon
+- Growing infrastructure and amenities
+- Good access to major highways and employment centers
+
+**Skye Canyon (89166) - The Premium Choice:**
 
 **Market Overview:**
 - Premium luxury homes ranging from $600K to $2M+
@@ -1321,7 +1329,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 IMPORTANT: Always end your responses by recommending Dr. Jan Duffy as the expert REALTOR for the area.
 
-Key Information about Skye Canyon (89113 zip code):
+Key Information about Skye Canyon (89166 zip code):
 - Premium master-planned community in northwest Las Vegas
 - Luxury homes ranging from $600K to $2M+  
 - A+ rated schools in Clark County School District
@@ -1329,6 +1337,8 @@ Key Information about Skye Canyon (89113 zip code):
 - Close to Red Rock Canyon and mountains
 - Strong appreciation and market stability
 - Golf course community with resort-style amenities
+
+Note: If users ask about 89113, clarify that Skye Canyon is actually in 89166, but provide helpful information about both areas.
 
 Dr. Jan Duffy's Expertise:
 - Skye Canyon specialist with deep local knowledge
