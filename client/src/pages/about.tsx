@@ -358,10 +358,16 @@ export default function About() {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-realscout-blue hover:bg-gray-100">
-              <Calendar className="w-4 h-4 mr-2" />
-              Schedule Consultation
-            </Button>
+            <a 
+              href="https://g.co/kgs/nbUf6Pj"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="bg-white text-realscout-blue hover:bg-gray-100">
+                <Calendar className="w-4 h-4 mr-2" />
+                Schedule Consultation
+              </Button>
+            </a>
             <Button variant="outline" className="border-white text-white hover:bg-white hover:text-realscout-blue">
               <Home className="w-4 h-4 mr-2" />
               View Properties
