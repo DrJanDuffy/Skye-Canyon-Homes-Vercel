@@ -28,6 +28,7 @@ import RealScoutAnalytics from "@/components/realscout-analytics";
 import VoiceSearchIntegration from "@/components/voice-search-integration";
 import ErrorBoundary from "@/components/error-boundary";
 import ReviewHighlights from "@/components/review-highlights";
+import ServicesOverview from "@/components/services-overview";
 
 export default function Home() {
   return (
@@ -176,6 +177,9 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      {/* Services Overview Section */}
+      <ServicesOverview />
 
       {/* Client Reviews Section */}
       <ReviewHighlights />
