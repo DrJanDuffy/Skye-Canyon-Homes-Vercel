@@ -115,7 +115,7 @@ async function sendToFollowUpBoss(lead: any, leadScore: any) {
 }
 
 // Intelligent fallback function for AI search
-function generateIntelligentFallback(query: string, context: string) {
+function generateEnhancedFallback(query: string, context: string) {
   const queryLower = query.toLowerCase();
   
   // Zip code 89113 specific queries
@@ -475,9 +475,7 @@ Your role:
 - Be conversational and professional
 
 Response Format:
-1. Address the user's specific question
-2. Provide 2-3 relevant property insights
-3. Always end with: "For personalized assistance with Skye Canyon real estate, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She's your local expert who can help you find the perfect home."`;
+Create one compelling paragraph (150-200 words) that answers their question with specific insights, market data, and engaging language. Always end naturally with: "For personalized assistance and exclusive access to Skye Canyon's finest properties, contact Dr. Jan Duffy, REALTOR at (702) 500-1902 - she's your local expert who can turn your real estate dreams into reality."`;
 
   try {
     // Prepare messages for Perplexity
@@ -1320,7 +1318,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // If Perplexity API key is not configured, provide intelligent fallback responses
       if (!process.env.PERPLEXITY_API_KEY) {
-        const fallbackResponse = generateIntelligentFallback(sanitizedQuery, context);
+        const fallbackResponse = generateEnhancedFallback(sanitizedQuery, context);
         return res.json(fallbackResponse);
       }
 
@@ -1365,10 +1363,14 @@ Context: ${context || 'general'}
       contextPrompt += `
 
 Response Format:
-1. Answer the user's question with specific, accurate information
-2. Provide 2-3 relevant insights about Skye Canyon market
-3. Include practical next steps
-4. Always conclude with: "For expert guidance on Skye Canyon real estate, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She's the area specialist who can help you achieve your real estate goals."
+Create an engaging, comprehensive single paragraph (150-200 words) that:
+1. Directly answers the user's question with specific, accurate information
+2. Incorporates 2-3 compelling market insights about Skye Canyon
+3. Uses engaging language that builds excitement about the opportunity
+4. Includes specific data points and local expertise
+5. Always concludes naturally with: "For expert guidance and exclusive access to Skye Canyon's finest properties, contact Dr. Jan Duffy, REALTOR at (702) 500-1902 - she's the area's leading specialist who can turn your real estate dreams into reality."
+
+Make the response feel like premium real estate marketing copy that informs and inspires action.
 
 User Question: ${sanitizedQuery}`;
 
