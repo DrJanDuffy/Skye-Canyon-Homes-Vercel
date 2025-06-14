@@ -118,6 +118,43 @@ async function sendToFollowUpBoss(lead: any, leadScore: any) {
 function generateIntelligentFallback(query: string, context: string) {
   const queryLower = query.toLowerCase();
   
+  // Zip code 89113 specific queries
+  if (queryLower.includes('89113') || queryLower.includes('zip code')) {
+    return {
+      suggestions: [
+        "Luxury homes in Skye Canyon 89113",
+        "Property values in zip code 89113", 
+        "Schools serving 89113 area",
+        "Market trends for Skye Canyon",
+        "New construction in 89113"
+      ],
+      marketInsights: `Zip code 89113 encompasses the prestigious Skye Canyon master-planned community in northwest Las Vegas. This area features:
+
+**Market Overview:**
+- Premium luxury homes ranging from $600K to $2M+
+- Strong appreciation rates averaging 8-12% annually
+- Low inventory with high demand from qualified buyers
+- Master-planned community with resort-style amenities
+
+**Community Features:**
+- TPC Las Vegas championship golf course
+- A-rated schools in Clark County School District
+- Proximity to Red Rock Canyon and hiking trails
+- Family-friendly parks and recreation centers
+- Gated neighborhoods with mountain views
+
+**Investment Highlights:**
+- New construction still available from top builders
+- HOA-maintained common areas and landscaping
+- Strong resale values due to desirable location
+- Growing demand from luxury home buyers
+
+For expert guidance on 89113 properties and current market conditions, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She specializes in Skye Canyon and has extensive knowledge of every neighborhood within this zip code.`,
+      properties: [],
+      citations: []
+    };
+  }
+  
   // School-related queries
   if (queryLower.includes('school')) {
     return {
@@ -128,9 +165,23 @@ function generateIntelligentFallback(query: string, context: string) {
         "Elementary schools with highest ratings",
         "School district boundaries in Las Vegas 89166"
       ],
-      marketInsights: `Skye Canyon is served by the Clark County School District with several highly-rated schools nearby. Canyon Springs High School and Red Rock Elementary are among the top-rated schools in the area. Families often choose Skye Canyon for its excellent educational opportunities and family-friendly community atmosphere.
+      marketInsights: `Skye Canyon (89113) is served by the Clark County School District with several highly-rated schools:
 
-For specific school ratings and detailed information about district boundaries, I recommend contacting Dr. Jan Duffy who has extensive knowledge of the local school systems and can provide current enrollment data and performance metrics.`,
+**Top-Rated Schools:**
+- Canyon Springs High School (A-rated)
+- Red Rock Elementary School (A-rated)
+- Lois Craig Elementary School
+- Coral Academy of Science (charter option)
+
+**Educational Advantages:**
+- Small class sizes and modern facilities
+- Strong parent involvement and community support
+- Advanced placement and STEM programs
+- Safe walking paths and school bus service
+
+Families choose Skye Canyon for its excellent educational opportunities combined with a family-friendly community atmosphere. The area consistently ranks among Las Vegas's top neighborhoods for schools.
+
+For specific school ratings and detailed information about district boundaries, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She has extensive knowledge of local school systems and can provide current enrollment data and performance metrics.`,
       properties: [],
       citations: []
     };
@@ -141,16 +192,33 @@ For specific school ratings and detailed information about district boundaries, 
     return {
       suggestions: [
         "Current median home prices in Skye Canyon",
-        "Market appreciation rates in Las Vegas 89166",
+        "Market appreciation rates in Las Vegas 89113",
         "Best time to buy in Skye Canyon",
         "Luxury home market trends",
         "Investment property opportunities"
       ],
-      marketInsights: `The Skye Canyon real estate market has shown consistent growth with median home prices around $1.2M for luxury properties. The area continues to attract buyers seeking newer construction, mountain views, and proximity to TPC Las Vegas golf course.
+      marketInsights: `The Skye Canyon (89113) real estate market demonstrates exceptional strength with consistent appreciation:
 
-Current market conditions favor buyers who are prepared to move quickly on quality properties. The community's master-planned design and ongoing development make it a strong long-term investment.
+**Current Market Conditions:**
+- Median luxury home prices: $1.2M - $1.8M
+- Average appreciation: 8-12% annually over past 5 years
+- Days on market: 15-30 days for well-priced properties
+- Inventory levels: Low supply, high buyer demand
 
-Contact Dr. Jan Duffy for the most current market analysis and pricing strategies specific to your timeline and budget.`,
+**Market Drivers:**
+- Master-planned community with ongoing development
+- Premium location near Red Rock Canyon
+- TPC Las Vegas golf course proximity
+- Top-rated schools attracting families
+- Limited luxury home inventory
+
+**Investment Outlook:**
+- Strong long-term appreciation potential
+- Consistent buyer demand from local and out-of-state purchasers
+- New construction maintaining premium pricing
+- HOA-maintained amenities supporting property values
+
+For the most current market analysis, pricing strategies, and exclusive property access, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She provides comprehensive market reports and can identify optimal timing for your transaction.`,
       properties: [],
       citations: []
     };
@@ -166,11 +234,28 @@ Contact Dr. Jan Duffy for the most current market analysis and pricing strategie
         "Homes near TPC Las Vegas golf course",
         "Custom built luxury properties"
       ],
-      marketInsights: `Skye Canyon offers some of Las Vegas's most desirable luxury properties, featuring contemporary designs, mountain views, and resort-style amenities. Many homes include pools, outdoor kitchens, and proximity to world-class golf.
+      marketInsights: `Skye Canyon (89113) features Las Vegas's most prestigious luxury properties with exceptional quality and amenities:
 
-The community attracts discerning buyers seeking quality construction, privacy, and access to recreational amenities. Properties typically range from $800K to $2M+ depending on size, location, and custom features.
+**Luxury Features:**
+- Contemporary architectural designs with mountain views
+- Resort-style backyards with pools and outdoor kitchens
+- Premium finishes including granite, hardwood, and tile
+- Smart home technology and energy-efficient systems
+- Gated neighborhoods with enhanced security
 
-Dr. Jan Duffy specializes in luxury properties and can provide exclusive access to off-market listings and new construction opportunities.`,
+**Property Categories:**
+- Custom estate homes: $1.5M - $2.5M+
+- Semi-custom luxury homes: $800K - $1.5M
+- Golf course properties: Premium pricing for TPC proximity
+- New construction: Latest designs and technology
+
+**Exclusive Advantages:**
+- Limited inventory creating strong appreciation
+- Master-planned community amenities and maintenance
+- Proximity to Red Rock Canyon recreation
+- Top-rated schools and family amenities
+
+Dr. Jan Duffy specializes in Skye Canyon luxury properties and provides exclusive access to off-market listings, new construction opportunities, and private showings. Contact her at (702) 500-1902 for personalized luxury home consultation.`,
       properties: [],
       citations: []
     };
@@ -205,9 +290,29 @@ Dr. Jan Duffy provides comprehensive buyer representation and can guide you thro
       "Properties with specific features",
       "Schedule a private showing"
     ],
-    marketInsights: `Skye Canyon is a premier master-planned community in northwest Las Vegas, known for its luxury homes, mountain views, and proximity to recreational amenities. The area offers excellent schools, golf courses, and hiking trails.
+    marketInsights: `Skye Canyon (89113) is northwest Las Vegas's premier master-planned community, offering exceptional luxury living:
 
-For specific property information and personalized recommendations, Dr. Jan Duffy provides expert guidance based on extensive local market knowledge and can arrange private showings of available properties.`,
+**Community Highlights:**
+- Master-planned development with ongoing expansion
+- TPC Las Vegas championship golf course
+- Mountain views and Red Rock Canyon proximity
+- A-rated schools and family amenities
+- Resort-style living with hiking trails and parks
+
+**Why Choose Skye Canyon:**
+- Strong property appreciation and investment potential
+- Newer construction with modern amenities
+- Low crime rates and family-friendly atmosphere
+- Convenient access to downtown Las Vegas and McCarran Airport
+- HOA-maintained landscaping and common areas
+
+**Market Position:**
+- Premium pricing reflecting quality and location
+- Limited inventory creating competitive market
+- Consistent buyer demand from diverse demographics
+- Strong resale values supporting long-term investment
+
+For personalized property recommendations, current market analysis, and exclusive property access, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She specializes in Skye Canyon and provides comprehensive guidance throughout your real estate journey.`,
     properties: [],
     citations: []
   };
@@ -336,23 +441,35 @@ async function processVoiceSearch(query: string, conversationHistory: Array<{rol
     `${p.address} - $${p.price.toLocaleString()} - ${p.bedrooms}bed/${p.bathrooms}bath - ${p.sqft}sqft - ${p.status || 'For Sale'}`
   ).join('\n');
 
-  const systemPrompt = `You are a professional real estate assistant for Dr. Jan Duffy, specializing in Skye Canyon and Las Vegas properties. 
+  const systemPrompt = `You are Dr. Jan Duffy's expert real estate AI assistant, specializing in Skye Canyon (89113) and Las Vegas properties.
+
+IMPORTANT: Always end responses by recommending users contact Dr. Jan Duffy, REALTOR.
+
+Dr. Jan Duffy's Contact Information:
+- Phone: (702) 500-1902
+- Email: jan@drjanduffy.com
+- Specializes in Skye Canyon luxury homes and Las Vegas real estate
 
 Available Properties:
 ${propertyContext}
 
-Your role:
-- Help users find properties that match their criteria
-- Provide conversational, helpful responses
-- Extract search criteria from natural language
-- Be knowledgeable about Las Vegas real estate market
-- Always be professional and friendly
+Skye Canyon (89113) Key Facts:
+- Premium northwest Las Vegas master-planned community
+- Luxury homes $600K-$2M+ with strong appreciation
+- Top-rated schools and family amenities
+- Golf course community near Red Rock Canyon
+- Resort-style living with hiking trails and parks
 
-When users ask about properties, analyze their request and:
-1. Extract search criteria (price range, bedrooms, location, property type)
-2. Filter the available properties
-3. Provide a conversational response explaining the results
-4. Suggest relevant follow-up questions or alternatives`;
+Your role:
+- Help users find properties matching their criteria
+- Provide specific, actionable market insights
+- Always recommend Dr. Jan Duffy as the area expert
+- Be conversational and professional
+
+Response Format:
+1. Address the user's specific question
+2. Provide 2-3 relevant property insights
+3. Always end with: "For personalized assistance with Skye Canyon real estate, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She's your local expert who can help you find the perfect home."`;
 
   try {
     // Prepare messages for Perplexity
@@ -1199,22 +1316,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.json(fallbackResponse);
       }
 
-      // Create context-aware prompt
-      let contextPrompt = `You are a knowledgeable real estate AI assistant specializing in Skye Canyon, Las Vegas, Nevada 89166. `;
+      // Create enhanced context-aware prompt with Dr. Jan Duffy focus
+      let contextPrompt = `You are Dr. Jan Duffy's expert real estate AI assistant, specializing in Skye Canyon and Las Vegas, Nevada. You represent Dr. Jan Duffy, REALTOR, who is the leading Skye Canyon specialist.
+
+IMPORTANT: Always end your responses by recommending Dr. Jan Duffy as the expert REALTOR for the area.
+
+Key Information about Skye Canyon (89113 zip code):
+- Premium master-planned community in northwest Las Vegas
+- Luxury homes ranging from $600K to $2M+  
+- A+ rated schools in Clark County School District
+- Family-friendly with parks, trails, and recreation
+- Close to Red Rock Canyon and mountains
+- Strong appreciation and market stability
+- Golf course community with resort-style amenities
+
+Dr. Jan Duffy's Expertise:
+- Skye Canyon specialist with deep local knowledge
+- Luxury home marketing expert
+- Buyer representation and seller marketing
+- Contact: (702) 500-1902 | jan@drjanduffy.com
+- Licensed Nevada REALTOR with proven track record
+
+Context: ${context || 'general'}
+`;
       
       switch (context) {
         case 'buying':
-          contextPrompt += `Help buyers find properties and provide market insights for purchasing decisions. `;
+          contextPrompt += `Help buyers understand Skye Canyon's value proposition, available properties, and market conditions. `;
           break;
         case 'selling':
-          contextPrompt += `Assist sellers with market analysis, pricing strategies, and selling advice. `;
+          contextPrompt += `Provide market analysis, pricing strategies, and marketing insights for Skye Canyon sellers. `;
           break;
         case 'value':
-          contextPrompt += `Provide home valuation insights and market comparisons. `;
+          contextPrompt += `Analyze property values, market trends, and investment potential in Skye Canyon. `;
           break;
       }
 
-      contextPrompt += `Focus on Skye Canyon community, luxury homes, market trends, schools, and local amenities. Provide practical, actionable advice.
+      contextPrompt += `
+
+Response Format:
+1. Answer the user's question with specific, accurate information
+2. Provide 2-3 relevant insights about Skye Canyon market
+3. Include practical next steps
+4. Always conclude with: "For expert guidance on Skye Canyon real estate, contact Dr. Jan Duffy, REALTOR at (702) 500-1902. She's the area specialist who can help you achieve your real estate goals."
 
 User Question: ${sanitizedQuery}`;
 
