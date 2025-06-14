@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useLocation } from "wouter";
+import { Link } from "wouter";
 import { 
   Home, 
   Users, 
@@ -71,12 +71,6 @@ const services = [
 ];
 
 export default function ServicesOverview() {
-  const [, setLocation] = useLocation();
-
-  const handleServiceClick = (link: string) => {
-    setLocation(link);
-  };
-
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,13 +111,14 @@ export default function ServicesOverview() {
                     ✓ {service.highlight}
                   </p>
                 </div>
-                <Button 
-                  className="w-full bg-realscout-blue hover:bg-realscout-navy text-white group"
-                  onClick={() => handleServiceClick(service.link)}
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link href={service.link}>
+                  <Button asChild className="w-full bg-realscout-blue hover:bg-realscout-navy text-white group">
+                    <span>
+                      Learn More
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
