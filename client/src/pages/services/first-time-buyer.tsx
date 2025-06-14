@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ComprehensiveSchemaMarkup from "@/components/comprehensive-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -90,6 +91,17 @@ export default function FirstTimeBuyerServices() {
         <meta property="og:url" content="https://skyecanyonhomesforsale.com/services/first-time-buyer" />
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/services/first-time-buyer" />
       </Helmet>
+
+      {/* Service-Specific Schema Markup */}
+      <ComprehensiveSchemaMarkup 
+        pageType="service"
+        serviceName="First-Time Buyer Services"
+        breadcrumbs={[
+          { name: "Home", url: "https://skyecanyonhomesforsale.com" },
+          { name: "Services", url: "https://skyecanyonhomesforsale.com/services" },
+          { name: "First-Time Buyer Services", url: "https://skyecanyonhomesforsale.com/services/first-time-buyer" }
+        ]}
+      />
       
       <div className="min-h-screen bg-gray-50">
         <Navigation />

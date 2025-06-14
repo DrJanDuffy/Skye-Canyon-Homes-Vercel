@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ComprehensiveSchemaMarkup from "@/components/comprehensive-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -90,6 +91,17 @@ export default function NewConstructionServices() {
         <meta property="og:url" content="https://skyecanyonhomesforsale.com/services/new-construction" />
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/services/new-construction" />
       </Helmet>
+
+      {/* Service-Specific Schema Markup */}
+      <ComprehensiveSchemaMarkup 
+        pageType="service"
+        serviceName="New Construction"
+        breadcrumbs={[
+          { name: "Home", url: "https://skyecanyonhomesforsale.com" },
+          { name: "Services", url: "https://skyecanyonhomesforsale.com/services" },
+          { name: "New Construction", url: "https://skyecanyonhomesforsale.com/services/new-construction" }
+        ]}
+      />
       
       <div className="min-h-screen bg-gray-50">
         <Navigation />

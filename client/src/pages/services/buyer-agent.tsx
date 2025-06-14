@@ -112,6 +112,17 @@ export default function BuyerAgentServices() {
         <meta property="og:url" content="https://skyecanyonhomesforsale.com/services/buyer-agent" />
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/services/buyer-agent" />
       </Helmet>
+
+      {/* Service-Specific Schema Markup */}
+      <ComprehensiveSchemaMarkup 
+        pageType="service"
+        serviceName="Buyer Agent Services"
+        breadcrumbs={[
+          { name: "Home", url: "https://skyecanyonhomesforsale.com" },
+          { name: "Services", url: "https://skyecanyonhomesforsale.com/services" },
+          { name: "Buyer Agent Services", url: "https://skyecanyonhomesforsale.com/services/buyer-agent" }
+        ]}
+      />
       
       <div className="min-h-screen bg-gray-50">
         <Navigation />

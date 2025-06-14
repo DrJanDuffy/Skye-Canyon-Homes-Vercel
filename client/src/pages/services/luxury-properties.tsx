@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ComprehensiveSchemaMarkup from "@/components/comprehensive-schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -89,6 +90,17 @@ export default function LuxuryPropertyServices() {
         <meta property="og:url" content="https://skyecanyonhomesforsale.com/services/luxury-properties" />
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/services/luxury-properties" />
       </Helmet>
+
+      {/* Service-Specific Schema Markup */}
+      <ComprehensiveSchemaMarkup 
+        pageType="service"
+        serviceName="Luxury Properties"
+        breadcrumbs={[
+          { name: "Home", url: "https://skyecanyonhomesforsale.com" },
+          { name: "Services", url: "https://skyecanyonhomesforsale.com/services" },
+          { name: "Luxury Properties", url: "https://skyecanyonhomesforsale.com/services/luxury-properties" }
+        ]}
+      />
       
       <div className="min-h-screen bg-gray-50">
         <Navigation />
