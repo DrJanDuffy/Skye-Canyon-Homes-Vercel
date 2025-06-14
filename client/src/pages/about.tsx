@@ -77,13 +77,53 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About Your Skye Canyon Real Estate Expert | Las Vegas NV</title>
-        <meta name="description" content="Meet Dr. Jan Duffy, your trusted Skye Canyon real estate specialist. Licensed Nevada REALTOR® with 15+ years experience in Las Vegas luxury homes. License S.0197614." />
-        <meta name="keywords" content="Dr. Jan Duffy, Skye Canyon REALTOR, Las Vegas real estate agent, Nevada license S.0197614, luxury home specialist" />
-        <meta property="og:title" content="About Dr. Jan Duffy REALTOR® | Skye Canyon Expert" />
-        <meta property="og:description" content="Meet Dr. Jan Duffy, your trusted Skye Canyon real estate specialist with 15+ years experience in Las Vegas luxury homes." />
+        <title>Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Expert Las Vegas NV</title>
+        <meta name="description" content="Meet Dr. Jan Duffy, top-rated Skye Canyon REALTOR® with 15+ years experience in Las Vegas luxury homes. Nevada license S.0197614. Call (702) 500-1902 for expert service." />
+        <meta name="keywords" content="Dr. Jan Duffy REALTOR, Skye Canyon real estate agent, Las Vegas Nevada S.0197614, luxury home specialist, Desert Highlands Golf Course expert, top 1% agent" />
+        
+        {/* Person Schema markup */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Dr. Jan Duffy",
+            "jobTitle": "REALTOR®",
+            "description": "Top-rated Skye Canyon real estate specialist",
+            "telephone": "(702) 500-1902",
+            "email": "jan@skyecanyonhomesforsale.com",
+            "url": "https://skyecanyonhomesforsale.com/about",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Las Vegas",
+              "addressRegion": "NV",
+              "postalCode": "89166",
+              "addressCountry": "US"
+            },
+            "memberOf": {
+              "@type": "ProfessionalService",
+              "name": "Nevada Real Estate Division",
+              "identifier": "S.0197614"
+            }
+          })}
+        </script>
+        
+        {/* Enhanced Open Graph tags */}
+        <meta property="og:title" content="Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Expert Las Vegas NV" />
+        <meta property="og:description" content="Meet Dr. Jan Duffy, top-rated Skye Canyon REALTOR® with 15+ years experience in Las Vegas luxury homes. Expert service guaranteed." />
         <meta property="og:type" content="profile" />
+        <meta property="og:url" content="https://skyecanyonhomesforsale.com/about" />
+        <meta property="og:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dr. Jan Duffy REALTOR® | Skye Canyon Expert" />
+        <meta name="twitter:description" content="Top-rated Skye Canyon REALTOR® with 15+ years experience in Las Vegas luxury homes." />
+        <meta name="twitter:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/about" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="author" content="Dr. Jan Duffy" />
       </Helmet>
       <div className="min-h-screen bg-gray-50">
         <Navigation />

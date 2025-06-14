@@ -26,10 +26,32 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Contact Dr. Jan Duffy - Skye Canyon Real Estate Expert | Las Vegas NV</title>
-        <meta name="description" content="Contact Dr. Jan Duffy, your trusted Skye Canyon real estate expert. Get personalized assistance for buying or selling luxury homes in Las Vegas, NV. Call (702) 500-1902." />
-        <meta name="keywords" content="contact Jan Duffy, Skye Canyon realtor contact, Las Vegas real estate agent, luxury home specialist contact" />
+        <title>Contact Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Las Vegas NV 89166</title>
+        <meta name="description" content="Contact Dr. Jan Duffy, top-rated Skye Canyon REALTOR® in Las Vegas, NV 89166. Expert assistance for luxury homes, golf course properties, and new construction. Call (702) 500-1902 today." />
+        <meta name="keywords" content="contact Dr. Jan Duffy REALTOR, Skye Canyon real estate contact, Las Vegas NV 89166, luxury home specialist, Desert Highlands Golf Course, consultation" />
+        
+        {/* Geo-specific meta tags */}
+        <meta name="geo.region" content="US-NV" />
+        <meta name="geo.placename" content="Las Vegas" />
+        <meta name="geo.position" content="36.2648;-115.3275" />
+        <meta name="geo.zipcode" content="89166" />
+        
+        {/* Enhanced Open Graph tags */}
+        <meta property="og:title" content="Contact Dr. Jan Duffy REALTOR® | Skye Canyon Real Estate Las Vegas NV" />
+        <meta property="og:description" content="Contact Dr. Jan Duffy, top-rated Skye Canyon REALTOR® for expert assistance with luxury homes and golf course properties in Las Vegas, NV 89166." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://skyecanyonhomesforsale.com/contact" />
+        <meta property="og:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Dr. Jan Duffy REALTOR® | Skye Canyon Expert" />
+        <meta name="twitter:description" content="Expert assistance for luxury homes and golf course properties in Las Vegas, NV 89166. Call (702) 500-1902." />
+        <meta name="twitter:image" content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg" />
+        
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/contact" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         
         <script type="application/ld+json">
           {JSON.stringify({
