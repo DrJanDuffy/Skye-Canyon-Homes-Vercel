@@ -58,7 +58,7 @@ export default function HeroSection() {
             <span className="text-sm font-medium text-white">🏆 Top Skye Canyon Specialist</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Dr. Jan Duffy - Skye Canyon Real Estate Expert Las Vegas NV 89166
+            Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®
           </h1>
           <p className="text-lg opacity-90 mb-8">
             Premier REALTOR® specializing in Skye Canyon luxury homes, new construction & Desert Highlands Golf Course properties. Expert buyer & seller representation in Las Vegas 89166 with exclusive builder partnerships including Toll Brothers, Lennar & DR Horton.
