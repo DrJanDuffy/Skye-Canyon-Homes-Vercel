@@ -21,6 +21,7 @@ import Breadcrumb from "@/components/breadcrumb";
 import BackToTop from "@/components/back-to-top";
 import FAQSection from "@/components/faq-section";
 import RealScoutListings from "@/components/realscout-listings";
+import PerformanceInsights from "@/components/performance-insights";
 
 const achievements = [
   {
@@ -329,6 +330,9 @@ export default function About() {
           </Card>
         </div>
       </section>
+
+      {/* Performance Insights */}
+      <PerformanceInsights />
 
       {/* Testimonials */}
       <section className="py-16 bg-white">

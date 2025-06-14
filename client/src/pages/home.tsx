@@ -27,6 +27,7 @@ import RealScoutSearchWidget from "@/components/realscout-search-widget";
 import RealScoutAnalytics from "@/components/realscout-analytics";
 import VoiceSearchIntegration from "@/components/voice-search-integration";
 import ErrorBoundary from "@/components/error-boundary";
+import ReviewHighlights from "@/components/review-highlights";
 
 export default function Home() {
   return (
@@ -175,6 +176,9 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      {/* Client Reviews Section */}
+      <ReviewHighlights />
 
       {/* Home Valuation CTA Section */}
       <section className="py-16 bg-white">
