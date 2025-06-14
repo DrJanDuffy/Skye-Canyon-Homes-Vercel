@@ -302,6 +302,9 @@ class SmartLeadScoring {
         summary: leadSummary.summary
       });
 
+      // Send to FollowUp Boss
+      await this.sendToFollowUpBoss(user, leadSummary);
+
       // Save to database for follow-up
       await this.saveQualifiedLead(user, leadSummary);
 
@@ -385,6 +388,66 @@ class SmartLeadScoring {
     };
 
     await sgMail.send(msg);
+  }
+
+  // Send qualified lead to FollowUp Boss
+  private async sendToFollowUpBoss(user: UserBehavior, leadSummary: any): Promise<void> {
+    try {
+      const followUpBossData = {
+        firstName: 'Website',
+        lastName: 'Visitor',
+        email: `lead-${user.sessionId}@skyecanyonhomes.com`,
+        phone: user.ip || 'Unknown',
+        source: 'Skye Canyon Website',
+        status: 'New',
+        tags: [
+          `Score: ${user.leadScore}`,
+          user.leadScore >= 100 ? 'HOT LEAD' : user.leadScore >= 70 ? 'WARM LEAD' : 'QUALIFIED LEAD',
+          'Smart Lead Scoring'
+        ],
+        notes: `${leadSummary.summary}\n\nBehavioral Triggers:\n${leadSummary.triggers.join('\n')}\n\nLead Score: ${user.leadScore}/200\nSession Duration: ${Math.floor(user.totalSessionTime / 60)} minutes\nReturn Visits: ${user.returnVisits}`,
+        customFields: {
+          leadScore: user.leadScore.toString(),
+          sessionId: user.sessionId,
+          propertyViews: user.actions.filter(a => a.type === 'property_view').length.toString(),
+          aiSearchQueries: user.actions.filter(a => a.type === 'ai_search').length.toString(),
+          urgencyLevel: user.leadScore >= 100 ? 'HIGH' : user.leadScore >= 70 ? 'MEDIUM' : 'QUALIFIED'
+        }
+      };
+
+      // Send to FollowUp Boss API
+      if (process.env.FOLLOWUP_BOSS_API_KEY) {
+        const response = await fetch('https://api.followupboss.com/v1/people', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${process.env.FOLLOWUP_BOSS_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(followUpBossData)
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log('✅ Lead sent to FollowUp Boss successfully:', {
+            sessionId: user.sessionId,
+            score: user.leadScore,
+            urgency: followUpBossData.customFields.urgencyLevel,
+            followUpBossId: responseData.id
+          });
+        } else {
+          console.error('❌ Failed to send lead to FollowUp Boss:', response.status, response.statusText);
+        }
+      } else {
+        console.log('⚠️ FollowUp Boss API key not configured. Lead data prepared:', {
+          sessionId: user.sessionId,
+          score: user.leadScore,
+          tags: followUpBossData.tags,
+          notes: followUpBossData.notes.substring(0, 200) + '...'
+        });
+      }
+    } catch (error) {
+      console.error('Error sending to FollowUp Boss:', error);
+    }
   }
 
   // Save qualified lead to database
