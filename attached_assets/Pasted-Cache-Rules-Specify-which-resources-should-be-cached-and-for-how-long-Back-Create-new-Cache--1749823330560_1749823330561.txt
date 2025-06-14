@@ -1,0 +1,93 @@
+Cache Rules
+Specify which resources should be cached and for how long.
+
+
+Back
+Create new Cache Rule
+This template works without changes, but you can customize the filter or adjust cache settings if needed.
+Rule name (required)
+Cache Everything [Template]
+Give your rule a descriptive name.
+If incoming requests match…
+
+
+Custom filter expression
+
+Only apply the rule to requests matching the custom filter expression
+
+
+All incoming requests
+
+Apply the rule to all requests
+
+Then...
+Cache eligibility
+(Required)
+
+Mark whether the request’s response from origin is eligible for caching. Caching itself will still depend on the cache-control header and your other caching configurations. 
+Learn more
+
+
+
+Bypass cache
+
+Eligible for cache
+Edge TTL
+(Optional)
+
+Specify if and how long Cloudflare should cache the response, depending on if a cache-control header is present on the origin response. 
+Learn more
+
+
+
+Browser TTL
+(Optional)
+
+Specify how long client browsers should cache the response. Cloudflare cache purge will not purge content cached on client browsers, so high browser TTLs may lead to stale content. 
+Learn more
+
+
+Cache key
+(Optional)
+
+Define which components of the request are included or excluded from the cache key Cloudflare uses to store the response in cache. 
+Learn more
+
+
+
+
+
+
+
+
+
+
+Cache Reserve eligibility
+(Optional)
+
+Mark whether the request's response from origin is eligible for Cache Reserve (requires a Cache Reserve 
+add-on plan
+ ).
+
+
+Serve stale content while revalidating
+(Optional)
+
+Define if Cloudflare should serve stale content while getting the latest content from the origin. 
+Learn more
+
+
+Respect strong ETags
+(Optional)
+
+Specify whether or not Cloudflare should respect strong ETag (entity tag) headers. 
+Learn more
+
+
+Origin error page pass-through
+(Optional)
+
+Define if Cloudflare should use error pages issued by the origin server in case of HTTP error status codes. 
+Learn more
+
+

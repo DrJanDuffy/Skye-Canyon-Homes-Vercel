@@ -1,0 +1,63 @@
+Caching
+
+Configuration
+Customize cache settings.
+
+
+Purge Cache
+Instantly purge cached files to force Cloudflare to fetch a fresh version of those files from your web server. You can purge files selectively or all at once.
+
+Note: Purging the cache may temporarily degrade performance for your website and increase load on your origin.
+
+APIHelp
+Caching Level
+Determine how much of your website’s static content you want Cloudflare to cache. Increased caching can speed up page load time.
+
+
+
+No query string
+
+Ignore query string
+
+Standard
+APIHelp
+Browser Cache TTL
+Determine the length of time Cloudflare instructs a visitor’s browser to cache files. During this period, the browser loads the files from its local cache, speeding up page loads.
+
+4 hours
+APIHelp
+CSAM Scanning Tool
+The Child Sexual Abuse Material (CSAM) Scanning Tool allows website owners to proactively identify and take action on potential CSAM located on their website.
+
+With this service enabled, the tool will attempt to match hashes of your cached images against hashes of known CSAM. When a match is made, the tool will:
+
+Block the URL where the content has been found
+Email you with the file path to enable you to permanently remove the image
+Help
+Crawler Hints
+Crawler Hints provide high quality data to search engines and other crawlers when sites using Cloudflare change their content. This allows crawlers to precisely time crawling, avoid wasteful crawls, and generally reduce resource consumption on origins and other Internet infrastructure.
+
+By enabling this service, you agree to share website information required for feature functionality and agree to the Supplemental Terms for Crawler Hints.
+
+
+Help
+Always Online™
+Keep your website online for visitors when your origin server is unavailable. Cloudflare serves limited copies of web pages available from the Internet Archive’s Wayback Machine.
+
+
+Enabling this Service will share some of your website’s information with the Internet Archive in order to make this feature functional. By enabling this Service, you agree to the Supplemental Terms for Always Online.
+
+
+
+APIHelp
+Development Mode
+Temporarily bypass our cache allowing you to see changes to your origin server in realtime.
+
+Note: Enabling this feature can significantly increase origin server load. Development Mode does not purge the cache so files will need to be purged after development mode expires.
+
+
+APIHelp
+Enable Query String Sort
+Cloudflare will treat files with the same query strings as the same file in cache, regardless of the order of the query strings
+
+Requires an Enterprise plan
