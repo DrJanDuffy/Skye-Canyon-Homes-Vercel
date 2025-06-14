@@ -38,6 +38,10 @@ import Contact from "@/pages/contact";
 import PrivacyPolicy from "@/pages/privacy-policy";
 import TermsOfService from "@/pages/terms-of-service";
 import VoiceSearchPage from "@/pages/voice-search";
+import BuyerAgentServices from "@/pages/services/buyer-agent";
+import FirstTimeBuyerServices from "@/pages/services/first-time-buyer";
+import LuxuryPropertyServices from "@/pages/services/luxury-properties";
+import NewConstructionServices from "@/pages/services/new-construction";
 import LeadDashboard from "@/pages/lead-dashboard";
 import FollowUpBossStatus from "@/pages/followup-boss-status";
 import NotFound from "@/pages/not-found";
@@ -59,6 +63,10 @@ function Router() {
       <Route path="/properties" component={Properties} />
       <Route path="/property/:id" component={PropertyDetail} />
       <Route path="/voice-search" component={VoiceSearchPage} />
+      <Route path="/services/buyer-agent" component={BuyerAgentServices} />
+      <Route path="/services/first-time-buyer" component={FirstTimeBuyerServices} />
+      <Route path="/services/luxury-properties" component={LuxuryPropertyServices} />
+      <Route path="/services/new-construction" component={NewConstructionServices} />
       <Route path="/leads" component={LeadDashboard} />
       <Route path="/followup-boss-status" component={FollowUpBossStatus} />
       <Route path="/about" component={About} />
