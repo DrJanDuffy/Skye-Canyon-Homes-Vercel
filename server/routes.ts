@@ -1248,12 +1248,12 @@ User Question: ${sanitizedQuery}`;
         body: JSON.stringify({
           model: 'llama-3.1-sonar-small-128k-online',
           messages: [
-            { role: 'user', content: `${contextPrompt}\n\nUser Question: ${sanitizedQuery}` }
+            { role: 'user', content: `${contextPrompt}\n\nUser Question: ${sanitizedQuery}\n\nIMPORTANT: Respond in exactly 3-4 sentences maximum. Include specific data and end with Dr. Jan Duffy contact.` }
           ],
-          max_tokens: 800,
-          temperature: 0.2,
+          max_tokens: 200,
+          temperature: 0.1,
           top_p: 0.9,
-          search_domain_filter: ["realtor.com", "zillow.com", "redfin.com", "vegas.com", "lvrealtors.com", "niche.com", "greatschools.org"],
+          search_domain_filter: ["realtor.com", "zillow.com", "redfin.com", "vegas.com", "lvrealtors.com"],
           return_images: false,
           return_related_questions: false,
           search_recency_filter: "month",

@@ -229,10 +229,12 @@ export default function AISearchAssistant() {
             
             {results.marketInsights && (
               <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <p className="text-blue-800 font-medium mb-2">Market Insight:</p>
-                <div className="text-blue-700 text-sm leading-relaxed max-h-48 overflow-y-auto">
-                  {results.marketInsights.split('\n').map((line, idx) => (
-                    <p key={idx} className="mb-2 last:mb-0">{line}</p>
+                <p className="text-blue-800 font-medium mb-3">Market Insight:</p>
+                <div className="text-blue-700 text-sm leading-relaxed space-y-2">
+                  {results.marketInsights.split(/\n\n|\*\*/).filter(line => line.trim()).map((line, idx) => (
+                    <p key={idx} className="mb-2 last:mb-0">
+                      {line.replace(/^\*\*|\*\*$/g, '').trim()}
+                    </p>
                   ))}
                 </div>
               </div>
