@@ -70,27 +70,27 @@ export default function Navigation() {
                 </svg>
               </button>
               <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
-                <a href="/properties" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                <Link href="/properties" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   All Properties
-                </a>
-                <a href="/voice-search" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/voice-search" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Voice Search
-                </a>
-                <a href="/luxury-homes-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/luxury-homes-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Luxury Homes
-                </a>
-                <a href="/skye-canyon-guide" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/skye-canyon-guide" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Skye Canyon Guide
-                </a>
-                <a href="/skye-canyon-schools" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/skye-canyon-schools" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Skye Canyon Schools
-                </a>
-                <a href="/skye-canyon-parks" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/skye-canyon-parks" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Skye Canyon Parks
-                </a>
-                <a href="/skye-canyon-communities" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/skye-canyon-communities" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   New Construction
-                </a>
+                </Link>
               </div>
             </div>
             <div className="relative group">
@@ -101,26 +101,26 @@ export default function Navigation() {
                 </svg>
               </button>
               <div className="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-gray-100">
-                <a href="/market-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                <Link href="/market-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Market Analysis
-                </a>
-                <a href="/neighborhood-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/neighborhood-analysis" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Neighborhood Heat Map
-                </a>
-                <a href="/las-vegas-real-estate" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/las-vegas-real-estate" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Las Vegas Market
-                </a>
-                <a href="/northwest-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
+                </Link>
+                <Link href="/northwest-las-vegas" className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-realscout-blue transition-colors">
                   Northwest Las Vegas
-                </a>
+                </Link>
               </div>
             </div>
-            <a 
+            <Link 
               href="/about"
               className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
             >
               About Dr. Duffy
-            </a>
+            </Link>
             <button 
               onClick={() => scrollToSection('contact')}
               className="text-gray-700 hover:text-realscout-blue transition-colors font-medium"
@@ -162,93 +162,93 @@ export default function Navigation() {
               <Phone className="w-4 h-4 mr-2" />
               (702) 500-1902
             </a>
-            <a 
+            <Link 
               href="/"
               className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
-            </a>
+            </Link>
             <div className="px-3 py-1">
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Properties</div>
               <div className="mt-1 space-y-1">
-                <a 
+                <Link 
                   href="/properties"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   All Properties
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/luxury-homes-las-vegas"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Luxury Homes
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/skye-canyon-guide"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Skye Canyon Guide
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/skye-canyon-schools"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Skye Canyon Schools
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/skye-canyon-parks"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Skye Canyon Parks
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/skye-canyon-communities"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   New Construction
-                </a>
+                </Link>
               </div>
             </div>
             <div className="px-3 py-1">
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Market Info</div>
               <div className="mt-1 space-y-1">
-                <a 
+                <Link 
                   href="/market-analysis"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Market Analysis
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/las-vegas-real-estate"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Las Vegas Market
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/northwest-las-vegas"
                   className="block px-2 py-1 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Northwest Las Vegas
-                </a>
+                </Link>
               </div>
             </div>
-            <a 
+            <Link 
               href="/about"
               className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               About Dr. Duffy
-            </a>
+            </Link>
             <button 
               onClick={() => scrollToSection('contact')}
               className="block px-3 py-2 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium w-full text-left"
