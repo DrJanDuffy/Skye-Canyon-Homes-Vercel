@@ -49,24 +49,6 @@ const services = [
     highlight: "Only exclusive Skye Canyon focus",
     link: "/services/new-construction",
     color: "text-orange-600"
-  },
-  {
-    id: "relocation",
-    title: "Relocation Assistance",
-    description: "Comprehensive relocation services for families moving to Las Vegas' premier guard-gated community.",
-    icon: Truck,
-    highlight: "Full-service relocation support",
-    link: "/services/relocation",
-    color: "text-teal-600"
-  },
-  {
-    id: "seller-agent",
-    title: "Seller's Agent Services",
-    description: "Expert listing and marketing services with proven results in the competitive Skye Canyon market.",
-    icon: TrendingUp,
-    highlight: "Premium marketing package",
-    link: "/services/seller-agent",
-    color: "text-red-600"
   }
 ];
 
