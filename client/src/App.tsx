@@ -43,8 +43,9 @@ import BuyerAgentServices from "@/pages/services/buyer-agent";
 import FirstTimeBuyerServices from "@/pages/services/first-time-buyer";
 import LuxuryPropertyServices from "@/pages/services/luxury-properties";
 import NewConstructionServices from "@/pages/services/new-construction";
-import RelocationServices from "@/pages/services/relocation";
-import SellerAgentServices from "@/pages/services/seller-agent";
+import RelocationServices from "@/pages/services/relocation-simple";
+import SellerAgentServices from "@/pages/services/seller-agent-simple";
+import TestService from "@/pages/services/test";
 import LeadDashboard from "@/pages/lead-dashboard";
 import FollowUpBossStatus from "@/pages/followup-boss-status";
 import NotFound from "@/pages/not-found";
@@ -72,6 +73,7 @@ function Router() {
       <Route path="/services/new-construction" component={NewConstructionServices} />
       <Route path="/services/relocation" component={RelocationServices} />
       <Route path="/services/seller-agent" component={SellerAgentServices} />
+      <Route path="/services/test" component={TestService} />
       <Route path="/leads" component={LeadDashboard} />
       <Route path="/followup-boss-status" component={FollowUpBossStatus} />
       <Route path="/about" component={About} />
