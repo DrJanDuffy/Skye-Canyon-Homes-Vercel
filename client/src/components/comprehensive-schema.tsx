@@ -295,7 +295,7 @@ export default function ComprehensiveSchemaMarkup({
         },
         "serviceType": "Luxury Real Estate"
       },
-      "New Construction": {
+      "new-construction": {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "Skye Canyon New Construction Services", 
