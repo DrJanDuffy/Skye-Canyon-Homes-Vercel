@@ -11,10 +11,8 @@ export function InternalLink({ href, children, className = "", keyword }: Intern
   const baseClass = "text-blue-600 hover:text-blue-800 transition-colors font-medium";
   
   return (
-    <Link href={href}>
-      <a className={`${baseClass} ${className}`} title={keyword}>
-        {children}
-      </a>
+    <Link href={href} className={`${baseClass} ${className}`} title={keyword}>
+      {children}
     </Link>
   );
 }

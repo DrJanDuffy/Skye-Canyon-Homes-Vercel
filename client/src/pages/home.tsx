@@ -128,6 +128,7 @@ export default function Home() {
       <CriticalCSS />
       <CriticalPerformanceLoader />
       <LocalBusinessSchema />
+      <LocalCitationsSchema />
       <GeoEnhancedSchema />
       <RealScoutAnalytics />
       <div className="min-h-screen bg-white">
@@ -225,6 +226,13 @@ export default function Home() {
 
       {/* Services Overview Section */}
       <ServicesOverview />
+
+      {/* Contextual Internal Linking Content */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ContextualContent />
+        </div>
+      </section>
 
       {/* Client Reviews Section */}
       <ReviewHighlights />
