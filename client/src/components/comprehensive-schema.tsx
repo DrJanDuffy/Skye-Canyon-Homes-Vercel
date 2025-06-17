@@ -239,7 +239,7 @@ export default function ComprehensiveSchemaMarkup({
     if (!serviceName) return null;
     
     const serviceSchemas: Record<string, any> = {
-      "Buyer Agent Services": {
+      "buyer-agent": {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "Skye Canyon Buyer Agent Services",
@@ -273,7 +273,7 @@ export default function ComprehensiveSchemaMarkup({
           ]
         }
       },
-      "First-Time Buyer Services": {
+      "first-time-buyer": {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": "Skye Canyon First-Time Buyer Services",
@@ -284,7 +284,7 @@ export default function ComprehensiveSchemaMarkup({
         },
         "serviceType": "First-Time Homebuyer Assistance"
       },
-      "Luxury Properties": {
+      "luxury-properties": {
         "@context": "https://schema.org",
         "@type": "Service", 
         "name": "Skye Canyon Luxury Property Services",
