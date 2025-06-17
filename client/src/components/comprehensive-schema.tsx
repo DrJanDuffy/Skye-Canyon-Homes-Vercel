@@ -140,16 +140,22 @@ export default function ComprehensiveSchemaMarkup({
           }
         },
         {
-          "@type": "Service",
-          "name": "First-Time Buyer Assistance",
-          "description": "Comprehensive support for first-time homebuyers",
-          "serviceType": "First-Time Buyer Services"
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "First-Time Buyer Assistance",
+            "description": "Comprehensive support for first-time homebuyers",
+            "serviceType": "First-Time Buyer Services"
+          }
         },
         {
-          "@type": "Service",
-          "name": "New Construction Sales",
-          "description": "New construction home sales and builder partnerships",
-          "serviceType": "New Construction Real Estate"
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "New Construction Sales",
+            "description": "New construction home sales and builder partnerships",
+            "serviceType": "New Construction Real Estate"
+          }
         }
       ]
     },
