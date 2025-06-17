@@ -30,6 +30,9 @@ import ErrorBoundary from "@/components/error-boundary";
 import ReviewHighlights from "@/components/review-highlights";
 import ComprehensiveSchemaMarkup from "@/components/comprehensive-schema";
 import ServicesOverview from "@/components/services-overview";
+import LinkBuildingSEO from "@/components/link-building-seo";
+import LocalCitationsSchema from "@/components/local-citations-schema";
+import { ContextualContent } from "@/components/internal-link-optimizer";
 
 export default function Home() {
   return (
