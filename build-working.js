@@ -105,7 +105,7 @@ async function buildWorking() {
       .gap-8 { gap: 2rem; }
       .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
       .mb-4 { margin-bottom: 1rem; }
-      .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+      .text-xl { font-size: 1.125rem; line-height: 1.75rem; }
       .mb-2 { margin-bottom: 0.5rem; }
       .bg-gray-900 { background-color: #111827; }
       .text-white { color: white; }
@@ -117,9 +117,14 @@ async function buildWorking() {
     fs.writeFileSync('dist/public/assets/main.css', cssContent);
     console.log('✅ CSS created successfully');
 
-    // Create working HTML
-    console.log('📄 Creating HTML...');
-    const htmlContent = `<!DOCTYPE html>
+    // Copy the original HTML file instead of creating a new one
+    console.log('📄 Copying original HTML...');
+    if (fs.existsSync('client/index.html')) {
+      fs.copyFileSync('client/index.html', 'dist/public/index.html');
+      console.log('✅ Original HTML copied successfully');
+    } else {
+      console.log('⚠️ Original HTML not found, creating basic HTML');
+      const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -133,9 +138,8 @@ async function buildWorking() {
   <script src="/assets/main.js"></script>
 </body>
 </html>`;
-
-    fs.writeFileSync('dist/public/index.html', htmlContent);
-    console.log('✅ HTML created successfully');
+      fs.writeFileSync('dist/public/index.html', htmlContent);
+    }
 
     // Create server
     console.log('🖥️ Creating server...');
@@ -208,7 +212,7 @@ export default app;`;
     console.log('🎉 Build completed successfully!');
     console.log('📁 Output directory: dist/');
     console.log('📄 Files created:');
-    console.log('   - dist/public/index.html');
+    console.log('   - dist/public/index.html (preserved from original)');
     console.log('   - dist/public/assets/main.js');
     console.log('   - dist/public/assets/main.css');
     console.log('   - dist/server.js');
