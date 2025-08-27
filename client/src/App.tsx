@@ -824,6 +824,416 @@ export default function App(): JSX.Element {
         </div>
       </section>
 
+      {/* Directions & Travel Planning Section */}
+      <section style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '24px', color: '#111827' }}>
+              Plan Your Visit to Our Office
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#6b7280', maxWidth: '800px', margin: '0 auto' }}>
+              Get real-time directions, travel times, and route planning to visit Dr. Jan Duffy's 
+              Skye Canyon Real Estate office. Plan your trip with confidence.
+            </p>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '32px', marginBottom: '48px' }}>
+            {/* Office Location Card */}
+            <div style={{ 
+              backgroundColor: 'white', 
+              borderRadius: '16px', 
+              padding: '32px',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+              border: '1px solid #e5e7eb'
+            }}>
+              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                <div style={{ 
+                  width: '80px', 
+                  height: '80px', 
+                  backgroundColor: '#1e3a8a', 
+                  borderRadius: '50%', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  margin: '0 auto 16px'
+                }}>
+                  <span style={{ color: 'white', fontSize: '2rem' }}>📍</span>
+                </div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>
+                  Office Location
+                </h3>
+                <p style={{ color: '#6b7280', fontSize: '1.125rem' }}>
+                  Skye Canyon Real Estate
+                </p>
+              </div>
+              
+              <div style={{ marginBottom: '24px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                  <span style={{ color: '#1e3a8a', fontSize: '1.25rem' }}>🏢</span>
+                  <span style={{ color: '#374151', fontSize: '1rem' }}>
+                    10111 W. Skye Canyon Park Drive
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                  <span style={{ color: '#1e3a8a', fontSize: '1.25rem' }}>🌆</span>
+                  <span style={{ color: '#374151', fontSize: '1rem' }}>
+                    Las Vegas, NV 89166
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+                  <span style={{ color: '#1e3a8a', fontSize: '1.25rem' }}>📞</span>
+                  <span style={{ color: '#374151', fontSize: '1rem' }}>
+                    (702) 500-1902
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#1e3a8a', fontSize: '1.25rem' }}>⏰</span>
+                  <span style={{ color: '#374151', fontSize: '1rem' }}>
+                    Mon-Fri: 8AM-8PM, Sat: 9AM-6PM
+                  </span>
+                </div>
+              </div>
+              
+              <div style={{ textAlign: 'center' }}>
+                <a 
+                  href="https://maps.google.com/maps?q=10111+W.+Skye+Canyon+Park+Drive,+Las+Vegas,+NV+89166"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    backgroundColor: '#1e3a8a',
+                    color: 'white',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                    transition: 'background-color 0.3s'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#1e40af'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#1e3a8a'}
+                >
+                  🗺️ Open in Google Maps
+                </a>
+              </div>
+            </div>
+            
+            {/* Travel Planning Card */}
+            <div style={{ 
+              backgroundColor: 'white', 
+              borderRadius: '16px', 
+              padding: '32px',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+              border: '1px solid #e5e7eb'
+            }}>
+              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                <div style={{ 
+                  width: '80px', 
+                  height: '80px', 
+                  backgroundColor: '#16a34a', 
+                  borderRadius: '50%', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  margin: '0 auto 16px'
+                }}>
+                  <span style={{ color: 'white', fontSize: '2rem' }}>🚗</span>
+                </div>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>
+                  Plan Your Route
+                </h3>
+                <p style={{ color: '#6b7280', fontSize: '1.125rem' }}>
+                  Get directions from anywhere in Las Vegas
+                </p>
+              </div>
+              
+              {/* Directions Form */}
+              <form style={{ marginBottom: '24px' }}>
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ 
+                    display: 'block', 
+                    fontSize: '0.875rem', 
+                    fontWeight: '500', 
+                    color: '#374151', 
+                    marginBottom: '6px'
+                  }}>
+                    Starting Location
+                  </label>
+                  <input 
+                    type="text" 
+                    id="directions-origin"
+                    placeholder="Enter your starting address..."
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      fontSize: '0.875rem',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '6px',
+                      outline: 'none',
+                      transition: 'border-color 0.3s',
+                      boxSizing: 'border-box'
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = '#16a34a'}
+                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                  />
+                </div>
+                
+                <div style={{ marginBottom: '20px' }}>
+                  <label style={{ 
+                    display: 'block', 
+                    fontSize: '0.875rem', 
+                    fontWeight: '500', 
+                    color: '#374151', 
+                    marginBottom: '6px'
+                  }}>
+                    Transportation Mode
+                  </label>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+                    <button 
+                      type="button"
+                      style={{
+                        padding: '8px 12px',
+                        fontSize: '0.75rem',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '6px',
+                        backgroundColor: '#16a34a',
+                        color: 'white',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                      onMouseOver={(e) => e.target.style.backgroundColor = '#15803d'}
+                      onMouseOut={(e) => e.target.style.backgroundColor = '#16a34a'}
+                    >
+                      🚗 Driving
+                    </button>
+                    <button 
+                      type="button"
+                      style={{
+                        padding: '8px 12px',
+                        fontSize: '0.75rem',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '6px',
+                        backgroundColor: '#e5e7eb',
+                        color: '#374151',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                      onMouseOver={(e) => e.target.style.backgroundColor = '#d1d5db'}
+                      onMouseOut={(e) => e.target.style.backgroundColor = '#e5e7eb'}
+                    >
+                      🚶 Walking
+                    </button>
+                    <button 
+                      type="button"
+                      style={{
+                        padding: '8px 12px',
+                        fontSize: '0.75rem',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '6px',
+                        backgroundColor: '#e5e7eb',
+                        color: '#374151',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                      onMouseOver={(e) => e.target.style.backgroundColor = '#d1d5db'}
+                      onMouseOut={(e) => e.target.style.backgroundColor = '#e5e7eb'}
+                    >
+                      🚌 Transit
+                    </button>
+                    <button 
+                      type="button"
+                      style={{
+                        padding: '8px 12px',
+                        fontSize: '0.75rem',
+                        border: '2px solid #e5e7eb',
+                        borderRadius: '6px',
+                        backgroundColor: '#e5e7eb',
+                        color: '#374151',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s'
+                      }}
+                      onMouseOver={(e) => e.target.style.backgroundColor = '#d1d5db'}
+                      onMouseOut={(e) => e.target.style.backgroundColor = '#e5e7eb'}
+                    >
+                      🚲 Biking
+                    </button>
+                  </div>
+                </div>
+                
+                <button 
+                  type="submit"
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#16a34a',
+                    color: 'white',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.3s'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#15803d'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#16a34a'}
+                >
+                  🗺️ Get Directions
+                </button>
+              </form>
+              
+              <div style={{ 
+                backgroundColor: '#f0fdf4', 
+                borderRadius: '8px', 
+                padding: '16px',
+                border: '1px solid #bbf7d0'
+              }}>
+                <p style={{ 
+                  fontSize: '0.875rem', 
+                  color: '#166534', 
+                  margin: 0,
+                  textAlign: 'center'
+                }}>
+                  💡 <strong>Pro Tip:</strong> Use this to plan your visit and see real-time traffic conditions
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Interactive Map with Directions */}
+          <div style={{ 
+            backgroundColor: 'white', 
+            borderRadius: '16px', 
+            padding: '32px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+            border: '1px solid #e5e7eb'
+          }}>
+            <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>
+                Interactive Directions Map
+              </h3>
+              <p style={{ color: '#6b7280', fontSize: '1.125rem' }}>
+                See your route and estimated travel time in real-time
+              </p>
+            </div>
+            
+            {/* Google Maps Embed with Directions */}
+            <div style={{ 
+              backgroundColor: '#f8fafc', 
+              borderRadius: '12px', 
+              padding: '24px',
+              border: '2px dashed #d1d5db',
+              textAlign: 'center'
+            }}>
+              <div style={{ marginBottom: '16px' }}>
+                <span style={{ fontSize: '3rem' }}>🗺️</span>
+              </div>
+              <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#374151', marginBottom: '8px' }}>
+                Google Maps Directions Integration
+              </h4>
+              <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '16px' }}>
+                This map will show real-time directions, traffic conditions, and travel times
+              </p>
+              <p style={{ color: '#9ca3af', fontSize: '0.75rem' }}>
+                Powered by Google Maps Platform - Get started at no cost
+              </p>
+            </div>
+            
+            {/* Quick Directions Links */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+              gap: '16px', 
+              marginTop: '24px'
+            }}>
+              <a 
+                href="https://maps.google.com/maps?daddr=10111+W.+Skye+Canyon+Park+Drive,+Las+Vegas,+NV+89166&dirflg=d"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px 16px',
+                  backgroundColor: '#f3f4f6',
+                  color: '#374151',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  transition: 'all 0.3s',
+                  border: '1px solid #e5e7eb'
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = '#e5e7eb';
+                  e.target.style.borderColor = '#d1d5db';
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = '#f3f4f6';
+                  e.target.style.borderColor = '#e5e7eb';
+                }}
+              >
+                🚗 Driving Directions
+              </a>
+              
+              <a 
+                href="https://maps.google.com/maps?daddr=10111+W.+Skye+Canyon+Park+Drive,+Las+Vegas,+NV+89166&dirflg=w"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px 16px',
+                  backgroundColor: '#f3f4f6',
+                  color: '#374151',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  transition: 'all 0.3s',
+                  border: '1px solid #e5e7eb'
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = '#e5e7eb';
+                  e.target.style.borderColor = '#d1d5db';
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = '#f3f4f6';
+                  e.target.style.borderColor = '#e5e7eb';
+                }}
+              >
+                🚶 Walking Directions
+              </a>
+              
+              <a 
+                href="https://maps.google.com/maps?daddr=10111+W.+Skye+Canyon+Park+Drive,+Las+Vegas,+NV+89166&dirflg=r"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px 16px',
+                  backgroundColor: '#f3f4f6',
+                  color: '#374151',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  transition: 'all 0.3s',
+                  border: '1px solid #e5e7eb'
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = '#e5e7eb';
+                  e.target.style.borderColor = '#d1d5db';
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = '#f3f4f6';
+                  e.target.style.borderColor = '#e5e7eb';
+                }}
+              >
+                🚌 Transit Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section style={{ padding: '80px 0', backgroundColor: '#1e3a8a', color: 'white' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
