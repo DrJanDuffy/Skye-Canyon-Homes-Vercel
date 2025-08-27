@@ -437,6 +437,193 @@ export default function App(): JSX.Element {
         </div>
       </section>
 
+      {/* Amenities & Location Section */}
+      <section style={{ padding: '80px 0', backgroundColor: 'white' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#111827', marginBottom: '24px' }}>
+              Skye Canyon Amenities & Location
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#6b7280', maxWidth: '900px', margin: '0 auto' }}>
+              Discover why Skye Canyon is one of Las Vegas' most desirable communities. 
+              Explore nearby amenities, parks, shopping, and dining options.
+            </p>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px', marginBottom: '48px' }}>
+            <div style={{ backgroundColor: '#f8fafc', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+                <span style={{ fontSize: '2rem', marginRight: '12px' }}>🏞️</span>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#111827' }}>Parks & Recreation</h3>
+              </div>
+              <ul style={{ color: '#6b7280', fontSize: '0.875rem', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>Skye Canyon Park - 100+ acres of open space</li>
+                <li style={{ marginBottom: '8px' }}>Walking trails and hiking paths</li>
+                <li style={{ marginBottom: '8px' }}>Dog parks and playgrounds</li>
+                <li style={{ marginBottom: '8px' }}>Sports fields and courts</li>
+              </ul>
+            </div>
+            
+            <div style={{ backgroundColor: '#f8fafc', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+                <span style={{ fontSize: '2rem', marginRight: '12px' }}>🛍️</span>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#111827' }}>Shopping & Dining</h3>
+              </div>
+              <ul style={{ color: '#6b7280', fontSize: '0.875rem', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>Centennial Hills Shopping Center</li>
+                <li style={{ marginBottom: '8px' }}>Local restaurants and cafes</li>
+                <li style={{ marginBottom: '8px' }}>Grocery stores and markets</li>
+                <li style={{ marginBottom: '8px' }}>Boutique shops and services</li>
+              </ul>
+            </div>
+            
+            <div style={{ backgroundColor: '#f8fafc', padding: '24px', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+                <span style={{ fontSize: '2rem', marginRight: '12px' }}>🏥</span>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#111827' }}>Healthcare & Services</h3>
+              </div>
+              <ul style={{ color: '#6b7280', fontSize: '0.875rem', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>Medical centers and clinics</li>
+                <li style={{ marginBottom: '8px' }}>Dental and vision care</li>
+                <li style={{ marginBottom: '8px' }}>Pharmacy and urgent care</li>
+                <li style={{ marginBottom: '8px' }}>Fitness centers and gyms</li>
+              </ul>
+            </div>
+          </div>
+          
+          {/* Google Maps Integration */}
+          <div style={{ backgroundColor: '#f8fafc', borderRadius: '16px', padding: '32px', border: '1px solid #e2e8f0' }}>
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
+                Explore Skye Canyon Area
+              </h3>
+              <p style={{ color: '#6b7280', fontSize: '1.125rem' }}>
+                Interactive map showing nearby amenities, restaurants, parks, and attractions in the Skye Canyon community.
+              </p>
+            </div>
+            
+            {/* Google Maps Embed */}
+            <div style={{ 
+              width: '100%', 
+              height: '400px', 
+              backgroundColor: '#e2e8f0', 
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: '1px solid #cbd5e1',
+              marginBottom: '24px'
+            }}>
+              <div style={{ textAlign: 'center', color: '#64748b' }}>
+                <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🗺️</div>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '8px' }}>Interactive Map</h4>
+                <p style={{ fontSize: '1rem', marginBottom: '16px' }}>
+                  Google Maps integration showing Skye Canyon amenities
+                </p>
+                <div style={{ 
+                  backgroundColor: '#1e3a8a', 
+                  color: 'white', 
+                  padding: '12px 24px', 
+                  borderRadius: '8px', 
+                  fontSize: '0.875rem',
+                  display: 'inline-block'
+                }}>
+                  Map Loading...
+                </div>
+              </div>
+            </div>
+            
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '16px' }}>
+                <strong>Map Features:</strong> Restaurants, Parks, Shopping, Healthcare, Schools, and more
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                <a 
+                  href="https://www.google.com/maps/place/Skye+Canyon,+Las+Vegas,+NV+89166" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={{
+                    backgroundColor: '#1e3a8a',
+                    color: 'white',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    fontSize: '0.875rem',
+                    textDecoration: 'none',
+                    transition: 'background-color 0.3s',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#1e40af'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#1e3a8a'}
+                >
+                  <span>🗺️</span>
+                  Open in Google Maps
+                </a>
+                <a 
+                  href="tel:(702) 500-1902"
+                  style={{
+                    border: '2px solid #1e3a8a',
+                    color: '#1e3a8a',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    fontSize: '0.875rem',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.backgroundColor = '#1e3a8a';
+                    e.target.style.color = 'white';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#1e3a8a';
+                  }}
+                >
+                  <span>📞</span>
+                  Ask About Area
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          {/* Location Highlights */}
+          <div style={{ marginTop: '48px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '24px' }}>
+              Why Choose Skye Canyon?
+            </h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px' }}>
+              <div style={{ padding: '20px' }}>
+                <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '12px' }}>🌄</span>
+                <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>Mountain Views</h4>
+                <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>
+                  Stunning views of the Spring Mountains and Red Rock Canyon
+                </p>
+              </div>
+              <div style={{ padding: '20px' }}>
+                <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '12px' }}>🚗</span>
+                <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>Easy Access</h4>
+                <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>
+                  Close to I-215, US-95, and major Las Vegas attractions
+                </p>
+              </div>
+              <div style={{ padding: '20px' }}>
+                <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '12px' }}>🏘️</span>
+                <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '8px' }}>Family Friendly</h4>
+                <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>
+                  Excellent schools, parks, and family-oriented amenities
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section style={{ padding: '80px 0', backgroundColor: '#1e3a8a', color: 'white' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
