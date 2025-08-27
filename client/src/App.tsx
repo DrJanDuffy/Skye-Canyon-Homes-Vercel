@@ -306,6 +306,137 @@ export default function App(): JSX.Element {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#111827', marginBottom: '24px' }}>
+              What Our Clients Say
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#6b7280', maxWidth: '900px', margin: '0 auto' }}>
+              Don't just take our word for it. Here's what Skye Canyon homeowners have to say about their experience.
+            </p>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '32px' }}>
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '16px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+                <div style={{ width: '60px', height: '60px', backgroundColor: '#dbeafe', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>
+                  <span style={{ fontSize: '1.5rem', color: '#1e3a8a' }}>SM</span>
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
+                    Sarah Mitchell
+                  </h4>
+                  <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Skye Canyon Homeowner</p>
+                </div>
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <span style={{ color: '#fbbf24', fontSize: '1.25rem' }}>⭐⭐⭐⭐⭐</span>
+              </div>
+              <p style={{ color: '#374151', lineHeight: '1.6', fontSize: '1rem' }}>
+                "Dr. Jan Duffy made our Skye Canyon home purchase seamless. Her knowledge of the community and market expertise helped us find our perfect luxury home. The entire process was professional and stress-free."
+              </p>
+            </div>
+            
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '16px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+                <div style={{ width: '60px', height: '60px', backgroundColor: '#dbeafe', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>
+                  <span style={{ fontSize: '1.5rem', color: '#1e3a8a' }}>MR</span>
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
+                    Michael Rodriguez
+                  </h4>
+                  <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>First-Time Buyer</p>
+                </div>
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <span style={{ color: '#fbbf24', fontSize: '1.25rem' }}>⭐⭐⭐⭐⭐</span>
+              </div>
+              <p style={{ color: '#374151', lineHeight: '1.6', fontSize: '1rem' }}>
+                "Outstanding service from Dr. Duffy! She guided us through our first-time home purchase in Skye Canyon with professionalism and patience. Her market knowledge is unmatched."
+              </p>
+            </div>
+            
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '16px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e2e8f0' }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
+                <div style={{ width: '60px', height: '60px', backgroundColor: '#dbeafe', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: '16px' }}>
+                  <span style={{ fontSize: '1.5rem', color: '#1e3a8a' }}>JC</span>
+                </div>
+                <div>
+                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '4px' }}>
+                    Jennifer Chen
+                  </h4>
+                  <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Skye Canyon Seller</p>
+                </div>
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <span style={{ color: '#fbbf24', fontSize: '1.25rem' }}>⭐⭐⭐⭐⭐</span>
+              </div>
+              <p style={{ color: '#374151', lineHeight: '1.6', fontSize: '1rem' }}>
+                "Sold our Skye Canyon home in just 8 days! Dr. Duffy's marketing strategy and local connections delivered exceptional results. Highly recommend her services."
+              </p>
+            </div>
+          </div>
+          
+          <div style={{ textAlign: 'center', marginTop: '48px' }}>
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '16px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e2e8f0', maxWidth: '600px', margin: '0 auto' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
+                Ready to Join Our Happy Clients?
+              </h3>
+              <p style={{ color: '#6b7280', marginBottom: '24px', lineHeight: '1.6' }}>
+                Let Dr. Jan Duffy guide you through your Skye Canyon real estate journey with the same dedication and expertise that has earned us 5-star reviews.
+              </p>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                <a 
+                  href="http://drjanduffy.realscout.com/onboarding" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={{
+                    backgroundColor: '#1e3a8a',
+                    color: 'white',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    fontSize: '1rem',
+                    textDecoration: 'none',
+                    transition: 'background-color 0.3s'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#1e40af'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#1e3a8a'}
+                >
+                  Start Your Journey
+                </a>
+                <a 
+                  href="tel:(702) 500-1902"
+                  style={{
+                    border: '2px solid #1e3a8a',
+                    color: '#1e3a8a',
+                    padding: '12px 24px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    fontSize: '1rem',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.backgroundColor = '#1e3a8a';
+                    e.target.style.color = 'white';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#1e3a8a';
+                  }}
+                >
+                  Call for Consultation
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section style={{ padding: '80px 0', backgroundColor: '#1e3a8a', color: 'white' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
