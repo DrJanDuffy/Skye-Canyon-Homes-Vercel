@@ -1,5 +1,5 @@
-// Vercel Serverless Function Wrapper
-// This file bridges Vercel's serverless environment with your Express app
+// Vercel Serverless Function - React App Router
+// This function handles all non-static routes and serves the React app
 
 import express from 'express';
 import path from 'path';
@@ -14,11 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from dist/public
-app.use('/assets', express.static(path.join(__dirname, '../dist/public/assets')));
-app.use('/images', express.static(path.join(__dirname, '../dist/public/images')));
-
-// Real estate API routes
+// API routes
 app.get('/api/properties', (req, res) => {
   res.json([
     {
@@ -80,7 +76,6 @@ app.get('/api/featured-properties', (req, res) => {
 app.post('/api/leads', (req, res) => {
   const { firstName, lastName, email, phone, message, timeframe, priceRange } = req.body;
   
-  // Mock lead creation - replace with your actual logic
   const lead = {
     id: Date.now(),
     firstName,
@@ -110,7 +105,7 @@ app.get('/api/realscout/onboarding', (req, res) => {
   });
 });
 
-// SEO and sitemap endpoints
+// SEO endpoints
 app.get('/sitemap.xml', (req, res) => {
   res.setHeader('Content-Type', 'application/xml');
   res.setHeader('Cache-Control', 'public, max-age=86400');
@@ -137,56 +132,6 @@ app.get('/sitemap.xml', (req, res) => {
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/voice-search</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/northwest-las-vegas</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/las-vegas-real-estate</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/luxury-homes-las-vegas</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/skye-canyon-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/skye-canyon-schools</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/skye-canyon-parks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/skye-canyon-communities</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/market-analysis</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://skyecanyonhomesforsale.com/neighborhood-analysis</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>`;
   
   res.send(sitemap);
@@ -198,64 +143,12 @@ app.get('/robots.txt', (req, res) => {
   
   const robots = `User-agent: *
 Allow: /
-
-# Sitemaps
-Sitemap: https://skyecanyonhomesforsale.com/sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Disallow admin and utility pages
-Disallow: /api/
-Disallow: /_vite/
-Disallow: /src/
-
-# Allow important pages
-Allow: /
-Allow: /about
-Allow: /contact
-Allow: /properties
-Allow: /voice-search
-Allow: /northwest-las-vegas
-Allow: /las-vegas-real-estate
-Allow: /luxury-homes-las-vegas
-Allow: /skye-canyon-guide
-Allow: /skye-canyon-schools
-Allow: /skye-canyon-parks
-Allow: /skye-canyon-communities
-Allow: /market-analysis
-Allow: /neighborhood-analysis`;
+Sitemap: https://skyecanyonhomesforsale.com/sitemap.xml`;
   
   res.send(robots);
 });
 
-// React SPA routes - serve index.html for client-side routing
-const spaRoutes = [
-  '/',
-  '/properties',
-  '/about',
-  '/contact',
-  '/voice-search',
-  '/northwest-las-vegas',
-  '/las-vegas-real-estate',
-  '/luxury-homes-las-vegas',
-  '/skye-canyon-guide',
-  '/skye-canyon-schools',
-  '/skye-canyon-parks',
-  '/skye-canyon-communities',
-  '/market-analysis',
-  '/neighborhood-analysis',
-  '/privacy-policy',
-  '/terms-of-service'
-];
-
-spaRoutes.forEach(route => {
-  app.get(route, (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/public/index.html'));
-  });
-});
-
-// Catch-all route for React SPA
+// All other routes serve the React app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist/public/index.html'));
 });
