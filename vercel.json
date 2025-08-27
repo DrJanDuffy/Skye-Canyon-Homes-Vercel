@@ -3,20 +3,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "builds": [
-    {
-      "src": "dist/server.js",
-      "use": "@vercel/node@latest"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "/dist/public/assets/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/server.js"
-    }
-  ]
+  "framework": null
 }
