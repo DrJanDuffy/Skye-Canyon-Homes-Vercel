@@ -15,10 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from dist/public
-app.use(express.static(path.join(__dirname, '../dist/public')));
-
-// Import your built Express server logic
-// Since dist/server.js is bundled, we'll recreate the essential routes here
+app.use('/assets', express.static(path.join(__dirname, '../dist/public/assets')));
+app.use('/images', express.static(path.join(__dirname, '../dist/public/images')));
 
 // Real estate API routes
 app.get('/api/properties', (req, res) => {
