@@ -122,6 +122,33 @@ async function buildWorking() {
     if (fs.existsSync('client/index.html')) {
       fs.copyFileSync('client/index.html', 'dist/public/index.html');
       console.log('✅ Original HTML copied successfully');
+      
+      // Now update the HTML file to fix script and CSS references
+      console.log('🔧 Updating HTML references...');
+      let htmlContent = fs.readFileSync('dist/public/index.html', 'utf8');
+      
+      // Replace the script reference from /src/main.tsx to /assets/main.js
+      htmlContent = htmlContent.replace(
+        'src="/src/main.tsx"',
+        'src="/assets/main.js"'
+      );
+      
+      // Remove type="module" from the script tag
+      htmlContent = htmlContent.replace(
+        '<script type="module" src="/assets/main.js"></script>',
+        '<script src="/assets/main.js"></script>'
+      );
+      
+      // Add CSS link after the canonical link
+      if (!htmlContent.includes('/assets/main.css')) {
+        htmlContent = htmlContent.replace(
+          '<link rel="canonical" href="/" />',
+          '<link rel="canonical" href="/" />\n    <link rel="stylesheet" href="/assets/main.css">'
+        );
+      }
+      
+      fs.writeFileSync('dist/public/index.html', htmlContent);
+      console.log('✅ HTML references updated successfully');
     } else {
       console.log('⚠️ Original HTML not found, creating basic HTML');
       const htmlContent = `<!DOCTYPE html>
