@@ -121,6 +121,191 @@ export default function App(): JSX.Element {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section style={{ padding: '80px 0', backgroundColor: '#f9fafb' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#111827', marginBottom: '24px' }}>
+              Comprehensive Real Estate Services
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#6b7280', maxWidth: '900px', margin: '0 auto' }}>
+              From first-time buyers to luxury property investors, I offer tailored services 
+              to meet all your Skye Canyon real estate needs.
+            </p>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e5e7eb' }}>
+              <div style={{ width: '48px', height: '48px', backgroundColor: '#dbeafe', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+                <span style={{ fontSize: '1.5rem' }}>🔍</span>
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>Buyer Representation</h3>
+              <p style={{ color: '#6b7280', lineHeight: '1.6', marginBottom: '16px' }}>
+                Expert guidance through the entire buying process with exclusive access to off-market properties, 
+                market analysis, and negotiation support.
+              </p>
+              <ul style={{ color: '#6b7280', fontSize: '0.875rem', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>Property search and screening</li>
+                <li style={{ marginBottom: '8px' }}>Market value analysis</li>
+                <li style={{ marginBottom: '8px' }}>Negotiation and closing</li>
+              </ul>
+            </div>
+            
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e5e7eb' }}>
+              <div style={{ width: '48px', height: '48px', backgroundColor: '#dbeafe', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+                <span style={{ fontSize: '1.5rem' }}>📈</span>
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>Seller Services</h3>
+              <p style={{ color: '#6b7280', lineHeight: '1.6', marginBottom: '16px' }}>
+                Strategic marketing, professional photography, and maximum exposure for your Skye Canyon property 
+                to achieve the best possible sale price.
+              </p>
+              <ul style={{ color: '#6b7280', fontSize: '0.875rem', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>Professional marketing strategy</li>
+                <li style={{ marginBottom: '8px' }}>High-quality photography</li>
+                <li style={{ marginBottom: '8px' }}>Market positioning</li>
+              </ul>
+            </div>
+            
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e5e7eb' }}>
+              <div style={{ width: '48px', height: '48px', backgroundColor: '#dbeafe', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+                <span style={{ fontSize: '1.5rem' }}>🏗️</span>
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>New Construction</h3>
+              <p style={{ color: '#6b7280', lineHeight: '1.6', marginBottom: '16px' }}>
+                Specialized knowledge of new construction homes and builder partnerships in Skye Canyon, 
+                ensuring you get the best deals and quality.
+              </p>
+              <ul style={{ color: '#6b7280', fontSize: '0.875rem', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>Builder relationships</li>
+                <li style={{ marginBottom: '8px' }}>Design center guidance</li>
+                <li style={{ marginBottom: '8px' }}>Warranty support</li>
+              </ul>
+            </div>
+            
+            <div style={{ backgroundColor: 'white', padding: '32px', borderRadius: '12px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)', border: '1px solid #e5e7eb' }}>
+              <div style={{ width: '48px', height: '48px', backgroundColor: '#dbeafe', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+                <span style={{ fontSize: '1.5rem' }}>💰</span>
+              </div>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>Investment Properties</h3>
+              <p style={{ color: '#6b7280', lineHeight: '1.6', marginBottom: '16px' }}>
+                Market analysis and investment opportunities in Skye Canyon's growing real estate market, 
+                helping you build wealth through real estate.
+              </p>
+              <ul style={{ color: '#6b7280', fontSize: '0.875rem', paddingLeft: '20px' }}>
+                <li style={{ marginBottom: '8px' }}>ROI analysis</li>
+                <li style={{ marginBottom: '8px' }}>Market trends</li>
+                <li style={{ marginBottom: '8px' }}>Property management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* RealScout Integration Section */}
+      <section style={{ padding: '80px 0', backgroundColor: 'white' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#111827', marginBottom: '24px' }}>
+              Search Skye Canyon Properties
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#6b7280', maxWidth: '900px', margin: '0 auto' }}>
+              Access exclusive MLS listings, market insights, and personalized property recommendations 
+              through our RealScout integration.
+            </p>
+          </div>
+          
+          <div style={{ backgroundColor: '#f8fafc', borderRadius: '16px', padding: '48px', border: '1px solid #e2e8f0' }}>
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
+                Start Your Property Search
+              </h3>
+              <p style={{ color: '#6b7280', fontSize: '1.125rem' }}>
+                Get instant access to the latest Skye Canyon listings with advanced search filters, 
+                market data, and personalized recommendations.
+              </p>
+            </div>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+              <a 
+                href="http://drjanduffy.realscout.com/onboarding" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{
+                  backgroundColor: '#1e3a8a',
+                  color: 'white',
+                  padding: '16px 32px',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  fontSize: '1.125rem',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#1e40af'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#1e3a8a'}
+              >
+                <span>🔍</span>
+                Search Properties
+              </a>
+              <a 
+                href="tel:(702) 500-1902"
+                style={{
+                  border: '2px solid #1e3a8a',
+                  color: '#1e3a8a',
+                  padding: '16px 32px',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  fontSize: '1.125rem',
+                  textDecoration: 'none',
+                  transition: 'all 0.3s',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = '#1e3a8a';
+                  e.target.style.color = 'white';
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.color = '#1e3a8a';
+                }}
+              >
+                <span>📞</span>
+                Get Expert Advice
+              </a>
+            </div>
+            
+            <div style={{ marginTop: '32px', padding: '24px', backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+              <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '16px', textAlign: 'center' }}>
+                What You'll Get
+              </h4>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>Real-time MLS updates</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>Advanced search filters</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>Market insights</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>Property alerts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section style={{ padding: '80px 0', backgroundColor: '#1e3a8a', color: 'white' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
