@@ -1,10 +1,13 @@
 import React from 'react';
+import Navigation from '@/components/navigation';
 
 export default function App(): JSX.Element {
   console.log('🔍 App component is rendering...');
   
   return (
     <>
+      <Navigation />
+      
       {/* Hero Section */}
       <div style={{
         minHeight: '100vh',
