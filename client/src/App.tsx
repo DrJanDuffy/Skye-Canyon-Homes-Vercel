@@ -395,6 +395,86 @@ export default function App(): JSX.Element {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer style={{ padding: '60px 0', backgroundColor: '#111827', color: 'white' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '40px' }}>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '20px' }}>
+                Skye Canyon Homes
+              </h3>
+              <p style={{ fontSize: '1rem', color: '#bfdbfe', marginBottom: '20px' }}>
+                Your trusted real estate partner in Skye Canyon and North Las Vegas.
+              </p>
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <a href="https://www.facebook.com/drjanduffy" target="_blank" rel="noopener noreferrer" style={{ color: '#bfdbfe', fontSize: '1.5rem' }}>
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/drjanduffy" target="_blank" rel="noopener noreferrer" style={{ color: '#bfdbfe', fontSize: '1.5rem' }}>
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/drjanduffy" target="_blank" rel="noopener noreferrer" style={{ color: '#bfdbfe', fontSize: '1.5rem' }}>
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '20px' }}>
+                Quick Links
+              </h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <li style={{ marginBottom: '12px' }}>
+                  <a href="#hero" style={{ color: '#bfdbfe', textDecoration: 'none', fontSize: '1rem' }}>
+                    Home
+                  </a>
+                </li>
+                <li style={{ marginBottom: '12px' }}>
+                  <a href="#about" style={{ color: '#bfdbfe', textDecoration: 'none', fontSize: '1rem' }}>
+                    About
+                  </a>
+                </li>
+                <li style={{ marginBottom: '12px' }}>
+                  <a href="#services" style={{ color: '#bfdbfe', textDecoration: 'none', fontSize: '1rem' }}>
+                    Services
+                  </a>
+                </li>
+                <li style={{ marginBottom: '12px' }}>
+                  <a href="#realscout" style={{ color: '#bfdbfe', textDecoration: 'none', fontSize: '1rem' }}>
+                    RealScout
+                  </a>
+                </li>
+                <li style={{ marginBottom: '12px' }}>
+                  <a href="#contact" style={{ color: '#bfdbfe', textDecoration: 'none', fontSize: '1rem' }}>
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '20px' }}>
+                Contact Us
+              </h3>
+              <p style={{ fontSize: '1rem', color: '#bfdbfe', marginBottom: '12px' }}>
+                <span>📞</span> (702) 500-1902
+              </p>
+              <p style={{ fontSize: '1rem', color: '#bfdbfe', marginBottom: '12px' }}>
+                <span>✉️</span> DrDuffy@SkyeCanyonHomesForSale.com
+              </p>
+              <p style={{ fontSize: '1rem', color: '#bfdbfe' }}>
+                <span>📍</span> 10111 W. Skye Canyon Park Drive, Las Vegas, NV 89166
+              </p>
+            </div>
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '40px', paddingTop: '30px', borderTop: '1px solid #374151' }}>
+            <p style={{ fontSize: '0.875rem', color: '#bfdbfe' }}>
+              © {new Date().getFullYear()} Skye Canyon Homes. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
