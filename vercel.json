@@ -1,14 +1,9 @@
 {
-  "name": "skye-canyon-homes",
   "version": 2,
   "builds": [
     {
       "src": "dist/server.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "dist/public/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -20,13 +15,5 @@
       "src": "/(.*)",
       "dest": "/dist/server.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "dist/server.js": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
