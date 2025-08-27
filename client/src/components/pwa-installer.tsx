@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+
 // PWA installer with text buttons
 
 interface BeforeInstallPromptEvent extends Event {
@@ -18,12 +19,8 @@ export default function PWAInstaller() {
       window.addEventListener('load', () => {
         navigator.serviceWorker
           .register('/sw.js')
-          .then((registration) => {
-            console.log('SW registered: ', registration);
-          })
-          .catch((registrationError) => {
-            console.log('SW registration failed: ', registrationError);
-          });
+          .then((_registration) => {})
+          .catch((_registrationError) => {});
       });
     }
 
@@ -42,7 +39,9 @@ export default function PWAInstaller() {
   }, []);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) return;
+    if (!deferredPrompt) {
+      return;
+    }
 
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
@@ -58,7 +57,9 @@ export default function PWAInstaller() {
     setDeferredPrompt(null);
   };
 
-  if (!showInstallBanner) return null;
+  if (!showInstallBanner) {
+    return null;
+  }
 
   return (
     <Card className="fixed bottom-4 left-4 right-4 z-50 border-blue-200 bg-blue-50 md:left-auto md:right-4 md:w-96">

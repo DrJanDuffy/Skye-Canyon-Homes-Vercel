@@ -13,7 +13,6 @@ export default function GlobalRealScoutWidget() {
     // Check if script already exists
     const existingScript = document.querySelector('script[src*="realscout-web-components"]');
     if (existingScript) {
-      console.log('RealScout script already loaded');
       return;
     }
 
@@ -21,13 +20,9 @@ export default function GlobalRealScoutWidget() {
     script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
     script.type = 'module';
 
-    script.onload = () => {
-      console.log('RealScout web components loaded successfully');
-    };
+    script.onload = () => {};
 
-    script.onerror = () => {
-      console.error('Failed to load RealScout web components');
-    };
+    script.onerror = () => {};
 
     document.head.appendChild(script);
 

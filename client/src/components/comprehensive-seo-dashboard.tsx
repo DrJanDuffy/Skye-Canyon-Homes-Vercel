@@ -1,23 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Eye, Globe, Monitor, Phone, Search, Smartphone, Target, TrendingUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import {
-  TrendingUp,
-  TrendingDown,
-  Eye,
-  Phone,
-  MapPin,
-  Clock,
-  Search,
-  Globe,
-  Smartphone,
-  Monitor,
-  AlertTriangle,
-  CheckCircle,
-  Target,
-} from 'lucide-react';
 
 interface DashboardMetrics {
   businessProfile: {
@@ -55,14 +41,22 @@ export default function ComprehensiveSEODashboard() {
   const [activeTab, setActiveTab] = useState<'overview' | 'performance'>('overview');
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
+    if (score >= 80) {
+      return 'text-green-600';
+    }
+    if (score >= 60) {
+      return 'text-yellow-600';
+    }
     return 'text-red-600';
   };
 
   const getScoreBadge = (score: number) => {
-    if (score >= 80) return 'bg-green-100 text-green-800';
-    if (score >= 60) return 'bg-yellow-100 text-yellow-800';
+    if (score >= 80) {
+      return 'bg-green-100 text-green-800';
+    }
+    if (score >= 60) {
+      return 'bg-yellow-100 text-yellow-800';
+    }
     return 'bg-red-100 text-red-800';
   };
 

@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { CheckCircle, MapPin, Phone, Star, TrendingUp } from 'lucide-react';
+import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import {
-  CheckCircle,
-  AlertCircle,
-  MapPin,
-  Phone,
-  Clock,
-  Star,
-  Users,
-  TrendingUp,
-} from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface BusinessProfileData {
   name: string;
@@ -37,7 +27,7 @@ interface OptimizationScore {
 }
 
 export default function GoogleBusinessProfileDashboard() {
-  const [profileData, setProfileData] = useState<BusinessProfileData>({
+  const [profileData, _setProfileData] = useState<BusinessProfileData>({
     name: 'Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®',
     address: '10111 W Skye Canyon Park Dr, Las Vegas, NV 89166',
     phone: '(702) 500-1902',
@@ -63,7 +53,7 @@ export default function GoogleBusinessProfileDashboard() {
     ],
   });
 
-  const [optimizationScore, setOptimizationScore] = useState<OptimizationScore>({
+  const [optimizationScore, _setOptimizationScore] = useState<OptimizationScore>({
     overall: 92,
     completeness: 95,
     accuracy: 98,
@@ -71,7 +61,7 @@ export default function GoogleBusinessProfileDashboard() {
     visibility: 89,
   });
 
-  const [recentInsights, setRecentInsights] = useState([
+  const [recentInsights, _setRecentInsights] = useState([
     {
       metric: 'Profile Views',
       value: '1,247',
@@ -98,7 +88,7 @@ export default function GoogleBusinessProfileDashboard() {
     },
   ]);
 
-  const [optimizationTasks, setOptimizationTasks] = useState([
+  const [optimizationTasks, _setOptimizationTasks] = useState([
     {
       id: 1,
       task: 'Add high-quality photos of recent listings',
@@ -130,8 +120,12 @@ export default function GoogleBusinessProfileDashboard() {
   ]);
 
   const getScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600';
-    if (score >= 80) return 'text-yellow-600';
+    if (score >= 90) {
+      return 'text-green-600';
+    }
+    if (score >= 80) {
+      return 'text-yellow-600';
+    }
     return 'text-red-600';
   };
 

@@ -2,9 +2,8 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { saveUserPreferences } from '@/lib/preferences';
 import { useToast } from '@/hooks/use-toast';
+import { saveUserPreferences } from '@/lib/preferences';
 
 export default function PreferenceCollector() {
   const [preferences, setPreferences] = useState({
@@ -71,7 +70,7 @@ export default function PreferenceCollector() {
       } else {
         throw new Error('Failed to save preferences');
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         title: 'Error',
         description: 'Unable to save preferences. Please try again.',

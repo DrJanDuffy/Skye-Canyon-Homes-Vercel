@@ -13,7 +13,7 @@ export function usePredictiveLoading() {
           if (entry.isIntersecting) {
             const link = entry.target as HTMLAnchorElement;
             const href = link.getAttribute('href');
-            if (href && href.startsWith('/') && !prefetchedRef.current.has(href)) {
+            if (href?.startsWith('/') && !prefetchedRef.current.has(href)) {
               prefetchLink(href);
               prefetchedRef.current.add(href);
             }
@@ -54,7 +54,7 @@ export function usePredictiveLoading() {
       clearTimeout(timeoutId);
       clearInterval(intervalId);
     };
-  }, [location]);
+  }, [location, getPredictivePages, prefetchLink]);
 
   const prefetchLink = (href: string) => {
     // Create a hidden link element for prefetching
@@ -86,7 +86,7 @@ export function usePredictiveLoading() {
           fetch('/api/community-data').catch(() => {});
           break;
       }
-    } catch (error) {
+    } catch (_error) {
       // Silently handle prefetch errors
     }
   };

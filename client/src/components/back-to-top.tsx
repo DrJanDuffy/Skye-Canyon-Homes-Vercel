@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import { ChevronUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 export default function BackToTop() {
@@ -25,7 +25,9 @@ export default function BackToTop() {
     });
   };
 
-  if (!showButton) return null;
+  if (!showButton) {
+    return null;
+  }
 
   return (
     <Button

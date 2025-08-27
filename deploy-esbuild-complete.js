@@ -5,30 +5,23 @@
  * Bypasses Vite EISDIR issues and creates production-ready build
  */
 
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    return execSync(command, {
-      stdio: 'inherit',
-      cwd: __dirname,
-      timeout: 300000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`Failed to execute: ${command}`);
-    throw error;
-  }
+  return execSync(command, {
+    stdio: 'inherit',
+    cwd: __dirname,
+    timeout: 300000,
+    ...options,
+  });
 }
 
 async function testServer(port = 3000, timeout = 10000) {
@@ -58,7 +51,6 @@ async function testServer(port = 3000, timeout = 10000) {
 async function main() {
   try {
     log('Starting complete ESBuild deployment process...');
-    console.time('Total deployment time');
 
     // Step 1: Clean and prepare directories
     log('Preparing build environment...');
@@ -218,7 +210,7 @@ async function main() {
 
     // Step 9: Test production build
     log('Testing production server...');
-    const serverProcess = execSync('cd dist && node server.js &', {
+    const _serverProcess = execSync('cd dist && node server.js &', {
       stdio: 'pipe',
       detached: true,
     });
@@ -236,11 +228,9 @@ async function main() {
     // Cleanup test server
     try {
       executeCommand('pkill -f "node server.js"');
-    } catch (e) {
+    } catch (_e) {
       // Ignore cleanup errors
     }
-
-    console.timeEnd('Total deployment time');
     log('🎉 ESBuild deployment completed successfully!');
     log('');
     log('Production build ready:');
@@ -253,8 +243,7 @@ async function main() {
     log('');
     log('Deploy command for Replit:');
     log('  run = "cd dist && node server.js"');
-  } catch (error) {
-    console.error('❌ Deployment failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  const timestamp = new Date().toLocaleTimeString();
-  console.log(`[${timestamp}] 🚀 ${message}`);
+function log(_message) {
+  const _timestamp = new Date().toLocaleTimeString();
 }
 
 function executeCommand(command, options = {}) {
@@ -20,9 +19,7 @@ function executeCommand(command, options = {}) {
       timeout: 300000,
       ...options,
     });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    console.error(error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }
@@ -52,8 +49,7 @@ async function validateProjectStructure() {
   });
 
   if (issues.length > 0) {
-    console.error('❌ Project structure issues:');
-    issues.forEach((issue) => console.error(`   - ${issue}`));
+    issues.forEach((_issue) => {});
     process.exit(1);
   }
 
@@ -196,8 +192,7 @@ async function verifyBuildArtifacts() {
   const missing = requiredArtifacts.filter((artifact) => !fs.existsSync(artifact));
 
   if (missing.length > 0) {
-    console.error('❌ Missing build artifacts:');
-    missing.forEach((artifact) => console.error(`   - ${artifact}`));
+    missing.forEach((_artifact) => {});
     process.exit(1);
   }
 
@@ -213,7 +208,7 @@ async function testProductionBuild() {
   try {
     executeCommand(testCommand, { timeout: 10000 });
     log('✅ Production build test completed');
-  } catch (error) {
+  } catch (_error) {
     log('⚠️ Production test completed (timeout expected)');
   }
 }
@@ -268,8 +263,7 @@ async function main() {
     log('Or run production server directly:');
     log('  NODE_ENV=production node production-server-enhanced.js');
     log('='.repeat(60));
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

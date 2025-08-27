@@ -1,10 +1,10 @@
-import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import Footer from '@/components/footer';
-import FAQSection from '@/components/faq-section';
-import EnhancedStructuredData from '@/components/enhanced-structured-data';
-import RealScoutListings from '@/components/realscout-listings';
 import { MapPin, Users } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import EnhancedStructuredData from '@/components/enhanced-structured-data';
+import FAQSection from '@/components/faq-section';
+import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
+import RealScoutListings from '@/components/realscout-listings';
 
 export default function SkyeCanyonParks() {
   const parksData = [

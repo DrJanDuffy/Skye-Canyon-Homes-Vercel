@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
+import fs from 'node:fs';
+import { createServer } from 'node:http';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { createServer } from 'http';
-import fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Security headers
-app.use((req, res, next) => {
+app.use((_req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -40,7 +40,7 @@ app.use(
 );
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   const healthCheck = {
     status: 'healthy',
     timestamp: new Date().toISOString(),
@@ -62,7 +62,7 @@ app.get('/health', (req, res) => {
 });
 
 // API endpoints for basic functionality (stub for now)
-app.get('/api/status', (req, res) => {
+app.get('/api/status', (_req, res) => {
   res.json({
     status: 'API ready',
     timestamp: new Date().toISOString(),
@@ -71,7 +71,7 @@ app.get('/api/status', (req, res) => {
 });
 
 // Catch-all handler for SPA routing
-app.get('*', (req, res) => {
+app.get('*', (_req, res) => {
   const indexPath = path.join(publicPath, 'index.html');
 
   if (fs.existsSync(indexPath)) {
@@ -86,8 +86,7 @@ app.get('*', (req, res) => {
 });
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  console.error('Server error:', err);
+app.use((err, _req, res, _next) => {
   res.status(500).json({
     error: 'Internal server error',
     message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong',
@@ -96,26 +95,17 @@ app.use((err, req, res, next) => {
 
 const server = createServer(app);
 
-server.listen(port, '0.0.0.0', () => {
-  console.log(`Production server running on http://0.0.0.0:${port}`);
-  console.log(`Health check: http://0.0.0.0:${port}/health`);
-  console.log(`API status: http://0.0.0.0:${port}/api/status`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+server.listen(port, '0.0.0.0', () => {});
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
-  console.log('SIGTERM received, shutting down gracefully');
   server.close(() => {
-    console.log('Server closed');
     process.exit(0);
   });
 });
 
 process.on('SIGINT', () => {
-  console.log('SIGINT received, shutting down gracefully');
   server.close(() => {
-    console.log('Server closed');
     process.exit(0);
   });
 });

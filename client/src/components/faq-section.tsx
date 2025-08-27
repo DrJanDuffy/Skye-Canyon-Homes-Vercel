@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import FAQSchema from './faq-schema';
 

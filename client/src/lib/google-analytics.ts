@@ -11,7 +11,6 @@ export const initGA = () => {
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
   if (!measurementId) {
-    console.warn('Missing Google Analytics Measurement ID');
     return;
   }
 
@@ -42,10 +41,14 @@ export const initGA = () => {
 
 // Track page views
 export const trackPageView = (url: string, title?: string) => {
-  if (typeof window === 'undefined' || !window.gtag) return;
+  if (typeof window === 'undefined' || !window.gtag) {
+    return;
+  }
 
   const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-  if (!measurementId) return;
+  if (!measurementId) {
+    return;
+  }
 
   window.gtag('config', measurementId, {
     page_path: url,
@@ -62,7 +65,9 @@ export const trackPropertyView = (propertyData: {
   bedrooms?: number;
   bathrooms?: number;
 }) => {
-  if (typeof window === 'undefined' || !window.gtag) return;
+  if (typeof window === 'undefined' || !window.gtag) {
+    return;
+  }
 
   window.gtag('event', 'view_property', {
     event_category: 'Real Estate',
@@ -83,7 +88,9 @@ export const trackLeadGeneration = (leadData: {
   estimated_budget?: string;
   timeline?: string;
 }) => {
-  if (typeof window === 'undefined' || !window.gtag) return;
+  if (typeof window === 'undefined' || !window.gtag) {
+    return;
+  }
 
   window.gtag('event', 'generate_lead', {
     event_category: 'Lead Generation',
@@ -100,7 +107,9 @@ export const trackSearchQuery = (searchData: {
   search_type: 'property' | 'neighborhood' | 'voice' | 'ai';
   results_count?: number;
 }) => {
-  if (typeof window === 'undefined' || !window.gtag) return;
+  if (typeof window === 'undefined' || !window.gtag) {
+    return;
+  }
 
   window.gtag('event', 'search', {
     event_category: 'Property Search',
@@ -116,7 +125,9 @@ export const trackMarketAnalysis = (analysisData: {
   neighborhood?: string;
   analysis_type?: string;
 }) => {
-  if (typeof window === 'undefined' || !window.gtag) return;
+  if (typeof window === 'undefined' || !window.gtag) {
+    return;
+  }
 
   window.gtag('event', 'view_market_analysis', {
     event_category: 'Market Research',
@@ -131,7 +142,9 @@ export const trackContactAttempt = (contactData: {
   source_page: string;
   property_context?: string;
 }) => {
-  if (typeof window === 'undefined' || !window.gtag) return;
+  if (typeof window === 'undefined' || !window.gtag) {
+    return;
+  }
 
   window.gtag('event', 'contact_attempt', {
     event_category: 'Contact',

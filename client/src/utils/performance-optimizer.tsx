@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 
 // Lazy loading components for code splitting
 export const LazyVoiceSearchIntegration = lazy(
@@ -23,8 +23,6 @@ export const performanceMonitor = {
           value: Math.round(duration),
         });
       }
-
-      console.log(`${componentName} render time: ${duration.toFixed(2)}ms`);
     };
   },
 

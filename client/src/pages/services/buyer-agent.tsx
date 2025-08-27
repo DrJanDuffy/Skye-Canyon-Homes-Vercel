@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import Footer from '@/components/footer';
 import ComprehensiveSchemaMarkup from '@/components/comprehensive-schema';
+import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
 
 export default function BuyerAgentServices() {
   return (

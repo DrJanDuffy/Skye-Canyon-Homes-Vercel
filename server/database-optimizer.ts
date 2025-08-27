@@ -1,5 +1,5 @@
-import { eq, and, gte, lte, desc, asc } from 'drizzle-orm';
-import { properties, leads, marketStats } from '../shared/schema';
+import { and, asc, desc, eq, gte, lte } from 'drizzle-orm';
+import { leads, marketStats, properties } from '../shared/schema';
 import { db } from './db';
 
 // Optimized property search with proper indexing strategy
@@ -18,11 +18,21 @@ export async function optimizedPropertySearch(filters: {
   const conditions = [];
 
   // Build WHERE conditions efficiently
-  if (priceMin) conditions.push(gte(properties.price, priceMin));
-  if (priceMax) conditions.push(lte(properties.price, priceMax));
-  if (type) conditions.push(eq(properties.type, type));
-  if (bedrooms) conditions.push(eq(properties.bedrooms, bedrooms));
-  if (bathrooms) conditions.push(eq(properties.bathrooms, bathrooms));
+  if (priceMin) {
+    conditions.push(gte(properties.price, priceMin));
+  }
+  if (priceMax) {
+    conditions.push(lte(properties.price, priceMax));
+  }
+  if (type) {
+    conditions.push(eq(properties.type, type));
+  }
+  if (bedrooms) {
+    conditions.push(eq(properties.bedrooms, bedrooms));
+  }
+  if (bathrooms) {
+    conditions.push(eq(properties.bathrooms, bathrooms));
+  }
 
   if (conditions.length > 0) {
     query = query.where(and(...conditions));
@@ -75,8 +85,7 @@ export async function batchCreateLeads(
   try {
     const results = await db.insert(leads).values(leadsData).returning();
     return results;
-  } catch (error) {
-    console.error('Batch lead creation error:', error);
+  } catch (_error) {
     throw new Error('Failed to create leads');
   }
 }
@@ -89,9 +98,7 @@ export function optimizeConnection() {
 }
 
 // Query performance monitoring
-export async function logSlowQueries(query: string, duration: number) {
+export async function logSlowQueries(_query: string, duration: number) {
   if (duration > 1000) {
-    // Log queries slower than 1 second
-    console.warn(`Slow query detected (${duration}ms):`, query);
   }
 }

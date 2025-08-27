@@ -1,5 +1,5 @@
-import { Switch, Route } from 'wouter';
 import { useEffect } from 'react';
+import { Route, Switch } from 'wouter';
 
 // Navigation Component
 function Navigation() {
@@ -200,8 +200,7 @@ function App() {
   useEffect(() => {
     // RealScout script is already loaded in HTML, just need to trigger widget initialization
     const initRealScout = () => {
-      if (window.customElements && window.customElements.get('realscout-office-listings')) {
-        console.log('RealScout widgets initialized');
+      if (window.customElements?.get('realscout-office-listings')) {
       }
     };
 

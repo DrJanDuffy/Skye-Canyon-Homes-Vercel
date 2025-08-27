@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import { useLazyLoading } from '@/hooks/use-lazy-loading';
 
 interface OptimizedListingsProps {
@@ -18,7 +18,9 @@ export default function OptimizedListings({ className = '', limit = 6 }: Optimiz
   });
 
   const optimizedListings = useMemo(() => {
-    if (!listings || !Array.isArray(listings)) return [];
+    if (!listings || !Array.isArray(listings)) {
+      return [];
+    }
     return listings.slice(0, limit);
   }, [listings, limit]);
 

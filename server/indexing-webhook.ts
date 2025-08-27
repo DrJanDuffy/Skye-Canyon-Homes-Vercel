@@ -5,9 +5,6 @@ export async function handleIndexingWebhook(req: Request, res: Response) {
   try {
     const { url, type, timestamp } = req.body;
 
-    // Log indexing requests for monitoring
-    console.log(`Indexing request received: ${type} for ${url} at ${timestamp}`);
-
     // Store indexing request data
     const indexingData = {
       url,
@@ -28,8 +25,7 @@ export async function handleIndexingWebhook(req: Request, res: Response) {
       message: 'Indexing request processed',
       data: indexingData,
     });
-  } catch (error) {
-    console.error('Indexing webhook error:', error);
+  } catch (_error) {
     res.status(500).json({
       success: false,
       message: 'Failed to process indexing request',
@@ -42,7 +38,6 @@ export async function submitToIndexNow(urls: string[]) {
   const indexNowKey = process.env.INDEXNOW_API_KEY;
 
   if (!indexNowKey) {
-    console.log('IndexNow API key not configured - skipping submission');
     return;
   }
 
@@ -70,8 +65,5 @@ export async function submitToIndexNow(urls: string[]) {
     );
 
     await Promise.allSettled(submissions);
-    console.log(`IndexNow submitted for ${urls.length} URLs`);
-  } catch (error) {
-    console.error('IndexNow submission error:', error);
-  }
+  } catch (_error) {}
 }

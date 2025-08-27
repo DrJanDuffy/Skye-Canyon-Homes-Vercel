@@ -1,9 +1,9 @@
+import { CheckCircle, ExternalLink, Globe, Search, TrendingUp } from 'lucide-react';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle, AlertCircle, Globe, Search, TrendingUp, ExternalLink } from 'lucide-react';
 
 interface IndexingStatus {
   url: string;
@@ -34,10 +34,8 @@ export default function SEOManagementDashboard() {
       if (result.success) {
         setIndexingResults(result.results?.results || []);
       } else {
-        console.error('Indexing failed:', result.message);
       }
-    } catch (error) {
-      console.error('Error requesting indexing:', error);
+    } catch (_error) {
     } finally {
       setIsIndexing(false);
     }
@@ -55,8 +53,7 @@ export default function SEOManagementDashboard() {
 
       const result = await response.json();
       setSitemapStatus(result.success ? 'success' : 'error');
-    } catch (error) {
-      console.error('Error submitting sitemap:', error);
+    } catch (_error) {
       setSitemapStatus('error');
     }
   };

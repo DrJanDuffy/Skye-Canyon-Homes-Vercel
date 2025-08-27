@@ -1,27 +1,16 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Search } from 'lucide-react';
 import RealScoutSearchWidget from '@/components/realscout-search-widget';
 
 export default function HeroSection() {
-  const [searchType, setSearchType] = useState<'simple' | 'advanced'>('simple');
-  const [searchFilters, setSearchFilters] = useState({
+  const [_searchType, _setSearchType] = useState<'simple' | 'advanced'>('simple');
+  const [_searchFilters, _setSearchFilters] = useState({
     propertyType: 'all',
     priceMin: '0',
     priceMax: '999999999',
   });
 
-  const handleSearch = (e: React.FormEvent) => {
+  const _handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would trigger a property search
-    console.log('Search filters:', searchFilters);
   };
 
   return (

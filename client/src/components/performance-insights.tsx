@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TrendingUp, Users, Home, Award, Clock, MapPin } from 'lucide-react';
+import { Award, Clock, Home, MapPin, TrendingUp, Users } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 const performanceStats = [
   {

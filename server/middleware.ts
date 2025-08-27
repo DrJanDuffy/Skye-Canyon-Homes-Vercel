@@ -1,8 +1,8 @@
-import type { Request, Response, NextFunction } from 'express';
-import { generateSchemaMarkup, defaultHomepageReviews } from './schema-generator';
+import type { NextFunction, Request, Response } from 'express';
+import { defaultHomepageReviews, generateSchemaMarkup } from './schema-generator';
 
 // Security headers middleware
-export function securityHeaders(req: Request, res: Response, next: NextFunction) {
+export function securityHeaders(_req: Request, res: Response, next: NextFunction) {
   // Basic security headers
   res.setHeader('X-DNS-Prefetch-Control', 'on');
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
@@ -94,7 +94,7 @@ export function seoHeaders(req: Request, res: Response, next: NextFunction) {
 }
 
 // Real estate specific middleware
-export function realEstateContext(req: Request, res: Response, next: NextFunction) {
+export function realEstateContext(req: Request, _res: Response, next: NextFunction) {
   // Detect if user is likely a real estate professional
   const userAgent = req.headers['user-agent']?.toLowerCase() || '';
   const isRealEstateAgent =

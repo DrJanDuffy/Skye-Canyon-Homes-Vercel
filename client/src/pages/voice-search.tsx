@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
 import VoiceSearchIntegration from '@/components/voice-search-integration';
 
 export default function VoiceSearchPage() {
@@ -66,12 +66,7 @@ export default function VoiceSearchPage() {
             </div>
           </div>
 
-          <VoiceSearchIntegration
-            maxSearches={3}
-            onSearchLimitReached={() => {
-              console.log('Voice search limit reached - user redirected to RealScout onboarding');
-            }}
-          />
+          <VoiceSearchIntegration maxSearches={3} onSearchLimitReached={() => {}} />
 
           <div className="mt-12 max-w-4xl mx-auto">
             <div className="bg-white rounded-lg shadow-sm border p-8">

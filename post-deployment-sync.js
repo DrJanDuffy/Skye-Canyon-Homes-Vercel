@@ -5,12 +5,10 @@
  * This script runs AFTER successful deployment to push changes to GitHub
  */
 
-const { execSync } = require('child_process');
-const fs = require('fs');
+const { execSync } = require('node:child_process');
+const fs = require('node:fs');
 
-function log(message) {
-  console.log(`[Post-Deploy Sync] ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
   try {
@@ -124,7 +122,7 @@ async function syncToGitHubAfterDeployment() {
 
 // Webhook endpoint for deployment success
 function createDeploymentWebhook() {
-  const webhookCode = `
+  const _webhookCode = `
 // Add this to your deployment success handler
 app.post('/api/deployment-success', (req, res) => {
   const { execSync } = require('child_process');
@@ -146,7 +144,6 @@ app.post('/api/deployment-success', (req, res) => {
 `;
 
   log('Webhook code for deployment success:');
-  console.log(webhookCode);
 }
 
 // Run if called directly

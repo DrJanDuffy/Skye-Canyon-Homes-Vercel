@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 interface PerformanceMetrics {
   endpoint: string;
@@ -56,9 +56,6 @@ class PerformanceMonitor {
 
     // Log slow requests
     if (metric.responseTime > 2000) {
-      console.warn(
-        `Slow request detected: ${metric.method} ${metric.endpoint} - ${metric.responseTime}ms`
-      );
     }
   }
 

@@ -1,5 +1,3 @@
-import { Property, Lead, MarketStats } from '@shared/schema';
-
 interface CacheEntry<T> {
   data: T;
   timestamp: number;
@@ -123,7 +121,6 @@ export class PerformanceCache {
     });
 
     if (deletedCount > 0) {
-      console.log(`Cleaned ${deletedCount} expired cache entries`);
       this.updateStats();
     }
   }

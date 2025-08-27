@@ -1,26 +1,19 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
 
-function log(message) {
-  console.log(`🔧 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    log(`Executing: ${command}`);
-    return execSync(command, {
-      stdio: 'inherit',
-      encoding: 'utf8',
-      timeout: 300000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    throw error;
-  }
+  log(`Executing: ${command}`);
+  return execSync(command, {
+    stdio: 'inherit',
+    encoding: 'utf8',
+    timeout: 300000,
+    ...options,
+  });
 }
 
 async function main() {
@@ -92,8 +85,7 @@ async function main() {
     // Show build summary
     const distSize = fs.readdirSync('dist/public').length;
     log(`📊 Build summary: ${distSize} files in dist/public`);
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

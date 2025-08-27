@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
-import express from 'express';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import fs from 'fs';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import compression from 'compression';
 import cors from 'cors';
+import express from 'express';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  const timestamp = new Date().toLocaleTimeString();
-  console.log(`${timestamp} [PROD] ${message}`);
+function log(_message) {
+  const _timestamp = new Date().toLocaleTimeString();
 }
 
 async function createProductionServer() {
@@ -25,7 +24,7 @@ async function createProductionServer() {
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
   // Security headers
-  app.use((req, res, next) => {
+  app.use((_req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -44,7 +43,7 @@ async function createProductionServer() {
   );
 
   // Health check endpoint
-  app.get('/health', (req, res) => {
+  app.get('/health', (_req, res) => {
     res.json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
@@ -74,21 +73,21 @@ async function createProductionServer() {
     }
   } else {
     // Minimal fallback API routes
-    app.get('/api/health', (req, res) => {
+    app.get('/api/health', (_req, res) => {
       res.json({ status: 'ok', server: 'production-fallback' });
     });
 
-    app.get('/api/properties', (req, res) => {
+    app.get('/api/properties', (_req, res) => {
       res.json([]);
     });
 
-    app.get('/api/market-insights', (req, res) => {
+    app.get('/api/market-insights', (_req, res) => {
       res.json({ insights: [] });
     });
   }
 
   // Serve React app for all other routes (SPA fallback)
-  app.get('*', (req, res) => {
+  app.get('*', (_req, res) => {
     const indexPath = path.join(staticPath, 'index.html');
 
     if (fs.existsSync(indexPath)) {
@@ -102,7 +101,7 @@ async function createProductionServer() {
   });
 
   // Error handling middleware
-  app.use((err, req, res, next) => {
+  app.use((err, _req, res, _next) => {
     log(`❌ Error: ${err.message}`);
     res.status(500).json({
       error: 'Internal server error',
@@ -138,8 +137,7 @@ async function createProductionServer() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  createProductionServer().catch((error) => {
-    console.error('❌ Failed to start production server:', error);
+  createProductionServer().catch((_error) => {
     process.exit(1);
   });
 }

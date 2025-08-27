@@ -5,13 +5,10 @@
  * Ensures proper port binding and static asset serving
  */
 
-import { spawn } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { spawn } from 'node:child_process';
+import fs from 'node:fs';
 
-function log(message) {
-  console.log(`[Production] ${message}`);
-}
+function log(_message) {}
 
 function checkBuildArtifacts() {
   const requiredFiles = [

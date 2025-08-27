@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
+import fs from 'node:fs';
+import path from 'node:path';
 import { build } from 'esbuild';
-import fs from 'fs';
-import path from 'path';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -55,26 +55,21 @@ const serverConfig = {
 };
 
 async function buildClient() {
-  console.log('Building client...');
   await build(clientConfig);
 }
 
 async function buildServer() {
-  console.log('Building server...');
   await build(serverConfig);
 }
 
 async function buildCSS() {
-  console.log('Building CSS...');
-  const { execSync } = await import('child_process');
+  const { execSync } = await import('node:child_process');
   execSync('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify', {
     stdio: 'inherit',
   });
 }
 
 async function processHTML() {
-  console.log('Processing HTML template...');
-
   // Ensure dist/public directory exists
   if (!fs.existsSync('dist/public')) {
     fs.mkdirSync('dist/public', { recursive: true });
@@ -93,15 +88,11 @@ async function processHTML() {
 }
 
 async function copyPublicAssets() {
-  console.log('Copying public assets...');
   if (fs.existsSync('public')) {
-    const { execSync } = await import('child_process');
+    const { execSync } = await import('node:child_process');
     try {
       execSync('cp -r public/* dist/public/', { stdio: 'inherit' });
-    } catch (error) {
-      // Directory might be empty, which is fine
-      console.log('No additional public assets to copy');
-    }
+    } catch (_error) {}
   }
 }
 
@@ -119,10 +110,7 @@ async function main() {
     await buildServer();
     await processHTML();
     await copyPublicAssets();
-
-    console.log('Build completed successfully!');
-  } catch (error) {
-    console.error('Build failed:', error);
+  } catch (_error) {
     process.exit(1);
   }
 }

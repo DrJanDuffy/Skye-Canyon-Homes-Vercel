@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -25,7 +25,9 @@ export default function OptimizedImage({
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    if (priority) return; // Skip intersection observer for priority images
+    if (priority) {
+      return; // Skip intersection observer for priority images
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -56,7 +58,7 @@ export default function OptimizedImage({
     return sizes.map((size) => `${baseName}_${size}w${ext} ${size}w`).join(', ');
   };
 
-  const getWebPSrc = (originalSrc: string) => {
+  const _getWebPSrc = (originalSrc: string) => {
     return originalSrc.replace(/\.(jpg|jpeg|png)$/i, '.webp');
   };
 

@@ -1,15 +1,15 @@
-import express, { type Request, type Response, type NextFunction } from 'express';
-import { registerRoutes } from './routes';
-import { setupVite, serveStatic, log } from './vite';
+import path from 'node:path';
+import express, { type NextFunction, type Request, type Response } from 'express';
 import {
-  securityHeaders,
   geoHeaders,
-  seoHeaders,
-  realEstateContext,
   rateLimiter,
+  realEstateContext,
   schemaInjection,
+  securityHeaders,
+  seoHeaders,
 } from './middleware';
-import path from 'path';
+import { registerRoutes } from './routes';
+import { log, serveStatic, setupVite } from './vite';
 
 const app = express();
 
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined ;
+  let capturedJsonResponse: Record<string, any> | undefined;
 
   const originalResJson = res.json;
   res.json = (bodyJson, ...args) => {
@@ -46,7 +46,7 @@ app.use((req, res, next) => {
       }
 
       if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + '…';
+        logLine = `${logLine.slice(0, 79)}…`;
       }
 
       log(logLine);

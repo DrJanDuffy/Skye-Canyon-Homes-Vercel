@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Activity, AlertTriangle, Clock, Server, TrendingUp } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Activity, Clock, AlertTriangle, TrendingUp, Server } from 'lucide-react';
 
 interface PerformanceMetrics {
   totalRequests: number;
@@ -31,16 +31,28 @@ export default function PerformanceDashboard() {
   });
 
   const getPerformanceColor = (responseTime: number) => {
-    if (responseTime < 200) return 'text-green-600';
-    if (responseTime < 500) return 'text-yellow-600';
-    if (responseTime < 1000) return 'text-orange-600';
+    if (responseTime < 200) {
+      return 'text-green-600';
+    }
+    if (responseTime < 500) {
+      return 'text-yellow-600';
+    }
+    if (responseTime < 1000) {
+      return 'text-orange-600';
+    }
     return 'text-red-600';
   };
 
   const getPerformanceBadge = (responseTime: number) => {
-    if (responseTime < 200) return 'default';
-    if (responseTime < 500) return 'secondary';
-    if (responseTime < 1000) return 'destructive';
+    if (responseTime < 200) {
+      return 'default';
+    }
+    if (responseTime < 500) {
+      return 'secondary';
+    }
+    if (responseTime < 1000) {
+      return 'destructive';
+    }
     return 'destructive';
   };
 

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, Phone, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Link } from 'wouter';
+import { Button } from '@/components/ui/button';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isProduction, setIsProduction] = useState(false);
+  const [_isProduction, setIsProduction] = useState(false);
 
   useEffect(() => {
     // Detect production environment for consistent menu behavior
@@ -14,7 +14,7 @@ export default function Navigation() {
     );
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
+  const _scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });

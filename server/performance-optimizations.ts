@@ -1,4 +1,4 @@
-import type { Express, Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 // Performance monitoring types
 interface PerformanceMetrics {
@@ -36,7 +36,9 @@ class PerformanceOptimizer {
 
   getCache(key: string): any | null {
     const cached = this.cache.get(key);
-    if (!cached) return null;
+    if (!cached) {
+      return null;
+    }
 
     if (Date.now() - cached.timestamp > cached.ttl) {
       this.cache.delete(key);
@@ -68,12 +70,8 @@ class PerformanceOptimizer {
 
         // Log slow requests with detailed information
         if (responseTime > 1000) {
-          console.warn(`SLOW REQUEST: ${req.method} ${req.path} - ${responseTime}ms`);
-          console.warn(`Status: ${res.statusCode}, IP: ${req.ip}`);
-
           // Critical performance alert
           if (responseTime > 5000) {
-            console.error(`CRITICAL PERFORMANCE: ${req.method} ${req.path} - ${responseTime}ms`);
           }
         }
       });
@@ -174,18 +172,13 @@ export function optimizeConnection() {
     connectionTimeoutMillis: 2000, // Fail fast on connection issues
     acquireTimeoutMillis: 10000, // Maximum time to wait for a connection
   };
-
-  console.log('Database connection optimized with pool settings:', connectionConfig);
   return connectionConfig;
 }
 
 // Query performance logger
-export async function logSlowQueries(query: string, duration: number) {
+export async function logSlowQueries(_query: string, duration: number) {
   if (duration > 1000) {
-    console.warn(`SLOW QUERY (${duration}ms): ${query.substring(0, 100)}...`);
-
     if (duration > 5000) {
-      console.error(`CRITICAL SLOW QUERY (${duration}ms): ${query.substring(0, 200)}...`);
     }
   }
 }
@@ -201,12 +194,9 @@ export function withCache<T>(
       // Check cache first
       const cached = performanceOptimizer.getCache(cacheKey);
       if (cached) {
-        console.log(`Cache HIT: ${cacheKey}`);
         resolve(cached);
         return;
       }
-
-      console.log(`Cache MISS: ${cacheKey}`);
       const result = await fetcher();
 
       // Store in cache

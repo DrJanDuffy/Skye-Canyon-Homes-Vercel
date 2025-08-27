@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/button';
 import { Calendar, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function CallToAction() {
-  const scrollToContact = () => {
+  const _scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });

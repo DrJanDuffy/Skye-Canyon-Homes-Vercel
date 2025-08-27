@@ -1,27 +1,19 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    execSync(command, { stdio: 'inherit', ...options });
-  } catch (error) {
-    console.error(`Command failed: ${command}`);
-    throw error;
-  }
+  execSync(command, { stdio: 'inherit', ...options });
 }
 
 async function testServer(port = 3000, timeout = 10000) {
   log(`Testing server on port ${port}...`);
 
   return new Promise((resolve) => {
-    import('child_process')
+    import('node:child_process')
       .then(({ spawn }) => {
         const server = spawn('node', ['server-production.js'], {
           env: { ...process.env, PORT: port, NODE_ENV: 'production' },
@@ -129,7 +121,7 @@ async function main() {
     if (fs.existsSync('public')) {
       try {
         executeCommand('cp -r public/* dist/public/');
-      } catch (error) {
+      } catch (_error) {
         log('No additional public assets found, continuing...');
       }
     }
@@ -202,8 +194,7 @@ The application will serve on port 3000 by default, or use PORT environment vari
     log('3. Access health check at /health');
     log('');
     log('Build artifacts created in dist/ directory');
-  } catch (error) {
-    console.error('❌ Deployment failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

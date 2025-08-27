@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function MobileOptimizer() {
   const [isMobile, setIsMobile] = useState(false);
-  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
+  const [_orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
 
   useEffect(() => {
     const checkDevice = () => {

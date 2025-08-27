@@ -3,22 +3,18 @@
  * Tests schema implementation without external dependencies
  */
 
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
 
 const execAsync = promisify(exec);
 
 async function testHomepageSchema() {
-  console.log('Testing homepage schema markup...\n');
-
   try {
     const { stdout } = await execAsync('curl -s http://localhost:5000');
 
     // Count JSON-LD scripts
     const jsonLdMatches = stdout.match(/<script type="application\/ld\+json">/g);
     const schemaCount = jsonLdMatches ? jsonLdMatches.length : 0;
-
-    console.log(`Found ${schemaCount} JSON-LD script tags`);
 
     // Test specific schema types
     const tests = {
@@ -32,11 +28,7 @@ async function testHomepageSchema() {
         stdout.includes('"@type":"BreadcrumbList"') || stdout.includes('BreadcrumbList'),
       Service: stdout.includes('"@type":"Service"'),
     };
-
-    console.log('\nSchema Types Found:');
-    Object.entries(tests).forEach(([type, found]) => {
-      console.log(`${found ? '✓' : '✗'} ${type}: ${found ? 'FOUND' : 'MISSING'}`);
-    });
+    Object.entries(tests).forEach(([_type, _found]) => {});
 
     // Test business information
     const businessInfo = {
@@ -49,11 +41,7 @@ async function testHomepageSchema() {
         stdout.includes('openingHours') || stdout.includes('openingHoursSpecification'),
       Email: stdout.includes('@SkyeCanyonHomesForSale.com'),
     };
-
-    console.log('\nBusiness Information:');
-    Object.entries(businessInfo).forEach(([info, found]) => {
-      console.log(`${found ? '✓' : '✗'} ${info}: ${found ? 'FOUND' : 'MISSING'}`);
-    });
+    Object.entries(businessInfo).forEach(([_info, _found]) => {});
 
     // Test review data
     const reviewTests = {
@@ -63,11 +51,7 @@ async function testHomepageSchema() {
       'Date Published': stdout.includes('datePublished'),
       'Multiple Reviews': (stdout.match(/reviewBody/g) || []).length >= 3,
     };
-
-    console.log('\nReview Schema:');
-    Object.entries(reviewTests).forEach(([test, passed]) => {
-      console.log(`${passed ? '✓' : '✗'} ${test}: ${passed ? 'FOUND' : 'MISSING'}`);
-    });
+    Object.entries(reviewTests).forEach(([_test, _passed]) => {});
 
     return {
       schemaCount,
@@ -75,15 +59,12 @@ async function testHomepageSchema() {
       businessInfo: Object.values(businessInfo).filter(Boolean).length,
       reviews: Object.values(reviewTests).filter(Boolean).length,
     };
-  } catch (error) {
-    console.error(`Error testing homepage: ${error.message}`);
+  } catch (_error) {
     return null;
   }
 }
 
 async function testServicePages() {
-  console.log('\n\nTesting service pages schema...\n');
-
   const services = ['buyer-agent', 'first-time-buyer', 'luxury-properties', 'new-construction'];
 
   const results = [];
@@ -103,15 +84,10 @@ async function testServicePages() {
 
       const passed = Object.values(tests).filter(Boolean).length;
       const total = Object.keys(tests).length;
-
-      console.log(`${service}: ${passed}/${total} tests passed`);
-      Object.entries(tests).forEach(([test, result]) => {
-        console.log(`  ${result ? '✓' : '✗'} ${test}`);
-      });
+      Object.entries(tests).forEach(([_test, _result]) => {});
 
       results.push({ service, passed, total, tests });
     } catch (error) {
-      console.log(`✗ ${service}: ERROR - ${error.message}`);
       results.push({ service, error: error.message });
     }
   }
@@ -120,8 +96,6 @@ async function testServicePages() {
 }
 
 async function validateSchemaStructure() {
-  console.log('\n\nValidating schema structure...\n');
-
   try {
     const { stdout } = await execAsync('curl -s http://localhost:5000');
 
@@ -129,12 +103,10 @@ async function validateSchemaStructure() {
     const jsonLdRegex = /<script type="application\/ld\+json">(.*?)<\/script>/gs;
     const matches = [...stdout.matchAll(jsonLdRegex)];
 
-    console.log(`Found ${matches.length} JSON-LD scripts to validate`);
-
     let validSchemas = 0;
     let totalSchemas = 0;
 
-    matches.forEach((match, index) => {
+    matches.forEach((match, _index) => {
       totalSchemas++;
       try {
         const jsonContent = match[1].trim();
@@ -143,29 +115,22 @@ async function validateSchemaStructure() {
         // Basic validation
         const hasContext = schema['@context'] === 'https://schema.org';
         const hasType = !!schema['@type'];
-        const hasName = !!schema.name;
+        const _hasName = !!schema.name;
 
         if (hasContext && hasType) {
           validSchemas++;
-          console.log(`✓ Schema ${index + 1}: Valid ${schema['@type']}`);
         } else {
-          console.log(`✗ Schema ${index + 1}: Invalid structure`);
         }
-      } catch (e) {
-        console.log(`✗ Schema ${index + 1}: JSON parse error`);
-      }
+      } catch (_e) {}
     });
 
     return { validSchemas, totalSchemas };
-  } catch (error) {
-    console.error(`Error validating structure: ${error.message}`);
+  } catch (_error) {
     return { validSchemas: 0, totalSchemas: 0 };
   }
 }
 
 async function runCompleteTest() {
-  console.log('=== Comprehensive Schema Testing ===\n');
-
   // Test 1: Homepage schema
   const homepageResults = await testHomepageSchema();
 
@@ -175,22 +140,10 @@ async function runCompleteTest() {
   // Test 3: Schema structure validation
   const structureResults = await validateSchemaStructure();
 
-  // Final summary
-  console.log('\n\n=== FINAL TEST RESULTS ===\n');
-
   if (homepageResults) {
-    console.log(`Homepage Schema Scripts: ${homepageResults.schemaCount}`);
-    console.log(`Schema Types Found: ${homepageResults.schemaTypes}/6`);
-    console.log(`Business Info Complete: ${homepageResults.businessInfo}/7`);
-    console.log(`Review Schema: ${homepageResults.reviews}/5`);
   }
 
   const validServices = serviceResults.filter((r) => !r.error && r.passed >= 4).length;
-  console.log(`Service Pages Valid: ${validServices}/4`);
-
-  console.log(
-    `Schema Structure: ${structureResults.validSchemas}/${structureResults.totalSchemas} valid`
-  );
 
   // Overall assessment
   const overallScore = homepageResults
@@ -201,18 +154,14 @@ async function runCompleteTest() {
       structureResults.validSchemas >= 3
     : false;
 
-  console.log(`\nOVERALL STATUS: ${overallScore ? '✅ EXCELLENT' : '⚠️ NEEDS REVIEW'}`);
-
   return overallScore;
 }
 
 // Run the test
 runCompleteTest()
   .then((success) => {
-    console.log('\nSchema testing completed successfully!');
     process.exit(success ? 0 : 1);
   })
-  .catch((error) => {
-    console.error('Schema testing failed:', error.message);
+  .catch((_error) => {
     process.exit(1);
   });

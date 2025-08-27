@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface SchemaMarkupProps {
   pageType?: 'homepage' | 'service' | 'about' | 'properties' | 'generic';
@@ -232,7 +232,9 @@ export default function ComprehensiveSchemaMarkup({
 
   // Service Schema (dynamic based on page)
   const getServiceSchema = () => {
-    if (!serviceName) return null;
+    if (!serviceName) {
+      return null;
+    }
 
     const serviceSchemas: Record<string, any> = {
       'buyer-agent': {
@@ -313,7 +315,9 @@ export default function ComprehensiveSchemaMarkup({
 
   // Review Schema
   const getReviewSchema = () => {
-    if (reviews.length === 0) return null;
+    if (reviews.length === 0) {
+      return null;
+    }
 
     return {
       '@context': 'https://schema.org',
@@ -339,7 +343,9 @@ export default function ComprehensiveSchemaMarkup({
 
   // Breadcrumb Schema
   const getBreadcrumbSchema = () => {
-    if (breadcrumbs.length === 0) return null;
+    if (breadcrumbs.length === 0) {
+      return null;
+    }
 
     return {
       '@context': 'https://schema.org',
@@ -393,7 +399,7 @@ export default function ComprehensiveSchemaMarkup({
     existingSchemas.forEach((script) => script.remove());
 
     // Inject new schema scripts
-    schemas.forEach((schema, index) => {
+    schemas.forEach((schema, _index) => {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
       script.setAttribute('data-schema-type', 'comprehensive');

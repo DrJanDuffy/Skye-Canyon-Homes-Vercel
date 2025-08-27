@@ -5,11 +5,9 @@
  * Integrates with Replit's deployment process
  */
 
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 
-function log(message) {
-  console.log(`[Deploy Sync] ${message}`);
-}
+function log(_message) {}
 
 function runCommand(command, args = [], options = {}) {
   return new Promise((resolve, reject) => {
@@ -94,7 +92,7 @@ node replit-deploy-sync.js
 echo "Sync completed"
 `;
 
-  require('fs').writeFileSync('.replit-deploy', deployScript, { mode: 0o755 });
+  require('node:fs').writeFileSync('.replit-deploy', deployScript, { mode: 0o755 });
   log('Deployment hook created');
 }
 

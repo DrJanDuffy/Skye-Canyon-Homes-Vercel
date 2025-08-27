@@ -1,13 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import Footer from '@/components/footer';
 import BackToTop from '@/components/back-to-top';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, Users, Star } from 'lucide-react';
 import FAQSection from '@/components/faq-section';
-import RelatedSearches from '@/components/related-searches';
+import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
+import RelatedSearches from '@/components/related-searches';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function LasVegasRealEstate() {
   return (

@@ -101,7 +101,7 @@ export function generate404FixReport() {
 }
 
 // Express route handler for URL validation
-export async function handleUrlValidation(req: Request, res: Response) {
+export async function handleUrlValidation(_req: Request, res: Response) {
   try {
     const validation = await validateGoogleSearchConsoleUrls();
     const fixReport = generate404FixReport();
@@ -112,8 +112,7 @@ export async function handleUrlValidation(req: Request, res: Response) {
       fixes: fixReport,
       timestamp: new Date().toISOString(),
     });
-  } catch (error) {
-    console.error('URL validation error:', error);
+  } catch (_error) {
     res.status(500).json({
       success: false,
       message: 'Failed to validate URLs',

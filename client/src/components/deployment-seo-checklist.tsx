@@ -1,8 +1,8 @@
+import { AlertTriangle, CheckCircle, Clock, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, AlertTriangle, Clock, ExternalLink } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ChecklistItem {
   id: string;

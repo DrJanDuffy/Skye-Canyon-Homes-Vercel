@@ -174,7 +174,7 @@ export default function SEOOptimizer({
         'width=device-width, initial-scale=1, viewport-fit=cover'
       );
     }
-  }, [location]);
+  }, []);
 
   return (
     <Helmet>

@@ -1,29 +1,22 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    log(`Executing: ${command}`);
-    return execSync(command, {
-      stdio: 'inherit',
-      encoding: 'utf8',
-      timeout: 300000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    throw error;
-  }
+  log(`Executing: ${command}`);
+  return execSync(command, {
+    stdio: 'inherit',
+    encoding: 'utf8',
+    timeout: 300000,
+    ...options,
+  });
 }
 
 async function main() {
@@ -174,12 +167,12 @@ import('./index.js').then(module => {
     // Step 12: Test production build
     log('Testing production build...');
     try {
-      const testOutput = execSync('cd dist && timeout 5s node index.js || true', {
+      const _testOutput = execSync('cd dist && timeout 5s node index.js || true', {
         encoding: 'utf8',
         timeout: 10000,
       });
       log('✅ Production build test completed');
-    } catch (error) {
+    } catch (_error) {
       log('⚠️ Production test timeout (expected behavior)');
     }
 
@@ -187,8 +180,7 @@ import('./index.js').then(module => {
     log('📁 Build output: dist/');
     log('🚀 Start command: cd dist && node start.js');
     log('📋 Build info: dist/deployment-info.json');
-  } catch (error) {
-    console.error('❌ Deployment build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

@@ -5,17 +5,15 @@
  * Replaces Vite to resolve EISDIR errors
  */
 
-import { execSync } from 'child_process';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`[${new Date().toLocaleTimeString()}] ${message}`);
-}
+function log(_message) {}
 
 async function buildProduction() {
   log('Building application with ESBuild...');
@@ -70,7 +68,7 @@ async function buildProduction() {
 async function startServer() {
   const express = (await import('express')).default;
   const compression = (await import('compression')).default;
-  const path = await import('path');
+  const path = await import('node:path');
 
   const app = express();
   const PORT = process.env.PORT || 3000;
@@ -80,12 +78,12 @@ async function startServer() {
   app.use(express.static('dist/public'));
 
   // Basic API routes
-  app.get('/health', (req, res) => res.json({ status: 'healthy' }));
-  app.get('/api/*', (req, res) => res.json({ message: 'API endpoint' }));
-  app.post('/api/*', (req, res) => res.json({ success: true }));
+  app.get('/health', (_req, res) => res.json({ status: 'healthy' }));
+  app.get('/api/*', (_req, res) => res.json({ message: 'API endpoint' }));
+  app.post('/api/*', (_req, res) => res.json({ success: true }));
 
   // SPA fallback
-  app.get('*', (req, res) => {
+  app.get('*', (_req, res) => {
     res.sendFile(path.join(process.cwd(), 'dist/public/index.html'));
   });
 
@@ -98,8 +96,7 @@ async function main() {
   try {
     await buildProduction();
     await startServer();
-  } catch (error) {
-    console.error('Deployment failed:', error);
+  } catch (_error) {
     process.exit(1);
   }
 }

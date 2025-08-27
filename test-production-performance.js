@@ -1,24 +1,17 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 
-function log(message) {
-  console.log(`🔍 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    return execSync(command, {
-      stdio: 'inherit',
-      encoding: 'utf8',
-      timeout: 60000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    throw error;
-  }
+  return execSync(command, {
+    stdio: 'inherit',
+    encoding: 'utf8',
+    timeout: 60000,
+    ...options,
+  });
 }
 
 async function testBuildProcess() {
@@ -64,7 +57,7 @@ async function testServerHealth() {
     try {
       executeCommand(cmd);
       log(`✅ ${cmd.split('||')[0].trim()}`);
-    } catch (error) {
+    } catch (_error) {
       log(`⚠️ ${cmd} - May not be running`);
     }
   }
@@ -95,7 +88,7 @@ async function performLoadTest() {
       } else {
         log(`❌ ${endpoint} - ${duration}ms (Slow)`);
       }
-    } catch (error) {
+    } catch (_error) {
       log(`❌ ${endpoint} - Failed`);
     }
   }
@@ -132,7 +125,7 @@ async function testCachePerformance() {
 
     // Get cache stats
     executeCommand('curl -s http://localhost:3000/api/performance/cache');
-  } catch (error) {
+  } catch (_error) {
     log('❌ Cache test failed - Server may not be running');
   }
 }
@@ -174,18 +167,7 @@ async function main() {
     await generatePerformanceReport();
 
     log('🎉 All tests completed! Check performance-report.json for details.');
-
-    console.log('\n📋 Deployment Checklist:');
-    console.log('✅ EISDIR build error fixed with ESBuild');
-    console.log('✅ Production server with monitoring implemented');
-    console.log('✅ Performance cache system active');
-    console.log('✅ Resource monitoring enabled');
-    console.log('✅ Graceful shutdown handling');
-    console.log('✅ Cache management endpoints available');
-
-    console.log('\n🚀 Ready for production deployment!');
-  } catch (error) {
-    console.error('❌ Performance testing failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

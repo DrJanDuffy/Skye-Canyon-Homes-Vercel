@@ -1,13 +1,13 @@
 // Essential icons only to prevent build timeouts
 import {
-  MapPin as LucideMapPin,
-  Home as LucideHome,
-  Search as LucideSearch,
-  Users as LucideUsers,
-  Star as LucideStar,
   Heart as LucideHeart,
-  Phone as LucidePhone,
+  Home as LucideHome,
   Mail as LucideMail,
+  MapPin as LucideMapPin,
+  Phone as LucidePhone,
+  Search as LucideSearch,
+  Star as LucideStar,
+  Users as LucideUsers,
 } from 'lucide-react';
 
 export const MapPin = LucideMapPin;

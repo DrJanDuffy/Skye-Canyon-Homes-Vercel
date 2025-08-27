@@ -1,10 +1,10 @@
+import { Home, MapPin, Shield, TrendingUp } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { MapPin, Home, TrendingUp, Shield } from 'lucide-react';
+import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function NorthwestLasVegas() {
   const neighborhoods = [

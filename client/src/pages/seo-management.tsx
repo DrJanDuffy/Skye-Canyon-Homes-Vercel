@@ -1,10 +1,10 @@
+import { CheckCircle, Globe, Search, TrendingUp } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
 import SEOManagementDashboard from '@/components/seo-management-dashboard';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Search, Globe, TrendingUp, CheckCircle } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function SEOManagement() {
   return (
@@ -152,7 +152,8 @@ export default function SEOManagement() {
                       <a
                         href="https://search.google.com/search-console"
                         target="_blank"
-                        className="text-blue-600 hover:underline" rel="noopener"
+                        className="text-blue-600 hover:underline"
+                        rel="noopener"
                       >
                         Google Search Console
                       </a>

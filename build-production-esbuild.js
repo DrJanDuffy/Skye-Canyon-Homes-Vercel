@@ -1,29 +1,22 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    log(`Executing: ${command}`);
-    return execSync(command, {
-      stdio: 'inherit',
-      encoding: 'utf8',
-      timeout: 300000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    throw error;
-  }
+  log(`Executing: ${command}`);
+  return execSync(command, {
+    stdio: 'inherit',
+    encoding: 'utf8',
+    timeout: 300000,
+    ...options,
+  });
 }
 
 async function main() {
@@ -144,17 +137,12 @@ async function main() {
 
     // Step 8: Display build summary
     log('Build completed successfully!');
-    console.log('\n📊 Build Summary:');
 
     for (const file of requiredFiles) {
       const stats = fs.statSync(file);
-      const sizeKB = Math.round(stats.size / 1024);
-      console.log(`  ✅ ${file} (${sizeKB}KB)`);
+      const _sizeKB = Math.round(stats.size / 1024);
     }
-
-    console.log('\n🎉 Production build ready! Run with: NODE_ENV=production node dist/index.js');
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

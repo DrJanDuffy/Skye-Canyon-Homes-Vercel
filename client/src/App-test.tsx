@@ -1,4 +1,4 @@
-import { Switch, Route } from 'wouter';
+import { Route, Switch } from 'wouter';
 
 function TestHome() {
   return (

@@ -1,20 +1,13 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
 
-function log(message) {
-  console.log(`🔧 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    execSync(command, { stdio: 'inherit', ...options });
-  } catch (error) {
-    console.error(`Failed to execute: ${command}`);
-    throw error;
-  }
+  execSync(command, { stdio: 'inherit', ...options });
 }
 
 async function main() {
@@ -128,8 +121,7 @@ server.on('error', (err) => {
 
     log('Production build completed successfully!');
     log('Run "node start-production.js" to start the production server');
-  } catch (error) {
-    console.error('Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

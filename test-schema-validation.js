@@ -3,18 +3,16 @@
  * Tests all implemented schema markup for compliance and accuracy
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-function log(message) {
-  console.log(`${new Date().toLocaleTimeString()} - ${message}`);
-}
+function log(_message) {}
 
-function validateSchemaStructure(schema) {
+function _validateSchemaStructure(schema) {
   const errors = [];
   const warnings = [];
 

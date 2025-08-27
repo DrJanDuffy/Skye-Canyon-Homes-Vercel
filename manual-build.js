@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-
-console.log('Starting manual build process...');
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
 
 try {
   // Clean dist directory
@@ -14,10 +12,7 @@ try {
   fs.mkdirSync('dist', { recursive: true });
   fs.mkdirSync('dist/public', { recursive: true });
 
-  // Build React components using esbuild directly
-  console.log('Building React application with esbuild...');
-
-  const buildResult = execSync(
+  const _buildResult = execSync(
     `npx esbuild client/src/main.tsx \\
     --bundle \\
     --minify \\
@@ -41,11 +36,6 @@ try {
       encoding: 'utf-8',
     }
   );
-
-  console.log('Build output:', buildResult);
-
-  // Copy and process index.html manually
-  console.log('Processing HTML template...');
   let htmlContent = fs.readFileSync('client/index.html', 'utf-8');
 
   // Replace the development script tag with production assets
@@ -57,9 +47,6 @@ try {
   );
 
   fs.writeFileSync('dist/public/index.html', htmlContent);
-
-  // Build CSS using PostCSS and Tailwind
-  console.log('Building CSS...');
   execSync('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify', {
     stdio: 'inherit',
   });
@@ -73,7 +60,6 @@ try {
 
   // Copy public assets
   if (fs.existsSync('public')) {
-    console.log('Copying public assets...');
     const copyAssets = (src, dest) => {
       const items = fs.readdirSync(src);
       for (const item of items) {
@@ -89,25 +75,16 @@ try {
     };
     copyAssets('public', 'dist/public');
   }
-
-  // Build server
-  console.log('Building server...');
   execSync(
     'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist',
     {
       stdio: 'inherit',
     }
   );
-
-  console.log('Manual build completed successfully!');
-  console.log('Files created:');
-  console.log('- dist/public/index.html');
-  console.log('- dist/public/assets/main.js');
-  console.log('- dist/public/assets/main.css');
-  console.log('- dist/index.js');
 } catch (error) {
-  console.error('Manual build failed:', error.message);
-  if (error.stdout) console.log('stdout:', error.stdout.toString());
-  if (error.stderr) console.log('stderr:', error.stderr.toString());
+  if (error.stdout) {
+  }
+  if (error.stderr) {
+  }
   process.exit(1);
 }

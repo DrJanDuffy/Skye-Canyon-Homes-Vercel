@@ -1,29 +1,22 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`🔧 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    log(`Executing: ${command}`);
-    return execSync(command, {
-      stdio: 'inherit',
-      encoding: 'utf8',
-      timeout: 300000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    throw error;
-  }
+  log(`Executing: ${command}`);
+  return execSync(command, {
+    stdio: 'inherit',
+    encoding: 'utf8',
+    timeout: 300000,
+    ...options,
+  });
 }
 
 async function main() {
@@ -118,8 +111,7 @@ async function main() {
 
     log('✅ Manual build completed successfully!');
     log(`Build output: ${path.resolve('dist')}`);
-  } catch (error) {
-    console.error('❌ Manual build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

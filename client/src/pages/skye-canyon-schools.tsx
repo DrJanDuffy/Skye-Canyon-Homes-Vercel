@@ -1,9 +1,9 @@
+import { BookOpen, Clock, GraduationCap, MapPin, School, Star, Users } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import Footer from '@/components/footer';
 import FAQSection from '@/components/faq-section';
+import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
-import { GraduationCap, School, Users, MapPin, Star, Clock, BookOpen } from 'lucide-react';
 
 const elementarySchools = [
   {
@@ -36,7 +36,7 @@ const middleSchools = [
   },
 ];
 
-const highSchools = [
+const _highSchools = [
   {
     name: 'Arbor View High School',
     type: 'Public High School',
@@ -44,7 +44,7 @@ const highSchools = [
   },
 ];
 
-const charterSchools = [
+const _charterSchools = [
   {
     name: 'Somerset Academy – Skye Canyon Campus',
     type: 'Charter Elementary and Middle/High School',

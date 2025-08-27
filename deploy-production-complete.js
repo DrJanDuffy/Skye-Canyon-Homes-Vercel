@@ -1,24 +1,17 @@
 #!/usr/bin/env node
 
-import { execSync, spawn } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { execSync, spawn } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    execSync(command, { stdio: 'inherit', ...options });
-  } catch (error) {
-    console.error(`Failed to execute: ${command}`);
-    throw error;
-  }
+  execSync(command, { stdio: 'inherit', ...options });
 }
 
 async function testServer(port = 3000, timeout = 10000) {
@@ -31,7 +24,7 @@ async function testServer(port = 3000, timeout = 10000) {
         return;
       }
 
-      import('http').then(({ default: http }) => {
+      import('node:http').then(({ default: http }) => {
         const req = http.get(`http://localhost:${port}/health`, (res) => {
           if (res.statusCode === 200) {
             resolve(true);
@@ -88,15 +81,12 @@ async function main() {
       env: { ...process.env, NODE_ENV: 'production' },
     });
 
-    let serverOutput = '';
+    let _serverOutput = '';
     serverProcess.stdout.on('data', (data) => {
-      serverOutput += data.toString();
-      console.log(data.toString().trim());
+      _serverOutput += data.toString();
     });
 
-    serverProcess.stderr.on('data', (data) => {
-      console.error(data.toString().trim());
-    });
+    serverProcess.stderr.on('data', (_data) => {});
 
     // Wait for server to start
     await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -110,7 +100,7 @@ async function main() {
 
       // Test static file serving
       try {
-        const http = await import('http');
+        const http = await import('node:http');
         const testStatic = () =>
           new Promise((resolve) => {
             const req = http.default.get('http://localhost:3000/', (res) => {
@@ -129,7 +119,7 @@ async function main() {
           });
 
         await testStatic();
-      } catch (error) {
+      } catch (_error) {
         log('Static file test failed, but server is running');
       }
     } else {
@@ -155,9 +145,8 @@ async function main() {
     log('- http://localhost:3000/ (Main application)');
     log('- http://localhost:3000/health (Health check)');
     log('- http://localhost:3000/api/* (API routes)');
-  } catch (error) {
+  } catch (_error) {
     log('Deployment failed:');
-    console.error(error.message);
     process.exit(1);
   }
 }

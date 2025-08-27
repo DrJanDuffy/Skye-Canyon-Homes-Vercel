@@ -86,11 +86,8 @@ async function updateLeadScore(leadId: string, scoreData: any) {
     });
 
     if (!response.ok) {
-      console.error('Failed to update lead score in FollowUp Boss');
     }
-  } catch (error) {
-    console.error('Error updating lead score:', error);
-  }
+  } catch (_error) {}
 }
 
 // Enhanced lead qualification
@@ -100,7 +97,8 @@ export function qualifyLead(leadData: any) {
     budgetSpecified: !!leadData.priceRange,
     contactInfoComplete: !!(leadData.email && leadData.phone),
     skyeCanyonInterest: leadData.message?.toLowerCase().includes('skye canyon'),
-    luxuryMarket: leadData.priceRange && parseInt(leadData.priceRange.replace(/\D/g, '')) >= 500000,
+    luxuryMarket:
+      leadData.priceRange && parseInt(leadData.priceRange.replace(/\D/g, ''), 10) >= 500000,
   };
 
   const qualificationScore = Object.values(qualifications).filter(Boolean).length;

@@ -135,16 +135,13 @@ export function setupPerformanceRoutes(app: Express) {
       });
 
       if (responseTime > 2000) {
-        console.warn(
-          `SLOW REQUEST: ${req.method} ${req.path} - ${responseTime}ms - Status: ${res.statusCode}`
-        );
       }
     });
     next();
   });
 
   // Performance dashboard endpoint
-  app.get('/api/performance/dashboard', (req: Request, res: Response) => {
+  app.get('/api/performance/dashboard', (_req: Request, res: Response) => {
     try {
       const report = performanceDashboard.getPerformanceReport();
       const cacheStats = optimizedStorage.getCacheStats();
@@ -156,25 +153,23 @@ export function setupPerformanceRoutes(app: Express) {
         memoryUsage: process.memoryUsage(),
         timestamp: new Date().toISOString(),
       });
-    } catch (error) {
-      console.error('Performance dashboard error:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to generate performance report' });
     }
   });
 
   // Cache management endpoints
-  app.post('/api/performance/cache/clear', (req: Request, res: Response) => {
+  app.post('/api/performance/cache/clear', (_req: Request, res: Response) => {
     try {
       optimizedStorage.clearCache();
       res.json({ success: true, message: 'Cache cleared successfully' });
-    } catch (error) {
-      console.error('Cache clear error:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to clear cache' });
     }
   });
 
   // Health check with performance metrics
-  app.get('/api/health/detailed', (req: Request, res: Response) => {
+  app.get('/api/health/detailed', (_req: Request, res: Response) => {
     const startTime = Date.now();
     const memUsage = process.memoryUsage();
 

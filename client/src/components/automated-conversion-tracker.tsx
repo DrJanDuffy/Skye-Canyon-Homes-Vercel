@@ -38,7 +38,7 @@ export default function AutomatedConversionTracker({
         handleVoiceSearchLimit as EventListener
       );
     };
-  }, [onConversionEvent]);
+  }, [onConversionEvent, createRealScoutConversionPopup]);
 
   const createRealScoutConversionPopup = (lastQuery: string) => {
     // Remove existing popup if present

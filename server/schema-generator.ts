@@ -252,7 +252,9 @@ export function generateSchemaMarkup(config: SchemaConfig = {}): string {
 
   // Generate service schema if applicable
   const getServiceSchema = () => {
-    if (!serviceName) return null;
+    if (!serviceName) {
+      return null;
+    }
 
     const serviceSchemas: Record<string, any> = {
       'Buyer Agent Services': {
@@ -311,7 +313,9 @@ export function generateSchemaMarkup(config: SchemaConfig = {}): string {
 
   // Generate review schema
   const getReviewSchema = () => {
-    if (reviews.length === 0) return null;
+    if (reviews.length === 0) {
+      return null;
+    }
 
     return {
       '@context': 'https://schema.org',
@@ -337,7 +341,9 @@ export function generateSchemaMarkup(config: SchemaConfig = {}): string {
 
   // Generate breadcrumb schema
   const getBreadcrumbSchema = () => {
-    if (breadcrumbs.length === 0) return null;
+    if (breadcrumbs.length === 0) {
+      return null;
+    }
 
     return {
       '@context': 'https://schema.org',

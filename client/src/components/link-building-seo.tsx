@@ -1,17 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { ExternalLink, MapPin, Phone, Star, TrendingUp } from 'lucide-react';
 import { Link } from 'wouter';
-import {
-  ExternalLink,
-  MapPin,
-  Star,
-  Building,
-  Users,
-  TrendingUp,
-  Award,
-  Phone,
-} from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const localBusinessDirectories = [
   {

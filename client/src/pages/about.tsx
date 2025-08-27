@@ -1,27 +1,26 @@
-import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 // Using professional headshot from reliable source
 import {
-  Phone,
-  Mail,
-  MapPin,
   Award,
-  Users,
-  Home,
-  TrendingUp,
-  Star,
   Calendar,
   CheckCircle,
+  Home,
+  Mail,
+  MapPin,
+  Phone,
+  Star,
+  TrendingUp,
+  Users,
 } from 'lucide-react';
-import Footer from '@/components/footer';
-import Breadcrumb from '@/components/breadcrumb';
+import { Helmet } from 'react-helmet-async';
 import BackToTop from '@/components/back-to-top';
+import Breadcrumb from '@/components/breadcrumb';
 import FAQSection from '@/components/faq-section';
-import RealScoutListings from '@/components/realscout-listings';
+import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
 import PerformanceInsights from '@/components/performance-insights';
+import RealScoutListings from '@/components/realscout-listings';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 const achievements = [
   {
@@ -68,7 +67,7 @@ const testimonials = [
 ];
 
 export default function About() {
-  const scrollToContact = () => {
+  const _scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });

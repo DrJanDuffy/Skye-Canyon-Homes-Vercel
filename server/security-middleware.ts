@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import rateLimit from 'express-rate-limit';
 
 // Input sanitization utility
@@ -63,7 +63,7 @@ export function validateRequest(req: Request, res: Response, next: NextFunction)
   }
 
   // Validate request size
-  const contentLength = parseInt(req.get('content-length') || '0');
+  const contentLength = parseInt(req.get('content-length') || '0', 10);
   if (contentLength > 1024 * 1024) {
     // 1MB limit
     return res.status(413).json({
@@ -75,7 +75,7 @@ export function validateRequest(req: Request, res: Response, next: NextFunction)
 }
 
 // CORS security headers
-export function securityHeaders(req: Request, res: Response, next: NextFunction) {
+export function securityHeaders(_req: Request, res: Response, next: NextFunction) {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -99,18 +99,7 @@ export function securityHeaders(req: Request, res: Response, next: NextFunction)
 }
 
 // Error handling with security considerations
-export function secureErrorHandler(err: any, req: Request, res: Response, next: NextFunction) {
-  // Log full error details server-side
-  console.error('Security Error:', {
-    error: err.message,
-    stack: err.stack,
-    url: req.url,
-    method: req.method,
-    ip: req.ip,
-    userAgent: req.get('User-Agent'),
-    timestamp: new Date().toISOString(),
-  });
-
+export function secureErrorHandler(err: any, _req: Request, res: Response, _next: NextFunction) {
   // Send sanitized error to client
   const isDevelopment = process.env.NODE_ENV === 'development';
 

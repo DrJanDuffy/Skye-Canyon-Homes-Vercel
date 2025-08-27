@@ -1,12 +1,9 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 
-function log(message) {
-  console.log(`🔧 ${message}`);
-}
+function log(_message) {}
 
 async function main() {
   try {
@@ -72,8 +69,7 @@ async function main() {
 
     log('✅ Build completed successfully!');
     log('Output: dist/public/ (static files) + dist/index.js (server)');
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

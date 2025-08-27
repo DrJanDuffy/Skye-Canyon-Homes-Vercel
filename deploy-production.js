@@ -1,19 +1,18 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import { build } from 'esbuild';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import express from 'express';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import compression from 'compression';
 import cors from 'cors';
+import { build } from 'esbuild';
+import express from 'express';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  const timestamp = new Date().toLocaleTimeString();
-  console.log(`${timestamp} [DEPLOY] ${message}`);
+function log(_message) {
+  const _timestamp = new Date().toLocaleTimeString();
 }
 
 function executeCommand(command, options = {}) {
@@ -24,9 +23,7 @@ function executeCommand(command, options = {}) {
       timeout: 300000,
       ...options,
     });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    console.error(error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }
@@ -40,7 +37,7 @@ async function testServer(port = 3000, timeout = 10000) {
     }, timeout);
 
     const testRequest = () => {
-      import('http').then(({ default: http }) => {
+      import('node:http').then(({ default: http }) => {
         const req = http.get(`http://localhost:${port}/health`, (res) => {
           clearTimeout(testTimeout);
           if (res.statusCode === 200) {
@@ -51,7 +48,7 @@ async function testServer(port = 3000, timeout = 10000) {
           }
         });
 
-        req.on('error', (err) => {
+        req.on('error', (_err) => {
           // Server might not be ready yet, retry
           setTimeout(testRequest, 1000);
         });
@@ -162,7 +159,7 @@ async function main() {
     app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
     // Security headers
-    app.use((req, res, next) => {
+    app.use((_req, res, next) => {
       res.setHeader('X-Content-Type-Options', 'nosniff');
       res.setHeader('X-Frame-Options', 'ALLOWALL');
       res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -187,7 +184,7 @@ async function main() {
     );
 
     // Health check
-    app.get('/health', (req, res) => {
+    app.get('/health', (_req, res) => {
       res.json({
         status: 'healthy',
         timestamp: new Date().toISOString(),
@@ -198,22 +195,22 @@ async function main() {
     // Load server routes dynamically
     try {
       const { registerRoutes } = await import('./server/routes.js');
-      const server = await registerRoutes(app);
+      const _server = await registerRoutes(app);
       log('✅ Server routes loaded successfully');
     } catch (error) {
       log(`⚠️ Using fallback routes: ${error.message}`);
 
       // Minimal API endpoints
-      app.get('/api/properties', (req, res) => res.json([]));
-      app.get('/api/market-insights', (req, res) => res.json({ insights: [] }));
-      app.get('/api/agent-bio', (req, res) => res.json({}));
-      app.get('/api/community-data', (req, res) => res.json({}));
-      app.post('/api/leads', (req, res) => res.json({ success: true }));
-      app.post('/api/analytics', (req, res) => res.json({ success: true }));
+      app.get('/api/properties', (_req, res) => res.json([]));
+      app.get('/api/market-insights', (_req, res) => res.json({ insights: [] }));
+      app.get('/api/agent-bio', (_req, res) => res.json({}));
+      app.get('/api/community-data', (_req, res) => res.json({}));
+      app.post('/api/leads', (_req, res) => res.json({ success: true }));
+      app.post('/api/analytics', (_req, res) => res.json({ success: true }));
     }
 
     // SPA fallback
-    app.get('*', (req, res) => {
+    app.get('*', (_req, res) => {
       const indexPath = path.join(staticPath, 'index.html');
       if (fs.existsSync(indexPath)) {
         res.sendFile(indexPath);
@@ -250,8 +247,7 @@ async function main() {
       log('🛑 Shutting down gracefully...');
       server.close(() => process.exit(0));
     });
-  } catch (error) {
-    console.error('❌ Deployment failed:', error);
+  } catch (_error) {
     process.exit(1);
   }
 }

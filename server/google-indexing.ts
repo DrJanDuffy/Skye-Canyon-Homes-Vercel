@@ -5,7 +5,6 @@ export async function requestGoogleIndexing(urls: string[]) {
   const serviceAccountKey = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
 
   if (!serviceAccountKey) {
-    console.warn('Google Service Account Key not configured for indexing API');
     return { success: false, message: 'Service account not configured' };
   }
 
@@ -68,7 +67,6 @@ export async function requestGoogleIndexing(urls: string[]) {
 
     return { success: true, results };
   } catch (error) {
-    console.error('Google Indexing API error:', error);
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Unknown error',
@@ -124,7 +122,6 @@ export async function submitSitemap() {
       message: response.ok ? 'Sitemap submitted successfully' : 'Failed to submit sitemap',
     };
   } catch (error) {
-    console.error('Sitemap submission error:', error);
     return {
       success: false,
       message: error instanceof Error ? error.message : 'Unknown error',
@@ -170,8 +167,7 @@ export async function handleIndexingRequest(req: Request, res: Response) {
 
     const result = await requestGoogleIndexing(urls);
     res.json(result);
-  } catch (error) {
-    console.error('Indexing request error:', error);
+  } catch (_error) {
     res.status(500).json({
       success: false,
       message: 'Internal server error',

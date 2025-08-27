@@ -5,22 +5,21 @@
  * Designed to work with the ESBuild-based build system
  */
 
-import express from 'express';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import compression from 'compression';
 import cors from 'cors';
+import express from 'express';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  const timestamp = new Date().toLocaleTimeString('en-US', {
+function log(_message) {
+  const _timestamp = new Date().toLocaleTimeString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
     second: '2-digit',
     hour12: true,
   });
-  console.log(`${timestamp} [production] ${message}`);
 }
 
 async function createProductionServer() {
@@ -34,7 +33,7 @@ async function createProductionServer() {
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
   // Security headers
-  app.use((req, res, next) => {
+  app.use((_req, res, next) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -63,7 +62,7 @@ async function createProductionServer() {
   );
 
   // Health check endpoint
-  app.get('/health', (req, res) => {
+  app.get('/health', (_req, res) => {
     res.json({
       status: 'ok',
       timestamp: new Date().toISOString(),
@@ -72,7 +71,7 @@ async function createProductionServer() {
   });
 
   // API routes placeholder - these would be imported from your actual API routes
-  app.get('/api/test', (req, res) => {
+  app.get('/api/test', (_req, res) => {
     res.json({ message: 'Production API is working' });
   });
 
@@ -92,7 +91,7 @@ async function createProductionServer() {
   });
 
   // Error handling
-  app.use((err, req, res, next) => {
+  app.use((err, _req, res, _next) => {
     log(`Error: ${err.message}`);
     res.status(500).json({ error: 'Internal Server Error' });
   });
@@ -132,8 +131,7 @@ async function createProductionServer() {
 
 // Start server if this file is run directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-  createProductionServer().catch((error) => {
-    console.error('Failed to start production server:', error);
+  createProductionServer().catch((_error) => {
     process.exit(1);
   });
 }

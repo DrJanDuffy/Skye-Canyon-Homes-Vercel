@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default function PerformanceCriticalLoader() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [_isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Optimize initial load by deferring non-critical operations

@@ -5,12 +5,10 @@
  * This script handles both git push and deployment preparation
  */
 
-const { execSync } = require('child_process');
-const fs = require('fs');
+const { execSync } = require('node:child_process');
+const fs = require('node:fs');
 
-function log(message) {
-  console.log(`[Deploy Sync] ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
   try {
@@ -78,7 +76,7 @@ function syncToGitHub() {
       log('No changes to commit');
       return;
     }
-  } catch (error) {
+  } catch (_error) {
     log('Could not check git status');
   }
 
@@ -89,7 +87,7 @@ function syncToGitHub() {
   try {
     executeCommand(`git commit -m "${commitMessage}"`);
     log('Changes committed successfully');
-  } catch (error) {
+  } catch (_error) {
     log('No changes to commit or commit failed');
   }
 
@@ -98,7 +96,7 @@ function syncToGitHub() {
   try {
     executeCommand('git push origin main');
     log('Successfully pushed to GitHub');
-  } catch (error) {
+  } catch (_error) {
     try {
       executeCommand('git push origin master');
       log('Successfully pushed to GitHub (master branch)');
@@ -114,7 +112,7 @@ function main() {
     log('Starting automated deployment sync...');
     syncToGitHub();
     log('Deployment sync completed successfully');
-  } catch (error) {
+  } catch (_error) {
     log('Deployment sync failed');
     process.exit(1);
   }

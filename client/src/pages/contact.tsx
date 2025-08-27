@@ -1,12 +1,12 @@
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
-import { Card, CardContent } from '@/components/ui/card';
+import Navigation from '@/components/navigation';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { MapPin, Phone, Mail } from 'lucide-react';
-import { useState } from 'react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,8 +19,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Contact form submitted:', formData);
   };
 
   return (

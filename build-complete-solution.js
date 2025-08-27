@@ -1,24 +1,16 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 
-function log(message) {
-  console.log(`🔧 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    execSync(command, {
-      stdio: 'inherit',
-      timeout: 180000, // 3 minutes
-      ...options,
-    });
-  } catch (error) {
-    console.error(`Command failed: ${command}`);
-    throw error;
-  }
+  execSync(command, {
+    stdio: 'inherit',
+    timeout: 180000, // 3 minutes
+    ...options,
+  });
 }
 
 async function main() {
@@ -168,18 +160,7 @@ app.listen(PORT, '0.0.0.0', () => {
     }
 
     log('✅ Build completed successfully!');
-    console.log('\n📦 Build Output:');
-    console.log('├── dist/');
-    console.log('│   ├── public/ (static files ready for deployment)');
-    console.log('│   │   ├── index.html');
-    console.log('│   │   ├── app.js');
-    console.log('│   │   └── styles.css');
-    console.log('│   ├── index.js (full server with API)');
-    console.log('│   ├── static-server.js (simple static file server)');
-    console.log('│   └── package.json');
-    console.log('\n🚀 Deployment ready! No more EISDIR errors.');
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

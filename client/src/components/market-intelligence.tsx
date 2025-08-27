@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Card, CardContent } from '@/components/ui/card';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function MarketIntelligence() {
   const [selectedMetric, setSelectedMetric] = useState<'price' | 'inventory' | 'days'>('price');
@@ -10,7 +10,9 @@ export default function MarketIntelligence() {
     queryKey: ['/api/market-stats'],
     queryFn: async () => {
       const response = await fetch('/api/market-stats');
-      if (!response.ok) throw new Error('Failed to fetch market data');
+      if (!response.ok) {
+        throw new Error('Failed to fetch market data');
+      }
       return response.json();
     },
   });
@@ -19,7 +21,9 @@ export default function MarketIntelligence() {
     queryKey: ['/api/market-insights'],
     queryFn: async () => {
       const response = await fetch('/api/market-insights');
-      if (!response.ok) throw new Error('Failed to fetch market insights');
+      if (!response.ok) {
+        throw new Error('Failed to fetch market insights');
+      }
       return response.json();
     },
   });

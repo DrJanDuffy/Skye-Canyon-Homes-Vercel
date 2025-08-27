@@ -1,24 +1,16 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
 
-function log(message) {
-  console.log(`🔧 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    execSync(command, {
-      stdio: 'inherit',
-      timeout: 300000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`Command failed: ${command}`);
-    throw error;
-  }
+  execSync(command, {
+    stdio: 'inherit',
+    timeout: 300000,
+    ...options,
+  });
 }
 
 async function main() {
@@ -211,26 +203,7 @@ node server-production.js
 
     // Display build summary
     log('✅ Build completed successfully!');
-    console.log('\n📦 Build Output:');
-    console.log('├── dist/');
-    console.log('│   ├── public/');
-    console.log('│   │   ├── index.html');
-    console.log('│   │   └── assets/');
-    console.log('│   │       ├── app.js');
-    console.log('│   │       ├── app.js.map');
-    console.log('│   │       ├── styles.css');
-    console.log('│   │       └── styles.css.map');
-    console.log('│   ├── server-production.js (static file server)');
-    console.log('│   ├── index.js (original server with API)');
-    console.log('│   ├── package.json');
-    console.log('│   └── start.sh');
-    console.log('\n🚀 Deployment Options:');
-    console.log('1. Static files only: Use dist/public/ directory');
-    console.log('2. With static server: Use dist/server-production.js');
-    console.log('3. Full application: Use dist/index.js (includes API routes)');
-    console.log('\n✨ Ready for deployment to any platform!');
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

@@ -1,5 +1,5 @@
+import { Home, MapPin, Search } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Search, MapPin, Home } from 'lucide-react';
 
 interface RelatedSearchesProps {
   searchType: 'skye-canyon' | 'luxury-homes' | 'las-vegas' | 'general';

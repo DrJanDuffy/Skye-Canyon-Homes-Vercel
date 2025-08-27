@@ -1,7 +1,7 @@
 // Social media links with text labels
 
 export default function Footer() {
-  const scrollToSection = (sectionId: string) => {
+  const _scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });

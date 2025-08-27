@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Home, Search } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { Search, Home } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 
 interface AISearchResults {
   properties?: any[];
@@ -54,7 +54,9 @@ export default function AISearchAssistant() {
   }, [voiceActive]);
 
   const handleSearch = async () => {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+      return;
+    }
 
     setIsSearching(true);
 
@@ -76,8 +78,7 @@ export default function AISearchAssistant() {
 
       const searchResults = await response.json();
       setResults(searchResults);
-    } catch (error) {
-      console.error('Search error:', error);
+    } catch (_error) {
       setResults({
         suggestions: ['Search temporarily unavailable. Please try again.'],
         marketInsights:

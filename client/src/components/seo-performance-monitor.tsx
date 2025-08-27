@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  AlertTriangle,
+  CheckCircle,
+  Globe,
+  Search,
+  Smartphone,
+  TrendingUp,
+  Zap,
+} from 'lucide-react';
+import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  TrendingUp,
-  Search,
-  Globe,
-  Smartphone,
-  Zap,
-  CheckCircle,
-  AlertTriangle,
-} from 'lucide-react';
 
 interface SEOMetrics {
   pageSpeed: {
@@ -41,7 +41,7 @@ interface SEOMetrics {
 }
 
 export default function SEOPerformanceMonitor() {
-  const [seoMetrics, setSeoMetrics] = useState<SEOMetrics>({
+  const [seoMetrics, _setSeoMetrics] = useState<SEOMetrics>({
     pageSpeed: {
       desktop: 89,
       mobile: 76,
@@ -78,20 +78,32 @@ export default function SEOPerformanceMonitor() {
   });
 
   const getScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600';
-    if (score >= 70) return 'text-yellow-600';
+    if (score >= 90) {
+      return 'text-green-600';
+    }
+    if (score >= 70) {
+      return 'text-yellow-600';
+    }
     return 'text-red-600';
   };
 
   const getScoreBadgeColor = (score: number) => {
-    if (score >= 90) return 'bg-green-100 text-green-800';
-    if (score >= 70) return 'bg-yellow-100 text-yellow-800';
+    if (score >= 90) {
+      return 'bg-green-100 text-green-800';
+    }
+    if (score >= 70) {
+      return 'bg-yellow-100 text-yellow-800';
+    }
     return 'bg-red-100 text-red-800';
   };
 
   const getChangeIcon = (change: number) => {
-    if (change > 0) return <TrendingUp className="h-4 w-4 text-green-500" />;
-    if (change < 0) return <TrendingUp className="h-4 w-4 text-red-500 rotate-180" />;
+    if (change > 0) {
+      return <TrendingUp className="h-4 w-4 text-green-500" />;
+    }
+    if (change < 0) {
+      return <TrendingUp className="h-4 w-4 text-red-500 rotate-180" />;
+    }
     return <div className="h-4 w-4" />;
   };
 

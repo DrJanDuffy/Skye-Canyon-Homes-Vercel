@@ -1,25 +1,20 @@
-import type { Express } from 'express';
-import { createServer, type Server } from 'http';
-import { execSync } from 'child_process';
-import { cachedStorage as storage } from './cached-storage';
+import { execSync } from 'node:child_process';
+import { createServer, type Server } from 'node:http';
 import { insertLeadSchema, insertPropertySchema } from '@shared/schema';
+import type { Express } from 'express';
 import { z } from 'zod';
+import { cachedStorage as storage } from './cached-storage';
+import { testFollowUpBossLead, validateFollowUpBossAPI } from './followup-boss-validator';
 import {
+  getAllSiteUrls,
   handleIndexingRequest,
   requestGoogleIndexing,
-  getAllSiteUrls,
   submitSitemap,
 } from './google-indexing';
-import {
-  handleUrlValidation,
-  validateGoogleSearchConsoleUrls,
-  requestUrlInspection,
-} from './google-search-console-fixes';
-import { validateFollowUpBossAPI, testFollowUpBossLead } from './followup-boss-validator';
-import { performanceMonitor } from './performance-monitor';
+import { handleUrlValidation, requestUrlInspection } from './google-search-console-fixes';
 import { setupPerformanceRoutes } from './performance-dashboard';
+import { performanceMonitor } from './performance-monitor';
 import { registerSitemapRoutes } from './sitemap-generator';
-import { seoOptimizer, handleSEOAudit, handleSEOReport } from './seo-optimizer';
 
 // AI Lead Scoring Functions
 async function scoreLeadWithAI(leadData: any) {
@@ -83,7 +78,6 @@ async function sendToFollowUpBoss(lead: any, leadScore: any) {
   const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
 
   if (!apiKey) {
-    console.log('FollowUp Boss API key not configured - skipping CRM integration');
     return;
   }
 
@@ -114,13 +108,9 @@ async function sendToFollowUpBoss(lead: any, leadScore: any) {
     });
 
     if (!response.ok) {
-      console.error('Failed to send lead to FollowUp Boss:', response.statusText);
     } else {
-      console.log(`Lead successfully sent to FollowUp Boss with ${leadScore.category} score`);
     }
-  } catch (error) {
-    console.error('Error sending lead to FollowUp Boss:', error);
-  }
+  } catch (_error) {}
 }
 
 // Intelligent fallback function for AI search
@@ -286,10 +276,12 @@ async function processAISearch(query: string, context: string) {
   if (priceMatch) {
     const parsePrice = (str: string) => {
       const num = str.replace(/[$,]/g, '');
-      return num.includes('k') ? parseInt(num) * 1000 : parseInt(num);
+      return num.includes('k') ? parseInt(num, 10) * 1000 : parseInt(num, 10);
     };
     priceMin = parsePrice(priceMatch[1]);
-    if (priceMatch[2]) priceMax = parsePrice(priceMatch[2]);
+    if (priceMatch[2]) {
+      priceMax = parsePrice(priceMatch[2]);
+    }
   }
 
   // Extract bedrooms/bathrooms
@@ -309,12 +301,12 @@ async function processAISearch(query: string, context: string) {
   }
 
   if (bedroomMatch) {
-    const bedrooms = parseInt(bedroomMatch[1]);
+    const bedrooms = parseInt(bedroomMatch[1], 10);
     filteredProperties = filteredProperties.filter((p) => Number(p.bedrooms) >= bedrooms);
   }
 
   if (bathroomMatch) {
-    const bathrooms = parseInt(bathroomMatch[1]);
+    const bathrooms = parseInt(bathroomMatch[1], 10);
     filteredProperties = filteredProperties.filter((p) => Number(p.bathrooms) >= bathrooms);
   }
 
@@ -358,20 +350,20 @@ function extractSearchCriteria(query: string) {
   // Extract price range
   const priceMatches = lowerQuery.match(/(\$?[\d,]+)\s*(?:to|-|and)\s*(\$?[\d,]+)/);
   if (priceMatches) {
-    criteria.priceMin = parseInt(priceMatches[1].replace(/[$,]/g, ''));
-    criteria.priceMax = parseInt(priceMatches[2].replace(/[$,]/g, ''));
+    criteria.priceMin = parseInt(priceMatches[1].replace(/[$,]/g, ''), 10);
+    criteria.priceMax = parseInt(priceMatches[2].replace(/[$,]/g, ''), 10);
   } else {
     // Single price indicators
     if (lowerQuery.includes('under') || lowerQuery.includes('below')) {
       const underMatch = lowerQuery.match(/(?:under|below)\s*\$?([\d,]+)/);
       if (underMatch) {
-        criteria.priceMax = parseInt(underMatch[1].replace(/[$,]/g, ''));
+        criteria.priceMax = parseInt(underMatch[1].replace(/[$,]/g, ''), 10);
       }
     }
     if (lowerQuery.includes('over') || lowerQuery.includes('above')) {
       const overMatch = lowerQuery.match(/(?:over|above)\s*\$?([\d,]+)/);
       if (overMatch) {
-        criteria.priceMin = parseInt(overMatch[1].replace(/[$,]/g, ''));
+        criteria.priceMin = parseInt(overMatch[1].replace(/[$,]/g, ''), 10);
       }
     }
   }
@@ -500,7 +492,7 @@ Response Format:
     // Bedroom detection
     const bedroomMatch = queryLower.match(/(\d+)[\s-]*(bed|bedroom)/);
     if (bedroomMatch) {
-      searchCriteria.bedrooms = parseInt(bedroomMatch[1]);
+      searchCriteria.bedrooms = parseInt(bedroomMatch[1], 10);
     }
 
     // Location detection
@@ -518,7 +510,7 @@ Response Format:
     // Filter properties based on criteria
     let filteredProperties = allProperties;
 
-    if (searchCriteria.priceRange && searchCriteria.priceRange.includes('Under')) {
+    if (searchCriteria.priceRange?.includes('Under')) {
       const maxPrice = parseFloat(searchCriteria.priceRange.match(/(\d+(?:\.\d+)?)/)[1]) * 1000000;
       filteredProperties = filteredProperties.filter((p) => p.price <= maxPrice);
     }
@@ -540,9 +532,7 @@ Response Format:
       searchCriteria,
       citations: data.citations || [],
     };
-  } catch (error) {
-    console.error('Error processing voice search with AI:', error);
-
+  } catch (_error) {
     // Fallback response
     return {
       properties: allProperties.slice(0, 3),
@@ -560,8 +550,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.on('finish', () => {
       const duration = Date.now() - (req.startTime || 0);
       if (duration > 1000) {
-        // Log slow requests
-        console.log(`Slow request: ${req.method} ${req.path} - ${duration}ms`);
       }
     });
     next();
@@ -591,8 +579,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { urls } = req.body;
       const result = await requestUrlInspection(urls || getAllSiteUrls());
       res.json(result);
-    } catch (error) {
-      console.error('URL inspection request error:', error);
+    } catch (_error) {
       res.status(500).json({
         success: false,
         message: 'Failed to request URL inspection',
@@ -601,43 +588,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all properties - OPTIMIZED with performance monitoring
-  app.get('/api/properties', async (req, res) => {
+  app.get('/api/properties', async (_req, res) => {
     const startTime = Date.now();
-    console.log('Properties request started');
 
     try {
       // Add database query timing
       const dbStart = Date.now();
       const properties = await storage.getProperties();
       const dbDuration = Date.now() - dbStart;
-      console.log(`DB query took: ${dbDuration}ms`);
 
       // Log slow database queries
       if (dbDuration > 1000) {
-        console.warn(`SLOW DB QUERY: /api/properties - ${dbDuration}ms`);
       }
 
       res.json(properties);
-    } catch (error) {
-      console.error('Properties endpoint error:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch properties' });
     } finally {
       const totalDuration = Date.now() - startTime;
-      console.log(`Total request time: ${totalDuration}ms`);
 
       // Alert on slow requests
       if (totalDuration > 2000) {
-        console.warn(`PERFORMANCE ALERT: /api/properties took ${totalDuration}ms`);
       }
     }
   });
 
   // Get featured properties
-  app.get('/api/properties/featured', async (req, res) => {
+  app.get('/api/properties/featured', async (_req, res) => {
     try {
       const properties = await storage.getFeaturedProperties();
       res.json(properties);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch featured properties' });
     }
   });
@@ -654,7 +635,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const properties = await storage.searchProperties(filters);
       res.json(properties);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to search properties' });
     }
   });
@@ -670,7 +651,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       res.json(property);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch property' });
     }
   });
@@ -690,14 +671,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get market statistics
-  app.get('/api/market-stats', async (req, res) => {
+  app.get('/api/market-stats', async (_req, res) => {
     try {
       const stats = await storage.getMarketStats();
       if (!stats) {
         return res.status(404).json({ message: 'Market stats not found' });
       }
       res.json(stats);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch market stats' });
     }
   });
@@ -737,17 +718,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all leads (for admin purposes)
-  app.get('/api/leads', async (req, res) => {
+  app.get('/api/leads', async (_req, res) => {
     try {
       const leads = await storage.getLeads();
       res.json(leads);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch leads' });
     }
   });
 
   // Get lead statistics
-  app.get('/api/lead-stats', async (req, res) => {
+  app.get('/api/lead-stats', async (_req, res) => {
     try {
       const leads = await storage.getLeads();
 
@@ -787,18 +768,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
 
       res.json(stats);
-    } catch (error) {
-      console.error('Error fetching lead stats:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch lead statistics' });
     }
   });
 
   // Follow Up Boss API validation endpoint
-  app.get('/api/followup-boss/validate', async (req, res) => {
+  app.get('/api/followup-boss/validate', async (_req, res) => {
     try {
       const validation = await validateFollowUpBossAPI();
       res.json(validation);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({
         isValid: false,
         status: 'error',
@@ -808,7 +788,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Follow Up Boss API test endpoint
-  app.post('/api/followup-boss/test', async (req, res) => {
+  app.post('/api/followup-boss/test', async (_req, res) => {
     try {
       const testData = {
         firstName: 'API',
@@ -832,30 +812,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Performance monitoring endpoints
-  app.get('/api/performance/metrics', (req, res) => {
+  app.get('/api/performance/metrics', (_req, res) => {
     try {
       const analytics = performanceMonitor.getAnalytics();
       res.json(analytics);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch performance metrics' });
     }
   });
 
   // Cache monitoring endpoints
-  app.get('/api/performance/cache', (req, res) => {
+  app.get('/api/performance/cache', (_req, res) => {
     try {
       const cacheStats = storage.getCacheStats();
       res.json(cacheStats);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch cache statistics' });
     }
   });
 
-  app.post('/api/performance/cache/clear', (req, res) => {
+  app.post('/api/performance/cache/clear', (_req, res) => {
     try {
       storage.clearCache();
       res.json({ message: 'Cache cleared successfully' });
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to clear cache' });
     }
   });
@@ -871,22 +851,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: `Invalidated ${deletedCount} cache entries`,
         deletedCount,
       });
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to invalidate cache' });
     }
   });
 
-  app.get('/api/performance/slow-endpoints', (req, res) => {
+  app.get('/api/performance/slow-endpoints', (_req, res) => {
     try {
       const slowEndpoints = performanceMonitor.getSlowEndpoints();
       res.json(slowEndpoints);
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch slow endpoints' });
     }
   });
 
   // FollowUp Boss lead management only (no listings)
-  app.get('/api/followup-boss/leads', async (req, res) => {
+  app.get('/api/followup-boss/leads', async (_req, res) => {
     try {
       const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
       if (!apiKey) {
@@ -907,8 +887,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const data = await response.json();
       res.json(data);
-    } catch (error) {
-      console.error('FollowUp Boss leads API error:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch FollowUp Boss leads' });
     }
   });
@@ -940,14 +919,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const data = await response.json();
       res.json(data);
-    } catch (error) {
-      console.error('FollowUp Boss update lead API error:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to update lead in FollowUp Boss' });
     }
   });
 
   // FollowUp Boss contacts endpoint
-  app.get('/api/followup-boss/contacts', async (req, res) => {
+  app.get('/api/followup-boss/contacts', async (_req, res) => {
     try {
       const apiKey = process.env.FOLLOWUP_BOSS_API_KEY;
       if (!apiKey) {
@@ -967,14 +945,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const data = await response.json();
       res.json(data);
-    } catch (error) {
-      console.error('FollowUp Boss contacts API error:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch FollowUp Boss contacts' });
     }
   });
 
   // Neighborhood heatmap endpoint
-  app.get('/api/neighborhood-heatmap', async (req, res) => {
+  app.get('/api/neighborhood-heatmap', async (_req, res) => {
     try {
       const heatmapData = {
         neighborhoods: [
@@ -1066,8 +1043,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       };
 
       res.json(heatmapData);
-    } catch (error) {
-      console.error('Error fetching neighborhood heatmap data:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to fetch neighborhood heatmap data' });
     }
   });
@@ -1115,7 +1091,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       // Track voice search analytics with performance monitoring
-      const searchData = {
+      const _searchData = {
         query: sanitizedQuery,
         searchCount: searchCount + 1,
         timestamp: new Date().toISOString(),
@@ -1123,8 +1099,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         ip: req.ip,
         resultCount: properties.length,
       };
-
-      console.log('Voice search:', searchData);
 
       const response = {
         ...aiResults,
@@ -1138,7 +1112,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json(response);
     } catch (error) {
-      console.error('Voice search error:', error);
       res.status(500).json({
         message: 'Failed to process voice search',
         error: error instanceof Error ? error.message : 'Unknown error',
@@ -1152,7 +1125,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { preferences, timestamp, source } = req.body;
 
       // Save preferences to database
-      const preferenceData = {
+      const _preferenceData = {
         preferences: JSON.stringify(preferences),
         timestamp,
         source,
@@ -1191,8 +1164,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       res.json({ success: true, message: 'Preferences saved successfully' });
-    } catch (error) {
-      console.error('Error saving preferences:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to save preferences' });
     }
   });
@@ -1220,8 +1192,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         totalCount: scoredProperties.length,
         preferences,
       });
-    } catch (error) {
-      console.error('Error generating matches:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to generate matches' });
     }
   });
@@ -1229,11 +1200,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
   function calculatePreferenceQuality(preferences: any): number {
     let score = 0;
 
-    if (preferences.propertyType) score += 20;
-    if (preferences.features.length > 0) score += preferences.features.length * 10;
-    if (preferences.lifestyle.length > 0) score += preferences.lifestyle.length * 8;
-    if (preferences.timeline) score += 15;
-    if (preferences.communication) score += 10;
+    if (preferences.propertyType) {
+      score += 20;
+    }
+    if (preferences.features.length > 0) {
+      score += preferences.features.length * 10;
+    }
+    if (preferences.lifestyle.length > 0) {
+      score += preferences.lifestyle.length * 8;
+    }
+    if (preferences.timeline) {
+      score += 15;
+    }
+    if (preferences.communication) {
+      score += 10;
+    }
 
     return Math.min(score, 100);
   }
@@ -1260,27 +1241,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     preferences.lifestyle.forEach((lifestyle: string) => {
       switch (lifestyle) {
         case 'family':
-          if (property.bedrooms >= 3) score += 10;
+          if (property.bedrooms >= 3) {
+            score += 10;
+          }
           break;
         case 'entertaining':
           if (
             property.description?.includes('pool') ||
             property.description?.includes('entertaining')
-          )
+          ) {
             score += 10;
+          }
           break;
         case 'luxury':
-          if (property.price > 800000) score += 10;
+          if (property.price > 800000) {
+            score += 10;
+          }
           break;
         case 'active':
-          if (property.description?.includes('trail') || property.description?.includes('fitness'))
+          if (
+            property.description?.includes('trail') ||
+            property.description?.includes('fitness')
+          ) {
             score += 10;
+          }
           break;
       }
     });
 
     // Timeline urgency factor
-    if (preferences.timeline === 'ASAP') score += 5;
+    if (preferences.timeline === 'ASAP') {
+      score += 5;
+    }
 
     return Math.min(score, 100);
   }
@@ -1393,7 +1385,7 @@ User Question: ${sanitizedQuery}`;
       } else if (queryLower.includes('under') && queryLower.includes('k')) {
         const priceMatch = queryLower.match(/under\s+\$?(\d+)k/);
         if (priceMatch) {
-          const maxPrice = parseInt(priceMatch[1]) * 1000;
+          const maxPrice = parseInt(priceMatch[1], 10) * 1000;
           relevantProperties = properties.filter((p) => p.price <= maxPrice).slice(0, 3);
         }
       }
@@ -1415,8 +1407,7 @@ User Question: ${sanitizedQuery}`;
       };
 
       res.json(searchResults);
-    } catch (error) {
-      console.error('AI search error:', error);
+    } catch (_error) {
       res.status(500).json({
         suggestions: ['Search temporarily unavailable. Please try again.'],
         marketInsights:
@@ -1426,9 +1417,9 @@ User Question: ${sanitizedQuery}`;
   });
 
   // Deployment and Git sync endpoints
-  app.get('/api/deployment-status', async (req, res) => {
+  app.get('/api/deployment-status', async (_req, res) => {
     try {
-      const { execSync } = require('child_process');
+      const { execSync } = require('node:child_process');
 
       let gitConfigured = false;
       let remoteUrl = null;
@@ -1455,7 +1446,7 @@ User Question: ${sanitizedQuery}`;
             encoding: 'utf8',
             stdio: 'pipe',
           });
-          commitCount = parseInt(commits.trim()) || 0;
+          commitCount = parseInt(commits.trim(), 10) || 0;
         } catch {
           commitCount = 0;
         }
@@ -1470,13 +1461,13 @@ User Question: ${sanitizedQuery}`;
         lastSync: null, // This would be stored in a database in production
         syncStatus: 'idle',
       });
-    } catch (error) {
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to check deployment status' });
     }
   });
 
   // Remove old insecure public endpoint - redirect to 404
-  app.post('/api/trigger-git-sync', (req, res) => {
+  app.post('/api/trigger-git-sync', (_req, res) => {
     res.status(404).json({ error: 'Endpoint not found' });
   });
 
@@ -1489,20 +1480,15 @@ User Question: ${sanitizedQuery}`;
     }
 
     try {
-      console.log('[Git Sync] Starting admin git synchronization');
-
       // Check if git is available
       try {
         execSync('git status', { stdio: 'pipe' });
-        console.log('[Git Sync] Git repository detected');
       } catch {
-        console.log('[Git Sync] Git not configured');
         return res.status(400).json({ error: 'Git not configured' });
       }
 
       // Add changes
       execSync('git add .', { stdio: 'pipe' });
-      console.log('[Git Sync] Added changes to staging');
 
       // Create commit
       const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
@@ -1510,21 +1496,15 @@ User Question: ${sanitizedQuery}`;
 
       try {
         execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
-        console.log(`[Git Sync] Created commit: ${commitMessage}`);
-      } catch {
-        console.log('[Git Sync] No changes to commit');
-      }
+      } catch {}
 
       // Push to remote
       try {
         execSync('git push origin main', { stdio: 'pipe' });
-        console.log('[Git Sync] Successfully pushed to main branch');
       } catch {
         try {
           execSync('git push origin master', { stdio: 'pipe' });
-          console.log('[Git Sync] Successfully pushed to master branch');
-        } catch (error) {
-          console.error('[Git Sync] Failed to push to remote:', error);
+        } catch (_error) {
           return res.status(500).json({ error: 'Failed to push to remote repository' });
         }
       }
@@ -1535,8 +1515,7 @@ User Question: ${sanitizedQuery}`;
         commit_message: commitMessage,
         timestamp: new Date().toISOString(),
       });
-    } catch (error) {
-      console.error('[Git Sync] Error:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to sync to GitHub' });
     }
   });
@@ -1544,8 +1523,8 @@ User Question: ${sanitizedQuery}`;
   // Post-deployment webhook endpoint
   app.post('/api/deployment-webhook', async (req, res) => {
     try {
-      const { execSync } = require('child_process');
-      const fs = require('fs');
+      const { execSync } = require('node:child_process');
+      const fs = require('node:fs');
 
       // Verify this is a successful deployment
       const { status, deployment_id } = req.body;
@@ -1554,15 +1533,10 @@ User Question: ${sanitizedQuery}`;
         return res.json({ message: 'Deployment not successful, skipping git sync' });
       }
 
-      console.log(
-        `[Deployment Webhook] Successful deployment ${deployment_id}, triggering git sync`
-      );
-
       // Check if git is configured
       try {
         execSync('git status', { stdio: 'pipe' });
       } catch {
-        console.log('[Deployment Webhook] Git not configured, skipping sync');
         return res.json({ message: 'Git not configured' });
       }
 
@@ -1575,21 +1549,15 @@ User Question: ${sanitizedQuery}`;
 
       try {
         execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
-        console.log(`[Deployment Webhook] Created commit: ${commitMessage}`);
-      } catch {
-        console.log('[Deployment Webhook] No changes to commit');
-      }
+      } catch {}
 
       // Push to remote repository
       try {
         execSync('git push origin main', { stdio: 'pipe' });
-        console.log('[Deployment Webhook] Successfully pushed to main branch');
       } catch {
         try {
           execSync('git push origin master', { stdio: 'pipe' });
-          console.log('[Deployment Webhook] Successfully pushed to master branch');
-        } catch (error) {
-          console.error('[Deployment Webhook] Failed to push to remote:', error);
+        } catch (_error) {
           return res.status(500).json({ error: 'Failed to push to remote repository' });
         }
       }
@@ -1610,8 +1578,7 @@ User Question: ${sanitizedQuery}`;
         deployment_id,
         commit_message: commitMessage,
       });
-    } catch (error) {
-      console.error('[Deployment Webhook] Error:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Post-deployment sync failed' });
     }
   });
@@ -1625,13 +1592,10 @@ User Question: ${sanitizedQuery}`;
     }
 
     try {
-      console.log('[Admin Test Webhook] Simulating successful deployment, triggering git sync');
-
       // Check if git is configured
       try {
         execSync('git status', { stdio: 'pipe' });
       } catch {
-        console.log('[Test Webhook] Git not configured');
         return res.json({ message: 'Git not configured, but webhook endpoint working' });
       }
 
@@ -1644,21 +1608,15 @@ User Question: ${sanitizedQuery}`;
 
       try {
         execSync(`git commit -m "${commitMessage}"`, { stdio: 'pipe' });
-        console.log(`[Test Webhook] Created commit: ${commitMessage}`);
-      } catch {
-        console.log('[Test Webhook] No changes to commit');
-      }
+      } catch {}
 
       // Push to remote
       try {
         execSync('git push origin main', { stdio: 'pipe' });
-        console.log('[Test Webhook] Successfully pushed to main branch');
       } catch {
         try {
           execSync('git push origin master', { stdio: 'pipe' });
-          console.log('[Test Webhook] Successfully pushed to master branch');
-        } catch (error) {
-          console.error('[Test Webhook] Failed to push to remote:', error);
+        } catch (_error) {
           return res.status(500).json({ error: 'Failed to push to remote repository' });
         }
       }
@@ -1668,8 +1626,7 @@ User Question: ${sanitizedQuery}`;
         message: 'Test deployment webhook triggered git sync successfully',
         commit_message: commitMessage,
       });
-    } catch (error) {
-      console.error('[Test Webhook] Error:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Test webhook failed' });
     }
   });
@@ -1677,7 +1634,7 @@ User Question: ${sanitizedQuery}`;
   // Google Search Console and Indexing endpoints
   app.post('/api/google/request-indexing', handleIndexingRequest);
 
-  app.post('/api/google/index-all-pages', async (req, res) => {
+  app.post('/api/google/index-all-pages', async (_req, res) => {
     try {
       const urls = getAllSiteUrls();
       const result = await requestGoogleIndexing(urls);
@@ -1686,8 +1643,7 @@ User Question: ${sanitizedQuery}`;
         message: `Requested indexing for ${urls.length} pages`,
         results: result,
       });
-    } catch (error) {
-      console.error('Bulk indexing error:', error);
+    } catch (_error) {
       res.status(500).json({
         success: false,
         message: 'Failed to request bulk indexing',
@@ -1695,12 +1651,11 @@ User Question: ${sanitizedQuery}`;
     }
   });
 
-  app.post('/api/google/submit-sitemap', async (req, res) => {
+  app.post('/api/google/submit-sitemap', async (_req, res) => {
     try {
       const result = await submitSitemap();
       res.json(result);
-    } catch (error) {
-      console.error('Sitemap submission error:', error);
+    } catch (_error) {
       res.status(500).json({
         success: false,
         message: 'Failed to submit sitemap',
@@ -1708,7 +1663,7 @@ User Question: ${sanitizedQuery}`;
     }
   });
 
-  app.get('/api/google/site-urls', (req, res) => {
+  app.get('/api/google/site-urls', (_req, res) => {
     const urls = getAllSiteUrls();
     res.json({
       success: true,
@@ -1732,9 +1687,6 @@ User Question: ${sanitizedQuery}`;
         userAgent: req.get('User-Agent'),
       };
 
-      // Log for analysis (in production, send to analytics service)
-      console.log('Analytics Event:', JSON.stringify(analyticsData, null, 2));
-
       // Send to external analytics if configured
       const analyticsKey = process.env.ANALYTICS_API_KEY;
       if (analyticsKey) {
@@ -1746,18 +1698,17 @@ User Question: ${sanitizedQuery}`;
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(analyticsData),
-        }).catch((err) => console.log('External analytics error:', err));
+        }).catch((_err) => {});
       }
 
       res.status(200).json({ success: true });
-    } catch (error) {
-      console.error('Analytics error:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to track event' });
     }
   });
 
   // RSS Feed integration from Simplifying the Market
-  app.get('/api/market-insights', async (req, res) => {
+  app.get('/api/market-insights', async (_req, res) => {
     try {
       const response = await fetch(
         'https://www.simplifyingthemarket.com/en/feed?a=956758-ef2edda2f940e018328655620ea05f18'
@@ -1783,7 +1734,7 @@ User Question: ${sanitizedQuery}`;
           const title = titleMatch ? titleMatch[1] : '';
           const link = linkMatch ? linkMatch[1] : '';
           const description = descriptionMatch
-            ? descriptionMatch[1].replace(/<[^>]*>/g, '').substring(0, 200) + '...'
+            ? `${descriptionMatch[1].replace(/<[^>]*>/g, '').substring(0, 200)}...`
             : '';
           const imageUrl = imageMatch ? imageMatch[1] : '';
 
@@ -1798,8 +1749,7 @@ User Question: ${sanitizedQuery}`;
         .filter((insight) => insight.title && insight.link);
 
       res.json({ insights });
-    } catch (error) {
-      console.error('RSS Feed error:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to fetch market insights' });
     }
   });
@@ -1816,19 +1766,18 @@ User Question: ${sanitizedQuery}`;
       // Process natural language query and return relevant property insights
       const searchResults = await processAISearch(query, context);
       res.json(searchResults);
-    } catch (error) {
-      console.error('AI Search error:', error);
+    } catch (_error) {
       res.status(500).json({ message: 'Failed to process search query' });
     }
   });
 
   // SEO Routes
-  app.get('/robots.txt', (req, res) => {
+  app.get('/robots.txt', (_req, res) => {
     res.type('text/plain');
     res.sendFile('robots.txt', { root: 'public' });
   });
 
-  app.get('/sitemap.xml', (req, res) => {
+  app.get('/sitemap.xml', (_req, res) => {
     res.type('application/xml');
     res.sendFile('sitemap.xml', { root: 'public' });
   });
@@ -1837,8 +1786,6 @@ User Question: ${sanitizedQuery}`;
   app.post('/api/indexing-webhook', async (req, res) => {
     try {
       const { url, type, timestamp } = req.body;
-
-      console.log(`Indexing request: ${type} for ${url} at ${timestamp}`);
 
       const indexingData = {
         url,
@@ -1853,8 +1800,7 @@ User Question: ${sanitizedQuery}`;
         message: 'Indexing request processed',
         data: indexingData,
       });
-    } catch (error) {
-      console.error('Indexing webhook error:', error);
+    } catch (_error) {
       res.status(500).json({
         success: false,
         message: 'Failed to process indexing request',
@@ -1889,7 +1835,7 @@ User Question: ${sanitizedQuery}`;
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-        }).catch((err) => console.log(`IndexNow submission failed for ${engine}:`, err))
+        }).catch((_err) => {})
       );
 
       await Promise.allSettled(submissions);
@@ -1899,8 +1845,7 @@ User Question: ${sanitizedQuery}`;
         message: `IndexNow submitted for ${urls?.length || 0} URLs`,
         submitted_urls: urls,
       });
-    } catch (error) {
-      console.error('IndexNow submission error:', error);
+    } catch (_error) {
       res.status(500).json({
         success: false,
         message: 'Failed to submit to IndexNow',
@@ -1909,7 +1854,7 @@ User Question: ${sanitizedQuery}`;
   });
 
   // Google Business Profile Analytics endpoint
-  app.get('/api/google-business-profile/analytics', async (req, res) => {
+  app.get('/api/google-business-profile/analytics', async (_req, res) => {
     try {
       const analyticsData = {
         profileViews: {
@@ -1942,14 +1887,13 @@ User Question: ${sanitizedQuery}`;
       };
 
       res.json(analyticsData);
-    } catch (error) {
-      console.error('Error fetching Google Business Profile analytics:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to fetch Google Business Profile analytics' });
     }
   });
 
   // SEO Performance Metrics endpoint
-  app.get('/api/seo/performance', async (req, res) => {
+  app.get('/api/seo/performance', async (_req, res) => {
     try {
       const seoMetrics = {
         pageSpeed: {
@@ -2018,8 +1962,7 @@ User Question: ${sanitizedQuery}`;
       };
 
       res.json(seoMetrics);
-    } catch (error) {
-      console.error('Error fetching SEO performance metrics:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to fetch SEO performance metrics' });
     }
   });
@@ -2041,8 +1984,7 @@ User Question: ${sanitizedQuery}`;
       };
 
       res.json(submissionResult);
-    } catch (error) {
-      console.error('Error submitting sitemap:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to submit sitemap' });
     }
   });
@@ -2063,8 +2005,7 @@ User Question: ${sanitizedQuery}`;
       }));
 
       res.json(indexingResults);
-    } catch (error) {
-      console.error('Error checking indexing status:', error);
+    } catch (_error) {
       res.status(500).json({ error: 'Failed to check indexing status' });
     }
   });

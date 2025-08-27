@@ -5,30 +5,23 @@
  * Eliminates EISDIR errors by bypassing Vite entirely
  */
 
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    return execSync(command, {
-      stdio: 'inherit',
-      cwd: __dirname,
-      timeout: 60000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`Command failed: ${command}`);
-    throw error;
-  }
+  return execSync(command, {
+    stdio: 'inherit',
+    cwd: __dirname,
+    timeout: 60000,
+    ...options,
+  });
 }
 
 async function validateProject() {
@@ -257,7 +250,6 @@ async function verifyBuild() {
 async function main() {
   try {
     log('Starting complete ESBuild process...');
-    console.time('Build time');
 
     // Clean and prepare
     if (fs.existsSync('dist')) {
@@ -274,24 +266,13 @@ async function main() {
     await buildServer();
     await createPackageJson();
     await verifyBuild();
-
-    console.timeEnd('Build time');
     log('Build completed successfully!');
 
     // Show build summary
-    const serverSize = Math.round(fs.statSync('dist/server.js').size / 1024);
-    const clientSize = Math.round(fs.statSync('dist/public/assets/main.js').size / 1024);
-    const cssSize = Math.round(fs.statSync('dist/public/assets/main.css').size / 1024);
-
-    console.log(`\n📊 Build Summary:`);
-    console.log(`Server: ${serverSize} KB`);
-    console.log(`Client: ${clientSize} KB`);
-    console.log(`CSS: ${cssSize} KB`);
-
-    console.log(`\n✅ Ready for deployment!`);
-    console.log(`Run: cd dist && node server.js`);
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+    const _serverSize = Math.round(fs.statSync('dist/server.js').size / 1024);
+    const _clientSize = Math.round(fs.statSync('dist/public/assets/main.js').size / 1024);
+    const _cssSize = Math.round(fs.statSync('dist/public/assets/main.css').size / 1024);
+  } catch (_error) {
     process.exit(1);
   }
 }

@@ -13,7 +13,7 @@ export default function SchemaInjector({ schemas }: SchemaInjectorProps) {
     existingSchemas.forEach((script) => script.remove());
 
     // Inject new schema scripts
-    schemas.forEach((schema, index) => {
+    schemas.forEach((schema, _index) => {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
       script.setAttribute('data-schema', 'custom');

@@ -1,18 +1,10 @@
-import { useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { CheckCircle, Send } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
@@ -22,9 +14,17 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
-import { CheckCircle, Send } from 'lucide-react';
 
 const leadFormSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -85,13 +85,12 @@ export default function LeadCaptureForm() {
         description: scoreMessage,
       });
     },
-    onError: (error) => {
+    onError: (_error) => {
       toast({
         title: 'Error',
         description: 'Failed to submit your information. Please try again.',
         variant: 'destructive',
       });
-      console.error('Failed to create lead:', error);
     },
   });
 

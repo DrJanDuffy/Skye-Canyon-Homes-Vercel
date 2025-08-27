@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import Footer from '@/components/footer';
-import RealScoutListings from '@/components/realscout-listings';
+import BackToTop from '@/components/back-to-top';
+import Breadcrumb from '@/components/breadcrumb';
+import FAQSection from '@/components/faq-section';
 
 import FollowUpBossListings from '@/components/followup-boss-listings';
-import Breadcrumb from '@/components/breadcrumb';
-import BackToTop from '@/components/back-to-top';
-import FAQSection from '@/components/faq-section';
+import Footer from '@/components/footer';
+import Navigation from '@/components/navigation';
+import RealScoutListings from '@/components/realscout-listings';
 
 export default function Properties() {
   return (

@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import Footer from '@/components/footer';
-import MarketStats from '@/components/market-stats';
-import MarketIntelligence from '@/components/market-intelligence';
-import Breadcrumb from '@/components/breadcrumb';
 import BackToTop from '@/components/back-to-top';
+import Breadcrumb from '@/components/breadcrumb';
 import FAQSection from '@/components/faq-section';
+import Footer from '@/components/footer';
+import MarketIntelligence from '@/components/market-intelligence';
+import MarketStats from '@/components/market-stats';
+import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
 
 export default function MarketAnalysis() {

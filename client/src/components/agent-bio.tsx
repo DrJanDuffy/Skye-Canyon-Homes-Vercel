@@ -1,9 +1,9 @@
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Phone, Mail, MapPin } from 'lucide-react';
 // Using public directory for reliable image loading
 
 export default function AgentBio() {
-  const scrollToContact = () => {
+  const _scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Clock, ExternalLink, Gift, Star } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { Gift, Clock, Star, ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const currentOffers = [
   {

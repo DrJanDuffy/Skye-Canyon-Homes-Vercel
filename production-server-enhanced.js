@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import express from 'express';
-import path from 'path';
-import fs from 'fs';
-import cors from 'cors';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import compression from 'compression';
-import { fileURLToPath } from 'url';
+import cors from 'cors';
+import express from 'express';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -23,13 +23,12 @@ const config = {
   isProduction: NODE_ENV === 'production',
 };
 
-function log(message) {
-  const timestamp = new Date().toLocaleTimeString();
-  console.log(`[${timestamp}] 🚀 ${message}`);
+function log(_message) {
+  const _timestamp = new Date().toLocaleTimeString();
 }
 
 // Enhanced security headers
-app.use((req, res, next) => {
+app.use((_req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
@@ -51,7 +50,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
@@ -93,7 +92,7 @@ const loadApiRoutes = async () => {
   }
 
   // Fallback API routes
-  app.get('/api/status', (req, res) => {
+  app.get('/api/status', (_req, res) => {
     res.json({
       message: 'Production server running',
       version: '1.0.0',
@@ -102,7 +101,7 @@ const loadApiRoutes = async () => {
     });
   });
 
-  app.get('/api/properties', (req, res) => {
+  app.get('/api/properties', (_req, res) => {
     res.json({
       message: 'API server running in fallback mode. Build server.js for full functionality.',
       status: 'fallback',
@@ -232,9 +231,7 @@ app.use('/api/*', (req, res) => {
 });
 
 // Global error handler
-app.use((err, req, res, next) => {
-  console.error('Server error:', err);
-
+app.use((err, req, res, _next) => {
   if (req.path.startsWith('/api/')) {
     res.status(500).json({
       error: config.isProduction ? 'Internal server error' : err.message,
@@ -292,7 +289,9 @@ const startServer = async () => {
     artifacts.forEach(({ path: filePath, name }) => {
       const exists = fs.existsSync(filePath);
       log(`  ${exists ? '✅' : '❌'} ${name}`);
-      if (!exists) missingCount++;
+      if (!exists) {
+        missingCount++;
+      }
     });
 
     if (missingCount === 0) {
@@ -305,17 +304,14 @@ const startServer = async () => {
   // Handle server errors
   server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
-      console.error(`❌ Port ${PORT} is already in use`);
     } else {
-      console.error('❌ Server error:', err);
     }
     process.exit(1);
   });
 };
 
 // Start the server
-startServer().catch((err) => {
-  console.error('❌ Failed to start server:', err);
+startServer().catch((_err) => {
   process.exit(1);
 });
 

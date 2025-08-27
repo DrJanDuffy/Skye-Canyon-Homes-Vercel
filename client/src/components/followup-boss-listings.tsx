@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Heart, MapPin } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MapPin, Heart } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface FollowUpBossListing {
   id: string;
@@ -23,7 +23,7 @@ export default function FollowUpBossListings() {
 
   useEffect(() => {
     fetchListings();
-  }, []);
+  }, [fetchListings]);
 
   const fetchListings = async () => {
     try {
@@ -47,9 +47,8 @@ export default function FollowUpBossListings() {
       }));
 
       setListings(transformedListings);
-    } catch (err) {
+    } catch (_err) {
       setError('Unable to load authentic listings at this time');
-      console.error('FollowUp Boss API error:', err);
     } finally {
       setLoading(false);
     }

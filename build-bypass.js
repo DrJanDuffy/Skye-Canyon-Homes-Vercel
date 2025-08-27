@@ -1,15 +1,13 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`🛠️ ${message}`);
-}
+function log(_message) {}
 
 async function main() {
   try {
@@ -112,8 +110,7 @@ async function main() {
     }
 
     log('Build completed successfully - bypassed EISDIR error!');
-  } catch (error) {
-    console.error('Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

@@ -1,14 +1,7 @@
+import type { InsertLead, InsertProperty, Lead, MarketStats, Property } from '@shared/schema';
+import { leads, marketStats, properties } from '@shared/schema';
+import { and, asc, desc, eq, gte, lte } from 'drizzle-orm';
 import { db } from './db';
-import { properties, leads, marketStats } from '@shared/schema';
-import { eq, and, gte, lte, desc, asc } from 'drizzle-orm';
-import type {
-  Property,
-  InsertProperty,
-  Lead,
-  InsertLead,
-  MarketStats,
-  InsertMarketStats,
-} from '@shared/schema';
 
 // In-memory cache for frequently accessed data
 class DataCache {
@@ -25,7 +18,9 @@ class DataCache {
 
   get(key: string): any | null {
     const cached = this.cache.get(key);
-    if (!cached) return null;
+    if (!cached) {
+      return null;
+    }
 
     if (Date.now() - cached.timestamp > cached.ttl) {
       this.cache.delete(key);
@@ -50,36 +45,25 @@ export class OptimizedStorage {
     // Check cache first
     const cached = this.cache.get(cacheKey);
     if (cached) {
-      console.log('Properties cache HIT');
       return cached;
     }
-
-    console.log('Properties cache MISS - fetching from database');
     const startTime = Date.now();
+    // Optimized query with proper ordering
+    const results = await db
+      .select()
+      .from(properties)
+      .orderBy(desc(properties.featured), asc(properties.price))
+      .limit(50); // Limit initial load for performance
 
-    try {
-      // Optimized query with proper ordering
-      const results = await db
-        .select()
-        .from(properties)
-        .orderBy(desc(properties.featured), asc(properties.price))
-        .limit(50); // Limit initial load for performance
+    const duration = Date.now() - startTime;
 
-      const duration = Date.now() - startTime;
-      console.log(`Database query completed in ${duration}ms`);
+    // Cache the results
+    this.cache.set(cacheKey, results, 180000); // 3 minutes cache
 
-      // Cache the results
-      this.cache.set(cacheKey, results, 180000); // 3 minutes cache
-
-      if (duration > 1000) {
-        console.warn(`SLOW DB QUERY: getProperties took ${duration}ms`);
-      }
-
-      return results;
-    } catch (error) {
-      console.error('Database error in getProperties:', error);
-      throw error;
+    if (duration > 1000) {
     }
+
+    return results;
   }
 
   // OPTIMIZED: Get featured properties with caching
@@ -88,7 +72,6 @@ export class OptimizedStorage {
 
     const cached = this.cache.get(cacheKey);
     if (cached) {
-      console.log('Featured properties cache HIT');
       return cached;
     }
 
@@ -102,14 +85,12 @@ export class OptimizedStorage {
         .orderBy(asc(properties.price))
         .limit(12);
 
-      const duration = Date.now() - startTime;
-      console.log(`Featured properties query: ${duration}ms`);
+      const _duration = Date.now() - startTime;
 
       this.cache.set(cacheKey, results, 300000); // 5 minutes cache
 
       return results;
-    } catch (error) {
-      console.error('Database error in getFeaturedProperties:', error);
+    } catch (_error) {
       return [];
     }
   }
@@ -127,21 +108,28 @@ export class OptimizedStorage {
 
     const cached = this.cache.get(cacheKey);
     if (cached) {
-      console.log('Search cache HIT');
       return cached;
     }
 
     const startTime = Date.now();
 
     try {
-      const query = db.select().from(properties);
+      const _query = db.select().from(properties);
       const conditions = [];
 
       // Build efficient WHERE conditions
-      if (priceMin) conditions.push(gte(properties.price, priceMin));
-      if (priceMax) conditions.push(lte(properties.price, priceMax));
-      if (type) conditions.push(eq(properties.status, type));
-      if (bedrooms) conditions.push(gte(properties.bedrooms, bedrooms));
+      if (priceMin) {
+        conditions.push(gte(properties.price, priceMin));
+      }
+      if (priceMax) {
+        conditions.push(lte(properties.price, priceMax));
+      }
+      if (type) {
+        conditions.push(eq(properties.status, type));
+      }
+      if (bedrooms) {
+        conditions.push(gte(properties.bedrooms, bedrooms));
+      }
 
       if (conditions.length > 0) {
         const results = await db
@@ -151,8 +139,7 @@ export class OptimizedStorage {
           .orderBy(desc(properties.featured), asc(properties.price))
           .limit(limit);
 
-        const duration = Date.now() - startTime;
-        console.log(`Property search query: ${duration}ms`);
+        const _duration = Date.now() - startTime;
 
         // Cache search results for 2 minutes
         this.cache.set(cacheKey, results, 120000);
@@ -166,15 +153,13 @@ export class OptimizedStorage {
         .orderBy(desc(properties.featured), asc(properties.price))
         .limit(limit);
 
-      const duration = Date.now() - startTime;
-      console.log(`Property search query: ${duration}ms`);
+      const _duration = Date.now() - startTime;
 
       // Cache search results for 2 minutes
       this.cache.set(cacheKey, results, 120000);
 
       return results;
-    } catch (error) {
-      console.error('Database error in searchProperties:', error);
+    } catch (_error) {
       return [];
     }
   }
@@ -196,26 +181,19 @@ export class OptimizedStorage {
       }
 
       return property;
-    } catch (error) {
-      console.error('Database error in getProperty:', error);
+    } catch (_error) {
       return undefined;
     }
   }
 
   // Create property and invalidate cache
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
-    try {
-      const [property] = await db.insert(properties).values(insertProperty).returning();
+    const [property] = await db.insert(properties).values(insertProperty).returning();
 
-      // Invalidate relevant caches
-      this.cache.clear();
-      console.log('Property created, cache cleared');
+    // Invalidate relevant caches
+    this.cache.clear();
 
-      return property;
-    } catch (error) {
-      console.error('Database error in createProperty:', error);
-      throw error;
-    }
+    return property;
   }
 
   // OPTIMIZED: Market stats with long-term caching
@@ -224,7 +202,6 @@ export class OptimizedStorage {
 
     const cached = this.cache.get(cacheKey);
     if (cached) {
-      console.log('Market stats cache HIT');
       return cached;
     }
 
@@ -241,30 +218,21 @@ export class OptimizedStorage {
       }
 
       return stats;
-    } catch (error) {
-      console.error('Database error in getMarketStats:', error);
+    } catch (_error) {
       return undefined;
     }
   }
 
   // Lead operations (no caching for user data)
   async createLead(insertLead: InsertLead): Promise<Lead> {
-    try {
-      const [lead] = await db.insert(leads).values(insertLead).returning();
-
-      console.log('Lead created successfully');
-      return lead;
-    } catch (error) {
-      console.error('Database error in createLead:', error);
-      throw error;
-    }
+    const [lead] = await db.insert(leads).values(insertLead).returning();
+    return lead;
   }
 
   async getLeads(): Promise<Lead[]> {
     try {
       return await db.select().from(leads).orderBy(desc(leads.createdAt)).limit(100);
-    } catch (error) {
-      console.error('Database error in getLeads:', error);
+    } catch (_error) {
       return [];
     }
   }
@@ -272,12 +240,11 @@ export class OptimizedStorage {
   // Cache management
   clearCache() {
     this.cache.clear();
-    console.log('All caches cleared');
   }
 
   getCacheStats() {
     return {
-      cacheSize: this.cache['cache'].size,
+      cacheSize: this.cache.cache.size,
       timestamp: new Date().toISOString(),
     };
   }

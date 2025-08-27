@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import type { MarketStats } from '@shared/schema';
+import { useQuery } from '@tanstack/react-query';
+import { Minus, TrendingDown, TrendingUp } from 'lucide-react';
 
 export default function MarketStats() {
   const {

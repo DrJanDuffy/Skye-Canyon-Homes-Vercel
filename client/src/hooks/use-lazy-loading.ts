@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function useLazyLoading(threshold = 0.1, rootMargin = '50px') {
   const [isInView, setIsInView] = useState(false);

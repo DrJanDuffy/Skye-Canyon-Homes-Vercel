@@ -1,38 +1,31 @@
 import { Helmet } from 'react-helmet-async';
-import Navigation from '@/components/navigation';
-import HeroSection from '@/components/hero-section';
-import AuthenticPropertyListings from '@/components/authentic-property-listings';
-import MarketStats from '@/components/market-stats';
-import LeadCaptureForm from '@/components/lead-capture-form';
 import AgentBio from '@/components/agent-bio';
-import CommunityHighlights from '@/components/community-highlights';
-import CallToAction from '@/components/call-to-action';
-import Footer from '@/components/footer';
-import RealScoutListings from '@/components/realscout-listings';
-
-import FollowUpBossListings from '@/components/followup-boss-listings';
 import AISearchAssistant from '@/components/ai-search-assistant';
-import MarketIntelligence from '@/components/market-intelligence';
-import FAQSection from '@/components/faq-section';
-import SkyeCanyonAuthority from '@/components/skye-canyon-authority';
-import PreferenceCollector from '@/components/preference-collector';
-import LocalBusinessSchema from '@/components/local-business-schema';
-import RelatedSearches from '@/components/related-searches';
-import NeighborhoodHeatmap from '@/components/neighborhood-heatmap';
-import CriticalPerformanceLoader from '@/components/critical-performance-loader';
-import GeoEnhancedSchema from '@/components/geo-enhanced-schema';
-import EnhancedPropertyFallback from '@/components/enhanced-property-fallback';
-import CriticalCSS from '@/components/critical-css';
-import RealScoutSearchWidget from '@/components/realscout-search-widget';
-import RealScoutAnalytics from '@/components/realscout-analytics';
-import VoiceSearchIntegration from '@/components/voice-search-integration';
-import ErrorBoundary from '@/components/error-boundary';
-import ReviewHighlights from '@/components/review-highlights';
+import AuthenticPropertyListings from '@/components/authentic-property-listings';
+import CallToAction from '@/components/call-to-action';
 import ComprehensiveSchemaMarkup from '@/components/comprehensive-schema';
-import ServicesOverview from '@/components/services-overview';
-import LinkBuildingSEO from '@/components/link-building-seo';
-import LocalCitationsSchema from '@/components/local-citations-schema';
+import CriticalCSS from '@/components/critical-css';
+import CriticalPerformanceLoader from '@/components/critical-performance-loader';
+import EnhancedPropertyFallback from '@/components/enhanced-property-fallback';
+import ErrorBoundary from '@/components/error-boundary';
+import FAQSection from '@/components/faq-section';
+import Footer from '@/components/footer';
+import GeoEnhancedSchema from '@/components/geo-enhanced-schema';
+import HeroSection from '@/components/hero-section';
 import { ContextualContent } from '@/components/internal-link-optimizer';
+import LinkBuildingSEO from '@/components/link-building-seo';
+import LocalBusinessSchema from '@/components/local-business-schema';
+import LocalCitationsSchema from '@/components/local-citations-schema';
+import Navigation from '@/components/navigation';
+import NeighborhoodHeatmap from '@/components/neighborhood-heatmap';
+import PreferenceCollector from '@/components/preference-collector';
+import RealScoutAnalytics from '@/components/realscout-analytics';
+import RealScoutListings from '@/components/realscout-listings';
+import RealScoutSearchWidget from '@/components/realscout-search-widget';
+import RelatedSearches from '@/components/related-searches';
+import ReviewHighlights from '@/components/review-highlights';
+import ServicesOverview from '@/components/services-overview';
+import VoiceSearchIntegration from '@/components/voice-search-integration';
 
 export default function Home() {
   return (
@@ -215,7 +208,6 @@ export default function Home() {
                       event_label: 'realscout_onboarding_redirect',
                     });
                   }
-                  console.log('Voice search limit reached - automated RealScout popup triggered');
                 }}
               />
             </ErrorBoundary>

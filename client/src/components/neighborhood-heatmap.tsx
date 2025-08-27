@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { DollarSign, Home, MapPin, TrendingDown, TrendingUp, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TrendingUp, TrendingDown, MapPin, DollarSign, Home, Users } from 'lucide-react';
 
 interface HeatmapData {
   neighborhood: string;
@@ -46,7 +46,7 @@ export default function NeighborhoodHeatmap() {
 
   useEffect(() => {
     fetchHeatmapData();
-  }, []);
+  }, [fetchHeatmapData]);
 
   const fetchHeatmapData = async () => {
     try {
@@ -54,8 +54,7 @@ export default function NeighborhoodHeatmap() {
       const data = await response.json();
       setHeatmapData(data.neighborhoods || []);
       setLocalInsights(data.insights || null);
-    } catch (error) {
-      console.error('Error fetching heatmap data:', error);
+    } catch (_error) {
       // Use sample data for demonstration
       setHeatmapData(sampleHeatmapData);
       setLocalInsights(sampleInsights);
@@ -67,21 +66,39 @@ export default function NeighborhoodHeatmap() {
   const getHeatmapColor = (neighborhood: HeatmapData, viewType: string) => {
     switch (viewType) {
       case 'price':
-        if (neighborhood.averagePrice > 1500000) return 'bg-red-500';
-        if (neighborhood.averagePrice > 1000000) return 'bg-orange-500';
-        if (neighborhood.averagePrice > 800000) return 'bg-yellow-500';
+        if (neighborhood.averagePrice > 1500000) {
+          return 'bg-red-500';
+        }
+        if (neighborhood.averagePrice > 1000000) {
+          return 'bg-orange-500';
+        }
+        if (neighborhood.averagePrice > 800000) {
+          return 'bg-yellow-500';
+        }
         return 'bg-green-500';
       case 'activity':
-        if (neighborhood.marketActivity === 'hot') return 'bg-red-500';
-        if (neighborhood.marketActivity === 'warm') return 'bg-orange-500';
+        if (neighborhood.marketActivity === 'hot') {
+          return 'bg-red-500';
+        }
+        if (neighborhood.marketActivity === 'warm') {
+          return 'bg-orange-500';
+        }
         return 'bg-blue-500';
       case 'schools':
-        if (neighborhood.schoolRating >= 9) return 'bg-green-500';
-        if (neighborhood.schoolRating >= 7) return 'bg-yellow-500';
+        if (neighborhood.schoolRating >= 9) {
+          return 'bg-green-500';
+        }
+        if (neighborhood.schoolRating >= 7) {
+          return 'bg-yellow-500';
+        }
         return 'bg-red-500';
       case 'safety':
-        if (neighborhood.crimeRating === 'low') return 'bg-green-500';
-        if (neighborhood.crimeRating === 'medium') return 'bg-yellow-500';
+        if (neighborhood.crimeRating === 'low') {
+          return 'bg-green-500';
+        }
+        if (neighborhood.crimeRating === 'medium') {
+          return 'bg-yellow-500';
+        }
         return 'bg-red-500';
       default:
         return 'bg-gray-500';
@@ -496,7 +513,9 @@ export default function NeighborhoodHeatmap() {
           <CardContent>
             {(() => {
               const neighborhood = heatmapData.find((n) => n.neighborhood === selectedNeighborhood);
-              if (!neighborhood) return null;
+              if (!neighborhood) {
+                return null;
+              }
 
               return (
                 <div className="space-y-4">

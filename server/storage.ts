@@ -1,19 +1,19 @@
 import {
-  users,
-  properties,
-  leads,
-  marketStats,
-  type User,
-  type InsertUser,
-  type Property,
-  type InsertProperty,
-  type Lead,
   type InsertLead,
-  type MarketStats,
   type InsertMarketStats,
+  type InsertProperty,
+  type InsertUser,
+  type Lead,
+  leads,
+  type MarketStats,
+  marketStats,
+  type Property,
+  properties,
+  type User,
+  users,
 } from '@shared/schema';
-import { db } from './db';
 import { eq } from 'drizzle-orm';
+import { db } from './db';
 
 export interface IStorage {
   // User methods
@@ -75,7 +75,7 @@ export class DatabaseStorage implements IStorage {
     return property;
   }
 
-  async searchProperties(filters: {
+  async searchProperties(_filters: {
     priceMin?: number;
     priceMax?: number;
     type?: string;

@@ -1,27 +1,27 @@
-import { useParams } from 'wouter';
+import type { Property } from '@shared/schema';
 import { useQuery } from '@tanstack/react-query';
-import Navigation from '@/components/navigation';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import RealScoutListings from '@/components/realscout-listings';
 import {
-  Heart,
-  Share2,
-  Phone,
-  Mail,
-  MapPin,
-  Bed,
   Bath,
-  Square,
+  Bed,
   Calendar,
   Camera,
   Car,
+  Heart,
+  Mail,
+  MapPin,
+  Phone,
+  Share2,
+  Square,
   Trees,
   Wifi,
 } from 'lucide-react';
+import { useParams } from 'wouter';
 import Footer from '@/components/footer';
-import type { Property } from '@shared/schema';
+import Navigation from '@/components/navigation';
+import RealScoutListings from '@/components/realscout-listings';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function PropertyDetail() {
   const params = useParams();
@@ -50,7 +50,9 @@ export default function PropertyDetail() {
   };
 
   const formatId = (id: number | undefined) => {
-    if (!id) return '000000';
+    if (!id) {
+      return '000000';
+    }
     return id.toString().padStart(6, '0');
   };
 

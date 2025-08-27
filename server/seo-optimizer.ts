@@ -199,16 +199,16 @@ export async function handleSEOAudit(req: Request, res: Response) {
     const { url } = req.body;
     const result = await seoOptimizer.auditPage(url || '/');
     res.json(result);
-  } catch (error) {
+  } catch (_error) {
     res.status(500).json({ message: 'SEO audit failed' });
   }
 }
 
-export async function handleSEOReport(req: Request, res: Response) {
+export async function handleSEOReport(_req: Request, res: Response) {
   try {
     const report = await seoOptimizer.generateSEOReport();
     res.json(report);
-  } catch (error) {
+  } catch (_error) {
     res.status(500).json({ message: 'SEO report generation failed' });
   }
 }

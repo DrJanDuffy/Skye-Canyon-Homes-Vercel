@@ -1,6 +1,6 @@
-import { Card, CardContent } from '@/components/ui/card';
+import { Award, Crown, MapPin, Shield, TrendingUp, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Award, Users, TrendingUp, MapPin, Crown, Shield } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function SkyeCanyonAuthority() {
   const credentials = [

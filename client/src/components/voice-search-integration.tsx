@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { AlertCircle, Mic, MicOff, Search } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Mic, MicOff, Search, AlertCircle } from 'lucide-react';
 
 interface VoiceSearchIntegrationProps {
   maxSearches?: number;
@@ -46,7 +46,7 @@ export default function VoiceSearchIntegration({
       localStorage.setItem('voiceSearchDate', today);
       setSearchCount(0);
     } else if (savedCount) {
-      setSearchCount(parseInt(savedCount));
+      setSearchCount(parseInt(savedCount, 10));
     }
 
     // Initialize speech recognition
@@ -74,15 +74,16 @@ export default function VoiceSearchIntegration({
         setIsListening(false);
       };
 
-      recognitionRef.current.onerror = (event: any) => {
-        console.error('Speech recognition error:', event.error);
+      recognitionRef.current.onerror = (_event: any) => {
         setIsListening(false);
       };
     }
-  }, []);
+  }, [handleVoiceSearch]);
 
   const handleVoiceSearch = async (query: string) => {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+      return;
+    }
 
     setIsProcessing(true);
 
@@ -122,8 +123,7 @@ export default function VoiceSearchIntegration({
       } else if (newCount === maxSearches - 1) {
         setShowLimitWarning(true);
       }
-    } catch (error) {
-      console.error('Voice search error:', error);
+    } catch (_error) {
     } finally {
       setIsProcessing(false);
       setTranscript('');

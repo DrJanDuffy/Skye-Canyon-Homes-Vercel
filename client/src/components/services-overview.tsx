@@ -1,8 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { ArrowRight, Building, Crown, Home, MapPin, TrendingUp, Truck, Users } from 'lucide-react';
 import { Link } from 'wouter';
-import { Home, Users, Crown, Building, Truck, TrendingUp, ArrowRight, MapPin } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const services = [
   {

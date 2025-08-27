@@ -5,9 +5,9 @@
  * Automatically customizes the Skye Canyon template for new markets
  */
 
-const fs = require('fs');
-const path = require('path');
-const readline = require('readline');
+const fs = require('node:fs');
+const _path = require('node:path');
+const readline = require('node:readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -29,7 +29,7 @@ const TEMPLATE_FILES = [
 ];
 
 // Replacement patterns
-const REPLACEMENTS = {
+const _REPLACEMENTS = {
   'Skye Canyon': (newArea) => newArea,
   'Dr. Jan Duffy': (newAgent) => newAgent,
   'Las Vegas': (newCity) => newCity,
@@ -48,8 +48,6 @@ function askQuestion(question) {
 }
 
 async function gatherConfiguration() {
-  console.log('🏠 Real Estate Website Template Customizer\n');
-
   config.agentName = await askQuestion('Agent Name (e.g., John Smith): ');
   config.areaName = await askQuestion('Target Area/Neighborhood (e.g., Henderson): ');
   config.cityName = await askQuestion('City (e.g., Las Vegas): ');
@@ -57,14 +55,9 @@ async function gatherConfiguration() {
   config.realscoutId = await askQuestion('RealScout Agent Encoded ID: ');
   config.customDomain = await askQuestion('Custom Domain (optional): ');
   config.repoName = await askQuestion('GitHub Repository Name: ');
-
-  // Price ranges
-  console.log('\n💰 Configure Price Ranges for Your Market:');
   config.priceHomepage = await askQuestion('Homepage Min Price (e.g., $450K): ');
   config.priceLuxury = await askQuestion('Luxury Min Price (e.g., $700K): ');
   config.priceStarter = await askQuestion('Starter Home Range (e.g., $400K-$550K): ');
-
-  console.log('\n📧 Contact Information:');
   config.agentEmail = await askQuestion('Agent Email: ');
   config.agentPhone = await askQuestion('Agent Phone: ');
   config.agentLicense = await askQuestion('Real Estate License #: ');
@@ -72,7 +65,6 @@ async function gatherConfiguration() {
 
 function customizeFile(filePath, replacements) {
   if (!fs.existsSync(filePath)) {
-    console.log(`⚠️  File not found: ${filePath}`);
     return;
   }
 
@@ -89,7 +81,6 @@ function customizeFile(filePath, replacements) {
 
   if (modified) {
     fs.writeFileSync(filePath, content, 'utf8');
-    console.log(`✅ Updated: ${filePath}`);
   }
 }
 
@@ -103,7 +94,6 @@ VITE_CUSTOM_DOMAIN=${config.customDomain || ''}
 `;
 
   fs.writeFileSync('.env.template', envContent);
-  console.log('✅ Created .env.template file');
 }
 
 function updatePackageJson() {
@@ -114,7 +104,6 @@ function updatePackageJson() {
     packageData.description = `Real estate website for ${config.areaName}, ${config.cityName}`;
 
     fs.writeFileSync(packagePath, JSON.stringify(packageData, null, 2));
-    console.log('✅ Updated package.json');
   }
 }
 
@@ -152,14 +141,11 @@ ${TEMPLATE_FILES.map((file) => `- ${file}`).join('\n')}
 `;
 
   fs.writeFileSync('CUSTOMIZATION-SUMMARY.md', summary);
-  console.log('✅ Created customization summary');
 }
 
 async function runCustomization() {
   try {
     await gatherConfiguration();
-
-    console.log('\n🔄 Customizing template files...\n');
 
     // Define all replacements
     const replacements = {
@@ -170,8 +156,8 @@ async function runCustomization() {
       QWdlbnQtMjI1MDUw: config.realscoutId,
       'skyecanyonhomesforsale.com': config.customDomain || 'your-domain.com',
       'Sky-Canyon-Homes': config.repoName,
-      '$550K+': config.priceHomepage + '+',
-      '$800K+': config.priceLuxury + '+',
+      '$550K+': `${config.priceHomepage}+`,
+      '$800K+': `${config.priceLuxury}+`,
       '$500K-$650K': config.priceStarter,
     };
 
@@ -184,12 +170,7 @@ async function runCustomization() {
     createEnvironmentFile();
     updatePackageJson();
     createCustomizationSummary();
-
-    console.log('\n🎉 Template customization complete!\n');
-    console.log('📋 Review CUSTOMIZATION-SUMMARY.md for details');
-    console.log('🚀 Ready to deploy your customized real estate website');
-  } catch (error) {
-    console.error('❌ Error during customization:', error.message);
+  } catch (_error) {
   } finally {
     rl.close();
   }

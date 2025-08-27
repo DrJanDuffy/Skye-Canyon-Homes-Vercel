@@ -1,26 +1,18 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import http from 'http';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import http from 'node:http';
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    return execSync(command, {
-      stdio: 'inherit',
-      encoding: 'utf8',
-      timeout: 300000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`❌ Command failed: ${command}`);
-    throw error;
-  }
+  return execSync(command, {
+    stdio: 'inherit',
+    encoding: 'utf8',
+    timeout: 300000,
+    ...options,
+  });
 }
 
 async function testServer(port = 3000, timeout = 10000) {
@@ -28,7 +20,7 @@ async function testServer(port = 3000, timeout = 10000) {
     const startTime = Date.now();
 
     const checkServer = () => {
-      const req = http.get(`http://localhost:${port}`, (res) => {
+      const req = http.get(`http://localhost:${port}`, (_res) => {
         resolve(true);
       });
 
@@ -79,7 +71,7 @@ async function main() {
 
     // Step 3: Test production server
     log('Testing production server...');
-    const serverProcess = executeCommand('NODE_ENV=production node dist/index.js &', {
+    const _serverProcess = executeCommand('NODE_ENV=production node dist/index.js &', {
       stdio: 'pipe',
     });
 
@@ -108,9 +100,7 @@ async function main() {
         if (!response.ok) {
           throw new Error(`Asset not accessible: ${url}`);
         }
-      } catch (error) {
-        console.warn(`Warning: Could not verify ${url} - ${error.message}`);
-      }
+      } catch (_error) {}
     }
 
     // Step 5: Create deployment info
@@ -140,8 +130,7 @@ async function main() {
 
     // Stop test server
     executeCommand('pkill -f "node dist/index.js" 2>/dev/null || true');
-  } catch (error) {
-    console.error('❌ Deployment failed:', error.message);
+  } catch (_error) {
     executeCommand('pkill -f "node dist/index.js" 2>/dev/null || true');
     process.exit(1);
   }

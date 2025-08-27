@@ -5,36 +5,28 @@
  * Resolves EISDIR errors and creates deployment-ready build
  */
 
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-function log(message) {
-  console.log(`🚀 ${message}`);
-}
+function log(_message) {}
 
 function executeCommand(command, options = {}) {
-  try {
-    return execSync(command, {
-      stdio: 'inherit',
-      cwd: __dirname,
-      timeout: 60000,
-      ...options,
-    });
-  } catch (error) {
-    console.error(`Command failed: ${command}`);
-    throw error;
-  }
+  return execSync(command, {
+    stdio: 'inherit',
+    cwd: __dirname,
+    timeout: 60000,
+    ...options,
+  });
 }
 
 async function main() {
   try {
     log('Starting final production deployment build...');
-    console.time('Build time');
 
     // Step 1: Clean and prepare
     log('Preparing build environment...');
@@ -206,37 +198,13 @@ async function main() {
         throw new Error(`Empty build artifact: ${file}`);
       }
     }
-
-    console.timeEnd('Build time');
     log('Production build completed successfully!');
 
     // Display build summary
-    const serverSize = Math.round(fs.statSync('dist/server.js').size / 1024);
-    const clientSize = Math.round(fs.statSync('dist/public/assets/main.js').size / 1024);
-    const cssSize = Math.round(fs.statSync('dist/public/assets/main.css').size / 1024);
-
-    console.log('\n=== BUILD SUMMARY ===');
-    console.log(`Server bundle: ${serverSize} KB`);
-    console.log(`Client bundle: ${clientSize} KB`);
-    console.log(`CSS bundle: ${cssSize} KB`);
-    console.log(`Total assets: ${fs.readdirSync('dist/public').length} files`);
-
-    console.log('\n=== DEPLOYMENT READY ===');
-    console.log('✅ EISDIR errors resolved with ESBuild');
-    console.log('✅ Production build artifacts created');
-    console.log('✅ Static assets properly configured');
-    console.log('✅ Server bundle optimized');
-
-    console.log('\n=== DEPLOYMENT INSTRUCTIONS ===');
-    console.log('For Replit deployment:');
-    console.log('1. Run this build script: node deploy-final.js');
-    console.log('2. Update run command to: cd dist && node server.js');
-    console.log('3. Deploy using Replit deployment feature');
-
-    console.log('\nLocal testing:');
-    console.log('cd dist && PORT=3001 node server.js');
-  } catch (error) {
-    console.error('❌ Deployment build failed:', error.message);
+    const _serverSize = Math.round(fs.statSync('dist/server.js').size / 1024);
+    const _clientSize = Math.round(fs.statSync('dist/public/assets/main.js').size / 1024);
+    const _cssSize = Math.round(fs.statSync('dist/public/assets/main.css').size / 1024);
+  } catch (_error) {
     process.exit(1);
   }
 }

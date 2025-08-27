@@ -65,14 +65,14 @@ ${urls
 
 export function registerSitemapRoutes(app: Express) {
   // XML Sitemap
-  app.get('/sitemap.xml', (req: Request, res: Response) => {
+  app.get('/sitemap.xml', (_req: Request, res: Response) => {
     res.setHeader('Content-Type', 'application/xml');
     res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
     res.send(generateSitemap());
   });
 
   // Robots.txt
-  app.get('/robots.txt', (req: Request, res: Response) => {
+  app.get('/robots.txt', (_req: Request, res: Response) => {
     const baseUrl =
       process.env.NODE_ENV === 'production'
         ? 'https://skyecanyonhomesforsale.com'

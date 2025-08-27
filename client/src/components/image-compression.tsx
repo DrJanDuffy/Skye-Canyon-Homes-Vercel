@@ -11,7 +11,9 @@ export default function ImageCompression() {
         const imgElement = img as HTMLImageElement;
 
         // Skip if already optimized
-        if (imgElement.dataset.optimized) return;
+        if (imgElement.dataset.optimized) {
+          return;
+        }
 
         // Add compression attributes
         imgElement.style.imageRendering = 'crisp-edges';
@@ -22,9 +24,6 @@ export default function ImageCompression() {
         // Monitor large images
         imgElement.onload = () => {
           if (imgElement.naturalWidth > 1920 || imgElement.naturalHeight > 1080) {
-            console.warn(
-              `Large image detected: ${imgElement.src} - ${imgElement.naturalWidth}x${imgElement.naturalHeight}`
-            );
           }
         };
       });

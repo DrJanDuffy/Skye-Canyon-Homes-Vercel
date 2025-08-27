@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Heart, Bed, Bath, Square } from 'lucide-react';
 import type { Property } from '@shared/schema';
+import { Bath, Bed, Heart, Square } from 'lucide-react';
+import { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 interface PropertyCardProps {
   property: Property;

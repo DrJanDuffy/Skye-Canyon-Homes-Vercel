@@ -1,5 +1,4 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
 
 // Create optimized client bundle for production
 const clientJS = `
@@ -278,5 +277,3 @@ const clientJS = `
 
 // Write the production JavaScript
 fs.writeFileSync('dist/public/assets/index.js', clientJS);
-
-console.log('Production client bundle created successfully!');

@@ -1,6 +1,6 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function VoiceAssistant() {
   const [isListening, setIsListening] = useState(false);
@@ -33,8 +33,7 @@ export default function VoiceAssistant() {
         }
       };
 
-      recognitionRef.current.onerror = (event: any) => {
-        console.error('Speech recognition error:', event.error);
+      recognitionRef.current.onerror = (_event: any) => {
         setIsListening(false);
       };
 
@@ -42,7 +41,7 @@ export default function VoiceAssistant() {
         setIsListening(false);
       };
     }
-  }, []);
+  }, [processCommand]);
 
   const processCommand = async (command: string) => {
     const lowerCommand = command.toLowerCase();
@@ -53,7 +52,7 @@ export default function VoiceAssistant() {
       if (lowerCommand.includes('homes under') || lowerCommand.includes('properties under')) {
         const priceMatch = command.match(/(\d+)/);
         if (priceMatch) {
-          const maxPrice = parseInt(priceMatch[1]) * 1000;
+          const maxPrice = parseInt(priceMatch[1], 10) * 1000;
 
           // Search actual properties
           const searchResponse = await fetch(
@@ -147,8 +146,7 @@ export default function VoiceAssistant() {
         response =
           "I'm Dr. Jan Duffy, the definitive Skye Canyon real estate authority. With exclusive focus on this luxury Las Vegas community, I provide unparalleled expertise in homes, market trends, and lifestyle opportunities. Try saying 'show me homes under 900K' or 'what luxury homes are available'.";
       }
-    } catch (error) {
-      console.error('Voice command processing error:', error);
+    } catch (_error) {
       response =
         "I'm having trouble accessing the latest property data right now. Please try again, or feel free to browse our current listings on the website.";
     }
@@ -160,7 +158,9 @@ export default function VoiceAssistant() {
   };
 
   const toggleListening = () => {
-    if (!isSupported) return;
+    if (!isSupported) {
+      return;
+    }
 
     if (isListening) {
       recognitionRef.current?.stop();

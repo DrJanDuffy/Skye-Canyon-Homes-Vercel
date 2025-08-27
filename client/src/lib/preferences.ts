@@ -32,7 +32,6 @@ export async function saveUserPreferences(preferences: UserPreferences) {
       throw new Error('Failed to save preferences');
     }
   } catch (error) {
-    console.error('Error saving preferences:', error);
     return { success: false, error };
   }
 }
@@ -51,9 +50,7 @@ export async function generatePersonalizedMatches(preferences: UserPreferences) 
       const matches = await response.json();
       return matches;
     }
-  } catch (error) {
-    console.error('Error generating matches:', error);
-  }
+  } catch (_error) {}
 }
 
 export function getUserPreferences(): UserPreferences | null {
@@ -84,27 +81,37 @@ export function calculatePreferenceScore(property: any, preferences: UserPrefere
   preferences.lifestyle.forEach((lifestyle) => {
     switch (lifestyle) {
       case 'family':
-        if (property.bedrooms >= 3 && property.neighborhood === 'family-friendly') score += 10;
+        if (property.bedrooms >= 3 && property.neighborhood === 'family-friendly') {
+          score += 10;
+        }
         break;
       case 'entertaining':
-        if (property.features?.includes('pool') || property.features?.includes('outdoor-space'))
+        if (property.features?.includes('pool') || property.features?.includes('outdoor-space')) {
           score += 10;
+        }
         break;
       case 'quiet':
-        if (property.location === 'cul-de-sac' || property.noise_level === 'low') score += 10;
+        if (property.location === 'cul-de-sac' || property.noise_level === 'low') {
+          score += 10;
+        }
         break;
       case 'active':
         if (
           property.nearbyAmenities?.includes('trails') ||
           property.nearbyAmenities?.includes('fitness')
-        )
+        ) {
           score += 10;
+        }
         break;
       case 'pets':
-        if (property.features?.includes('large-yard') || property.petFriendly) score += 10;
+        if (property.features?.includes('large-yard') || property.petFriendly) {
+          score += 10;
+        }
         break;
       case 'remote-work':
-        if (property.features?.includes('home-office') || property.bedrooms >= 4) score += 10;
+        if (property.features?.includes('home-office') || property.bedrooms >= 4) {
+          score += 10;
+        }
         break;
     }
   });

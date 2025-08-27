@@ -26,13 +26,11 @@ export default function AnalyticsTracker() {
         if (source !== 'direct') {
           trackTouchpoint(source, medium, campaign || undefined);
         }
-      } catch (error) {
-        console.warn('Analytics loading failed:', error);
-      }
+      } catch (_error) {}
     };
 
     loadAnalytics();
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     // Track page changes dynamically
@@ -47,7 +45,7 @@ export default function AnalyticsTracker() {
 }
 
 // Helper function to track events (simplified interface)
-function trackEvent(eventName: string, parameters: any = {}) {
+function _trackEvent(eventName: string, parameters: any = {}) {
   if (typeof window !== 'undefined') {
     import('@/lib/analytics-2025')
       .then(({ trackEvent }) => {

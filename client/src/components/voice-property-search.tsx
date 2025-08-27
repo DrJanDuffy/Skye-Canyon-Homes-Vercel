@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { DollarSign, Home, MapPin, Mic, MicOff, Send } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Mic, MicOff, Send, MapPin, DollarSign, Home, Calendar } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 interface Property {
@@ -63,8 +63,7 @@ export default function VoicePropertySearch() {
           setIsListening(false);
         };
 
-        recognitionRef.current.onerror = (event: any) => {
-          console.error('Speech recognition error:', event.error);
+        recognitionRef.current.onerror = (_event: any) => {
           setIsListening(false);
           toast({
             title: 'Voice Recognition Error',
@@ -98,7 +97,9 @@ export default function VoicePropertySearch() {
   };
 
   const processQuery = async (query: string) => {
-    if (!query.trim()) return;
+    if (!query.trim()) {
+      return;
+    }
 
     setIsProcessing(true);
 
@@ -135,8 +136,7 @@ export default function VoicePropertySearch() {
         title: 'Search Complete',
         description: `Found ${result.properties.length} properties matching your criteria.`,
       });
-    } catch (error) {
-      console.error('Error processing voice search:', error);
+    } catch (_error) {
       toast({
         title: 'Search Error',
         description: 'Failed to process your search. Please try again.',

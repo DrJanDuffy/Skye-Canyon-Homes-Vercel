@@ -46,7 +46,9 @@ export function trackEvent(eventName: string, parameters: any = {}) {
 
 // Multi-touch attribution
 export function trackTouchpoint(source: string, medium: string, campaign?: string) {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {
+    return null;
+  }
 
   const touchpoint = {
     source,
@@ -110,16 +112,25 @@ export function trackVoiceInteraction(command: string, response: string) {
 
 // User journey tracking
 export function getUserJourneyStage(): string {
-  if (typeof window === 'undefined') return 'unknown';
+  if (typeof window === 'undefined') {
+    return 'unknown';
+  }
 
   const visited = JSON.parse(localStorage.getItem('visitedPages') || '[]');
   const currentPath = window.location.pathname;
 
-  if (visited.length === 0) return 'awareness';
-  if (visited.includes('/properties') || visited.includes('/search')) return 'consideration';
-  if (visited.includes('/contact') || visited.includes('/schedule')) return 'decision';
-  if (currentPath.includes('/thank-you') || currentPath.includes('/confirmation'))
+  if (visited.length === 0) {
+    return 'awareness';
+  }
+  if (visited.includes('/properties') || visited.includes('/search')) {
+    return 'consideration';
+  }
+  if (visited.includes('/contact') || visited.includes('/schedule')) {
+    return 'decision';
+  }
+  if (currentPath.includes('/thank-you') || currentPath.includes('/confirmation')) {
     return 'conversion';
+  }
 
   return 'engagement';
 }
@@ -150,7 +161,9 @@ function trackMetric(metricName: string, metric: any) {
 }
 
 function getSessionId(): string {
-  if (typeof window === 'undefined') return 'server';
+  if (typeof window === 'undefined') {
+    return 'server';
+  }
 
   let sessionId = sessionStorage.getItem('analytics_session_id');
   if (!sessionId) {
@@ -161,7 +174,9 @@ function getSessionId(): string {
 }
 
 function getDeviceInfo() {
-  if (typeof window === 'undefined') return {};
+  if (typeof window === 'undefined') {
+    return {};
+  }
 
   return {
     user_agent: navigator.userAgent,
@@ -176,32 +191,55 @@ function getDeviceInfo() {
 function calculateLeadQuality(leadData: any): 'high' | 'medium' | 'low' {
   let score = 0;
 
-  if (leadData.phone) score += 20;
-  if (leadData.timeline === 'ASAP') score += 30;
-  if (leadData.timeline === '1-3 months') score += 20;
-  if (leadData.priceRange) score += 15;
-  if (leadData.features?.length > 2) score += 15;
+  if (leadData.phone) {
+    score += 20;
+  }
+  if (leadData.timeline === 'ASAP') {
+    score += 30;
+  }
+  if (leadData.timeline === '1-3 months') {
+    score += 20;
+  }
+  if (leadData.priceRange) {
+    score += 15;
+  }
+  if (leadData.features?.length > 2) {
+    score += 15;
+  }
 
-  if (score >= 60) return 'high';
-  if (score >= 30) return 'medium';
+  if (score >= 60) {
+    return 'high';
+  }
+  if (score >= 30) {
+    return 'medium';
+  }
   return 'low';
 }
 
 function categorizeVoiceCommand(command: string): string {
   const lowerCommand = command.toLowerCase();
 
-  if (lowerCommand.includes('homes') || lowerCommand.includes('properties'))
+  if (lowerCommand.includes('homes') || lowerCommand.includes('properties')) {
     return 'property_search';
-  if (lowerCommand.includes('market') || lowerCommand.includes('price')) return 'market_inquiry';
-  if (lowerCommand.includes('schedule') || lowerCommand.includes('showing')) return 'scheduling';
-  if (lowerCommand.includes('agent') || lowerCommand.includes('expert')) return 'agent_inquiry';
+  }
+  if (lowerCommand.includes('market') || lowerCommand.includes('price')) {
+    return 'market_inquiry';
+  }
+  if (lowerCommand.includes('schedule') || lowerCommand.includes('showing')) {
+    return 'scheduling';
+  }
+  if (lowerCommand.includes('agent') || lowerCommand.includes('expert')) {
+    return 'agent_inquiry';
+  }
 
   return 'general_inquiry';
 }
 
 // Page tracking
 export function trackPageView(path: string) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {
+    return;
+  }
 
   // Update visited pages
   const visited = JSON.parse(localStorage.getItem('visitedPages') || '[]');

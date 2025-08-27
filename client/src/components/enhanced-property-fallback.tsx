@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Bath, Bed, MapPin, Phone, Square } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MapPin, Bed, Bath, Square, Phone } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface Property {
   id: number;
@@ -32,9 +32,8 @@ export default function EnhancedPropertyFallback() {
         } else {
           throw new Error('Failed to fetch properties');
         }
-      } catch (err) {
+      } catch (_err) {
         setError('Unable to load property listings');
-        console.error('Property fetch error:', err);
       } finally {
         setLoading(false);
       }

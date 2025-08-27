@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
-import { spawn } from 'child_process';
-import fs from 'fs';
+import { spawn } from 'node:child_process';
+import fs from 'node:fs';
 
-function log(message) {
-  console.log(`✅ ${message}`);
-}
+function log(_message) {}
 
 async function testProductionServer() {
   // Check if build artifacts exist
@@ -35,15 +33,12 @@ async function testProductionServer() {
 
   serverProcess.stdout.on('data', (data) => {
     const output = data.toString();
-    console.log(output.trim());
     if (output.includes('Production server running')) {
       serverStarted = true;
     }
   });
 
-  serverProcess.stderr.on('data', (data) => {
-    console.error(data.toString().trim());
-  });
+  serverProcess.stderr.on('data', (_data) => {});
 
   // Wait for server to start
   await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -54,7 +49,7 @@ async function testProductionServer() {
 
   // Test health endpoint
   try {
-    const http = await import('http');
+    const http = await import('node:http');
     const testHealth = () =>
       new Promise((resolve) => {
         const req = http.default.get('http://localhost:3001/health', (res) => {
@@ -80,9 +75,7 @@ async function testProductionServer() {
     if (healthOk) {
       log('Production build verification successful!');
     }
-  } catch (error) {
-    console.error('Health check failed:', error.message);
-  }
+  } catch (_error) {}
 
   // Clean up
   serverProcess.kill();

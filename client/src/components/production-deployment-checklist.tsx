@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { AlertCircle, CheckCircle, Clock, ExternalLink, Globe, Zap } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, AlertCircle, Clock, ExternalLink, Zap, Globe } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ChecklistItem {
   id: string;
@@ -246,8 +246,12 @@ export default function ProductionDeploymentChecklist() {
   );
 
   const getScoreColor = (score: number) => {
-    if (score >= 90) return 'text-green-600';
-    if (score >= 80) return 'text-yellow-600';
+    if (score >= 90) {
+      return 'text-green-600';
+    }
+    if (score >= 80) {
+      return 'text-yellow-600';
+    }
     return 'text-red-600';
   };
 

@@ -1,10 +1,10 @@
+import type { Lead } from '@shared/schema';
 import { useQuery } from '@tanstack/react-query';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Calendar, DollarSign, Mail, MessageSquare, Phone, TrendingUp, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Phone, Mail, Calendar, DollarSign, MessageSquare, Users, TrendingUp } from 'lucide-react';
-import type { Lead } from '@shared/schema';
 
 interface LeadWithScore extends Lead {
   score?: number;
@@ -23,9 +23,15 @@ export default function LeadDashboard() {
   });
 
   const getScoreBadgeColor = (score?: number) => {
-    if (!score) return 'secondary';
-    if (score >= 70) return 'destructive'; // Hot lead
-    if (score >= 40) return 'default'; // Warm lead
+    if (!score) {
+      return 'secondary';
+    }
+    if (score >= 70) {
+      return 'destructive'; // Hot lead
+    }
+    if (score >= 40) {
+      return 'default'; // Warm lead
+    }
     return 'secondary'; // Cold lead
   };
 
@@ -114,7 +120,9 @@ export default function LeadDashboard() {
             <div className="text-2xl font-bold">
               {
                 leads.filter((lead) => {
-                  if (!lead.createdAt) return false;
+                  if (!lead.createdAt) {
+                    return false;
+                  }
                   const leadDate = new Date(lead.createdAt.toString());
                   const yesterday = new Date();
                   yesterday.setDate(yesterday.getDate() - 1);

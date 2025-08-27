@@ -1,7 +1,7 @@
+import { AlertCircle, CheckCircle, Clock, ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, AlertCircle, Clock, ExternalLink } from 'lucide-react';
 
 interface IndexingStatus {
   url: string;
@@ -63,8 +63,7 @@ export default function GoogleSearchConsoleIntegration() {
         setIndexingStatus(updatedStatus);
         localStorage.setItem('indexingStatus', JSON.stringify(updatedStatus));
       }
-    } catch (error) {
-      console.error('Error submitting sitemap:', error);
+    } catch (_error) {
     } finally {
       setIsSubmitting(false);
     }
@@ -92,9 +91,7 @@ export default function GoogleSearchConsoleIntegration() {
         setIndexingStatus(updatedStatus);
         localStorage.setItem('indexingStatus', JSON.stringify(updatedStatus));
       }
-    } catch (error) {
-      console.error('Error checking indexing status:', error);
-    }
+    } catch (_error) {}
   };
 
   const getStatusIcon = (status: string) => {

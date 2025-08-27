@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-import { execSync } from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import { execSync } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
 
-function log(message) {
-  console.log(`🛠️ ${message}`);
-}
+function log(_message) {}
 
 async function main() {
   try {
@@ -90,8 +88,7 @@ import('./index.js').catch(console.error);
       fs.statSync('dist/public/assets/main.js').size +
       fs.statSync('dist/public/assets/main.css').size;
     log(`📊 Build summary: ${publicFiles} files, ${Math.round(totalSize / 1024)}KB assets`);
-  } catch (error) {
-    console.error('❌ Build failed:', error.message);
+  } catch (_error) {
     process.exit(1);
   }
 }

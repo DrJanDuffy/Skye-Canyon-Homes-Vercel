@@ -6,10 +6,9 @@ export function optimizeServerConfiguration(app: Express) {
   const HOST = '0.0.0.0'; // Critical for Replit connectivity
 
   // Connection timeout optimization
-  app.use((req, res, next) => {
+  app.use((_req, res, next) => {
     // Set response timeout to prevent hanging connections
     res.setTimeout(30000, () => {
-      console.error(`Request timeout: ${req.method} ${req.path}`);
       if (!res.headersSent) {
         res.status(504).json({ error: 'Gateway Timeout' });
       }
@@ -18,11 +17,8 @@ export function optimizeServerConfiguration(app: Express) {
   });
 
   // Improved error handling for connection issues
-  app.use((err: any, req: any, res: any, next: any) => {
-    console.error('Server error:', err);
-
+  app.use((err: any, _req: any, res: any, _next: any) => {
     if (err.code === 'ECONNREFUSED') {
-      console.error('Connection refused error - check database connectivity');
       return res.status(503).json({
         error: 'Service temporarily unavailable',
         message: 'Database connection issue',
@@ -30,7 +26,6 @@ export function optimizeServerConfiguration(app: Express) {
     }
 
     if (err.code === 'ETIMEDOUT') {
-      console.error('Connection timeout error');
       return res.status(504).json({
         error: 'Gateway timeout',
         message: 'Request took too long to process',
@@ -49,13 +44,5 @@ export function optimizeServerConfiguration(app: Express) {
 }
 
 export function logServerHealth() {
-  const memUsage = process.memoryUsage();
-  console.log('Server Health Check:', {
-    uptime: Math.round(process.uptime()),
-    memory: {
-      rss: Math.round(memUsage.rss / 1024 / 1024) + 'MB',
-      heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024) + 'MB',
-    },
-    timestamp: new Date().toISOString(),
-  });
+  const _memUsage = process.memoryUsage();
 }

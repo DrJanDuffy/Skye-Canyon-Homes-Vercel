@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
+import fs from 'node:fs';
+import { createServer } from 'node:http';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import express from 'express';
-import { createServer } from 'http';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -21,9 +21,7 @@ try {
   const middleware = await import('./server/middleware.ts');
   registerRoutes = routes.registerRoutes;
   ({ securityHeaders, geoHeaders, seoHeaders, realEstateContext } = middleware);
-  console.log('✓ Using TypeScript server files');
-} catch (error) {
-  console.error('Failed to import server modules:', error);
+} catch (_error) {
   process.exit(1);
 }
 
@@ -42,8 +40,6 @@ const distPublicPath = path.join(__dirname, 'dist', 'public');
 
 // Use dist/public if it exists (production), otherwise use public (development)
 const staticPath = fs.existsSync(distPublicPath) ? distPublicPath : publicPath;
-
-console.log(`📁 Serving static files from: ${staticPath}`);
 
 app.use(
   express.static(staticPath, {
@@ -69,7 +65,7 @@ const httpServer = createServer(app);
 await registerRoutes(app);
 
 // SPA fallback - serve index.html for all unmatched routes
-app.get('*', (req, res) => {
+app.get('*', (_req, res) => {
   const indexPath = path.join(staticPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
@@ -79,8 +75,7 @@ app.get('*', (req, res) => {
 });
 
 // Enhanced error handling
-app.use((err, req, res, next) => {
-  console.error('Server error:', err);
+app.use((err, _req, res, _next) => {
   res.status(500).json({
     error: 'Internal server error',
     message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong',
@@ -88,11 +83,6 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-httpServer.listen(port, '0.0.0.0', () => {
-  console.log(`🚀 Server running on port ${port}`);
-  console.log(`🌐 Environment: ${process.env.NODE_ENV || 'production'}`);
-  console.log(`📂 Static files: ${staticPath}`);
-  console.log(`🔗 URL: http://localhost:${port}`);
-});
+httpServer.listen(port, '0.0.0.0', () => {});
 
 export default app;
