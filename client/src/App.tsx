@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <>
       <Helmet>
