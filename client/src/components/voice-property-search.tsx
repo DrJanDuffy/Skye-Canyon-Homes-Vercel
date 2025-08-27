@@ -33,8 +33,10 @@ export default function VoicePropertySearch() {
   const [transcript, setTranscript] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [searchResults, setSearchResults] = useState<SearchResponse | null>(null);
-  const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'assistant', content: string}>>([]);
-  
+  const [conversationHistory, setConversationHistory] = useState<
+    Array<{ role: 'user' | 'assistant'; content: string }>
+  >([]);
+
   const recognitionRef = useRef<any>(null);
   const [isSupported, setIsSupported] = useState(false);
 
@@ -42,9 +44,10 @@ export default function VoicePropertySearch() {
     // Check if browser supports speech recognition
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       setIsSupported(true);
-      const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const SpeechRecognition =
+        (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      
+
       if (recognitionRef.current) {
         recognitionRef.current.continuous = false;
         recognitionRef.current.interimResults = true;
@@ -64,9 +67,9 @@ export default function VoicePropertySearch() {
           console.error('Speech recognition error:', event.error);
           setIsListening(false);
           toast({
-            title: "Voice Recognition Error",
-            description: "Please try again or type your query instead.",
-            variant: "destructive"
+            title: 'Voice Recognition Error',
+            description: 'Please try again or type your query instead.',
+            variant: 'destructive',
           });
         };
       }
@@ -80,9 +83,9 @@ export default function VoicePropertySearch() {
       recognitionRef.current.start();
     } else {
       toast({
-        title: "Voice Recognition Not Supported",
-        description: "Please type your property search query instead.",
-        variant: "destructive"
+        title: 'Voice Recognition Not Supported',
+        description: 'Please type your property search query instead.',
+        variant: 'destructive',
       });
     }
   };
@@ -98,7 +101,7 @@ export default function VoicePropertySearch() {
     if (!query.trim()) return;
 
     setIsProcessing(true);
-    
+
     try {
       const response = await fetch('/api/voice-property-search', {
         method: 'POST',
@@ -107,7 +110,7 @@ export default function VoicePropertySearch() {
         },
         body: JSON.stringify({
           query,
-          conversationHistory
+          conversationHistory,
         }),
       });
 
@@ -117,28 +120,27 @@ export default function VoicePropertySearch() {
 
       const result: SearchResponse = await response.json();
       setSearchResults(result);
-      
+
       // Update conversation history
-      setConversationHistory(prev => [
+      setConversationHistory((prev) => [
         ...prev,
         { role: 'user', content: query },
-        { role: 'assistant', content: result.conversationalResponse }
+        { role: 'assistant', content: result.conversationalResponse },
       ]);
 
       // Clear the transcript after successful processing
       setTranscript('');
 
       toast({
-        title: "Search Complete",
-        description: `Found ${result.properties.length} properties matching your criteria.`
+        title: 'Search Complete',
+        description: `Found ${result.properties.length} properties matching your criteria.`,
       });
-
     } catch (error) {
       console.error('Error processing voice search:', error);
       toast({
-        title: "Search Error",
-        description: "Failed to process your search. Please try again.",
-        variant: "destructive"
+        title: 'Search Error',
+        description: 'Failed to process your search. Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setIsProcessing(false);
@@ -163,7 +165,8 @@ export default function VoicePropertySearch() {
             Voice-Activated Property Search
           </CardTitle>
           <p className="text-sm text-gray-600">
-            Ask me about properties in natural language. Try: "Show me luxury homes in Skye Canyon under $2 million"
+            Ask me about properties in natural language. Try: "Show me luxury homes in Skye Canyon
+            under $2 million"
           </p>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -171,7 +174,7 @@ export default function VoicePropertySearch() {
           <div className="flex items-center gap-4">
             <Button
               onClick={isListening ? stopListening : startListening}
-              variant={isListening ? "destructive" : "default"}
+              variant={isListening ? 'destructive' : 'default'}
               size="lg"
               className="flex items-center gap-2"
               disabled={!isSupported || isProcessing}
@@ -179,7 +182,7 @@ export default function VoicePropertySearch() {
               {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
               {isListening ? 'Stop Listening' : 'Start Voice Search'}
             </Button>
-            
+
             {transcript && (
               <Button
                 onClick={() => processQuery(transcript)}
@@ -244,14 +247,16 @@ export default function VoicePropertySearch() {
               <div
                 key={index}
                 className={`p-3 rounded-lg ${
-                  message.role === 'user' 
-                    ? 'bg-blue-50 border-blue-200 border ml-8' 
+                  message.role === 'user'
+                    ? 'bg-blue-50 border-blue-200 border ml-8'
                     : 'bg-gray-50 border-gray-200 border mr-8'
                 }`}
               >
-                <p className={`text-sm font-medium mb-1 ${
-                  message.role === 'user' ? 'text-blue-800' : 'text-gray-800'
-                }`}>
+                <p
+                  className={`text-sm font-medium mb-1 ${
+                    message.role === 'user' ? 'text-blue-800' : 'text-gray-800'
+                  }`}
+                >
                   {message.role === 'user' ? 'You' : 'AI Assistant'}
                 </p>
                 <p className="text-gray-900">{message.content}</p>
@@ -287,9 +292,7 @@ export default function VoicePropertySearch() {
                   </Badge>
                 )}
                 {searchResults.searchCriteria.propertyType && (
-                  <Badge variant="outline">
-                    {searchResults.searchCriteria.propertyType}
-                  </Badge>
+                  <Badge variant="outline">{searchResults.searchCriteria.propertyType}</Badge>
                 )}
               </div>
             )}
@@ -297,11 +300,16 @@ export default function VoicePropertySearch() {
           <CardContent>
             <div className="grid gap-4">
               {searchResults.properties.map((property) => (
-                <div key={property.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div
+                  key={property.id}
+                  className="border rounded-lg p-4 hover:shadow-md transition-shadow"
+                >
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <h3 className="font-semibold text-lg">{property.address}</h3>
-                      <p className="text-2xl font-bold text-green-600">{formatPrice(property.price)}</p>
+                      <p className="text-2xl font-bold text-green-600">
+                        {formatPrice(property.price)}
+                      </p>
                     </div>
                     <Badge variant={property.status === 'For Sale' ? 'default' : 'secondary'}>
                       {property.status}

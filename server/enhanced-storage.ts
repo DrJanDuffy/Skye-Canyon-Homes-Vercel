@@ -1,13 +1,20 @@
 import { supabase } from './supabase-client';
 import { db } from './db';
-import { 
-  users, properties, leads, marketStats,
-  type User, type InsertUser,
-  type Property, type InsertProperty,
-  type Lead, type InsertLead,
-  type MarketStats, type InsertMarketStats
-} from "@shared/schema";
-import { eq } from "drizzle-orm";
+import {
+  users,
+  properties,
+  leads,
+  marketStats,
+  type User,
+  type InsertUser,
+  type Property,
+  type InsertProperty,
+  type Lead,
+  type InsertLead,
+  type MarketStats,
+  type InsertMarketStats,
+} from '@shared/schema';
+import { eq } from 'drizzle-orm';
 
 export class EnhancedStorage {
   // Enhanced property methods with real-time updates
@@ -15,22 +22,20 @@ export class EnhancedStorage {
     try {
       // Insert into database via Drizzle
       const [newProperty] = await db.insert(properties).values(property).returning();
-      
+
       // Also sync to Supabase for real-time features
-      await supabase
-        .from('properties')
-        .insert({
-          address: property.address,
-          price: property.price,
-          bedrooms: property.bedrooms,
-          bathrooms: property.bathrooms,
-          sqft: property.sqft,
-          description: property.description,
-          imageUrl: property.imageUrl,
-          featured: property.featured,
-          status: property.status
-        });
-      
+      await supabase.from('properties').insert({
+        address: property.address,
+        price: property.price,
+        bedrooms: property.bedrooms,
+        bathrooms: property.bathrooms,
+        sqft: property.sqft,
+        description: property.description,
+        imageUrl: property.imageUrl,
+        featured: property.featured,
+        status: property.status,
+      });
+
       return newProperty;
     } catch (error) {
       console.error('Error creating property:', error);
@@ -60,25 +65,26 @@ export class EnhancedStorage {
   async createLead(lead: InsertLead): Promise<Lead> {
     try {
       // Insert into database
-      const [newLead] = await db.insert(leads).values({
-        ...lead,
-        source: lead.source || "website",
-        createdAt: new Date()
-      }).returning();
+      const [newLead] = await db
+        .insert(leads)
+        .values({
+          ...lead,
+          source: lead.source || 'website',
+          createdAt: new Date(),
+        })
+        .returning();
 
       // Sync to Supabase for real-time tracking
-      await supabase
-        .from('leads')
-        .insert({
-          firstName: newLead.firstName,
-          lastName: newLead.lastName,
-          email: newLead.email,
-          phone: newLead.phone,
-          message: newLead.message,
-          source: newLead.source,
-          timeframe: newLead.timeframe,
-          priceRange: newLead.priceRange
-        });
+      await supabase.from('leads').insert({
+        firstName: newLead.firstName,
+        lastName: newLead.lastName,
+        email: newLead.email,
+        phone: newLead.phone,
+        message: newLead.message,
+        source: newLead.source,
+        timeframe: newLead.timeframe,
+        priceRange: newLead.priceRange,
+      });
 
       // Send to Follow Up Boss if API key is available and valid
       if (process.env.FUB_API_KEY) {
@@ -86,7 +92,9 @@ export class EnhancedStorage {
           await this.sendToFollowUpBoss(newLead);
           console.log(`Lead ${newLead.id} successfully synced to Follow Up Boss`);
         } catch (error) {
-          console.log(`Lead ${newLead.id} saved locally - Follow Up Boss sync pending API key renewal`);
+          console.log(
+            `Lead ${newLead.id} saved locally - Follow Up Boss sync pending API key renewal`
+          );
           // Lead is safely stored in database for later sync
           await this.markLeadForSync(newLead.id);
         }
@@ -104,13 +112,13 @@ export class EnhancedStorage {
   private async sendToFollowUpBoss(lead: Lead) {
     try {
       console.log('Sending lead to Follow Up Boss:', lead.email);
-      
+
       const response = await fetch('https://api.followupboss.com/v1/people', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${process.env.FUB_API_KEY}`,
+          Authorization: `Bearer ${process.env.FUB_API_KEY}`,
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           firstName: lead.firstName,
@@ -119,18 +127,20 @@ export class EnhancedStorage {
           phones: lead.phone ? [{ value: lead.phone, type: 'mobile' }] : [],
           source: 'Dr Jan Duffy Website',
           tags: ['Website Lead', 'Skye Canyon'],
-          notes: lead.message || `Lead from Dr. Jan Duffy website. Interest: ${lead.priceRange || 'Not specified'}. Timeframe: ${lead.timeframe || 'Not specified'}`
-        })
+          notes:
+            lead.message ||
+            `Lead from Dr. Jan Duffy website. Interest: ${lead.priceRange || 'Not specified'}. Timeframe: ${lead.timeframe || 'Not specified'}`,
+        }),
       });
 
       const responseText = await response.text();
-      
+
       if (!response.ok) {
         console.error('Follow Up Boss API error:', response.status, response.statusText);
         console.error('Response body:', responseText);
         throw new Error(`Failed to send lead to FollowUp Boss: ${response.statusText}`);
       }
-      
+
       console.log('Successfully sent lead to Follow Up Boss');
       return JSON.parse(responseText);
     } catch (error) {
@@ -171,16 +181,20 @@ export class EnhancedStorage {
 
   async updateMarketStats(stats: InsertMarketStats): Promise<MarketStats> {
     try {
-      const [updated] = await db.insert(marketStats).values({
-        ...stats,
-        updatedAt: new Date()
-      }).onConflictDoUpdate({
-        target: marketStats.id,
-        set: {
+      const [updated] = await db
+        .insert(marketStats)
+        .values({
           ...stats,
-          updatedAt: new Date()
-        }
-      }).returning();
+          updatedAt: new Date(),
+        })
+        .onConflictDoUpdate({
+          target: marketStats.id,
+          set: {
+            ...stats,
+            updatedAt: new Date(),
+          },
+        })
+        .returning();
 
       return updated;
     } catch (error) {
@@ -190,9 +204,9 @@ export class EnhancedStorage {
   }
 
   // Real-time property search with Supabase
-  async searchProperties(filters: { 
-    priceMin?: number; 
-    priceMax?: number; 
+  async searchProperties(filters: {
+    priceMin?: number;
+    priceMax?: number;
     type?: string;
     bedrooms?: number;
     location?: string;
@@ -217,7 +231,7 @@ export class EnhancedStorage {
       }
 
       const { data, error } = await query;
-      
+
       if (error) {
         console.error('Supabase search error:', error);
         // Fallback to Drizzle query

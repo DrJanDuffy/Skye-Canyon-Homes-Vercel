@@ -20,19 +20,24 @@ async function main() {
 
     // Step 1: Build CSS
     log('Building CSS...');
-    execSync('npx tailwindcss -i client/src/index.css -o dist/public/main.css --minify', { stdio: 'inherit' });
+    execSync('npx tailwindcss -i client/src/index.css -o dist/public/main.css --minify', {
+      stdio: 'inherit',
+    });
 
     // Step 2: Build JavaScript with esbuild (bypasses Vite EISDIR issue)
     log('Building JavaScript...');
-    execSync([
-      'npx esbuild client/src/main.tsx',
-      '--bundle',
-      '--outfile=dist/public/main.js',
-      '--format=esm',
-      '--target=es2020',
-      '--jsx=automatic',
-      '--minify'
-    ].join(' '), { stdio: 'inherit' });
+    execSync(
+      [
+        'npx esbuild client/src/main.tsx',
+        '--bundle',
+        '--outfile=dist/public/main.js',
+        '--format=esm',
+        '--target=es2020',
+        '--jsx=automatic',
+        '--minify',
+      ].join(' '),
+      { stdio: 'inherit' }
+    );
 
     // Step 3: Create HTML file (avoiding client/index.html path conflicts)
     log('Creating HTML file...');
@@ -49,7 +54,7 @@ async function main() {
     <script type="module" src="/main.js"></script>
 </body>
 </html>`;
-    
+
     fs.writeFileSync('dist/public/index.html', htmlContent);
 
     // Step 4: Copy static assets
@@ -60,11 +65,13 @@ async function main() {
 
     // Step 5: Build server
     log('Building server...');
-    execSync('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist', { stdio: 'inherit' });
+    execSync(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist',
+      { stdio: 'inherit' }
+    );
 
     log('✅ Build completed successfully!');
     log('Output: dist/public/ (static files) + dist/index.js (server)');
-
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);

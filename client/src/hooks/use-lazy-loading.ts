@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
-export function useLazyLoading(threshold = 0.1, rootMargin = "50px") {
+export function useLazyLoading(threshold = 0.1, rootMargin = '50px') {
   const [isInView, setIsInView] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
 
@@ -29,10 +29,10 @@ export function useImagePreloader(imageSources: string[]) {
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    imageSources.forEach(src => {
+    imageSources.forEach((src) => {
       const img = new Image();
       img.onload = () => {
-        setLoadedImages(prev => new Set(prev).add(src));
+        setLoadedImages((prev) => new Set(prev).add(src));
       };
       img.src = src;
     });

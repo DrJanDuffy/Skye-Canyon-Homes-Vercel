@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Heart, Bed, Bath, Square } from "lucide-react";
-import type { Property } from "@shared/schema";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Heart, Bed, Bath, Square } from 'lucide-react';
+import type { Property } from '@shared/schema';
 
 interface PropertyCardProps {
   property: Property;
@@ -36,12 +36,12 @@ export default function PropertyCard({ property }: PropertyCardProps) {
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-      <img 
-        src={property.imageUrl} 
+      <img
+        src={property.imageUrl}
         alt={`Property at ${property.address}`}
         className="w-full h-64 object-cover"
       />
-      
+
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
           <div>
@@ -52,7 +52,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
           {getStatusBadge()}
         </div>
-        
+
         <div className="flex items-center space-x-4 text-gray-600 mb-4">
           <div className="flex items-center">
             <Bed className="w-4 h-4 mr-1" />
@@ -67,15 +67,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             <span>{formatSqft(property.sqft)} sqft</span>
           </div>
         </div>
-        
-        <p className="text-gray-700 text-sm mb-4 line-clamp-2">
-          {property.description}
-        </p>
-        
+
+        <p className="text-gray-700 text-sm mb-4 line-clamp-2">{property.description}</p>
+
         <div className="flex space-x-2">
-          <Button 
+          <Button
             className="flex-1 bg-realscout-blue text-white hover:bg-realscout-navy"
-            onClick={() => window.location.href = `/property/${property.id}`}
+            onClick={() => (window.location.href = `/property/${property.id}`)}
           >
             View Details
           </Button>

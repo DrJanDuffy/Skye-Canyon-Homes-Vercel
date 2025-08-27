@@ -1,7 +1,9 @@
 import { lazy, Suspense } from 'react';
 
 // Lazy loading components for code splitting
-export const LazyVoiceSearchIntegration = lazy(() => import('@/components/voice-search-integration'));
+export const LazyVoiceSearchIntegration = lazy(
+  () => import('@/components/voice-search-integration')
+);
 export const LazyRealScoutListings = lazy(() => import('@/components/realscout-listings'));
 export const LazyMarketIntelligence = lazy(() => import('@/components/market-intelligence'));
 export const LazyNeighborhoodHeatmap = lazy(() => import('@/components/neighborhood-heatmap'));
@@ -13,15 +15,15 @@ export const performanceMonitor = {
     return () => {
       const end = performance.now();
       const duration = end - start;
-      
+
       if (window.gtag) {
         window.gtag('event', 'component_render_time', {
           event_category: 'performance',
           event_label: componentName,
-          value: Math.round(duration)
+          value: Math.round(duration),
         });
       }
-      
+
       console.log(`${componentName} render time: ${duration.toFixed(2)}ms`);
     };
   },
@@ -31,16 +33,16 @@ export const performanceMonitor = {
     return (success: boolean = true) => {
       const end = performance.now();
       const duration = end - start;
-      
+
       if (window.gtag) {
         window.gtag('event', 'api_call_duration', {
           event_category: 'performance',
           event_label: `${apiEndpoint}_${success ? 'success' : 'error'}`,
-          value: Math.round(duration)
+          value: Math.round(duration),
         });
       }
     };
-  }
+  },
 };
 
 // Debounce utility for search inputs
@@ -58,7 +60,7 @@ export function debounce<T extends (...args: any[]) => any>(
 // Memory cleanup utilities
 export const cleanupManager = {
   cleanupEventListeners: (element: HTMLElement | Window, events: string[]) => {
-    events.forEach(event => {
+    events.forEach((event) => {
       const handlers = (element as any)._eventHandlers?.[event] || [];
       handlers.forEach((handler: EventListener) => {
         element.removeEventListener(event, handler);
@@ -67,13 +69,13 @@ export const cleanupManager = {
   },
 
   cleanupTimers: (timers: (NodeJS.Timeout | number)[]) => {
-    timers.forEach(timer => {
+    timers.forEach((timer) => {
       if (typeof timer === 'number') {
         clearTimeout(timer);
         clearInterval(timer);
       }
     });
-  }
+  },
 };
 
 // Loading component for Suspense fallbacks

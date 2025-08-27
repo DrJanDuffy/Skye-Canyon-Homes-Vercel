@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Phone, Mail, Calendar, DollarSign, MessageSquare, Users, TrendingUp } from "lucide-react";
-import type { Lead } from "@shared/schema";
+import { useQuery } from '@tanstack/react-query';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Phone, Mail, Calendar, DollarSign, MessageSquare, Users, TrendingUp } from 'lucide-react';
+import type { Lead } from '@shared/schema';
 
 interface LeadWithScore extends Lead {
   score?: number;
@@ -15,26 +15,30 @@ interface LeadWithScore extends Lead {
 
 export default function LeadDashboard() {
   const { data: leads = [], isLoading } = useQuery<LeadWithScore[]>({
-    queryKey: ["/api/leads"],
+    queryKey: ['/api/leads'],
   });
 
   const { data: stats, isLoading: statsLoading } = useQuery({
-    queryKey: ["/api/lead-stats"],
+    queryKey: ['/api/lead-stats'],
   });
 
   const getScoreBadgeColor = (score?: number) => {
-    if (!score) return "secondary";
-    if (score >= 70) return "destructive"; // Hot lead
-    if (score >= 40) return "default"; // Warm lead
-    return "secondary"; // Cold lead
+    if (!score) return 'secondary';
+    if (score >= 70) return 'destructive'; // Hot lead
+    if (score >= 40) return 'default'; // Warm lead
+    return 'secondary'; // Cold lead
   };
 
   const getCategoryColor = (category?: string) => {
     switch (category) {
-      case "hot": return "destructive";
-      case "warm": return "default";
-      case "cold": return "secondary";
-      default: return "secondary";
+      case 'hot':
+        return 'destructive';
+      case 'warm':
+        return 'default';
+      case 'cold':
+        return 'secondary';
+      default:
+        return 'secondary';
     }
   };
 
@@ -57,7 +61,9 @@ export default function LeadDashboard() {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Lead Dashboard</h1>
-        <p className="text-gray-600">Manage and track your real estate leads from the Dr. Jan Duffy website</p>
+        <p className="text-gray-600">
+          Manage and track your real estate leads from the Dr. Jan Duffy website
+        </p>
       </div>
 
       {/* Lead Statistics */}
@@ -80,7 +86,7 @@ export default function LeadDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-red-600">
-              {leads.filter(lead => (lead.score || 0) >= 70).length}
+              {leads.filter((lead) => (lead.score || 0) >= 70).length}
             </div>
             <p className="text-xs text-muted-foreground">Score 70+</p>
           </CardContent>
@@ -93,7 +99,7 @@ export default function LeadDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-orange-600">
-              {leads.filter(lead => (lead.score || 0) >= 40 && (lead.score || 0) < 70).length}
+              {leads.filter((lead) => (lead.score || 0) >= 40 && (lead.score || 0) < 70).length}
             </div>
             <p className="text-xs text-muted-foreground">Score 40-69</p>
           </CardContent>
@@ -106,13 +112,15 @@ export default function LeadDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {leads.filter(lead => {
-                if (!lead.createdAt) return false;
-                const leadDate = new Date(lead.createdAt.toString());
-                const yesterday = new Date();
-                yesterday.setDate(yesterday.getDate() - 1);
-                return leadDate > yesterday;
-              }).length}
+              {
+                leads.filter((lead) => {
+                  if (!lead.createdAt) return false;
+                  const leadDate = new Date(lead.createdAt.toString());
+                  const yesterday = new Date();
+                  yesterday.setDate(yesterday.getDate() - 1);
+                  return leadDate > yesterday;
+                }).length
+              }
             </div>
             <p className="text-xs text-muted-foreground">Last 24 hours</p>
           </CardContent>
@@ -122,14 +130,15 @@ export default function LeadDashboard() {
       {/* Lead List */}
       <div className="space-y-4">
         <h2 className="text-xl font-semibold">Recent Leads</h2>
-        
+
         {leads.length === 0 ? (
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12">
               <Users className="h-12 w-12 text-gray-400 mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No leads yet</h3>
               <p className="text-gray-500 text-center max-w-md">
-                When visitors submit contact forms on your website, their information will appear here for easy management and follow-up.
+                When visitors submit contact forms on your website, their information will appear
+                here for easy management and follow-up.
               </p>
             </CardContent>
           </Card>
@@ -145,26 +154,24 @@ export default function LeadDashboard() {
                     <CardDescription className="flex items-center gap-4 mt-1">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-{lead.createdAt ? new Date(lead.createdAt.toString()).toLocaleDateString() : 'No date'}
+                        {lead.createdAt
+                          ? new Date(lead.createdAt.toString()).toLocaleDateString()
+                          : 'No date'}
                       </span>
                       <Badge variant="outline">{lead.source}</Badge>
                     </CardDescription>
                   </div>
                   <div className="flex gap-2">
                     {lead.score && (
-                      <Badge variant={getScoreBadgeColor(lead.score)}>
-                        Score: {lead.score}
-                      </Badge>
+                      <Badge variant={getScoreBadgeColor(lead.score)}>Score: {lead.score}</Badge>
                     )}
                     {lead.category && (
-                      <Badge variant={getCategoryColor(lead.category)}>
-                        {lead.category} lead
-                      </Badge>
+                      <Badge variant={getCategoryColor(lead.category)}>{lead.category} lead</Badge>
                     )}
                   </div>
                 </div>
               </CardHeader>
-              
+
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="space-y-2">
@@ -183,7 +190,7 @@ export default function LeadDashboard() {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="space-y-2">
                     {lead.priceRange && (
                       <div className="flex items-center gap-2">
@@ -226,7 +233,7 @@ export default function LeadDashboard() {
                 )}
 
                 <Separator className="my-4" />
-                
+
                 <div className="flex gap-2">
                   <Button size="sm" asChild>
                     <a href={`mailto:${lead.email}`}>Send Email</a>

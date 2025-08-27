@@ -29,22 +29,25 @@ async function main() {
 
     // Step 2: Build TypeScript/React using esbuild instead of Vite
     log('Building React app with esbuild...');
-    
+
     // Build the main TypeScript entry point
-    execSync(`npx esbuild client/src/main.tsx --bundle --outfile=dist/public/assets/main.js --format=esm --target=es2020 --jsx=automatic --jsx-import-source=react --loader:.tsx=tsx --loader:.ts=tsx --loader:.css=css --external:react --external:react-dom`, {
-      stdio: 'inherit'
-    });
+    execSync(
+      `npx esbuild client/src/main.tsx --bundle --outfile=dist/public/assets/main.js --format=esm --target=es2020 --jsx=automatic --jsx-import-source=react --loader:.tsx=tsx --loader:.ts=tsx --loader:.css=css --external:react --external:react-dom`,
+      {
+        stdio: 'inherit',
+      }
+    );
 
     // Build CSS using Tailwind
     log('Building CSS...');
     execSync('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify', {
-      stdio: 'inherit'
+      stdio: 'inherit',
     });
 
     // Step 3: Process HTML template
     log('Processing HTML template...');
     let htmlContent = fs.readFileSync(freshIndexPath, 'utf-8');
-    
+
     // Replace development script with production assets
     htmlContent = htmlContent.replace(
       '<script type="module" src="/src/main.tsx"></script>',
@@ -64,9 +67,12 @@ async function main() {
 
     // Step 4: Build server
     log('Building server...');
-    execSync('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist', {
-      stdio: 'inherit'
-    });
+    execSync(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist',
+      {
+        stdio: 'inherit',
+      }
+    );
 
     // Step 5: Copy public assets
     if (fs.existsSync('public')) {
@@ -93,7 +99,12 @@ async function main() {
     }
 
     // Verify build
-    const requiredFiles = ['dist/index.js', 'dist/public/index.html', 'dist/public/assets/main.js', 'dist/public/assets/main.css'];
+    const requiredFiles = [
+      'dist/index.js',
+      'dist/public/index.html',
+      'dist/public/assets/main.js',
+      'dist/public/assets/main.css',
+    ];
     for (const file of requiredFiles) {
       if (!fs.existsSync(file)) {
         throw new Error(`Missing: ${file}`);
@@ -101,7 +112,6 @@ async function main() {
     }
 
     log('Build completed successfully - bypassed EISDIR error!');
-    
   } catch (error) {
     console.error('Build failed:', error.message);
     process.exit(1);

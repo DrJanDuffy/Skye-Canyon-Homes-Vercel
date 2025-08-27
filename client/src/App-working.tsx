@@ -1,22 +1,36 @@
-import { Switch, Route } from "wouter";
-import { useEffect } from "react";
+import { Switch, Route } from 'wouter';
+import { useEffect } from 'react';
 
 // Navigation Component
 function Navigation() {
   return (
-    <nav style={{ 
-      backgroundColor: '#1e40af', 
-      padding: '15px 20px', 
-      color: 'white',
-      borderBottom: '3px solid #3b82f6'
-    }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
+    <nav
+      style={{
+        backgroundColor: '#1e40af',
+        padding: '15px 20px',
+        color: 'white',
+        borderBottom: '3px solid #3b82f6',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          maxWidth: '1200px',
+          margin: '0 auto',
+        }}
+      >
         <div style={{ fontSize: '20px', fontWeight: 'bold' }}>
           Dr. Jan Duffy, REALTOR® | Skye Canyon Specialist
         </div>
         <div style={{ display: 'flex', gap: '20px' }}>
-          <a href="/" style={{ color: 'white', textDecoration: 'none' }}>Home</a>
-          <a href="/properties" style={{ color: 'white', textDecoration: 'none' }}>All Properties</a>
+          <a href="/" style={{ color: 'white', textDecoration: 'none' }}>
+            Home
+          </a>
+          <a href="/properties" style={{ color: 'white', textDecoration: 'none' }}>
+            All Properties
+          </a>
           <span style={{ color: '#fbbf24' }}>(702) 500-1902</span>
         </div>
       </div>
@@ -26,17 +40,21 @@ function Navigation() {
 
 function HomePage() {
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
+    <div
+      style={{ fontFamily: 'Arial, sans-serif', minHeight: '100vh', backgroundColor: '#f8fafc' }}
+    >
       <Navigation />
-      
+
       {/* Hero Section */}
-      <div style={{ 
-        backgroundColor: '#1e40af', 
-        color: 'white', 
-        padding: '60px 20px', 
-        textAlign: 'center',
-        backgroundImage: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)'
-      }}>
+      <div
+        style={{
+          backgroundColor: '#1e40af',
+          color: 'white',
+          padding: '60px 20px',
+          textAlign: 'center',
+          backgroundImage: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
+        }}
+      >
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h1 style={{ fontSize: '48px', marginBottom: '20px', fontWeight: 'bold' }}>
             Skye Canyon Homes for Sale | Las Vegas NV Real Estate
@@ -53,36 +71,40 @@ function HomePage() {
       {/* Main Content */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
         {/* RealScout Widget - Homepage */}
-        <div style={{ 
-          backgroundColor: 'white', 
-          borderRadius: '8px', 
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
-          padding: '30px',
-          marginBottom: '40px'
-        }}>
+        <div
+          style={{
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            padding: '30px',
+            marginBottom: '40px',
+          }}
+        >
           <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#1e40af' }}>
             Featured Skye Canyon Listings - $550K+
           </h2>
-          <div 
+          <div
             dangerouslySetInnerHTML={{
               __html: `<realscout-office-listings 
                 agent-encoded-id="QWdlbnQtMjI1MDUw" 
                 price-min="550000" 
                 price-max="9999999"
                 style="min-height: 500px; width: 100%; display: block;">
-              </realscout-office-listings>`
+              </realscout-office-listings>`,
             }}
           ></div>
         </div>
-        
+
         {/* Contact Section */}
-        <div style={{ 
-          backgroundColor: 'white', 
-          borderRadius: '8px', 
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
-          padding: '30px',
-          textAlign: 'center'
-        }}>
+        <div
+          style={{
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            padding: '30px',
+            textAlign: 'center',
+          }}
+        >
           <h2 style={{ fontSize: '28px', marginBottom: '20px', color: '#1e40af' }}>
             Contact Dr. Jan Duffy - Skye Canyon Expert
           </h2>
@@ -104,16 +126,20 @@ function HomePage() {
 
 function PropertiesPage() {
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
+    <div
+      style={{ fontFamily: 'Arial, sans-serif', minHeight: '100vh', backgroundColor: '#f8fafc' }}
+    >
       <Navigation />
-      
+
       {/* Page Header */}
-      <div style={{ 
-        backgroundColor: '#1e40af', 
-        color: 'white', 
-        padding: '40px 20px', 
-        textAlign: 'center'
-      }}>
+      <div
+        style={{
+          backgroundColor: '#1e40af',
+          color: 'white',
+          padding: '40px 20px',
+          textAlign: 'center',
+        }}
+      >
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <h1 style={{ fontSize: '40px', marginBottom: '15px', fontWeight: 'bold' }}>
             All Skye Canyon Homes for Sale
@@ -127,23 +153,25 @@ function PropertiesPage() {
       {/* Main Content */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
         {/* RealScout Widget - All Properties */}
-        <div style={{ 
-          backgroundColor: 'white', 
-          borderRadius: '8px', 
-          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
-          padding: '30px'
-        }}>
+        <div
+          style={{
+            backgroundColor: 'white',
+            borderRadius: '8px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            padding: '30px',
+          }}
+        >
           <h2 style={{ fontSize: '28px', marginBottom: '20px', color: '#1e40af' }}>
             Complete Property Listings - Starting at $400K
           </h2>
-          <div 
+          <div
             dangerouslySetInnerHTML={{
               __html: `<realscout-office-listings 
                 agent-encoded-id="QWdlbnQtMjI1MDUw" 
                 price-min="400000" 
                 price-max="9999999"
                 style="min-height: 800px; width: 100%; display: block;">
-              </realscout-office-listings>`
+              </realscout-office-listings>`,
             }}
           ></div>
         </div>
@@ -176,7 +204,7 @@ function App() {
         console.log('RealScout widgets initialized');
       }
     };
-    
+
     // Small delay to ensure DOM is ready
     setTimeout(initRealScout, 1000);
   }, []);

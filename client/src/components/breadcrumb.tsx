@@ -1,4 +1,4 @@
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home } from 'lucide-react';
 
 interface BreadcrumbItem {
   label: string;
@@ -15,15 +15,12 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
       <a href="/" className="flex items-center hover:text-realscout-blue transition-colors">
         <Home className="w-4 h-4" />
       </a>
-      
+
       {items.map((item, index) => (
         <div key={index} className="flex items-center space-x-1">
           <ChevronRight className="w-4 h-4 text-gray-400" />
           {item.href ? (
-            <a 
-              href={item.href} 
-              className="hover:text-realscout-blue transition-colors"
-            >
+            <a href={item.href} className="hover:text-realscout-blue transition-colors">
               {item.label}
             </a>
           ) : (

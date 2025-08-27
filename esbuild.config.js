@@ -23,7 +23,7 @@ const clientConfig = {
     '.png': 'dataurl',
     '.jpg': 'dataurl',
     '.jpeg': 'dataurl',
-    '.gif': 'dataurl'
+    '.gif': 'dataurl',
   },
   minify: isProduction,
   sourcemap: true,
@@ -32,13 +32,13 @@ const clientConfig = {
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
     'import.meta.env.PROD': 'true',
     'import.meta.env.DEV': 'false',
-    'import.meta.env.MODE': JSON.stringify('production')
+    'import.meta.env.MODE': JSON.stringify('production'),
   },
   alias: {
     '@': path.resolve('client/src'),
-    '@shared': path.resolve('shared')
+    '@shared': path.resolve('shared'),
   },
-  external: isProduction ? [] : ['react', 'react-dom']
+  external: isProduction ? [] : ['react', 'react-dom'],
 };
 
 // Build configuration for server
@@ -51,7 +51,7 @@ const serverConfig = {
   target: 'node18',
   packages: 'external',
   minify: isProduction,
-  sourcemap: true
+  sourcemap: true,
 };
 
 async function buildClient() {
@@ -68,26 +68,26 @@ async function buildCSS() {
   console.log('Building CSS...');
   const { execSync } = await import('child_process');
   execSync('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify', {
-    stdio: 'inherit'
+    stdio: 'inherit',
   });
 }
 
 async function processHTML() {
   console.log('Processing HTML template...');
-  
+
   // Ensure dist/public directory exists
   if (!fs.existsSync('dist/public')) {
     fs.mkdirSync('dist/public', { recursive: true });
   }
-  
+
   // Read the original HTML file
   let htmlContent = fs.readFileSync('client/index.html', 'utf-8');
-  
+
   // Update asset references for production
   htmlContent = htmlContent
     .replace(/src="\/src\/main\.tsx"/g, 'src="/assets/main.js" type="module"')
     .replace(/<\/head>/g, '    <link rel="stylesheet" href="/assets/main.css">\n  </head>');
-  
+
   // Write processed HTML to dist
   fs.writeFileSync('dist/public/index.html', htmlContent);
 }
@@ -119,7 +119,7 @@ async function main() {
     await buildServer();
     await processHTML();
     await copyPublicAssets();
-    
+
     console.log('Build completed successfully!');
   } catch (error) {
     console.error('Build failed:', error);

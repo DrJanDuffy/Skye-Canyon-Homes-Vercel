@@ -14,11 +14,11 @@ function log(message) {
 function executeCommand(command, options = {}) {
   try {
     log(`Executing: ${command}`);
-    return execSync(command, { 
-      stdio: 'inherit', 
+    return execSync(command, {
+      stdio: 'inherit',
       encoding: 'utf8',
       timeout: 300000,
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`❌ Command failed: ${command}`);
@@ -40,37 +40,39 @@ async function main() {
     // Step 2: Build React components only (skip HTML processing)
     log('Building React components...');
     process.chdir('client');
-    
+
     // Use Vite to build just the JS/CSS assets without HTML processing
     executeCommand('npx vite build --config ../vite.config.ts --mode production --minify', {
-      env: { ...process.env, VITE_SKIP_HTML: 'true' }
+      env: { ...process.env, VITE_SKIP_HTML: 'true' },
     });
-    
+
     process.chdir('..');
 
     // Step 3: Manually process and copy index.html
     log('Processing HTML template manually...');
     let htmlContent = fs.readFileSync('client/index.html', 'utf-8');
-    
+
     // Find the built assets
     const assetsDir = path.join('dist', 'public', 'assets');
     let jsFiles = [];
     let cssFiles = [];
-    
+
     if (fs.existsSync(assetsDir)) {
       const assets = fs.readdirSync(assetsDir);
-      jsFiles = assets.filter(file => file.endsWith('.js'));
-      cssFiles = assets.filter(file => file.endsWith('.css'));
+      jsFiles = assets.filter((file) => file.endsWith('.js'));
+      cssFiles = assets.filter((file) => file.endsWith('.css'));
     }
 
     // Replace the development script with built assets
     htmlContent = htmlContent.replace(
       '<script type="module" src="/src/main.tsx"></script>',
-      jsFiles.map(file => `<script type="module" src="/assets/${file}"></script>`).join('\n    ')
+      jsFiles.map((file) => `<script type="module" src="/assets/${file}"></script>`).join('\n    ')
     );
 
     // Add CSS links
-    const cssLinks = cssFiles.map(file => `<link rel="stylesheet" href="/assets/${file}">`).join('\n    ');
+    const cssLinks = cssFiles
+      .map((file) => `<link rel="stylesheet" href="/assets/${file}">`)
+      .join('\n    ');
     htmlContent = htmlContent.replace('</head>', `    ${cssLinks}\n  </head>`);
 
     // Write the processed HTML
@@ -78,7 +80,9 @@ async function main() {
 
     // Step 4: Build server
     log('Building server...');
-    executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist');
+    executeCommand(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist'
+    );
 
     // Step 5: Copy public assets
     log('Copying public assets...');
@@ -103,10 +107,7 @@ async function main() {
 
     // Step 6: Verify build
     log('Verifying build...');
-    const requiredFiles = [
-      'dist/index.js',
-      'dist/public/index.html'
-    ];
+    const requiredFiles = ['dist/index.js', 'dist/public/index.html'];
 
     for (const file of requiredFiles) {
       if (!fs.existsSync(file)) {
@@ -117,7 +118,6 @@ async function main() {
 
     log('✅ Manual build completed successfully!');
     log(`Build output: ${path.resolve('dist')}`);
-    
   } catch (error) {
     console.error('❌ Manual build failed:', error.message);
     process.exit(1);

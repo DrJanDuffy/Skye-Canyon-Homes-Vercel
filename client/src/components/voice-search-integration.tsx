@@ -22,9 +22,9 @@ declare global {
   }
 }
 
-export default function VoiceSearchIntegration({ 
+export default function VoiceSearchIntegration({
   maxSearches = 3,
-  onSearchLimitReached 
+  onSearchLimitReached,
 }: VoiceSearchIntegrationProps) {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
@@ -53,7 +53,7 @@ export default function VoiceSearchIntegration({
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      
+
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = true;
       recognitionRef.current.lang = 'en-US';
@@ -62,7 +62,7 @@ export default function VoiceSearchIntegration({
         const currentTranscript = Array.from(event.results)
           .map((result: any) => result[0].transcript)
           .join('');
-        
+
         setTranscript(currentTranscript);
 
         if (event.results[event.results.length - 1].isFinal) {
@@ -85,29 +85,29 @@ export default function VoiceSearchIntegration({
     if (!query.trim()) return;
 
     setIsProcessing(true);
-    
+
     try {
       // Process voice search with AI and get property results
       const response = await fetch('/api/voice-property-search', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          query, 
+        body: JSON.stringify({
+          query,
           searchCount,
-          conversationHistory: []
-        })
+          conversationHistory: [],
+        }),
       });
 
       const results = await response.json();
-      
+
       const searchResult: SearchResult = {
         query,
         timestamp: Date.now(),
-        results: results.properties || []
+        results: results.properties || [],
       };
 
-      setSearchHistory(prev => [searchResult, ...prev.slice(0, 4)]);
-      
+      setSearchHistory((prev) => [searchResult, ...prev.slice(0, 4)]);
+
       // Increment search count
       const newCount = searchCount + 1;
       setSearchCount(newCount);
@@ -122,7 +122,6 @@ export default function VoiceSearchIntegration({
       } else if (newCount === maxSearches - 1) {
         setShowLimitWarning(true);
       }
-
     } catch (error) {
       console.error('Voice search error:', error);
     } finally {
@@ -211,7 +210,7 @@ export default function VoiceSearchIntegration({
       window.gtag('event', 'voice_search_limit_reached', {
         event_category: 'engagement',
         event_label: 'realscout_popup_triggered',
-        value: searchCount
+        value: searchCount,
       });
     }
 
@@ -250,16 +249,15 @@ export default function VoiceSearchIntegration({
               <Mic className="w-5 h-5 text-blue-600" />
               <h3 className="text-lg font-semibold">Voice Property Search</h3>
             </div>
-            
+
             {showLimitWarning && (
               <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
                 <div className="flex items-center space-x-2 text-orange-700">
                   <AlertCircle className="w-4 h-4" />
                   <span className="text-sm font-medium">
-                    {remainingSearches > 0 
+                    {remainingSearches > 0
                       ? `${remainingSearches} voice search${remainingSearches !== 1 ? 'es' : ''} remaining today`
-                      : 'Voice search limit reached for today'
-                    }
+                      : 'Voice search limit reached for today'}
                   </span>
                 </div>
               </div>
@@ -270,25 +268,20 @@ export default function VoiceSearchIntegration({
                 onClick={isListening ? stopListening : startListening}
                 disabled={isProcessing}
                 className={`w-20 h-20 rounded-full ${
-                  isListening 
-                    ? 'bg-red-500 hover:bg-red-600 animate-pulse' 
+                  isListening
+                    ? 'bg-red-500 hover:bg-red-600 animate-pulse'
                     : 'bg-blue-600 hover:bg-blue-700'
                 }`}
               >
-                {isListening ? (
-                  <MicOff className="w-8 h-8" />
-                ) : (
-                  <Mic className="w-8 h-8" />
-                )}
+                {isListening ? <MicOff className="w-8 h-8" /> : <Mic className="w-8 h-8" />}
               </Button>
 
               <p className="text-sm text-gray-600">
-                {isListening 
+                {isListening
                   ? 'Listening... Speak now!'
                   : isProcessing
-                  ? 'Processing your search...'
-                  : 'Click to start voice search'
-                }
+                    ? 'Processing your search...'
+                    : 'Click to start voice search'}
               </p>
 
               {transcript && (
@@ -313,16 +306,12 @@ export default function VoiceSearchIntegration({
             <div className="space-y-2">
               {searchHistory.slice(0, 3).map((search, index) => (
                 <div key={index} className="flex items-center justify-between text-sm">
-                  <span className="text-gray-700 truncate flex-1">
-                    "{search.query}"
-                  </span>
-                  <span className="text-gray-500 ml-2">
-                    {search.results.length} results
-                  </span>
+                  <span className="text-gray-700 truncate flex-1">"{search.query}"</span>
+                  <span className="text-gray-500 ml-2">{search.results.length} results</span>
                 </div>
               ))}
             </div>
-            
+
             {searchCount >= maxSearches && (
               <div className="mt-3 pt-3 border-t">
                 <Button

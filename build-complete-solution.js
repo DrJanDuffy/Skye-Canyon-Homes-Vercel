@@ -10,10 +10,10 @@ function log(message) {
 
 function executeCommand(command, options = {}) {
   try {
-    execSync(command, { 
-      stdio: 'inherit', 
+    execSync(command, {
+      stdio: 'inherit',
       timeout: 180000, // 3 minutes
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`Command failed: ${command}`);
@@ -53,9 +53,9 @@ async function main() {
       '--loader:.jpg=dataurl',
       '--minify',
       '--sourcemap',
-      '--define:process.env.NODE_ENV=\\"production\\"'
+      '--define:process.env.NODE_ENV=\\"production\\"',
     ].join(' ');
-    
+
     executeCommand(clientBuildCommand);
 
     // Create optimized HTML file (bypasses client/index.html EISDIR issue)
@@ -77,7 +77,7 @@ async function main() {
     <script type="module" src="/app.js"></script>
 </body>
 </html>`;
-    
+
     fs.writeFileSync('dist/public/index.html', htmlContent);
 
     // Copy static assets
@@ -88,15 +88,17 @@ async function main() {
 
     // Build server with esbuild
     log('Building server...');
-    executeCommand([
-      'npx esbuild server/index.ts',
-      '--platform=node', 
-      '--packages=external',
-      '--bundle',
-      '--format=esm',
-      '--outdir=dist',
-      '--minify'
-    ].join(' '));
+    executeCommand(
+      [
+        'npx esbuild server/index.ts',
+        '--platform=node',
+        '--packages=external',
+        '--bundle',
+        '--format=esm',
+        '--outdir=dist',
+        '--minify',
+      ].join(' ')
+    );
 
     // Create static file server for deployment
     log('Creating static file server...');
@@ -137,30 +139,30 @@ app.listen(PORT, '0.0.0.0', () => {
 
     // Create deployment package.json
     const packageJson = {
-      name: "skye-canyon-build",
-      version: "1.0.0",
-      type: "module",
+      name: 'skye-canyon-build',
+      version: '1.0.0',
+      type: 'module',
       scripts: {
-        start: "node static-server.js",
-        "start:full": "node index.js"
+        start: 'node static-server.js',
+        'start:full': 'node index.js',
       },
       dependencies: {
-        express: "^4.21.2"
-      }
+        express: '^4.21.2',
+      },
     };
-    
+
     fs.writeFileSync('dist/package.json', JSON.stringify(packageJson, null, 2));
 
     // Verify build
     const requiredFiles = [
       'dist/public/index.html',
-      'dist/public/app.js', 
+      'dist/public/app.js',
       'dist/public/styles.css',
       'dist/index.js',
-      'dist/static-server.js'
+      'dist/static-server.js',
     ];
 
-    const missing = requiredFiles.filter(f => !fs.existsSync(f));
+    const missing = requiredFiles.filter((f) => !fs.existsSync(f));
     if (missing.length > 0) {
       throw new Error(`Missing files: ${missing.join(', ')}`);
     }
@@ -176,7 +178,6 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log('│   ├── static-server.js (simple static file server)');
     console.log('│   └── package.json');
     console.log('\n🚀 Deployment ready! No more EISDIR errors.');
-
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);

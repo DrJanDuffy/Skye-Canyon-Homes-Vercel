@@ -1,33 +1,37 @@
-import { useParams } from "wouter";
-import { useQuery } from "@tanstack/react-query";
-import Navigation from "@/components/navigation";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import RealScoutListings from "@/components/realscout-listings";
-import { 
-  Heart, 
-  Share2, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Bed, 
-  Bath, 
-  Square, 
+import { useParams } from 'wouter';
+import { useQuery } from '@tanstack/react-query';
+import Navigation from '@/components/navigation';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import RealScoutListings from '@/components/realscout-listings';
+import {
+  Heart,
+  Share2,
+  Phone,
+  Mail,
+  MapPin,
+  Bed,
+  Bath,
+  Square,
   Calendar,
   Camera,
   Car,
   Trees,
-  Wifi
-} from "lucide-react";
-import Footer from "@/components/footer";
-import type { Property } from "@shared/schema";
+  Wifi,
+} from 'lucide-react';
+import Footer from '@/components/footer';
+import type { Property } from '@shared/schema';
 
 export default function PropertyDetail() {
   const params = useParams();
   const id = params.id;
-  
-  const { data: property, isLoading, error } = useQuery<Property>({
+
+  const {
+    data: property,
+    isLoading,
+    error,
+  } = useQuery<Property>({
     queryKey: ['/api/properties', id],
     enabled: !!id,
   });
@@ -87,11 +91,11 @@ export default function PropertyDetail() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
+
       {/* Hero Image */}
       <div className="relative h-96 lg:h-[500px]">
-        <img 
-          src={property.imageUrl} 
+        <img
+          src={property.imageUrl}
           alt={`Property at ${property.address}`}
           className="w-full h-full object-cover"
         />
@@ -99,19 +103,25 @@ export default function PropertyDetail() {
         <div className="absolute bottom-6 left-6 right-6">
           <div className="flex justify-between items-end">
             <div className="text-white">
-              <h1 className="text-3xl lg:text-4xl font-bold mb-2">
-                {formatPrice(property.price)}
-              </h1>
+              <h1 className="text-3xl lg:text-4xl font-bold mb-2">{formatPrice(property.price)}</h1>
               <p className="text-xl flex items-center">
                 <MapPin className="w-5 h-5 mr-2" />
                 {property.address}
               </p>
             </div>
             <div className="flex space-x-2">
-              <Button variant="outline" size="icon" className="bg-white/20 border-white/30 text-white hover:bg-white/30">
+              <Button
+                variant="outline"
+                size="icon"
+                className="bg-white/20 border-white/30 text-white hover:bg-white/30"
+              >
                 <Heart className="w-5 h-5" />
               </Button>
-              <Button variant="outline" size="icon" className="bg-white/20 border-white/30 text-white hover:bg-white/30">
+              <Button
+                variant="outline"
+                size="icon"
+                className="bg-white/20 border-white/30 text-white hover:bg-white/30"
+              >
                 <Share2 className="w-5 h-5" />
               </Button>
             </div>
@@ -161,7 +171,7 @@ export default function PropertyDetail() {
                     <div className="text-gray-600">Year Built</div>
                   </div>
                 </div>
-                
+
                 <div className="prose max-w-none">
                   <h3 className="text-lg font-semibold mb-3">Description</h3>
                   <p className="text-gray-700 leading-relaxed">{property.description}</p>
@@ -224,25 +234,28 @@ export default function PropertyDetail() {
               </CardHeader>
               <CardContent>
                 <div className="text-center mb-6">
-                  <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200" 
-                    alt="Dr. Jan Duffy" 
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200"
+                    alt="Dr. Jan Duffy"
                     className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
                   />
                   <h3 className="font-semibold text-lg">Dr. Jan Duffy</h3>
                   <p className="text-gray-600">REALTOR® | Skye Canyon Specialist</p>
                 </div>
-                
+
                 <div className="space-y-3">
                   <Button className="w-full bg-realscout-blue text-white hover:bg-realscout-navy">
                     <Phone className="w-4 h-4 mr-2" />
                     Call (702) 555-0123
                   </Button>
-                  <Button variant="outline" className="w-full border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white">
+                  <Button
+                    variant="outline"
+                    className="w-full border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"
+                  >
                     <Mail className="w-4 h-4 mr-2" />
                     Send Email
                   </Button>
-                  <a 
+                  <a
                     href="https://g.co/kgs/nbUf6Pj"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -254,7 +267,7 @@ export default function PropertyDetail() {
                     </Button>
                   </a>
                 </div>
-                
+
                 <div className="mt-6 pt-6 border-t">
                   <p className="text-sm text-gray-600 text-center">
                     Available 7 days a week for showings and consultations
@@ -296,7 +309,7 @@ export default function PropertyDetail() {
           </div>
         </div>
       </div>
-      
+
       {/* Related Listings */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -304,14 +317,12 @@ export default function PropertyDetail() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Similar Skye Canyon Properties
             </h2>
-            <p className="text-xl text-gray-600">
-              Other listings you might be interested in
-            </p>
+            <p className="text-xl text-gray-600">Other listings you might be interested in</p>
           </div>
           <RealScoutListings className="w-full" variant="mid-range" />
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );

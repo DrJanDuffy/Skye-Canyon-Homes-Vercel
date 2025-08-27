@@ -11,11 +11,11 @@ function log(message) {
 
 function executeCommand(command, options = {}) {
   try {
-    return execSync(command, { 
-      stdio: 'inherit', 
+    return execSync(command, {
+      stdio: 'inherit',
       encoding: 'utf8',
       timeout: 300000,
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`❌ Command failed: ${command}`);
@@ -26,12 +26,12 @@ function executeCommand(command, options = {}) {
 async function testServer(port = 3000, timeout = 10000) {
   return new Promise((resolve) => {
     const startTime = Date.now();
-    
+
     const checkServer = () => {
       const req = http.get(`http://localhost:${port}`, (res) => {
         resolve(true);
       });
-      
+
       req.on('error', () => {
         if (Date.now() - startTime < timeout) {
           setTimeout(checkServer, 1000);
@@ -39,7 +39,7 @@ async function testServer(port = 3000, timeout = 10000) {
           resolve(false);
         }
       });
-      
+
       req.setTimeout(2000, () => {
         req.destroy();
         if (Date.now() - startTime < timeout) {
@@ -49,7 +49,7 @@ async function testServer(port = 3000, timeout = 10000) {
         }
       });
     };
-    
+
     checkServer();
   });
 }
@@ -68,7 +68,7 @@ async function main() {
       'dist/index.js',
       'dist/public/index.html',
       'dist/public/assets/main.js',
-      'dist/public/assets/main.css'
+      'dist/public/assets/main.css',
     ];
 
     for (const file of requiredFiles) {
@@ -80,11 +80,11 @@ async function main() {
     // Step 3: Test production server
     log('Testing production server...');
     const serverProcess = executeCommand('NODE_ENV=production node dist/index.js &', {
-      stdio: 'pipe'
+      stdio: 'pipe',
     });
 
     // Wait for server to start
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // Test server response
     const serverRunning = await testServer(5000);
@@ -99,7 +99,7 @@ async function main() {
     const assetTests = [
       'http://localhost:5000/',
       'http://localhost:5000/assets/main.js',
-      'http://localhost:5000/assets/main.css'
+      'http://localhost:5000/assets/main.css',
     ];
 
     for (const url of assetTests) {
@@ -122,25 +122,24 @@ async function main() {
       assets: {
         js_size: fs.statSync('dist/public/assets/main.js').size,
         css_size: fs.statSync('dist/public/assets/main.css').size,
-        total_files: fs.readdirSync('dist/public').length
+        total_files: fs.readdirSync('dist/public').length,
       },
       server: {
         bundle_size: fs.statSync('dist/index.js').size,
-        start_script: 'dist/start.js'
-      }
+        start_script: 'dist/start.js',
+      },
     };
 
     fs.writeFileSync('dist/deployment-info.json', JSON.stringify(deploymentInfo, null, 2));
 
     log('✅ Deployment completed successfully!');
-    log(`📊 JavaScript bundle: ${Math.round(deploymentInfo.assets.js_size/1024)}KB`);
-    log(`📊 CSS bundle: ${Math.round(deploymentInfo.assets.css_size/1024)}KB`);
-    log(`📊 Server bundle: ${Math.round(deploymentInfo.server.bundle_size/1024)}KB`);
+    log(`📊 JavaScript bundle: ${Math.round(deploymentInfo.assets.js_size / 1024)}KB`);
+    log(`📊 CSS bundle: ${Math.round(deploymentInfo.assets.css_size / 1024)}KB`);
+    log(`📊 Server bundle: ${Math.round(deploymentInfo.server.bundle_size / 1024)}KB`);
     log(`📊 Total files: ${deploymentInfo.assets.total_files}`);
 
     // Stop test server
     executeCommand('pkill -f "node dist/index.js" 2>/dev/null || true');
-
   } catch (error) {
     console.error('❌ Deployment failed:', error.message);
     executeCommand('pkill -f "node dist/index.js" 2>/dev/null || true');

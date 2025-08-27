@@ -1,5 +1,5 @@
 // Essential icons only to prevent build timeouts
-import { 
+import {
   MapPin as LucideMapPin,
   Home as LucideHome,
   Search as LucideSearch,
@@ -7,8 +7,8 @@ import {
   Star as LucideStar,
   Heart as LucideHeart,
   Phone as LucidePhone,
-  Mail as LucideMail
-} from "lucide-react";
+  Mail as LucideMail,
+} from 'lucide-react';
 
 export const MapPin = LucideMapPin;
 export const Home = LucideHome;

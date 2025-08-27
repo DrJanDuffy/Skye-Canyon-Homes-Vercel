@@ -77,7 +77,7 @@ export class SEOOptimizer {
       score: Math.max(score, 0),
       issues,
       recommendations,
-      metrics: pageMetrics
+      metrics: pageMetrics,
     };
 
     this.auditResults.set(url, result);
@@ -89,61 +89,70 @@ export class SEOOptimizer {
     const pageData: Record<string, Partial<SEOMetrics>> = {
       '/': {
         pageTitle: 'Skye Canyon Homes for Sale | Las Vegas NV Real Estate',
-        metaDescription: 'Exclusive Skye Canyon real estate specialist in Las Vegas, NV. Find luxury homes with Dr. Jan Duffy, your trusted REALTOR® with 15+ years experience.',
+        metaDescription:
+          'Exclusive Skye Canyon real estate specialist in Las Vegas, NV. Find luxury homes with Dr. Jan Duffy, your trusted REALTOR® with 15+ years experience.',
         canonicalUrl: 'https://skyecanyonhomesforsale.com/',
         loadTime: 1200,
         mobileOptimized: true,
-        structuredData: ['LocalBusiness', 'RealEstateAgent', 'Organization']
+        structuredData: ['LocalBusiness', 'RealEstateAgent', 'Organization'],
       },
       '/about': {
         pageTitle: 'About Dr. Jan Duffy | Skye Canyon Real Estate Expert',
-        metaDescription: 'Meet Dr. Jan Duffy, your dedicated Skye Canyon REALTOR®. 15+ years experience in Las Vegas luxury real estate, specializing in guard-gated communities.',
+        metaDescription:
+          'Meet Dr. Jan Duffy, your dedicated Skye Canyon REALTOR®. 15+ years experience in Las Vegas luxury real estate, specializing in guard-gated communities.',
         loadTime: 800,
         mobileOptimized: true,
-        structuredData: ['Person', 'RealEstateAgent']
+        structuredData: ['Person', 'RealEstateAgent'],
       },
       '/properties': {
         pageTitle: 'Skye Canyon Properties for Sale | Las Vegas Luxury Homes',
-        metaDescription: 'Browse exclusive Skye Canyon properties. Luxury homes, guard-gated security, golf course living. Contact Dr. Jan Duffy for private showings.',
+        metaDescription:
+          'Browse exclusive Skye Canyon properties. Luxury homes, guard-gated security, golf course living. Contact Dr. Jan Duffy for private showings.',
         loadTime: 1500,
         mobileOptimized: true,
-        structuredData: ['ItemList', 'RealEstateListing']
+        structuredData: ['ItemList', 'RealEstateListing'],
       },
       '/contact': {
         pageTitle: 'Contact Dr. Jan Duffy | Skye Canyon Real Estate',
-        metaDescription: 'Ready to buy or sell in Skye Canyon? Contact Dr. Jan Duffy at (702) 500-1902. Free consultation, market analysis, and personalized service.',
+        metaDescription:
+          'Ready to buy or sell in Skye Canyon? Contact Dr. Jan Duffy at (702) 500-1902. Free consultation, market analysis, and personalized service.',
         loadTime: 600,
         mobileOptimized: true,
-        structuredData: ['ContactPage', 'RealEstateAgent']
-      }
+        structuredData: ['ContactPage', 'RealEstateAgent'],
+      },
     };
 
-    return pageData[url] || {
-      loadTime: 2000,
-      mobileOptimized: true,
-      structuredData: []
-    };
+    return (
+      pageData[url] || {
+        loadTime: 2000,
+        mobileOptimized: true,
+        structuredData: [],
+      }
+    );
   }
 
   getAuditSummary(): { averageScore: number; totalIssues: number; topIssues: string[] } {
     const results = Array.from(this.auditResults.values());
-    
+
     if (results.length === 0) {
       return { averageScore: 0, totalIssues: 0, topIssues: [] };
     }
 
     const averageScore = results.reduce((sum, r) => sum + r.score, 0) / results.length;
-    const allIssues = results.flatMap(r => r.issues);
+    const allIssues = results.flatMap((r) => r.issues);
     const totalIssues = allIssues.length;
 
     // Count issue frequency
-    const issueCount = allIssues.reduce((acc, issue) => {
-      acc[issue] = (acc[issue] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
+    const issueCount = allIssues.reduce(
+      (acc, issue) => {
+        acc[issue] = (acc[issue] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
 
     const topIssues = Object.entries(issueCount)
-      .sort(([,a], [,b]) => b - a)
+      .sort(([, a], [, b]) => b - a)
       .slice(0, 5)
       .map(([issue]) => issue);
 
@@ -163,19 +172,21 @@ export class SEOOptimizer {
       summary,
       audits,
       recommendations: {
-        critical: audits.filter(a => a.score < 50).map(a => ({
-          url: a.url,
-          score: a.score,
-          topIssue: a.issues[0]
-        })),
+        critical: audits
+          .filter((a) => a.score < 50)
+          .map((a) => ({
+            url: a.url,
+            score: a.score,
+            topIssue: a.issues[0],
+          })),
         improvements: [
           'Optimize all page titles for target keywords',
           'Implement comprehensive schema markup',
           'Improve page load speeds under 2 seconds',
           'Enhance mobile responsiveness',
-          'Add location-specific landing pages'
-        ]
-      }
+          'Add location-specific landing pages',
+        ],
+      },
     };
   }
 }

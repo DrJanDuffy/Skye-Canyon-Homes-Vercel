@@ -11,7 +11,7 @@ const readline = require('readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
 // Configuration object to store customization data
@@ -25,7 +25,7 @@ const TEMPLATE_FILES = [
   'client/src/components/neighborhood-guide.tsx',
   'client/src/components/market-stats.tsx',
   'client/index.html',
-  'package.json'
+  'package.json',
 ];
 
 // Replacement patterns
@@ -33,10 +33,10 @@ const REPLACEMENTS = {
   'Skye Canyon': (newArea) => newArea,
   'Dr. Jan Duffy': (newAgent) => newAgent,
   'Las Vegas': (newCity) => newCity,
-  'Nevada': (newState) => newState,
-  'QWdlbnQtMjI1MDUw': (newAgentId) => newAgentId,
+  Nevada: (newState) => newState,
+  QWdlbnQtMjI1MDUw: (newAgentId) => newAgentId,
   'skyecanyonhomesforsale.com': (newDomain) => newDomain,
-  'Skye-Canyon-Homes': (newRepo) => newRepo
+  'Skye-Canyon-Homes': (newRepo) => newRepo,
 };
 
 function askQuestion(question) {
@@ -49,7 +49,7 @@ function askQuestion(question) {
 
 async function gatherConfiguration() {
   console.log('🏠 Real Estate Website Template Customizer\n');
-  
+
   config.agentName = await askQuestion('Agent Name (e.g., John Smith): ');
   config.areaName = await askQuestion('Target Area/Neighborhood (e.g., Henderson): ');
   config.cityName = await askQuestion('City (e.g., Las Vegas): ');
@@ -57,13 +57,13 @@ async function gatherConfiguration() {
   config.realscoutId = await askQuestion('RealScout Agent Encoded ID: ');
   config.customDomain = await askQuestion('Custom Domain (optional): ');
   config.repoName = await askQuestion('GitHub Repository Name: ');
-  
+
   // Price ranges
   console.log('\n💰 Configure Price Ranges for Your Market:');
   config.priceHomepage = await askQuestion('Homepage Min Price (e.g., $450K): ');
   config.priceLuxury = await askQuestion('Luxury Min Price (e.g., $700K): ');
   config.priceStarter = await askQuestion('Starter Home Range (e.g., $400K-$550K): ');
-  
+
   console.log('\n📧 Contact Information:');
   config.agentEmail = await askQuestion('Agent Email: ');
   config.agentPhone = await askQuestion('Agent Phone: ');
@@ -75,10 +75,10 @@ function customizeFile(filePath, replacements) {
     console.log(`⚠️  File not found: ${filePath}`);
     return;
   }
-  
+
   let content = fs.readFileSync(filePath, 'utf8');
   let modified = false;
-  
+
   Object.entries(replacements).forEach(([search, replace]) => {
     const regex = new RegExp(search, 'g');
     if (content.includes(search)) {
@@ -86,7 +86,7 @@ function customizeFile(filePath, replacements) {
       modified = true;
     }
   });
-  
+
   if (modified) {
     fs.writeFileSync(filePath, content, 'utf8');
     console.log(`✅ Updated: ${filePath}`);
@@ -101,7 +101,7 @@ VITE_AGENT_EMAIL=${config.agentEmail}
 VITE_AGENT_PHONE=${config.agentPhone}
 VITE_CUSTOM_DOMAIN=${config.customDomain || ''}
 `;
-  
+
   fs.writeFileSync('.env.template', envContent);
   console.log('✅ Created .env.template file');
 }
@@ -112,7 +112,7 @@ function updatePackageJson() {
     const packageData = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
     packageData.name = config.repoName.toLowerCase().replace(/\s+/g, '-');
     packageData.description = `Real estate website for ${config.areaName}, ${config.cityName}`;
-    
+
     fs.writeFileSync(packagePath, JSON.stringify(packageData, null, 2));
     console.log('✅ Updated package.json');
   }
@@ -148,9 +148,9 @@ function createCustomizationSummary() {
 6. Set up custom domain
 
 ## Files Modified
-${TEMPLATE_FILES.map(file => `- ${file}`).join('\n')}
+${TEMPLATE_FILES.map((file) => `- ${file}`).join('\n')}
 `;
-  
+
   fs.writeFileSync('CUSTOMIZATION-SUMMARY.md', summary);
   console.log('✅ Created customization summary');
 }
@@ -158,37 +158,36 @@ ${TEMPLATE_FILES.map(file => `- ${file}`).join('\n')}
 async function runCustomization() {
   try {
     await gatherConfiguration();
-    
+
     console.log('\n🔄 Customizing template files...\n');
-    
+
     // Define all replacements
     const replacements = {
       'Skye Canyon': config.areaName,
       'Dr. Jan Duffy': config.agentName,
       'Las Vegas': config.cityName,
-      'Nevada': config.stateName,
-      'QWdlbnQtMjI1MDUw': config.realscoutId,
+      Nevada: config.stateName,
+      QWdlbnQtMjI1MDUw: config.realscoutId,
       'skyecanyonhomesforsale.com': config.customDomain || 'your-domain.com',
       'Sky-Canyon-Homes': config.repoName,
       '$550K+': config.priceHomepage + '+',
       '$800K+': config.priceLuxury + '+',
-      '$500K-$650K': config.priceStarter
+      '$500K-$650K': config.priceStarter,
     };
-    
+
     // Customize each template file
-    TEMPLATE_FILES.forEach(file => {
+    TEMPLATE_FILES.forEach((file) => {
       customizeFile(file, replacements);
     });
-    
+
     // Create additional files
     createEnvironmentFile();
     updatePackageJson();
     createCustomizationSummary();
-    
+
     console.log('\n🎉 Template customization complete!\n');
     console.log('📋 Review CUSTOMIZATION-SUMMARY.md for details');
     console.log('🚀 Ready to deploy your customized real estate website');
-    
   } catch (error) {
     console.error('❌ Error during customization:', error.message);
   } finally {

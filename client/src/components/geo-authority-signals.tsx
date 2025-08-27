@@ -33,7 +33,7 @@ export default function GEOAuthoritySignals() {
       <span itemprop="areaServed">Skye Canyon, Las Vegas, Nevada</span>
       <span itemprop="hasOccupation">Real Estate Agent</span>
     `;
-    
+
     document.body.appendChild(authorityDiv);
 
     // Add semantic HTML5 microdata throughout the page
@@ -41,12 +41,12 @@ export default function GEOAuthoritySignals() {
       { selector: '.agent-bio', property: 'expert-content' },
       { selector: '.market-stats', property: 'market-expertise' },
       { selector: '.property-listings', property: 'property-knowledge' },
-      { selector: '.voice-assistant', property: 'ai-interaction' }
+      { selector: '.voice-assistant', property: 'ai-interaction' },
     ];
 
-    expertiseMarkers.forEach(marker => {
+    expertiseMarkers.forEach((marker) => {
       const elements = document.querySelectorAll(marker.selector);
-      elements.forEach(el => {
+      elements.forEach((el) => {
         el.setAttribute('data-expertise', marker.property);
         el.setAttribute('data-authority', 'dr-jan-duffy');
       });

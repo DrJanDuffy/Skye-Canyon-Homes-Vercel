@@ -18,7 +18,7 @@ function checkBuildArtifacts() {
     'dist/server.js',
     'dist/public/index.html',
     'dist/public/assets/main.js',
-    'dist/public/assets/main.css'
+    'dist/public/assets/main.css',
   ];
 
   for (const file of requiredFiles) {
@@ -28,20 +28,20 @@ function checkBuildArtifacts() {
       process.exit(1);
     }
   }
-  
+
   log('✅ All build artifacts verified');
 }
 
 function startProductionServer() {
   log('Starting production server from dist/server.js...');
-  
+
   const serverProcess = spawn('node', ['server.js'], {
     cwd: 'dist',
     stdio: 'inherit',
     env: {
       ...process.env,
-      NODE_ENV: 'production'
-    }
+      NODE_ENV: 'production',
+    },
   });
 
   serverProcess.on('error', (error) => {
@@ -68,10 +68,10 @@ function startProductionServer() {
 
 function main() {
   log('Replit production deployment starting...');
-  
+
   // Verify build artifacts exist
   checkBuildArtifacts();
-  
+
   // Start the production server
   startProductionServer();
 }

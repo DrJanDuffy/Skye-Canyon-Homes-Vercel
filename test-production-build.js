@@ -11,9 +11,9 @@ async function testProductionServer() {
   // Check if build artifacts exist
   const requiredFiles = [
     'dist/public/index.html',
-    'dist/public/main.js', 
+    'dist/public/main.js',
     'dist/public/index.css',
-    'dist/index.js'
+    'dist/index.js',
   ];
 
   log('Checking build artifacts...');
@@ -28,11 +28,11 @@ async function testProductionServer() {
   log('Starting production server on port 3001...');
   const serverProcess = spawn('node', ['production-server-static.js'], {
     stdio: 'pipe',
-    env: { ...process.env, PORT: '3001', NODE_ENV: 'production' }
+    env: { ...process.env, PORT: '3001', NODE_ENV: 'production' },
   });
 
   let serverStarted = false;
-  
+
   serverProcess.stdout.on('data', (data) => {
     const output = data.toString();
     console.log(output.trim());
@@ -46,7 +46,7 @@ async function testProductionServer() {
   });
 
   // Wait for server to start
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   if (serverStarted) {
     log('Production server started successfully on port 3001');
@@ -55,38 +55,38 @@ async function testProductionServer() {
   // Test health endpoint
   try {
     const http = await import('http');
-    const testHealth = () => new Promise((resolve) => {
-      const req = http.default.get('http://localhost:3001/health', (res) => {
-        let data = '';
-        res.on('data', chunk => data += chunk);
-        res.on('end', () => {
-          if (res.statusCode === 200) {
-            log('Health check passed');
-            resolve(true);
-          } else {
-            resolve(false);
-          }
+    const testHealth = () =>
+      new Promise((resolve) => {
+        const req = http.default.get('http://localhost:3001/health', (res) => {
+          let data = '';
+          res.on('data', (chunk) => (data += chunk));
+          res.on('end', () => {
+            if (res.statusCode === 200) {
+              log('Health check passed');
+              resolve(true);
+            } else {
+              resolve(false);
+            }
+          });
+        });
+        req.on('error', () => resolve(false));
+        req.setTimeout(5000, () => {
+          req.destroy();
+          resolve(false);
         });
       });
-      req.on('error', () => resolve(false));
-      req.setTimeout(5000, () => {
-        req.destroy();
-        resolve(false);
-      });
-    });
-    
+
     const healthOk = await testHealth();
     if (healthOk) {
       log('Production build verification successful!');
     }
-    
   } catch (error) {
     console.error('Health check failed:', error.message);
   }
 
   // Clean up
   serverProcess.kill();
-  
+
   log('Test completed - production build is working correctly');
   log('');
   log('To deploy this build:');

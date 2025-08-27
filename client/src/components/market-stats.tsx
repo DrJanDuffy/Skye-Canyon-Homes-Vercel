@@ -1,9 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { TrendingUp, TrendingDown, Minus } from "lucide-react";
-import type { MarketStats } from "@shared/schema";
+import { useQuery } from '@tanstack/react-query';
+import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import type { MarketStats } from '@shared/schema';
 
 export default function MarketStats() {
-  const { data: stats, isLoading, error } = useQuery<MarketStats>({
+  const {
+    data: stats,
+    isLoading,
+    error,
+  } = useQuery<MarketStats>({
     queryKey: ['/api/market-stats'],
   });
 
@@ -38,7 +42,9 @@ export default function MarketStats() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Skye Canyon Market Insights
             </h2>
-            <p className="text-red-600">Failed to load market statistics. Please try again later.</p>
+            <p className="text-red-600">
+              Failed to load market statistics. Please try again later.
+            </p>
           </div>
         </div>
       </section>
@@ -56,7 +62,7 @@ export default function MarketStats() {
             Stay informed with the latest market trends and statistics
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="text-center bg-blue-50 rounded-xl p-6">
             <div className="text-3xl font-bold text-realscout-blue mb-2">{stats.medianPrice}</div>
@@ -66,7 +72,7 @@ export default function MarketStats() {
               +5.2% vs last year
             </div>
           </div>
-          
+
           <div className="text-center bg-green-50 rounded-xl p-6">
             <div className="text-3xl font-bold text-realscout-blue mb-2">{stats.daysOnMarket}</div>
             <div className="text-gray-600 text-sm mb-1">Avg Days on Market</div>
@@ -75,7 +81,7 @@ export default function MarketStats() {
               -12% vs last year
             </div>
           </div>
-          
+
           <div className="text-center bg-purple-50 rounded-xl p-6">
             <div className="text-3xl font-bold text-realscout-blue mb-2">{stats.homesSold}</div>
             <div className="text-gray-600 text-sm mb-1">Homes Sold YTD</div>
@@ -84,9 +90,11 @@ export default function MarketStats() {
               +8.3% vs last year
             </div>
           </div>
-          
+
           <div className="text-center bg-orange-50 rounded-xl p-6">
-            <div className="text-3xl font-bold text-realscout-blue mb-2">{stats.activeListings}</div>
+            <div className="text-3xl font-bold text-realscout-blue mb-2">
+              {stats.activeListings}
+            </div>
             <div className="text-gray-600 text-sm mb-1">Active Listings</div>
             <div className="text-orange-600 text-xs flex items-center justify-center">
               <Minus className="w-3 h-3 mr-1" />

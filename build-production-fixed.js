@@ -38,7 +38,9 @@ async function main() {
 
     // Build CSS with Tailwind
     log('Building CSS assets...');
-    executeCommand('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify');
+    executeCommand(
+      'npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify'
+    );
 
     // Build React application with esbuild (avoids Vite EISDIR issues)
     log('Building React application with esbuild...');
@@ -66,25 +68,27 @@ async function main() {
       '--define:import.meta.env.DEV=false',
       '--define:import.meta.env.MODE=\\"production\\"',
       '--alias:@=client/src',
-      '--alias:@shared=shared'
+      '--alias:@shared=shared',
     ].join(' ');
-    
+
     executeCommand(buildCommand);
 
     // Process and copy HTML template
     log('Processing HTML template...');
     let htmlContent = fs.readFileSync(tempIndexPath, 'utf-8');
-    
+
     // Update asset references for production
     htmlContent = htmlContent
       .replace(/src="\/src\/main\.tsx"/g, 'src="/assets/main.js" type="module"')
       .replace(/<\/head>/g, '    <link rel="stylesheet" href="/assets/main.css">\n  </head>');
-    
+
     fs.writeFileSync('dist/public/index.html', htmlContent);
 
     // Build server
     log('Building server...');
-    executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist');
+    executeCommand(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist'
+    );
 
     // Copy public assets
     log('Copying public assets...');
@@ -112,7 +116,7 @@ server.on('error', (err) => {
   process.exit(1);
 });
 `;
-    
+
     fs.writeFileSync('start-production.js', serverLauncher);
     fs.chmodSync('start-production.js', '755');
 
@@ -124,7 +128,6 @@ server.on('error', (err) => {
 
     log('Production build completed successfully!');
     log('Run "node start-production.js" to start the production server');
-
   } catch (error) {
     console.error('Build failed:', error.message);
     process.exit(1);

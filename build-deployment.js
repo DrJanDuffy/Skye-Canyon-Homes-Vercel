@@ -14,11 +14,11 @@ function log(message) {
 function executeCommand(command, options = {}) {
   try {
     log(`Executing: ${command}`);
-    const result = execSync(command, { 
-      stdio: 'inherit', 
+    const result = execSync(command, {
+      stdio: 'inherit',
       encoding: 'utf8',
       timeout: 300000,
-      ...options 
+      ...options,
     });
     return result;
   } catch (error) {
@@ -46,12 +46,12 @@ async function main() {
     if (!fs.existsSync(indexPath)) {
       throw new Error('client/index.html does not exist');
     }
-    
+
     const indexStat = fs.statSync(indexPath);
     if (indexStat.isDirectory()) {
       throw new Error('client/index.html is a directory, not a file');
     }
-    
+
     // Test readability
     try {
       fs.readFileSync(indexPath, 'utf-8');
@@ -68,10 +68,10 @@ async function main() {
 
     // Step 4: Build client using a different approach
     log('Building client assets...');
-    
+
     // Build TypeScript/React files first
     executeCommand('npx vite build --mode production', {
-      cwd: path.join(__dirname, 'client')
+      cwd: path.join(__dirname, 'client'),
     });
 
     // Clean up temporary file
@@ -93,7 +93,9 @@ async function main() {
 
     // Step 6: Build server
     log('Building server...');
-    executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist');
+    executeCommand(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist'
+    );
 
     // Step 7: Copy additional assets if they exist
     log('Copying additional assets...');
@@ -117,10 +119,7 @@ async function main() {
 
     // Step 7: Verify final build
     log('Verifying final build structure...');
-    const requiredFiles = [
-      'dist/index.js',
-      'dist/public/index.html'
-    ];
+    const requiredFiles = ['dist/index.js', 'dist/public/index.html'];
 
     for (const file of requiredFiles) {
       if (!fs.existsSync(file)) {
@@ -131,7 +130,6 @@ async function main() {
     log('✅ Build completed successfully!');
     log(`📁 Build output: ${path.resolve('dist')}`);
     log(`🌐 Static files: ${path.resolve('dist/public')}`);
-    
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);

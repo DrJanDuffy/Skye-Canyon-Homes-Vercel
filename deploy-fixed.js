@@ -14,11 +14,11 @@ function log(message) {
 function executeCommand(command, options = {}) {
   try {
     log(`Executing: ${command}`);
-    return execSync(command, { 
-      stdio: 'inherit', 
+    return execSync(command, {
+      stdio: 'inherit',
       encoding: 'utf8',
       timeout: 300000,
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`❌ Command failed: ${command}`);
@@ -40,16 +40,16 @@ async function main() {
     // Step 2: Verify file permissions and readability
     log('Verifying client/index.html integrity...');
     const indexPath = path.join(__dirname, 'client', 'index.html');
-    
+
     if (!fs.existsSync(indexPath)) {
       throw new Error('client/index.html does not exist');
     }
-    
+
     const indexStat = fs.statSync(indexPath);
     if (indexStat.isDirectory()) {
       throw new Error('client/index.html is incorrectly identified as directory');
     }
-    
+
     // Create fresh copy to avoid EISDIR error
     const originalContent = fs.readFileSync(indexPath, 'utf-8');
     const freshIndexPath = path.join(__dirname, 'build-index.html');
@@ -58,16 +58,20 @@ async function main() {
 
     // Step 3: Build React application using esbuild (bypassing Vite EISDIR issue)
     log('Building React application...');
-    executeCommand(`npx esbuild client/src/main.tsx --bundle --outfile=dist/public/assets/main.js --format=esm --target=es2020 --jsx=automatic --jsx-import-source=react --loader:.tsx=tsx --loader:.ts=tsx --loader:.css=css --external:react --external:react-dom --minify`);
+    executeCommand(
+      `npx esbuild client/src/main.tsx --bundle --outfile=dist/public/assets/main.js --format=esm --target=es2020 --jsx=automatic --jsx-import-source=react --loader:.tsx=tsx --loader:.ts=tsx --loader:.css=css --external:react --external:react-dom --minify`
+    );
 
     // Step 4: Build CSS with Tailwind
     log('Building CSS assets...');
-    executeCommand('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify');
+    executeCommand(
+      'npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify'
+    );
 
     // Step 5: Process HTML template
     log('Processing HTML template...');
     let htmlContent = fs.readFileSync(freshIndexPath, 'utf-8');
-    
+
     // Replace development scripts with production assets
     htmlContent = htmlContent.replace(
       '<script type="module" src="/src/main.tsx"></script>',
@@ -87,7 +91,9 @@ async function main() {
 
     // Step 6: Build server
     log('Building server...');
-    executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist --minify');
+    executeCommand(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist --minify'
+    );
 
     // Step 7: Copy public assets
     if (fs.existsSync('public')) {
@@ -137,9 +143,9 @@ import('./index.js').then(module => {
         server: 'dist/index.js',
         client: 'dist/public/index.html',
         assets: 'dist/public/assets/',
-        start: 'dist/start.js'
+        start: 'dist/start.js',
       },
-      deploymentCommand: 'cd dist && node start.js'
+      deploymentCommand: 'cd dist && node start.js',
     };
     fs.writeFileSync('dist/deployment-info.json', JSON.stringify(deploymentInfo, null, 2));
 
@@ -155,7 +161,7 @@ import('./index.js').then(module => {
       'dist/public/index.html',
       'dist/public/assets/main.js',
       'dist/public/assets/main.css',
-      'dist/start.js'
+      'dist/start.js',
     ];
 
     for (const file of requiredFiles) {
@@ -168,9 +174,9 @@ import('./index.js').then(module => {
     // Step 12: Test production build
     log('Testing production build...');
     try {
-      const testOutput = execSync('cd dist && timeout 5s node index.js || true', { 
+      const testOutput = execSync('cd dist && timeout 5s node index.js || true', {
         encoding: 'utf8',
-        timeout: 10000 
+        timeout: 10000,
       });
       log('✅ Production build test completed');
     } catch (error) {
@@ -181,7 +187,6 @@ import('./index.js').then(module => {
     log('📁 Build output: dist/');
     log('🚀 Start command: cd dist && node start.js');
     log('📋 Build info: dist/deployment-info.json');
-    
   } catch (error) {
     console.error('❌ Deployment build failed:', error.message);
     process.exit(1);

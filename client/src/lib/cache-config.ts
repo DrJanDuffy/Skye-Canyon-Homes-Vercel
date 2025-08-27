@@ -5,7 +5,7 @@ export const cacheConfig = {
     cacheDuration: 31536000, // 1 year in seconds
     maxSize: 50 * 1024 * 1024, // 50MB
   },
-  
+
   // API response caching
   apiCache: {
     marketStats: 5 * 60 * 1000, // 5 minutes
@@ -13,7 +13,7 @@ export const cacheConfig = {
     marketInsights: 10 * 60 * 1000, // 10 minutes
     userSession: 30 * 60 * 1000, // 30 minutes
   },
-  
+
   // Image optimization
   imageOptimization: {
     quality: 85,
@@ -21,18 +21,13 @@ export const cacheConfig = {
     sizes: [320, 640, 960, 1280, 1920],
     lazyLoadThreshold: 100, // pixels
   },
-  
+
   // Service Worker config
   serviceWorker: {
     updateInterval: 24 * 60 * 60 * 1000, // 24 hours
     cacheStrategy: 'CacheFirst',
-    precacheAssets: [
-      '/',
-      '/properties',
-      '/about',
-      '/market-analysis'
-    ]
-  }
+    precacheAssets: ['/', '/properties', '/about', '/market-analysis'],
+  },
 };
 
 // Memory optimization utilities
@@ -46,7 +41,7 @@ export const memoryOptimization = {
       }
     }
   },
-  
+
   // Debounced scroll handler
   debounceScroll: (callback: () => void, delay = 16) => {
     let timeoutId: NodeJS.Timeout;
@@ -55,9 +50,9 @@ export const memoryOptimization = {
       timeoutId = setTimeout(callback, delay);
     };
   },
-  
+
   // Component cleanup
   componentCleanup: (cleanup: (() => void)[]) => {
-    cleanup.forEach(fn => fn());
-  }
+    cleanup.forEach((fn) => fn());
+  },
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, AlertCircle, Clock, ExternalLink } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { CheckCircle, AlertCircle, Clock, ExternalLink } from 'lucide-react';
 
 interface IndexingStatus {
   url: string;
@@ -20,7 +20,7 @@ export default function GoogleSearchConsoleIntegration() {
     if (savedStatus) {
       setIndexingStatus(JSON.parse(savedStatus));
     }
-    
+
     const lastSubmission = localStorage.getItem('lastSitemapSubmission');
     if (lastSubmission) {
       setLastSitemapSubmission(lastSubmission);
@@ -36,30 +36,30 @@ export default function GoogleSearchConsoleIntegration() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          sitemapUrl: 'https://skyecanyonhomesforsale.com/sitemap.xml'
-        })
+          sitemapUrl: 'https://skyecanyonhomesforsale.com/sitemap.xml',
+        }),
       });
-      
+
       if (response.ok) {
         const timestamp = new Date().toISOString();
         setLastSitemapSubmission(timestamp);
         localStorage.setItem('lastSitemapSubmission', timestamp);
-        
+
         // Update indexing status for key pages
         const keyPages = [
           'https://skyecanyonhomesforsale.com/',
           'https://skyecanyonhomesforsale.com/properties',
           'https://skyecanyonhomesforsale.com/luxury-homes-las-vegas',
           'https://skyecanyonhomesforsale.com/skye-canyon-guide',
-          'https://skyecanyonhomesforsale.com/market-analysis'
+          'https://skyecanyonhomesforsale.com/market-analysis',
         ];
-        
-        const updatedStatus = keyPages.map(url => ({
+
+        const updatedStatus = keyPages.map((url) => ({
           url,
           status: 'pending' as const,
-          lastChecked: timestamp
+          lastChecked: timestamp,
         }));
-        
+
         setIndexingStatus(updatedStatus);
         localStorage.setItem('indexingStatus', JSON.stringify(updatedStatus));
       }
@@ -78,17 +78,17 @@ export default function GoogleSearchConsoleIntegration() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          urls: indexingStatus.map(item => item.url)
-        })
+          urls: indexingStatus.map((item) => item.url),
+        }),
       });
-      
+
       if (response.ok) {
         const results = await response.json();
-        const updatedStatus = indexingStatus.map(item => {
+        const updatedStatus = indexingStatus.map((item) => {
           const result = results.find((r: any) => r.url === item.url);
           return result ? { ...item, ...result } : item;
         });
-        
+
         setIndexingStatus(updatedStatus);
         localStorage.setItem('indexingStatus', JSON.stringify(updatedStatus));
       }
@@ -121,7 +121,7 @@ export default function GoogleSearchConsoleIntegration() {
           Monitor and manage your website's indexing status with Google Search Console
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent className="space-y-6">
         {/* Sitemap Submission */}
         <div className="space-y-4">
@@ -137,8 +137,8 @@ export default function GoogleSearchConsoleIntegration() {
                 </p>
               )}
             </div>
-            <Button 
-              onClick={submitSitemap} 
+            <Button
+              onClick={submitSitemap}
               disabled={isSubmitting}
               className="bg-realscout-blue hover:bg-realscout-navy"
             >
@@ -152,23 +152,22 @@ export default function GoogleSearchConsoleIntegration() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold">Page Indexing Status</h3>
-              <Button 
-                variant="outline" 
-                onClick={checkIndexingStatus}
-                size="sm"
-              >
+              <Button variant="outline" onClick={checkIndexingStatus} size="sm">
                 Refresh Status
               </Button>
             </div>
-            
+
             <div className="space-y-2">
               {indexingStatus.map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-3 border rounded-lg"
+                >
                   <div className="flex items-center gap-3">
                     {getStatusIcon(item.status)}
                     <div>
                       <p className="font-medium text-sm">
-                        {item.url.replace('https://skyecanyonhomesforsale.com', '')} 
+                        {item.url.replace('https://skyecanyonhomesforsale.com', '')}
                         {item.url === 'https://skyecanyonhomesforsale.com/' ? 'Homepage' : ''}
                       </p>
                       <p className="text-xs text-gray-500">
@@ -176,11 +175,15 @@ export default function GoogleSearchConsoleIntegration() {
                       </p>
                     </div>
                   </div>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    item.status === 'indexed' ? 'bg-green-100 text-green-800' :
-                    item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-red-100 text-red-800'
-                  }`}>
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      item.status === 'indexed'
+                        ? 'bg-green-100 text-green-800'
+                        : item.status === 'pending'
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
+                    }`}
+                  >
                     {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                   </span>
                 </div>

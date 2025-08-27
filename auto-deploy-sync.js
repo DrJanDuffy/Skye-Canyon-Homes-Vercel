@@ -14,10 +14,10 @@ function log(message) {
 
 function executeCommand(command, options = {}) {
   try {
-    const result = execSync(command, { 
-      encoding: 'utf8', 
+    const result = execSync(command, {
+      encoding: 'utf8',
       stdio: 'inherit',
-      ...options 
+      ...options,
     });
     return result;
   } catch (error) {
@@ -33,7 +33,7 @@ function initializeGitIfNeeded() {
     executeCommand('git init');
     executeCommand('git branch -M main');
   }
-  
+
   // Check if remote exists
   try {
     executeCommand('git remote get-url origin', { stdio: 'pipe' });
@@ -42,35 +42,35 @@ function initializeGitIfNeeded() {
     log('git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git');
     return false;
   }
-  
+
   return true;
 }
 
 function syncToGitHub() {
   log('Starting Git synchronization...');
-  
+
   if (!initializeGitIfNeeded()) {
     log('Git remote not configured. Skipping push.');
     return;
   }
-  
+
   // Configure git user if not set
   try {
     executeCommand('git config user.name', { stdio: 'pipe' });
   } catch {
     executeCommand('git config user.name "Replit Auto-Deploy"');
   }
-  
+
   try {
     executeCommand('git config user.email', { stdio: 'pipe' });
   } catch {
     executeCommand('git config user.email "auto-deploy@replit.dev"');
   }
-  
+
   // Add all changes
   log('Adding changes...');
   executeCommand('git add .');
-  
+
   // Check if there are changes to commit
   try {
     const status = execSync('git status --porcelain', { encoding: 'utf8', stdio: 'pipe' });
@@ -81,18 +81,18 @@ function syncToGitHub() {
   } catch (error) {
     log('Could not check git status');
   }
-  
+
   // Create commit
   const timestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
   const commitMessage = `Auto-deploy: ${timestamp}`;
-  
+
   try {
     executeCommand(`git commit -m "${commitMessage}"`);
     log('Changes committed successfully');
   } catch (error) {
     log('No changes to commit or commit failed');
   }
-  
+
   // Push to GitHub
   log('Pushing to GitHub...');
   try {

@@ -24,13 +24,13 @@ function executeCommand(command, options = {}) {
 async function testServer(port = 3000, timeout = 10000) {
   return new Promise((resolve) => {
     const startTime = Date.now();
-    
+
     const checkServer = () => {
       if (Date.now() - startTime > timeout) {
         resolve(false);
         return;
       }
-      
+
       import('http').then(({ default: http }) => {
         const req = http.get(`http://localhost:${port}/health`, (res) => {
           if (res.statusCode === 200) {
@@ -39,18 +39,18 @@ async function testServer(port = 3000, timeout = 10000) {
             setTimeout(checkServer, 500);
           }
         });
-        
+
         req.on('error', () => {
           setTimeout(checkServer, 500);
         });
-        
+
         req.setTimeout(1000, () => {
           req.destroy();
           setTimeout(checkServer, 500);
         });
       });
     };
-    
+
     checkServer();
   });
 }
@@ -69,7 +69,7 @@ async function main() {
       'dist/public/index.html',
       'dist/public/main.js',
       'dist/public/index.css',
-      'dist/index.js'
+      'dist/index.js',
     ];
 
     for (const file of requiredFiles) {
@@ -82,10 +82,10 @@ async function main() {
 
     // Step 3: Test production server
     log('Starting production server for testing...');
-    
+
     const serverProcess = spawn('node', ['production-server-static.js'], {
       stdio: 'pipe',
-      env: { ...process.env, NODE_ENV: 'production' }
+      env: { ...process.env, NODE_ENV: 'production' },
     });
 
     let serverOutput = '';
@@ -99,7 +99,7 @@ async function main() {
     });
 
     // Wait for server to start
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // Test server health
     log('Testing server health...');
@@ -107,39 +107,38 @@ async function main() {
 
     if (isHealthy) {
       log('Production server is healthy and responding');
-      
+
       // Test static file serving
       try {
         const http = await import('http');
-        const testStatic = () => new Promise((resolve) => {
-          const req = http.default.get('http://localhost:3000/', (res) => {
-            if (res.statusCode === 200) {
-              log('Static file serving is working');
-              resolve(true);
-            } else {
+        const testStatic = () =>
+          new Promise((resolve) => {
+            const req = http.default.get('http://localhost:3000/', (res) => {
+              if (res.statusCode === 200) {
+                log('Static file serving is working');
+                resolve(true);
+              } else {
+                resolve(false);
+              }
+            });
+            req.on('error', () => resolve(false));
+            req.setTimeout(5000, () => {
+              req.destroy();
               resolve(false);
-            }
+            });
           });
-          req.on('error', () => resolve(false));
-          req.setTimeout(5000, () => {
-            req.destroy();
-            resolve(false);
-          });
-        });
-        
+
         await testStatic();
-        
       } catch (error) {
         log('Static file test failed, but server is running');
       }
-      
     } else {
       throw new Error('Production server health check failed');
     }
 
     // Kill test server
     serverProcess.kill();
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     log('Deployment verification completed successfully!');
     log('');
@@ -156,7 +155,6 @@ async function main() {
     log('- http://localhost:3000/ (Main application)');
     log('- http://localhost:3000/health (Health check)');
     log('- http://localhost:3000/api/* (API routes)');
-
   } catch (error) {
     log('Deployment failed:');
     console.error(error.message);

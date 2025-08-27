@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  Eye, 
-  Phone, 
-  MapPin, 
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
+import {
+  TrendingUp,
+  TrendingDown,
+  Eye,
+  Phone,
+  MapPin,
   Clock,
   Search,
   Globe,
@@ -16,8 +16,8 @@ import {
   Monitor,
   AlertTriangle,
   CheckCircle,
-  Target
-} from "lucide-react";
+  Target,
+} from 'lucide-react';
 
 interface DashboardMetrics {
   businessProfile: {
@@ -42,14 +42,14 @@ export default function ComprehensiveSEODashboard() {
       views: 1247,
       calls: 23,
       directions: 56,
-      websiteClicks: 89
+      websiteClicks: 89,
     },
     seoPerformance: {
       overallScore: 78,
       pageSpeed: { desktop: 65, mobile: 42 },
       rankings: { improved: 14, total: 23 },
-      technicalIssues: 3
-    }
+      technicalIssues: 3,
+    },
   });
 
   const [activeTab, setActiveTab] = useState<'overview' | 'performance'>('overview');
@@ -69,12 +69,12 @@ export default function ComprehensiveSEODashboard() {
   useEffect(() => {
     // Simulate real-time updates
     const interval = setInterval(() => {
-      setMetrics(prev => ({
+      setMetrics((prev) => ({
         ...prev,
         businessProfile: {
           ...prev.businessProfile,
-          views: prev.businessProfile.views + Math.floor(Math.random() * 3)
-        }
+          views: prev.businessProfile.views + Math.floor(Math.random() * 3),
+        },
       }));
     }, 30000);
 
@@ -86,7 +86,9 @@ export default function ComprehensiveSEODashboard() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-2xl font-bold text-gray-900">SEO Performance Dashboard</h2>
-          <p className="text-gray-600">Real-time monitoring of Dr. Jan Duffy's website performance</p>
+          <p className="text-gray-600">
+            Real-time monitoring of Dr. Jan Duffy's website performance
+          </p>
         </div>
         <div className="flex gap-2">
           {(['overview', 'performance'] as const).map((tab) => (
@@ -111,9 +113,7 @@ export default function ComprehensiveSEODashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{metrics.businessProfile.optimization}%</div>
-              <p className="text-xs text-muted-foreground">
-                Google My Business optimization
-              </p>
+              <p className="text-xs text-muted-foreground">Google My Business optimization</p>
               <Progress value={metrics.businessProfile.optimization} className="mt-2" />
             </CardContent>
           </Card>
@@ -125,9 +125,7 @@ export default function ComprehensiveSEODashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{metrics.businessProfile.views}</div>
-              <p className="text-xs text-muted-foreground">
-                +12% from last month
-              </p>
+              <p className="text-xs text-muted-foreground">+12% from last month</p>
               <div className="flex items-center mt-2">
                 <TrendingUp className="h-3 w-3 text-green-500 mr-1" />
                 <span className="text-green-500 text-xs">Increasing</span>
@@ -142,9 +140,7 @@ export default function ComprehensiveSEODashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{metrics.businessProfile.calls}</div>
-              <p className="text-xs text-muted-foreground">
-                This month
-              </p>
+              <p className="text-xs text-muted-foreground">This month</p>
               <Badge className="mt-2 bg-blue-100 text-blue-800">High Intent</Badge>
             </CardContent>
           </Card>
@@ -155,12 +151,12 @@ export default function ComprehensiveSEODashboard() {
               <Search className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className={`text-2xl font-bold ${getScoreColor(metrics.seoPerformance.overallScore)}`}>
+              <div
+                className={`text-2xl font-bold ${getScoreColor(metrics.seoPerformance.overallScore)}`}
+              >
                 {metrics.seoPerformance.overallScore}
               </div>
-              <p className="text-xs text-muted-foreground">
-                Overall optimization
-              </p>
+              <p className="text-xs text-muted-foreground">Overall optimization</p>
               <Badge className={`mt-2 ${getScoreBadge(metrics.seoPerformance.overallScore)}`}>
                 Good
               </Badge>
@@ -191,7 +187,7 @@ export default function ComprehensiveSEODashboard() {
                 </div>
                 <Progress value={metrics.seoPerformance.pageSpeed.desktop} />
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="flex items-center gap-2">
@@ -208,13 +204,9 @@ export default function ComprehensiveSEODashboard() {
               <div className="pt-4 border-t">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">Critical Issues</span>
-                  <Badge variant="destructive">
-                    {metrics.seoPerformance.technicalIssues}
-                  </Badge>
+                  <Badge variant="destructive">{metrics.seoPerformance.technicalIssues}</Badge>
                 </div>
-                <p className="text-xs text-gray-600 mt-1">
-                  FCP and LCP optimization needed
-                </p>
+                <p className="text-xs text-gray-600 mt-1">FCP and LCP optimization needed</p>
               </div>
             </CardContent>
           </Card>
@@ -232,11 +224,9 @@ export default function ComprehensiveSEODashboard() {
                   <div className="text-3xl font-bold text-green-600">
                     {metrics.seoPerformance.rankings.improved}
                   </div>
-                  <p className="text-sm text-gray-600">
-                    Keywords improved this month
-                  </p>
+                  <p className="text-sm text-gray-600">Keywords improved this month</p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <div className="flex justify-between items-center text-sm">
                     <span>"Skye Canyon homes for sale"</span>
@@ -256,8 +246,6 @@ export default function ComprehensiveSEODashboard() {
           </Card>
         </div>
       )}
-
-
     </div>
   );
 }

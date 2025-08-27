@@ -35,18 +35,20 @@ async function createProductionServer() {
 
   // Serve static files from dist/public
   const staticPath = path.join(__dirname, 'dist', 'public');
-  app.use(express.static(staticPath, {
-    maxAge: '1y',
-    etag: true,
-    lastModified: true
-  }));
+  app.use(
+    express.static(staticPath, {
+      maxAge: '1y',
+      etag: true,
+      lastModified: true,
+    })
+  );
 
   // Health check endpoint
   app.get('/health', (req, res) => {
-    res.json({ 
-      status: 'healthy', 
+    res.json({
+      status: 'healthy',
       timestamp: new Date().toISOString(),
-      uptime: process.uptime()
+      uptime: process.uptime(),
     });
   });
 
@@ -75,11 +77,11 @@ async function createProductionServer() {
     app.get('/api/health', (req, res) => {
       res.json({ status: 'ok', server: 'production-fallback' });
     });
-    
+
     app.get('/api/properties', (req, res) => {
       res.json([]);
     });
-    
+
     app.get('/api/market-insights', (req, res) => {
       res.json({ insights: [] });
     });
@@ -88,13 +90,13 @@ async function createProductionServer() {
   // Serve React app for all other routes (SPA fallback)
   app.get('*', (req, res) => {
     const indexPath = path.join(staticPath, 'index.html');
-    
+
     if (fs.existsSync(indexPath)) {
       res.sendFile(indexPath);
     } else {
-      res.status(404).json({ 
-        error: 'Application not built', 
-        message: 'Run build-esbuild.js first' 
+      res.status(404).json({
+        error: 'Application not built',
+        message: 'Run build-esbuild.js first',
       });
     }
   });
@@ -102,9 +104,9 @@ async function createProductionServer() {
   // Error handling middleware
   app.use((err, req, res, next) => {
     log(`❌ Error: ${err.message}`);
-    res.status(500).json({ 
+    res.status(500).json({
       error: 'Internal server error',
-      message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+      message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong',
     });
   });
 
@@ -136,7 +138,7 @@ async function createProductionServer() {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  createProductionServer().catch(error => {
+  createProductionServer().catch((error) => {
     console.error('❌ Failed to start production server:', error);
     process.exit(1);
   });

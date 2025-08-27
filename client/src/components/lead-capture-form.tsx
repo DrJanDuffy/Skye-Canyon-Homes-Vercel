@@ -1,28 +1,41 @@
-import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
-import { CheckCircle, Send } from "lucide-react";
+import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { useToast } from '@/hooks/use-toast';
+import { apiRequest } from '@/lib/queryClient';
+import { CheckCircle, Send } from 'lucide-react';
 
 const leadFormSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Valid email is required"),
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
+  email: z.string().email('Valid email is required'),
   phone: z.string().optional(),
   address: z.string().optional(),
   timeframe: z.string().optional(),
   priceRange: z.string().optional(),
   message: z.string().optional(),
-  consent: z.boolean().refine(val => val === true, "You must agree to receive communications"),
+  consent: z.boolean().refine((val) => val === true, 'You must agree to receive communications'),
 });
 
 type LeadFormData = z.infer<typeof leadFormSchema>;
@@ -35,14 +48,14 @@ export default function LeadCaptureForm() {
   const form = useForm<LeadFormData>({
     resolver: zodResolver(leadFormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      address: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      address: '',
       timeframe: undefined,
       priceRange: undefined,
-      message: "",
+      message: '',
       consent: false,
     },
   });
@@ -51,31 +64,32 @@ export default function LeadCaptureForm() {
     mutationFn: async (data: Omit<LeadFormData, 'consent'>) => {
       return apiRequest('POST', '/api/leads', {
         ...data,
-        source: 'Skye Canyon Website - Lead Capture Form'
+        source: 'Skye Canyon Website - Lead Capture Form',
       });
     },
     onSuccess: (response: any) => {
       setShowSuccess(true);
       form.reset();
       queryClient.invalidateQueries({ queryKey: ['/api/leads'] });
-      
+
       // Show AI-powered lead score feedback
-      const scoreMessage = response.category === 'hot' 
-        ? "High-priority lead! I'll contact you within 5 minutes."
-        : response.category === 'warm'
-        ? "Thank you! I'll reach out within the hour with personalized recommendations."
-        : "Thank you! I'll send you market updates and check in soon.";
-        
+      const scoreMessage =
+        response.category === 'hot'
+          ? "High-priority lead! I'll contact you within 5 minutes."
+          : response.category === 'warm'
+            ? "Thank you! I'll reach out within the hour with personalized recommendations."
+            : "Thank you! I'll send you market updates and check in soon.";
+
       toast({
-        title: "Thank you!",
+        title: 'Thank you!',
         description: scoreMessage,
       });
     },
     onError: (error) => {
       toast({
-        title: "Error",
-        description: "Failed to submit your information. Please try again.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Failed to submit your information. Please try again.',
+        variant: 'destructive',
       });
       console.error('Failed to create lead:', error);
     },
@@ -98,7 +112,7 @@ export default function LeadCaptureForm() {
             <p className="text-gray-600 mb-6">
               I'll be in touch within 24 hours to discuss your Skye Canyon home search.
             </p>
-            <Button 
+            <Button
               onClick={() => setShowSuccess(false)}
               className="bg-realscout-blue text-white hover:bg-realscout-navy"
             >
@@ -121,7 +135,7 @@ export default function LeadCaptureForm() {
             Get personalized listings and expert guidance from Dr. Jan Duffy
           </p>
         </div>
-        
+
         <div className="bg-white rounded-xl shadow-xl p-8">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -133,10 +147,10 @@ export default function LeadCaptureForm() {
                     <FormItem>
                       <FormLabel>First Name *</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="Enter your first name" 
+                        <Input
+                          placeholder="Enter your first name"
                           className="focus:ring-realscout-blue focus:border-realscout-blue"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -150,10 +164,10 @@ export default function LeadCaptureForm() {
                     <FormItem>
                       <FormLabel>Last Name *</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="Enter your last name" 
+                        <Input
+                          placeholder="Enter your last name"
                           className="focus:ring-realscout-blue focus:border-realscout-blue"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -161,7 +175,7 @@ export default function LeadCaptureForm() {
                   )}
                 />
               </div>
-              
+
               <div className="grid grid-cols-1 gap-6">
                 <FormField
                   control={form.control}
@@ -170,10 +184,10 @@ export default function LeadCaptureForm() {
                     <FormItem>
                       <FormLabel>Current Address (Optional)</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="Enter your address for personalized market insights" 
+                        <Input
+                          placeholder="Enter your address for personalized market insights"
                           className="focus:ring-realscout-blue focus:border-realscout-blue"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -181,7 +195,7 @@ export default function LeadCaptureForm() {
                   )}
                 />
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}
@@ -190,11 +204,11 @@ export default function LeadCaptureForm() {
                     <FormItem>
                       <FormLabel>Email Address *</FormLabel>
                       <FormControl>
-                        <Input 
+                        <Input
                           type="email"
-                          placeholder="your.email@example.com" 
+                          placeholder="your.email@example.com"
                           className="focus:ring-realscout-blue focus:border-realscout-blue"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -208,11 +222,11 @@ export default function LeadCaptureForm() {
                     <FormItem>
                       <FormLabel>Phone Number</FormLabel>
                       <FormControl>
-                        <Input 
+                        <Input
                           type="tel"
-                          placeholder="(555) 123-4567" 
+                          placeholder="(555) 123-4567"
                           className="focus:ring-realscout-blue focus:border-realscout-blue"
-                          {...field} 
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
@@ -220,7 +234,7 @@ export default function LeadCaptureForm() {
                   )}
                 />
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}
@@ -270,7 +284,7 @@ export default function LeadCaptureForm() {
                   )}
                 />
               </div>
-              
+
               <FormField
                 control={form.control}
                 name="message"
@@ -289,7 +303,7 @@ export default function LeadCaptureForm() {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="consent"
@@ -304,14 +318,15 @@ export default function LeadCaptureForm() {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel className="text-sm">
-                        I agree to receive communications about Skye Canyon properties and market updates *
+                        I agree to receive communications about Skye Canyon properties and market
+                        updates *
                       </FormLabel>
                       <FormMessage />
                     </div>
                   </FormItem>
                 )}
               />
-              
+
               <div className="text-center">
                 <Button
                   type="submit"
@@ -319,7 +334,7 @@ export default function LeadCaptureForm() {
                   className="bg-realscout-blue text-white px-8 py-4 text-lg hover:bg-realscout-navy"
                 >
                   {createLeadMutation.isPending ? (
-                    "Submitting..."
+                    'Submitting...'
                   ) : (
                     <>
                       <Send className="w-4 h-4 mr-2" />

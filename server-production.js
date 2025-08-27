@@ -21,11 +21,13 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from dist/public
-app.use(express.static(path.join(__dirname, 'dist/public'), {
-  maxAge: process.env.NODE_ENV === 'production' ? '1y' : 0,
-  etag: true,
-  lastModified: true
-}));
+app.use(
+  express.static(path.join(__dirname, 'dist/public'), {
+    maxAge: process.env.NODE_ENV === 'production' ? '1y' : 0,
+    etag: true,
+    lastModified: true,
+  })
+);
 
 // Health check endpoint
 app.get('/health', (req, res) => {

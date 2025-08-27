@@ -18,7 +18,7 @@ function log(message) {
     hour: 'numeric',
     minute: '2-digit',
     second: '2-digit',
-    hour12: true
+    hour12: true,
   });
   console.log(`${timestamp} [production] ${message}`);
 }
@@ -44,25 +44,30 @@ async function createProductionServer() {
 
   // Static file serving with proper caching
   const publicPath = path.join(__dirname, 'public');
-  app.use('/assets', express.static(path.join(publicPath, 'assets'), {
-    maxAge: '1y',
-    etag: true,
-    lastModified: true
-  }));
+  app.use(
+    '/assets',
+    express.static(path.join(publicPath, 'assets'), {
+      maxAge: '1y',
+      etag: true,
+      lastModified: true,
+    })
+  );
 
-  app.use(express.static(publicPath, {
-    maxAge: '1h',
-    etag: true,
-    lastModified: true,
-    index: false // Don't serve index.html automatically
-  }));
+  app.use(
+    express.static(publicPath, {
+      maxAge: '1h',
+      etag: true,
+      lastModified: true,
+      index: false, // Don't serve index.html automatically
+    })
+  );
 
   // Health check endpoint
   app.get('/health', (req, res) => {
-    res.json({ 
-      status: 'ok', 
+    res.json({
+      status: 'ok',
       timestamp: new Date().toISOString(),
-      uptime: process.uptime()
+      uptime: process.uptime(),
     });
   });
 
@@ -127,7 +132,7 @@ async function createProductionServer() {
 
 // Start server if this file is run directly
 if (import.meta.url === `file://${process.argv[1]}`) {
-  createProductionServer().catch(error => {
+  createProductionServer().catch((error) => {
     console.error('Failed to start production server:', error);
     process.exit(1);
   });

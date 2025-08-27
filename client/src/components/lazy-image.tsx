@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from 'react';
 
 interface LazyImageProps {
   src: string;
@@ -9,13 +9,13 @@ interface LazyImageProps {
   height?: number;
 }
 
-export default function LazyImage({ 
-  src, 
-  alt, 
-  className = "", 
+export default function LazyImage({
+  src,
+  alt,
+  className = '',
   placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f3f4f6'/%3E%3C/svg%3E",
   width,
-  height 
+  height,
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -29,9 +29,9 @@ export default function LazyImage({
           observer.disconnect();
         }
       },
-      { 
+      {
         threshold: 0.1,
-        rootMargin: '50px'
+        rootMargin: '50px',
       }
     );
 

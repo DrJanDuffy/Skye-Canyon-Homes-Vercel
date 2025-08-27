@@ -7,8 +7,10 @@ interface SchemaInjectorProps {
 export default function SchemaInjector({ schemas }: SchemaInjectorProps) {
   useEffect(() => {
     // Remove existing schema scripts to prevent duplicates
-    const existingSchemas = document.querySelectorAll('script[type="application/ld+json"][data-schema="custom"]');
-    existingSchemas.forEach(script => script.remove());
+    const existingSchemas = document.querySelectorAll(
+      'script[type="application/ld+json"][data-schema="custom"]'
+    );
+    existingSchemas.forEach((script) => script.remove());
 
     // Inject new schema scripts
     schemas.forEach((schema, index) => {
@@ -21,8 +23,10 @@ export default function SchemaInjector({ schemas }: SchemaInjectorProps) {
 
     // Cleanup function
     return () => {
-      const schemasToRemove = document.querySelectorAll('script[type="application/ld+json"][data-schema="custom"]');
-      schemasToRemove.forEach(script => script.remove());
+      const schemasToRemove = document.querySelectorAll(
+        'script[type="application/ld+json"][data-schema="custom"]'
+      );
+      schemasToRemove.forEach((script) => script.remove());
     };
   }, [schemas]);
 

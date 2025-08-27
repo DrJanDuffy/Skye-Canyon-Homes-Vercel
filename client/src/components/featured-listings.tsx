@@ -1,4 +1,4 @@
-import RealScoutListings from "@/components/realscout-listings";
+import RealScoutListings from '@/components/realscout-listings';
 
 export default function FeaturedListings() {
   return (
@@ -18,7 +18,7 @@ export default function FeaturedListings() {
             <span className="bg-gray-100 px-3 py-1 rounded-full">Luxury Resales</span>
           </div>
         </div>
-        
+
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 mb-8">
           <div className="text-center">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
@@ -29,9 +29,9 @@ export default function FeaturedListings() {
             </p>
           </div>
         </div>
-        
+
         <RealScoutListings className="w-full shadow-lg rounded-xl overflow-hidden" />
-        
+
         <div className="text-center mt-8">
           <div className="inline-flex items-center space-x-4 text-sm text-gray-600">
             <span className="flex items-center">

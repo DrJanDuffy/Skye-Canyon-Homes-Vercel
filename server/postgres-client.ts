@@ -17,9 +17,9 @@ const sql = postgres(connectionString, {
   transform: {
     column: {
       from: postgres.fromCamel,
-      to: postgres.toCamel
-    }
-  }
+      to: postgres.toCamel,
+    },
+  },
 });
 
 export default sql;

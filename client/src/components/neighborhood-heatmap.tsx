@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, TrendingDown, MapPin, DollarSign, Home, Users } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { TrendingUp, TrendingDown, MapPin, DollarSign, Home, Users } from 'lucide-react';
 
 interface HeatmapData {
   neighborhood: string;
@@ -40,7 +40,9 @@ export default function NeighborhoodHeatmap() {
   const [heatmapData, setHeatmapData] = useState<HeatmapData[]>([]);
   const [localInsights, setLocalInsights] = useState<LocalInsights | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeView, setActiveView] = useState<'price' | 'activity' | 'schools' | 'safety'>('price');
+  const [activeView, setActiveView] = useState<'price' | 'activity' | 'schools' | 'safety'>(
+    'price'
+  );
 
   useEffect(() => {
     fetchHeatmapData();
@@ -97,9 +99,9 @@ export default function NeighborhoodHeatmap() {
 
   const sampleHeatmapData: HeatmapData[] = [
     {
-      neighborhood: "Skye Canyon",
+      neighborhood: 'Skye Canyon',
       coordinates: { lat: 36.2469, lng: -115.3242 },
-      priceRange: "$800K - $1.5M",
+      priceRange: '$800K - $1.5M',
       averagePrice: 1250000,
       marketActivity: 'hot',
       daysOnMarket: 15,
@@ -108,12 +110,12 @@ export default function NeighborhoodHeatmap() {
       walkScore: 45,
       crimeRating: 'low',
       amenities: ['Golf Course', 'Parks', 'Shopping', 'Hiking Trails'],
-      recentSales: 24
+      recentSales: 24,
     },
     {
-      neighborhood: "Centennial Hills",
+      neighborhood: 'Centennial Hills',
       coordinates: { lat: 36.2633, lng: -115.3086 },
-      priceRange: "$700K - $1.2M",
+      priceRange: '$700K - $1.2M',
       averagePrice: 950000,
       marketActivity: 'warm',
       daysOnMarket: 22,
@@ -122,12 +124,12 @@ export default function NeighborhoodHeatmap() {
       walkScore: 52,
       crimeRating: 'low',
       amenities: ['Shopping Centers', 'Recreation', 'Schools'],
-      recentSales: 18
+      recentSales: 18,
     },
     {
-      neighborhood: "Summerlin West",
+      neighborhood: 'Summerlin West',
       coordinates: { lat: 36.1716, lng: -115.3447 },
-      priceRange: "$600K - $1.8M",
+      priceRange: '$600K - $1.8M',
       averagePrice: 1100000,
       marketActivity: 'hot',
       daysOnMarket: 18,
@@ -136,12 +138,12 @@ export default function NeighborhoodHeatmap() {
       walkScore: 48,
       crimeRating: 'low',
       amenities: ['Red Rock Canyon', 'Golf', 'Dining', 'Entertainment'],
-      recentSales: 31
+      recentSales: 31,
     },
     {
-      neighborhood: "Mountains Edge",
+      neighborhood: 'Mountains Edge',
       coordinates: { lat: 36.0853, lng: -115.3447 },
-      priceRange: "$500K - $1.1M",
+      priceRange: '$500K - $1.1M',
       averagePrice: 780000,
       marketActivity: 'warm',
       daysOnMarket: 28,
@@ -150,12 +152,12 @@ export default function NeighborhoodHeatmap() {
       walkScore: 41,
       crimeRating: 'medium',
       amenities: ['Parks', 'Shopping', 'Community Centers'],
-      recentSales: 15
+      recentSales: 15,
     },
     {
-      neighborhood: "Aliante",
+      neighborhood: 'Aliante',
       coordinates: { lat: 36.2897, lng: -115.2419 },
-      priceRange: "$400K - $900K",
+      priceRange: '$400K - $900K',
       averagePrice: 650000,
       marketActivity: 'cool',
       daysOnMarket: 35,
@@ -164,23 +166,23 @@ export default function NeighborhoodHeatmap() {
       walkScore: 38,
       crimeRating: 'medium',
       amenities: ['Golf Course', 'Casino', 'Dining'],
-      recentSales: 12
-    }
+      recentSales: 12,
+    },
   ];
 
   const sampleInsights: LocalInsights = {
     marketTrends: {
       direction: 'up',
       percentage: 6.2,
-      timeframe: 'last 6 months'
+      timeframe: 'last 6 months',
     },
     hotspots: ['Skye Canyon', 'Summerlin West', 'Centennial Hills'],
     investmentOpportunity: 'high',
     demographicInsights: {
       averageAge: 42,
       familyFriendly: true,
-      incomeLevel: 'high'
-    }
+      incomeLevel: 'high',
+    },
   };
 
   if (isLoading) {
@@ -221,29 +223,37 @@ export default function NeighborhoodHeatmap() {
             <TabsContent value="price" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {heatmapData.map((neighborhood) => (
-                  <Card 
+                  <Card
                     key={neighborhood.neighborhood}
                     className={`cursor-pointer transition-all hover:shadow-lg ${
-                      selectedNeighborhood === neighborhood.neighborhood ? 'ring-2 ring-blue-500' : ''
+                      selectedNeighborhood === neighborhood.neighborhood
+                        ? 'ring-2 ring-blue-500'
+                        : ''
                     }`}
                     onClick={() => setSelectedNeighborhood(neighborhood.neighborhood)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="font-semibold">{neighborhood.neighborhood}</h3>
-                        <div className={`w-4 h-4 rounded-full ${getHeatmapColor(neighborhood, activeView)}`}></div>
+                        <div
+                          className={`w-4 h-4 rounded-full ${getHeatmapColor(neighborhood, activeView)}`}
+                        ></div>
                       </div>
                       <p className="text-sm text-gray-600 mb-2">{neighborhood.priceRange}</p>
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
                           <span>Avg Price:</span>
-                          <span className="font-medium">{formatPrice(neighborhood.averagePrice)}</span>
+                          <span className="font-medium">
+                            {formatPrice(neighborhood.averagePrice)}
+                          </span>
                         </div>
                         <div className="flex justify-between">
                           <span>Price Change:</span>
-                          <span className={`font-medium flex items-center ${
-                            neighborhood.priceChange > 0 ? 'text-green-600' : 'text-red-600'
-                          }`}>
+                          <span
+                            className={`font-medium flex items-center ${
+                              neighborhood.priceChange > 0 ? 'text-green-600' : 'text-red-600'
+                            }`}
+                          >
                             {neighborhood.priceChange > 0 ? (
                               <TrendingUp className="w-3 h-3 mr-1" />
                             ) : (
@@ -262,20 +272,27 @@ export default function NeighborhoodHeatmap() {
             <TabsContent value="activity" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {heatmapData.map((neighborhood) => (
-                  <Card 
+                  <Card
                     key={neighborhood.neighborhood}
                     className={`cursor-pointer transition-all hover:shadow-lg ${
-                      selectedNeighborhood === neighborhood.neighborhood ? 'ring-2 ring-blue-500' : ''
+                      selectedNeighborhood === neighborhood.neighborhood
+                        ? 'ring-2 ring-blue-500'
+                        : ''
                     }`}
                     onClick={() => setSelectedNeighborhood(neighborhood.neighborhood)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="font-semibold">{neighborhood.neighborhood}</h3>
-                        <Badge variant={
-                          neighborhood.marketActivity === 'hot' ? 'destructive' :
-                          neighborhood.marketActivity === 'warm' ? 'default' : 'secondary'
-                        }>
+                        <Badge
+                          variant={
+                            neighborhood.marketActivity === 'hot'
+                              ? 'destructive'
+                              : neighborhood.marketActivity === 'warm'
+                                ? 'default'
+                                : 'secondary'
+                          }
+                        >
                           {neighborhood.marketActivity}
                         </Badge>
                       </div>
@@ -298,17 +315,21 @@ export default function NeighborhoodHeatmap() {
             <TabsContent value="schools" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {heatmapData.map((neighborhood) => (
-                  <Card 
+                  <Card
                     key={neighborhood.neighborhood}
                     className={`cursor-pointer transition-all hover:shadow-lg ${
-                      selectedNeighborhood === neighborhood.neighborhood ? 'ring-2 ring-blue-500' : ''
+                      selectedNeighborhood === neighborhood.neighborhood
+                        ? 'ring-2 ring-blue-500'
+                        : ''
                     }`}
                     onClick={() => setSelectedNeighborhood(neighborhood.neighborhood)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="font-semibold">{neighborhood.neighborhood}</h3>
-                        <div className={`w-4 h-4 rounded-full ${getHeatmapColor(neighborhood, activeView)}`}></div>
+                        <div
+                          className={`w-4 h-4 rounded-full ${getHeatmapColor(neighborhood, activeView)}`}
+                        ></div>
                       </div>
                       <div className="space-y-1 text-sm">
                         <div className="flex justify-between">
@@ -329,27 +350,38 @@ export default function NeighborhoodHeatmap() {
             <TabsContent value="safety" className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {heatmapData.map((neighborhood) => (
-                  <Card 
+                  <Card
                     key={neighborhood.neighborhood}
                     className={`cursor-pointer transition-all hover:shadow-lg ${
-                      selectedNeighborhood === neighborhood.neighborhood ? 'ring-2 ring-blue-500' : ''
+                      selectedNeighborhood === neighborhood.neighborhood
+                        ? 'ring-2 ring-blue-500'
+                        : ''
                     }`}
                     onClick={() => setSelectedNeighborhood(neighborhood.neighborhood)}
                   >
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="font-semibold">{neighborhood.neighborhood}</h3>
-                        <Badge variant={
-                          neighborhood.crimeRating === 'low' ? 'default' :
-                          neighborhood.crimeRating === 'medium' ? 'secondary' : 'destructive'
-                        }>
+                        <Badge
+                          variant={
+                            neighborhood.crimeRating === 'low'
+                              ? 'default'
+                              : neighborhood.crimeRating === 'medium'
+                                ? 'secondary'
+                                : 'destructive'
+                          }
+                        >
                           {neighborhood.crimeRating} crime
                         </Badge>
                       </div>
                       <div className="space-y-1 text-sm">
                         <div className="text-gray-600">
-                          Safety Score: {neighborhood.crimeRating === 'low' ? 'Excellent' : 
-                                        neighborhood.crimeRating === 'medium' ? 'Good' : 'Fair'}
+                          Safety Score:{' '}
+                          {neighborhood.crimeRating === 'low'
+                            ? 'Excellent'
+                            : neighborhood.crimeRating === 'medium'
+                              ? 'Good'
+                              : 'Fair'}
                         </div>
                       </div>
                     </CardContent>
@@ -397,10 +429,15 @@ export default function NeighborhoodHeatmap() {
                     <span className="text-sm font-medium">Investment</span>
                     <DollarSign className="w-4 h-4 text-blue-600" />
                   </div>
-                  <div className={`text-lg font-bold ${
-                    localInsights.investmentOpportunity === 'high' ? 'text-green-600' :
-                    localInsights.investmentOpportunity === 'medium' ? 'text-yellow-600' : 'text-red-600'
-                  }`}>
+                  <div
+                    className={`text-lg font-bold ${
+                      localInsights.investmentOpportunity === 'high'
+                        ? 'text-green-600'
+                        : localInsights.investmentOpportunity === 'medium'
+                          ? 'text-yellow-600'
+                          : 'text-red-600'
+                    }`}
+                  >
                     {localInsights.investmentOpportunity.toUpperCase()}
                   </div>
                   <div className="text-xs text-gray-500">opportunity</div>
@@ -417,7 +454,9 @@ export default function NeighborhoodHeatmap() {
                     {localInsights.demographicInsights.averageAge} yrs
                   </div>
                   <div className="text-xs text-gray-500">
-                    {localInsights.demographicInsights.familyFriendly ? 'Family-friendly' : 'Mixed demographics'}
+                    {localInsights.demographicInsights.familyFriendly
+                      ? 'Family-friendly'
+                      : 'Mixed demographics'}
                   </div>
                 </CardContent>
               </Card>
@@ -428,9 +467,7 @@ export default function NeighborhoodHeatmap() {
                     <span className="text-sm font-medium">Hot Spots</span>
                     <Home className="w-4 h-4 text-orange-600" />
                   </div>
-                  <div className="text-lg font-bold">
-                    {localInsights.hotspots.length}
-                  </div>
+                  <div className="text-lg font-bold">{localInsights.hotspots.length}</div>
                   <div className="text-xs text-gray-500">active areas</div>
                 </CardContent>
               </Card>
@@ -454,13 +491,11 @@ export default function NeighborhoodHeatmap() {
       {selectedNeighborhood && (
         <Card>
           <CardHeader>
-            <CardTitle>
-              {selectedNeighborhood} - Detailed Analysis
-            </CardTitle>
+            <CardTitle>{selectedNeighborhood} - Detailed Analysis</CardTitle>
           </CardHeader>
           <CardContent>
             {(() => {
-              const neighborhood = heatmapData.find(n => n.neighborhood === selectedNeighborhood);
+              const neighborhood = heatmapData.find((n) => n.neighborhood === selectedNeighborhood);
               if (!neighborhood) return null;
 
               return (
@@ -473,10 +508,12 @@ export default function NeighborhoodHeatmap() {
                         <div>Days on Market: {neighborhood.daysOnMarket}</div>
                         <div>Recent Sales: {neighborhood.recentSales}</div>
                         <div className="flex items-center">
-                          Price Change: 
-                          <span className={`ml-1 flex items-center ${
-                            neighborhood.priceChange > 0 ? 'text-green-600' : 'text-red-600'
-                          }`}>
+                          Price Change:
+                          <span
+                            className={`ml-1 flex items-center ${
+                              neighborhood.priceChange > 0 ? 'text-green-600' : 'text-red-600'
+                            }`}
+                          >
                             {neighborhood.priceChange > 0 ? (
                               <TrendingUp className="w-3 h-3 mr-1" />
                             ) : (
@@ -514,9 +551,7 @@ export default function NeighborhoodHeatmap() {
                     <Button onClick={() => setSelectedNeighborhood(null)} variant="outline">
                       Close Details
                     </Button>
-                    <Button>
-                      View Properties in {selectedNeighborhood}
-                    </Button>
+                    <Button>View Properties in {selectedNeighborhood}</Button>
                   </div>
                 </div>
               );

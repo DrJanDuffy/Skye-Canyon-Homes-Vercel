@@ -6,7 +6,7 @@ export const performanceConfig = {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
   },
-  
+
   // Preconnect to critical domains
   preconnect: [
     'https://em.realscout.com',
@@ -14,11 +14,11 @@ export const performanceConfig = {
     'https://embed.homebotapp.com',
     'https://fonts.googleapis.com',
   ],
-  
+
   // Resource hints
   resourceHints: {
     dns: ['https://www.google-analytics.com'],
     preconnect: ['https://fonts.gstatic.com'],
     prefetch: ['/api/market-data', '/api/listings'],
   },
-}
+};

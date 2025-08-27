@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 // PWA installer with text buttons
 
 interface BeforeInstallPromptEvent extends Event {
@@ -16,7 +16,8 @@ export default function PWAInstaller() {
     // Register service worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker
+          .register('/sw.js')
           .then((registration) => {
             console.log('SW registered: ', registration);
           })
@@ -45,7 +46,7 @@ export default function PWAInstaller() {
 
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
-    
+
     if (outcome === 'accepted') {
       setDeferredPrompt(null);
       setShowInstallBanner(false);
@@ -64,17 +65,17 @@ export default function PWAInstaller() {
       <CardContent className="p-4">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h3 className="font-semibold text-blue-900 mb-1">
-              Get Skye Canyon Apps
-            </h3>
+            <h3 className="font-semibold text-blue-900 mb-1">Get Skye Canyon Apps</h3>
             <p className="text-sm text-blue-700 mb-3">
               Choose your preferred way to search properties
             </p>
-            
+
             <div className="space-y-2 mb-3">
               <div className="border border-blue-200 rounded-lg p-2 bg-white">
                 <h4 className="font-medium text-blue-900 text-sm mb-1">Full Property Search</h4>
-                <p className="text-xs text-blue-600 mb-2">Complete MLS database with advanced filters</p>
+                <p className="text-xs text-blue-600 mb-2">
+                  Complete MLS database with advanced filters
+                </p>
                 <a
                   href="https://app.bhhsnv.com/a1drjanduffy-4986"
                   target="_blank"
@@ -85,10 +86,12 @@ export default function PWAInstaller() {
                   Open Property Search
                 </a>
               </div>
-              
+
               <div className="border border-blue-200 rounded-lg p-2 bg-white">
                 <h4 className="font-medium text-blue-900 text-sm mb-1">Skye Canyon Guide</h4>
-                <p className="text-xs text-blue-600 mb-2">Market insights and neighborhood expertise</p>
+                <p className="text-xs text-blue-600 mb-2">
+                  Market insights and neighborhood expertise
+                </p>
                 <Button
                   onClick={handleInstallClick}
                   size="sm"
@@ -99,7 +102,7 @@ export default function PWAInstaller() {
                 </Button>
               </div>
             </div>
-            
+
             <Button
               onClick={handleDismiss}
               variant="ghost"

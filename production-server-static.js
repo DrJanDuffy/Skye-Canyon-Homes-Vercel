@@ -33,11 +33,13 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from dist/public
-app.use(express.static(path.join(__dirname, 'dist/public'), {
-  maxAge: '1y',
-  etag: true,
-  lastModified: true
-}));
+app.use(
+  express.static(path.join(__dirname, 'dist/public'), {
+    maxAge: '1y',
+    etag: true,
+    lastModified: true,
+  })
+);
 
 async function setupApiRoutes() {
   try {
@@ -48,17 +50,17 @@ async function setupApiRoutes() {
     }
   } catch (error) {
     console.warn('API routes not available:', error.message);
-    
+
     // Fallback API endpoints
     app.get('/api/health', (req, res) => {
       res.json({ status: 'ok', mode: 'static', timestamp: new Date().toISOString() });
     });
-    
+
     app.get('/api/status', (req, res) => {
-      res.json({ 
-        status: 'running', 
+      res.json({
+        status: 'running',
         mode: 'production-static',
-        buildTime: new Date().toISOString()
+        buildTime: new Date().toISOString(),
       });
     });
   }
@@ -73,20 +75,20 @@ app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) {
     return res.status(404).json({ error: 'API endpoint not found' });
   }
-  
+
   const indexPath = path.join(__dirname, 'dist/public/index.html');
   res.sendFile(indexPath);
 });
 
 // Health check endpoint with system info
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'healthy', 
+  res.json({
+    status: 'healthy',
     server: 'production-static',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     memory: process.memoryUsage(),
-    environment: process.env.NODE_ENV || 'production'
+    environment: process.env.NODE_ENV || 'production',
   });
 });
 
@@ -101,12 +103,13 @@ const startResourceMonitoring = () => {
   setInterval(() => {
     const usage = process.memoryUsage();
     const cpuUsage = process.cpuUsage();
-    
-    if (usage.heapUsed > 512 * 1024 * 1024) { // 512MB threshold
+
+    if (usage.heapUsed > 512 * 1024 * 1024) {
+      // 512MB threshold
       console.warn('🔶 High memory usage detected:', {
         heapUsed: Math.round(usage.heapUsed / 1024 / 1024) + 'MB',
         heapTotal: Math.round(usage.heapTotal / 1024 / 1024) + 'MB',
-        external: Math.round(usage.external / 1024 / 1024) + 'MB'
+        external: Math.round(usage.external / 1024 / 1024) + 'MB',
       });
     }
   }, 60000); // Check every minute
@@ -116,7 +119,7 @@ const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Production server running on http://0.0.0.0:${PORT}`);
   console.log(`📁 Serving static files from: ${path.join(__dirname, 'dist/public')}`);
   console.log(`🌐 Environment: ${process.env.NODE_ENV || 'production'}`);
-  
+
   // Start resource monitoring
   startResourceMonitoring();
 });

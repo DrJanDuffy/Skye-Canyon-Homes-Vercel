@@ -1,11 +1,11 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route } from 'wouter';
 
 function TestHome() {
   return (
     <div style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
       <h1>Skye Canyon Homes - Test Page</h1>
       <p>This is a test to verify React is working.</p>
-      <div 
+      <div
         data-realscout="office-listings"
         agent-encoded-id="QWdlbnQtMjI1MDUw"
         price-min="550000"

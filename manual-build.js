@@ -16,8 +16,9 @@ try {
 
   // Build React components using esbuild directly
   console.log('Building React application with esbuild...');
-  
-  const buildResult = execSync(`npx esbuild client/src/main.tsx \\
+
+  const buildResult = execSync(
+    `npx esbuild client/src/main.tsx \\
     --bundle \\
     --minify \\
     --sourcemap \\
@@ -34,17 +35,19 @@ try {
     --loader:.ts=ts \\
     --loader:.css=css \\
     --external:react \\
-    --external:react-dom`, { 
-    stdio: 'pipe',
-    encoding: 'utf-8'
-  });
+    --external:react-dom`,
+    {
+      stdio: 'pipe',
+      encoding: 'utf-8',
+    }
+  );
 
   console.log('Build output:', buildResult);
 
   // Copy and process index.html manually
   console.log('Processing HTML template...');
   let htmlContent = fs.readFileSync('client/index.html', 'utf-8');
-  
+
   // Replace the development script tag with production assets
   htmlContent = htmlContent.replace(
     '<script type="module" src="/src/main.tsx"></script>',
@@ -58,7 +61,7 @@ try {
   // Build CSS using PostCSS and Tailwind
   console.log('Building CSS...');
   execSync('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify', {
-    stdio: 'inherit'
+    stdio: 'inherit',
   });
 
   // Add CSS link to HTML
@@ -89,9 +92,12 @@ try {
 
   // Build server
   console.log('Building server...');
-  execSync('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist', {
-    stdio: 'inherit'
-  });
+  execSync(
+    'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist',
+    {
+      stdio: 'inherit',
+    }
+  );
 
   console.log('Manual build completed successfully!');
   console.log('Files created:');
@@ -99,7 +105,6 @@ try {
   console.log('- dist/public/assets/main.js');
   console.log('- dist/public/assets/main.css');
   console.log('- dist/index.js');
-
 } catch (error) {
   console.error('Manual build failed:', error.message);
   if (error.stdout) console.log('stdout:', error.stdout.toString());

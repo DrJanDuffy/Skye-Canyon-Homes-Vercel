@@ -36,7 +36,7 @@ export class PerformanceCache {
     this.cache.set(key, {
       data,
       timestamp: Date.now(),
-      ttl: ttlMs
+      ttl: ttlMs,
     });
 
     this.updateStats();
@@ -44,7 +44,7 @@ export class PerformanceCache {
 
   get<T>(key: string): T | null {
     const entry = this.cache.get(key);
-    
+
     if (!entry) {
       this.stats.misses++;
       return null;
@@ -62,8 +62,8 @@ export class PerformanceCache {
   }
 
   async getOrSet<T>(
-    key: string, 
-    fetchFunction: () => Promise<T>, 
+    key: string,
+    fetchFunction: () => Promise<T>,
     ttlMs: number = this.DEFAULT_TTL
   ): Promise<T> {
     const cached = this.get<T>(key);
@@ -80,18 +80,18 @@ export class PerformanceCache {
     let deletedCount = 0;
     const regex = new RegExp(pattern);
     const keysToDelete: string[] = [];
-    
+
     this.cache.forEach((_, key) => {
       if (regex.test(key)) {
         keysToDelete.push(key);
       }
     });
-    
-    keysToDelete.forEach(key => {
+
+    keysToDelete.forEach((key) => {
       this.cache.delete(key);
       deletedCount++;
     });
-    
+
     this.updateStats();
     return deletedCount;
   }
@@ -110,18 +110,18 @@ export class PerformanceCache {
     const now = Date.now();
     let deletedCount = 0;
     const keysToDelete: string[] = [];
-    
+
     this.cache.forEach((entry, key) => {
       if (now - entry.timestamp > entry.ttl) {
         keysToDelete.push(key);
       }
     });
-    
-    keysToDelete.forEach(key => {
+
+    keysToDelete.forEach((key) => {
       this.cache.delete(key);
       deletedCount++;
     });
-    
+
     if (deletedCount > 0) {
       console.log(`Cleaned ${deletedCount} expired cache entries`);
       this.updateStats();
@@ -156,14 +156,14 @@ export const CacheKeys = {
   leads: () => 'leads:all',
   searchProperties: (filters: any) => `search:${JSON.stringify(filters)}`,
   communityData: () => 'community:data',
-  marketInsights: () => 'market:insights'
+  marketInsights: () => 'market:insights',
 };
 
 // TTL configurations
 export const CacheTTL = {
-  PROPERTIES: 10 * 60 * 1000,     // 10 minutes
-  MARKET_DATA: 30 * 60 * 1000,   // 30 minutes
+  PROPERTIES: 10 * 60 * 1000, // 10 minutes
+  MARKET_DATA: 30 * 60 * 1000, // 30 minutes
   SEARCH_RESULTS: 5 * 60 * 1000, // 5 minutes
-  LEADS: 2 * 60 * 1000,          // 2 minutes
-  STATIC_DATA: 60 * 60 * 1000    // 1 hour
+  LEADS: 2 * 60 * 1000, // 2 minutes
+  STATIC_DATA: 60 * 60 * 1000, // 1 hour
 };

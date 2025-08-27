@@ -19,7 +19,7 @@ function log(message) {
 
 async function buildProduction() {
   log('Building application with ESBuild...');
-  
+
   // Clean dist directory
   if (fs.existsSync('dist')) {
     fs.rmSync('dist', { recursive: true, force: true });
@@ -27,7 +27,9 @@ async function buildProduction() {
   fs.mkdirSync('dist/public/assets', { recursive: true });
 
   // Build CSS
-  execSync('npx tailwindcss -i client/src/index.css -o dist/public/assets/styles.css --minify', { stdio: 'inherit' });
+  execSync('npx tailwindcss -i client/src/index.css -o dist/public/assets/styles.css --minify', {
+    stdio: 'inherit',
+  });
 
   // Copy public assets
   if (fs.existsSync('public')) {
@@ -45,19 +47,23 @@ async function buildProduction() {
     platform: 'browser',
     define: {
       'process.env.NODE_ENV': '"production"',
-      'import.meta.env.PROD': 'true'
+      'import.meta.env.PROD': 'true',
     },
     jsx: 'automatic',
-    jsxImportSource: 'react'
+    jsxImportSource: 'react',
   });
 
   // Process HTML
-  const htmlContent = fs.readFileSync('client/index.html', 'utf-8')
-    .replace('<script type="module" src="/src/main.tsx"></script>', '<script type="module" src="/assets/app.js"></script>')
+  const htmlContent = fs
+    .readFileSync('client/index.html', 'utf-8')
+    .replace(
+      '<script type="module" src="/src/main.tsx"></script>',
+      '<script type="module" src="/assets/app.js"></script>'
+    )
     .replace('</head>', '    <link rel="stylesheet" href="/assets/styles.css">\n  </head>');
-  
+
   fs.writeFileSync('dist/public/index.html', htmlContent);
-  
+
   log('Build completed successfully');
 }
 
@@ -65,7 +71,7 @@ async function startServer() {
   const express = (await import('express')).default;
   const compression = (await import('compression')).default;
   const path = await import('path');
-  
+
   const app = express();
   const PORT = process.env.PORT || 3000;
 
@@ -77,7 +83,7 @@ async function startServer() {
   app.get('/health', (req, res) => res.json({ status: 'healthy' }));
   app.get('/api/*', (req, res) => res.json({ message: 'API endpoint' }));
   app.post('/api/*', (req, res) => res.json({ success: true }));
-  
+
   // SPA fallback
   app.get('*', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'dist/public/index.html'));

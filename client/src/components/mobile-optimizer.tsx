@@ -1,86 +1,95 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 export default function MobileOptimizer() {
-  const [isMobile, setIsMobile] = useState(false)
-  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait')
+  const [isMobile, setIsMobile] = useState(false);
+  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
 
   useEffect(() => {
     const checkDevice = () => {
-      setIsMobile(window.innerWidth < 768)
-      setOrientation(window.innerHeight > window.innerWidth ? 'portrait' : 'landscape')
-    }
+      setIsMobile(window.innerWidth < 768);
+      setOrientation(window.innerHeight > window.innerWidth ? 'portrait' : 'landscape');
+    };
 
-    checkDevice()
-    window.addEventListener('resize', checkDevice)
-    window.addEventListener('orientationchange', checkDevice)
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    window.addEventListener('orientationchange', checkDevice);
 
     // Mobile viewport optimization
-    const viewport = document.querySelector('meta[name="viewport"]')
+    const viewport = document.querySelector('meta[name="viewport"]');
     if (viewport) {
-      viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover')
+      viewport.setAttribute(
+        'content',
+        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
+      );
     }
 
     // Touch optimization for iOS
-    document.body.style.webkitTouchCallout = 'none'
-    document.body.style.webkitUserSelect = 'none'
+    document.body.style.webkitTouchCallout = 'none';
+    document.body.style.webkitUserSelect = 'none';
 
     // Prevent zoom on input focus (iOS)
-    const inputs = document.querySelectorAll('input, select, textarea')
-    inputs.forEach(input => {
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach((input) => {
       input.addEventListener('focus', () => {
         if (window.innerWidth < 768) {
-          const viewport = document.querySelector('meta[name="viewport"]')
+          const viewport = document.querySelector('meta[name="viewport"]');
           if (viewport) {
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+            viewport.setAttribute(
+              'content',
+              'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+            );
           }
         }
-      })
-      
+      });
+
       input.addEventListener('blur', () => {
         if (window.innerWidth < 768) {
-          const viewport = document.querySelector('meta[name="viewport"]')
+          const viewport = document.querySelector('meta[name="viewport"]');
           if (viewport) {
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes')
+            viewport.setAttribute(
+              'content',
+              'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes'
+            );
           }
         }
-      })
-    })
+      });
+    });
 
     // Mobile-specific optimizations
     if (isMobile) {
       // Add mobile-specific classes
-      document.documentElement.classList.add('mobile-device')
-      
+      document.documentElement.classList.add('mobile-device');
+
       // Optimize touch scroll performance
-      document.body.style.webkitOverflowScrolling = 'touch'
-      
+      document.body.style.webkitOverflowScrolling = 'touch';
+
       // Hide address bar on scroll (mobile Safari)
-      let lastScrollTop = 0
+      let lastScrollTop = 0;
       const handleScroll = () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         if (scrollTop > lastScrollTop && scrollTop > 100) {
           // Scrolling down
-          window.scrollTo(0, scrollTop + 1)
+          window.scrollTo(0, scrollTop + 1);
         }
-        lastScrollTop = scrollTop
-      }
-      
-      window.addEventListener('scroll', handleScroll, { passive: true })
-      
+        lastScrollTop = scrollTop;
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
       return () => {
-        window.removeEventListener('scroll', handleScroll)
-      }
+        window.removeEventListener('scroll', handleScroll);
+      };
     }
 
     return () => {
-      window.removeEventListener('resize', checkDevice)
-      window.removeEventListener('orientationchange', checkDevice)
-    }
-  }, [isMobile])
+      window.removeEventListener('resize', checkDevice);
+      window.removeEventListener('orientationchange', checkDevice);
+    };
+  }, [isMobile]);
 
   useEffect(() => {
     // Apply mobile-specific CSS optimizations
-    const style = document.createElement('style')
+    const style = document.createElement('style');
     style.textContent = `
       /* Mobile-specific optimizations */
       @media (max-width: 767px) {
@@ -230,14 +239,14 @@ export default function MobileOptimizer() {
           height: 50px;
         }
       }
-    `
-    
-    document.head.appendChild(style)
-    
-    return () => {
-      document.head.removeChild(style)
-    }
-  }, [])
+    `;
 
-  return null // This component only applies mobile optimizations
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+  return null; // This component only applies mobile optimizations
 }

@@ -43,22 +43,24 @@ export function useSharedData() {
     marketStats: marketStatsQuery.data,
     agentBio: agentBioQuery.data,
     communityData: communityDataQuery.data,
-    isLoading: propertiesQuery.isLoading || 
-               featuredPropertiesQuery.isLoading || 
-               marketStatsQuery.isLoading ||
-               agentBioQuery.isLoading ||
-               communityDataQuery.isLoading,
-    error: propertiesQuery.error || 
-           featuredPropertiesQuery.error || 
-           marketStatsQuery.error ||
-           agentBioQuery.error ||
-           communityDataQuery.error,
+    isLoading:
+      propertiesQuery.isLoading ||
+      featuredPropertiesQuery.isLoading ||
+      marketStatsQuery.isLoading ||
+      agentBioQuery.isLoading ||
+      communityDataQuery.isLoading,
+    error:
+      propertiesQuery.error ||
+      featuredPropertiesQuery.error ||
+      marketStatsQuery.error ||
+      agentBioQuery.error ||
+      communityDataQuery.error,
     refetch: {
       properties: propertiesQuery.refetch,
       featuredProperties: featuredPropertiesQuery.refetch,
       marketStats: marketStatsQuery.refetch,
       agentBio: agentBioQuery.refetch,
       communityData: communityDataQuery.refetch,
-    }
+    },
   };
 }

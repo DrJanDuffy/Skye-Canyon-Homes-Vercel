@@ -11,11 +11,11 @@ function log(message) {
 function executeCommand(command, options = {}) {
   try {
     log(`Executing: ${command}`);
-    return execSync(command, { 
-      stdio: 'inherit', 
+    return execSync(command, {
+      stdio: 'inherit',
       encoding: 'utf8',
       timeout: 300000,
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`❌ Command failed: ${command}`);
@@ -38,20 +38,20 @@ async function main() {
     log('Creating temporary HTML file to avoid EISDIR error...');
     const originalIndexPath = path.join(process.cwd(), 'client', 'index.html');
     const tempIndexPath = path.join(process.cwd(), 'temp-build-index.html');
-    
+
     // Read and copy the original index.html
     const indexContent = fs.readFileSync(originalIndexPath, 'utf-8');
     fs.writeFileSync(tempIndexPath, indexContent);
 
     // Step 3: Build using the root directory approach
     log('Building client with workaround for EISDIR error...');
-    
+
     // Build from the project root with explicit configuration
     executeCommand('npx vite build --mode production', {
-      env: { 
+      env: {
         ...process.env,
-        VITE_BUILD_HTML_PATH: tempIndexPath
-      }
+        VITE_BUILD_HTML_PATH: tempIndexPath,
+      },
     });
 
     // Step 4: Verify build output
@@ -70,7 +70,9 @@ async function main() {
 
     // Step 5: Build server
     log('Building server...');
-    executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist');
+    executeCommand(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist'
+    );
 
     // Step 6: Clean up temporary files
     log('Cleaning up temporary files...');
@@ -86,11 +88,10 @@ async function main() {
     }
 
     log('✅ Build completed successfully with EISDIR fix!');
-    
+
     // Show build summary
     const distSize = fs.readdirSync('dist/public').length;
     log(`📊 Build summary: ${distSize} files in dist/public`);
-
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);

@@ -14,9 +14,9 @@ export default function RealScoutAnalytics() {
             interaction_type: eventType,
             ...details,
             page_path: window.location.pathname,
-            timestamp: new Date().toISOString()
-          }
-        })
+            timestamp: new Date().toISOString(),
+          },
+        }),
       });
     };
 
@@ -26,7 +26,7 @@ export default function RealScoutAnalytics() {
       document.addEventListener('realscout:search:started', (e: any) => {
         trackRealScoutEvent('property_search_started', {
           search_criteria: e.detail?.criteria || {},
-          widget_location: e.detail?.widgetLocation || 'unknown'
+          widget_location: e.detail?.widgetLocation || 'unknown',
         });
       });
 
@@ -36,7 +36,7 @@ export default function RealScoutAnalytics() {
           property_id: e.detail?.propertyId,
           property_address: e.detail?.address,
           property_price: e.detail?.price,
-          widget_location: e.detail?.widgetLocation || 'unknown'
+          widget_location: e.detail?.widgetLocation || 'unknown',
         });
       });
 
@@ -44,7 +44,7 @@ export default function RealScoutAnalytics() {
       document.addEventListener('realscout:cma:requested', (e: any) => {
         trackRealScoutEvent('home_valuation_requested', {
           property_address: e.detail?.address,
-          widget_location: e.detail?.widgetLocation || 'unknown'
+          widget_location: e.detail?.widgetLocation || 'unknown',
         });
       });
 
@@ -53,7 +53,7 @@ export default function RealScoutAnalytics() {
         trackRealScoutEvent('lead_form_submitted', {
           lead_type: e.detail?.leadType || 'general',
           property_context: e.detail?.propertyContext,
-          widget_location: e.detail?.widgetLocation || 'unknown'
+          widget_location: e.detail?.widgetLocation || 'unknown',
         });
       });
 
@@ -62,24 +62,24 @@ export default function RealScoutAnalytics() {
         trackRealScoutEvent('contact_requested', {
           contact_method: e.detail?.method || 'unknown',
           property_context: e.detail?.propertyContext,
-          widget_location: e.detail?.widgetLocation || 'unknown'
+          widget_location: e.detail?.widgetLocation || 'unknown',
         });
       });
     };
 
     // Enhanced click tracking for buttons
     const handleButtonClicks = () => {
-      document.querySelectorAll('[class*="realscout"], button').forEach(button => {
+      document.querySelectorAll('[class*="realscout"], button').forEach((button) => {
         button.addEventListener('click', (e) => {
           const target = e.target as HTMLElement;
           const text = target.textContent?.toLowerCase() || '';
-          
+
           if (text.includes('search') || text.includes('home')) {
             trackRealScoutEvent('widget_button_clicked', {
               button_text: target.textContent,
               button_type: text.includes('search') ? 'property_search' : 'home_valuation',
               element_id: target.id || 'unknown',
-              widget_location: target.closest('section')?.id || 'unknown'
+              widget_location: target.closest('section')?.id || 'unknown',
             });
           }
         });
@@ -96,7 +96,9 @@ export default function RealScoutAnalytics() {
       const timeSpent = Math.round((Date.now() - startTime) / 1000);
       trackRealScoutEvent('page_engagement', {
         time_spent_seconds: timeSpent,
-        scroll_depth: Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100)
+        scroll_depth: Math.round(
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+        ),
       });
     };
 

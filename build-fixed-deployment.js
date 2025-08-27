@@ -10,10 +10,10 @@ function log(message) {
 
 function executeCommand(command, options = {}) {
   try {
-    execSync(command, { 
-      stdio: 'inherit', 
+    execSync(command, {
+      stdio: 'inherit',
       timeout: 300000,
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`Command failed: ${command}`);
@@ -35,17 +35,19 @@ async function main() {
     log('Backing up index.html to prevent file system conflicts...');
     const originalIndexPath = 'client/index.html';
     const backupIndexPath = 'temp-index-backup.html';
-    
+
     if (fs.existsSync(originalIndexPath)) {
       fs.copyFileSync(originalIndexPath, backupIndexPath);
     }
 
     // Step 2: Use alternative build method to avoid Vite EISDIR issue
     log('Building with alternative method to avoid EISDIR errors...');
-    
+
     // Build CSS first
-    executeCommand('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify');
-    
+    executeCommand(
+      'npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify'
+    );
+
     // Bundle React app with esbuild
     const esbuildCommand = [
       'npx esbuild client/src/main.tsx',
@@ -56,7 +58,7 @@ async function main() {
       '--jsx=automatic',
       '--jsx-import-source=react',
       '--loader:.tsx=tsx',
-      '--loader:.ts=tsx', 
+      '--loader:.ts=tsx',
       '--loader:.css=css',
       '--loader:.svg=dataurl',
       '--loader:.png=dataurl',
@@ -65,20 +67,20 @@ async function main() {
       '--sourcemap',
       '--define:process.env.NODE_ENV=\\"production\\"',
       '--define:import.meta.env.PROD=true',
-      '--define:import.meta.env.DEV=false'
+      '--define:import.meta.env.DEV=false',
     ].join(' ');
-    
+
     executeCommand(esbuildCommand);
 
     // Step 3: Process HTML template manually
     log('Processing HTML template...');
     let htmlContent = fs.readFileSync(backupIndexPath, 'utf-8');
-    
+
     // Update script and CSS references
     htmlContent = htmlContent
       .replace('src="/src/main.tsx"', 'src="/assets/main.js" type="module"')
       .replace('</head>', '    <link rel="stylesheet" href="/assets/main.css">\n  </head>');
-    
+
     fs.writeFileSync('dist/public/index.html', htmlContent);
 
     // Step 4: Copy public assets
@@ -89,7 +91,9 @@ async function main() {
 
     // Step 5: Build server
     log('Building server...');
-    executeCommand('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist --minify');
+    executeCommand(
+      'npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist --minify'
+    );
 
     // Step 6: Create production-ready server
     log('Creating production server...');
@@ -142,18 +146,18 @@ app.listen(PORT, '0.0.0.0', () => {
     // Step 8: Create package.json for production
     log('Creating production package.json...');
     const prodPackage = {
-      name: "skye-canyon-production",
-      version: "1.0.0",
-      type: "module",
-      main: "production-server.js",
+      name: 'skye-canyon-production',
+      version: '1.0.0',
+      type: 'module',
+      main: 'production-server.js',
       scripts: {
-        start: "node production-server.js"
+        start: 'node production-server.js',
       },
       dependencies: {
-        express: "^4.21.2"
-      }
+        express: '^4.21.2',
+      },
     };
-    
+
     fs.writeFileSync('dist/package.json', JSON.stringify(prodPackage, null, 2));
 
     log('✅ Deployment build completed successfully!');
@@ -168,7 +172,6 @@ app.listen(PORT, '0.0.0.0', () => {
     log('   │   └── package.json');
     log('');
     log('🚀 Ready for deployment!');
-
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export default function PerformanceMonitor() {
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function PerformanceMonitor() {
             }
           }
         });
-        
+
         try {
           observer.observe({ entryTypes: ['largest-contentful-paint'] });
         } catch (e) {
@@ -28,7 +28,7 @@ export default function PerformanceMonitor() {
             }
           }
         });
-        
+
         try {
           fidObserver.observe({ entryTypes: ['first-input'] });
         } catch (e) {
@@ -44,7 +44,7 @@ export default function PerformanceMonitor() {
             }
           }
         });
-        
+
         try {
           clsObserver.observe({ entryTypes: ['layout-shift'] });
         } catch (e) {
@@ -54,7 +54,9 @@ export default function PerformanceMonitor() {
         // Log navigation timing
         window.addEventListener('load', () => {
           setTimeout(() => {
-            const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+            const navigation = performance.getEntriesByType(
+              'navigation'
+            )[0] as PerformanceNavigationTiming;
             console.log('Page Load Time:', navigation.loadEventEnd - navigation.fetchStart);
           }, 0);
         });

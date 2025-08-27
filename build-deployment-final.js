@@ -10,10 +10,10 @@ function log(message) {
 
 function executeCommand(command, options = {}) {
   try {
-    execSync(command, { 
-      stdio: 'inherit', 
+    execSync(command, {
+      stdio: 'inherit',
       timeout: 300000,
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`Command failed: ${command}`);
@@ -40,7 +40,9 @@ async function main() {
 
     // Build CSS with Tailwind
     log('Compiling CSS with Tailwind...');
-    executeCommand('npx tailwindcss -i client/src/index.css -o dist/public/assets/styles.css --minify');
+    executeCommand(
+      'npx tailwindcss -i client/src/index.css -o dist/public/assets/styles.css --minify'
+    );
 
     // Build React application with esbuild (avoids Vite EISDIR issues)
     log('Building React application with esbuild...');
@@ -66,21 +68,21 @@ async function main() {
       '--define:process.env.NODE_ENV=\\"production\\"',
       '--define:import.meta.env.PROD=true',
       '--define:import.meta.env.DEV=false',
-      '--define:import.meta.env.MODE=\\"production\\"'
+      '--define:import.meta.env.MODE=\\"production\\"',
     ].join(' ');
-    
+
     executeCommand(buildCommand);
 
     // Process HTML template
     log('Processing HTML template...');
     let htmlContent = fs.readFileSync(indexBackupPath, 'utf-8');
-    
+
     // Update references to built assets
     htmlContent = htmlContent
       .replace(/src="\/src\/main\.tsx"/g, 'src="/assets/app.js" type="module"')
       .replace(/<\/head>/g, '    <link rel="stylesheet" href="/assets/styles.css">\n  </head>')
       .replace(/href="\/favicon\.ico"/g, 'href="/favicon.ico"');
-    
+
     fs.writeFileSync('dist/public/index.html', htmlContent);
 
     // Copy static assets
@@ -91,17 +93,19 @@ async function main() {
 
     // Build server with esbuild
     log('Building server...');
-    executeCommand([
-      'npx esbuild server/index.ts',
-      '--platform=node',
-      '--packages=external',
-      '--bundle',
-      '--format=esm',
-      '--outdir=dist',
-      '--minify',
-      '--sourcemap',
-      '--keep-names'
-    ].join(' '));
+    executeCommand(
+      [
+        'npx esbuild server/index.ts',
+        '--platform=node',
+        '--packages=external',
+        '--bundle',
+        '--format=esm',
+        '--outdir=dist',
+        '--minify',
+        '--sourcemap',
+        '--keep-names',
+      ].join(' ')
+    );
 
     // Create production server that serves static files
     log('Creating production-ready server...');
@@ -157,29 +161,32 @@ export default app;
     // Create deployment package.json
     log('Creating deployment package.json...');
     const deploymentPackage = {
-      name: "skye-canyon-real-estate",
-      version: "1.0.0",
-      type: "module",
-      main: "server-production.js",
+      name: 'skye-canyon-real-estate',
+      version: '1.0.0',
+      type: 'module',
+      main: 'server-production.js',
       scripts: {
-        start: "node server-production.js",
-        "start:original": "node index.js"
+        start: 'node server-production.js',
+        'start:original': 'node index.js',
       },
       dependencies: {
-        express: "^4.21.2"
+        express: '^4.21.2',
       },
       engines: {
-        node: ">=18.0.0"
-      }
+        node: '>=18.0.0',
+      },
     };
-    
+
     fs.writeFileSync('dist/package.json', JSON.stringify(deploymentPackage, null, 2));
 
     // Create start script
-    fs.writeFileSync('dist/start.sh', `#!/bin/bash
+    fs.writeFileSync(
+      'dist/start.sh',
+      `#!/bin/bash
 echo "Starting Skye Canyon Real Estate Application..."
 node server-production.js
-`);
+`
+    );
     executeCommand('chmod +x dist/start.sh');
 
     // Clean up
@@ -194,10 +201,10 @@ node server-production.js
       'dist/public/assets/app.js',
       'dist/public/assets/styles.css',
       'dist/server-production.js',
-      'dist/package.json'
+      'dist/package.json',
     ];
 
-    const missingFiles = requiredFiles.filter(file => !fs.existsSync(file));
+    const missingFiles = requiredFiles.filter((file) => !fs.existsSync(file));
     if (missingFiles.length > 0) {
       throw new Error(`Missing required files: ${missingFiles.join(', ')}`);
     }
@@ -222,7 +229,6 @@ node server-production.js
     console.log('2. With static server: Use dist/server-production.js');
     console.log('3. Full application: Use dist/index.js (includes API routes)');
     console.log('\n✨ Ready for deployment to any platform!');
-
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);

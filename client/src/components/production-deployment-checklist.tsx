@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, AlertCircle, Clock, ExternalLink, Zap, Globe } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { CheckCircle, AlertCircle, Clock, ExternalLink, Zap, Globe } from 'lucide-react';
 
 interface ChecklistItem {
   id: string;
@@ -26,7 +26,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'seo-2',
@@ -36,7 +36,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'seo-3',
@@ -46,7 +46,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'seo-4',
@@ -56,7 +56,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'medium',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'seo-5',
@@ -65,9 +65,9 @@ export default function ProductionDeploymentChecklist() {
       description: 'Submit comprehensive sitemap to Google Search Console',
       status: 'pending',
       priority: 'high',
-      automated: false
+      automated: false,
     },
-    
+
     // Performance Optimization
     {
       id: 'perf-1',
@@ -77,7 +77,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'perf-2',
@@ -87,7 +87,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'perf-3',
@@ -97,9 +97,9 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'medium',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
-    
+
     // Security
     {
       id: 'sec-1',
@@ -109,7 +109,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'sec-2',
@@ -119,9 +119,9 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
-    
+
     // Analytics
     {
       id: 'analytics-1',
@@ -130,7 +130,7 @@ export default function ProductionDeploymentChecklist() {
       description: 'Enhanced ecommerce tracking and conversion goals configured',
       status: 'pending',
       priority: 'high',
-      automated: false
+      automated: false,
     },
     {
       id: 'analytics-2',
@@ -139,9 +139,9 @@ export default function ProductionDeploymentChecklist() {
       description: 'Property verified and sitemap submitted',
       status: 'pending',
       priority: 'high',
-      automated: false
+      automated: false,
     },
-    
+
     // Business Profile
     {
       id: 'business-1',
@@ -151,7 +151,7 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'high',
       automated: true,
-      lastChecked: new Date().toISOString()
+      lastChecked: new Date().toISOString(),
     },
     {
       id: 'business-2',
@@ -161,14 +161,14 @@ export default function ProductionDeploymentChecklist() {
       status: 'completed',
       priority: 'medium',
       automated: true,
-      lastChecked: new Date().toISOString()
-    }
+      lastChecked: new Date().toISOString(),
+    },
   ]);
 
   const [overallScore, setOverallScore] = useState(0);
 
   useEffect(() => {
-    const completed = checklist.filter(item => item.status === 'completed').length;
+    const completed = checklist.filter((item) => item.status === 'completed').length;
     const total = checklist.length;
     setOverallScore(Math.round((completed / total) * 100));
   }, [checklist]);
@@ -188,48 +188,62 @@ export default function ProductionDeploymentChecklist() {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'high': return 'bg-red-100 text-red-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'low': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'high':
+        return 'bg-red-100 text-red-800';
+      case 'medium':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'low':
+        return 'bg-green-100 text-green-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'seo': return <Globe className="h-4 w-4" />;
-      case 'performance': return <Zap className="h-4 w-4" />;
-      case 'security': return <AlertCircle className="h-4 w-4" />;
-      case 'analytics': return <ExternalLink className="h-4 w-4" />;
-      case 'business': return <CheckCircle className="h-4 w-4" />;
-      default: return <Clock className="h-4 w-4" />;
+      case 'seo':
+        return <Globe className="h-4 w-4" />;
+      case 'performance':
+        return <Zap className="h-4 w-4" />;
+      case 'security':
+        return <AlertCircle className="h-4 w-4" />;
+      case 'analytics':
+        return <ExternalLink className="h-4 w-4" />;
+      case 'business':
+        return <CheckCircle className="h-4 w-4" />;
+      default:
+        return <Clock className="h-4 w-4" />;
     }
   };
 
   const runAutomatedChecks = async () => {
     // Simulate running automated checks
-    const updatedChecklist: ChecklistItem[] = checklist.map(item => {
+    const updatedChecklist: ChecklistItem[] = checklist.map((item) => {
       if (item.automated && item.status !== 'completed') {
-        const newStatus: 'completed' | 'pending' | 'failed' = Math.random() > 0.2 ? 'completed' : 'pending';
+        const newStatus: 'completed' | 'pending' | 'failed' =
+          Math.random() > 0.2 ? 'completed' : 'pending';
         return {
           ...item,
           status: newStatus,
-          lastChecked: new Date().toISOString()
+          lastChecked: new Date().toISOString(),
         };
       }
       return item;
     });
-    
+
     setChecklist(updatedChecklist);
   };
 
-  const categoryGroups = checklist.reduce((acc, item) => {
-    if (!acc[item.category]) {
-      acc[item.category] = [];
-    }
-    acc[item.category].push(item);
-    return acc;
-  }, {} as Record<string, ChecklistItem[]>);
+  const categoryGroups = checklist.reduce(
+    (acc, item) => {
+      if (!acc[item.category]) {
+        acc[item.category] = [];
+      }
+      acc[item.category].push(item);
+      return acc;
+    },
+    {} as Record<string, ChecklistItem[]>
+  );
 
   const getScoreColor = (score: number) => {
     if (score >= 90) return 'text-green-600';
@@ -265,26 +279,26 @@ export default function ProductionDeploymentChecklist() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 capitalize">
               {getCategoryIcon(category)}
-              {category === 'seo' ? 'SEO Optimization' : 
-               category === 'performance' ? 'Performance' :
-               category === 'security' ? 'Security' :
-               category === 'analytics' ? 'Analytics' :
-               'Business Profile'}
+              {category === 'seo'
+                ? 'SEO Optimization'
+                : category === 'performance'
+                  ? 'Performance'
+                  : category === 'security'
+                    ? 'Security'
+                    : category === 'analytics'
+                      ? 'Analytics'
+                      : 'Business Profile'}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {items.map((item) => (
                 <div key={item.id} className="flex items-start space-x-3 p-3 border rounded-lg">
-                  <div className="flex-shrink-0 mt-1">
-                    {getStatusIcon(item.status)}
-                  </div>
+                  <div className="flex-shrink-0 mt-1">{getStatusIcon(item.status)}</div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-1">
                       <h4 className="text-sm font-medium">{item.title}</h4>
-                      <Badge className={getPriorityColor(item.priority)}>
-                        {item.priority}
-                      </Badge>
+                      <Badge className={getPriorityColor(item.priority)}>{item.priority}</Badge>
                       {item.automated && (
                         <Badge variant="outline" className="text-xs">
                           Automated
@@ -299,11 +313,15 @@ export default function ProductionDeploymentChecklist() {
                     )}
                   </div>
                   <div className="flex-shrink-0">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      item.status === 'completed' ? 'bg-green-100 text-green-800' :
-                      item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        item.status === 'completed'
+                          ? 'bg-green-100 text-green-800'
+                          : item.status === 'pending'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-red-100 text-red-800'
+                      }`}
+                    >
                       {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                     </span>
                   </div>
@@ -325,8 +343,13 @@ export default function ProductionDeploymentChecklist() {
               <h4 className="font-semibold text-blue-800 mb-2">Google Business Profile Setup</h4>
               <ul className="text-sm text-blue-700 space-y-1">
                 <li>• Verify your Google Business Profile with phone number (702) 500-1902</li>
-                <li>• Ensure business address matches: 10111 W Skye Canyon Park Dr, Las Vegas, NV 89166</li>
-                <li>• Add business hours matching the schema: M-F 9AM-6PM, Sat 9AM-5PM, Sun 11AM-4PM</li>
+                <li>
+                  • Ensure business address matches: 10111 W Skye Canyon Park Dr, Las Vegas, NV
+                  89166
+                </li>
+                <li>
+                  • Add business hours matching the schema: M-F 9AM-6PM, Sat 9AM-5PM, Sun 11AM-4PM
+                </li>
                 <li>• Upload professional photos of recent property listings</li>
                 <li>• Add services: Luxury Homes, New Construction, Toll Brothers, Lennar</li>
               </ul>
@@ -335,7 +358,9 @@ export default function ProductionDeploymentChecklist() {
             <div className="bg-green-50 p-4 rounded-lg">
               <h4 className="font-semibold text-green-800 mb-2">SEO Configuration</h4>
               <ul className="text-sm text-green-700 space-y-1">
-                <li>• Submit sitemap to Google Search Console: skyecanyonhomesforsale.com/sitemap.xml</li>
+                <li>
+                  • Submit sitemap to Google Search Console: skyecanyonhomesforsale.com/sitemap.xml
+                </li>
                 <li>• Configure Google Analytics 4 with enhanced ecommerce tracking</li>
                 <li>• Set up conversion goals for lead generation and contact forms</li>
                 <li>• Monitor Core Web Vitals and address any performance issues</li>

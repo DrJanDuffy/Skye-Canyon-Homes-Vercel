@@ -7,8 +7,8 @@ export default function ProductionReadiness() {
     if (process.env.NODE_ENV === 'production') {
       // Remove any development banners or debug elements
       const devBanners = document.querySelectorAll('[data-dev-only]');
-      devBanners.forEach(banner => banner.remove());
-      
+      devBanners.forEach((banner) => banner.remove());
+
       // Optimize for production environment
       document.documentElement.setAttribute('data-env', 'production');
     }
@@ -17,19 +17,19 @@ export default function ProductionReadiness() {
     const addProductionMeta = () => {
       // Add structured data for better SEO
       const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "RealEstateAgent",
-        "name": "Dr. Jan Duffy",
-        "url": "https://skyecanyonhomesforsale.com",
-        "telephone": "+1-702-xxx-xxxx",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Las Vegas",
-          "addressRegion": "NV",
-          "addressCountry": "US"
+        '@context': 'https://schema.org',
+        '@type': 'RealEstateAgent',
+        name: 'Dr. Jan Duffy',
+        url: 'https://skyecanyonhomesforsale.com',
+        telephone: '+1-702-xxx-xxxx',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Las Vegas',
+          addressRegion: 'NV',
+          addressCountry: 'US',
         },
-        "areaServed": "Skye Canyon, Las Vegas, NV",
-        "knowsAbout": ["Luxury Real Estate", "New Construction", "Skye Canyon Properties"]
+        areaServed: 'Skye Canyon, Las Vegas, NV',
+        knowsAbout: ['Luxury Real Estate', 'New Construction', 'Skye Canyon Properties'],
       };
 
       const script = document.createElement('script');
@@ -51,7 +51,7 @@ export default function ProductionReadiness() {
 
       // Preload critical routes
       const criticalRoutes = ['/properties', '/about'];
-      criticalRoutes.forEach(route => {
+      criticalRoutes.forEach((route) => {
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = route;

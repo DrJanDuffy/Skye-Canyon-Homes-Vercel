@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { MapPin, ExternalLink } from "lucide-react";
-import { useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { MapPin, ExternalLink } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function AuthenticPropertyListings() {
   useEffect(() => {
@@ -13,7 +13,9 @@ export default function AuthenticPropertyListings() {
 
     return () => {
       // Cleanup script if component unmounts
-      const existingScript = document.querySelector('script[src="https://embed.realscout.com/v3/embed.js"]');
+      const existingScript = document.querySelector(
+        'script[src="https://embed.realscout.com/v3/embed.js"]'
+      );
       if (existingScript) {
         existingScript.remove();
       }
@@ -29,7 +31,8 @@ export default function AuthenticPropertyListings() {
             Featured Skye Canyon Properties for Sale
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Browse current MLS listings in Skye Canyon, Las Vegas 89166. All properties are verified and updated in real-time.
+            Browse current MLS listings in Skye Canyon, Las Vegas 89166. All properties are verified
+            and updated in real-time.
           </p>
         </div>
 
@@ -37,11 +40,11 @@ export default function AuthenticPropertyListings() {
         <div className="mb-12">
           <h3 className="text-2xl font-semibold mb-6 text-gray-800">Luxury Homes ($800K+)</h3>
           <div className="realscout-widget-container border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-            <realscout-office-listings 
-              agent-encoded-id="QWdlbnQtMjI1MDUw" 
-              sort-order="STATUS_AND_SIGNIFICANT_CHANGE" 
-              listing-status="For Sale" 
-              property-types="SFR,MF,TC,OTHER" 
+            <realscout-office-listings
+              agent-encoded-id="QWdlbnQtMjI1MDUw"
+              sort-order="STATUS_AND_SIGNIFICANT_CHANGE"
+              listing-status="For Sale"
+              property-types="SFR,MF,TC,OTHER"
               price-min="800000"
               style={{ minHeight: '600px', width: '100%' }}
             />
@@ -52,11 +55,11 @@ export default function AuthenticPropertyListings() {
         <div className="mb-12">
           <h3 className="text-2xl font-semibold mb-6 text-gray-800">Premium Homes ($600K-$800K)</h3>
           <div className="realscout-widget-container border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-            <realscout-office-listings 
-              agent-encoded-id="QWdlbnQtMjI1MDUw" 
-              sort-order="STATUS_AND_SIGNIFICANT_CHANGE" 
-              listing-status="For Sale" 
-              property-types="SFR,MF,TC,OTHER" 
+            <realscout-office-listings
+              agent-encoded-id="QWdlbnQtMjI1MDUw"
+              sort-order="STATUS_AND_SIGNIFICANT_CHANGE"
+              listing-status="For Sale"
+              property-types="SFR,MF,TC,OTHER"
               price-min="600000"
               price-max="800000"
               style={{ minHeight: '600px', width: '100%' }}
@@ -66,13 +69,15 @@ export default function AuthenticPropertyListings() {
 
         {/* Entry-Level Properties */}
         <div className="mb-12">
-          <h3 className="text-2xl font-semibold mb-6 text-gray-800">Available Homes ($530K-$600K)</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800">
+            Available Homes ($530K-$600K)
+          </h3>
           <div className="realscout-widget-container border border-gray-200 rounded-lg overflow-hidden shadow-lg">
-            <realscout-office-listings 
-              agent-encoded-id="QWdlbnQtMjI1MDUw" 
-              sort-order="STATUS_AND_SIGNIFICANT_CHANGE" 
-              listing-status="For Sale" 
-              property-types="SFR,MF,TC,OTHER" 
+            <realscout-office-listings
+              agent-encoded-id="QWdlbnQtMjI1MDUw"
+              sort-order="STATUS_AND_SIGNIFICANT_CHANGE"
+              listing-status="For Sale"
+              property-types="SFR,MF,TC,OTHER"
               price-min="530000"
               price-max="600000"
               style={{ minHeight: '600px', width: '100%' }}
@@ -113,8 +118,8 @@ export default function AuthenticPropertyListings() {
             </div>
           </div>
           <div className="mt-6 pt-4 border-t border-blue-200 dark:border-blue-700">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="w-full border-blue-300 text-blue-700 hover:bg-blue-100 dark:border-blue-600 dark:text-blue-300 dark:hover:bg-blue-800"
               onClick={() => window.open('http://drjanduffy.realscout.com/onboarding', '_blank')}
             >

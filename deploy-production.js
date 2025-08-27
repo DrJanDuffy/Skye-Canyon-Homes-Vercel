@@ -22,7 +22,7 @@ function executeCommand(command, options = {}) {
     execSync(command, {
       stdio: 'inherit',
       timeout: 300000,
-      ...options
+      ...options,
     });
   } catch (error) {
     console.error(`❌ Command failed: ${command}`);
@@ -33,7 +33,7 @@ function executeCommand(command, options = {}) {
 
 async function testServer(port = 3000, timeout = 10000) {
   log(`Testing server on port ${port}...`);
-  
+
   return new Promise((resolve, reject) => {
     const testTimeout = setTimeout(() => {
       reject(new Error(`Server test timed out after ${timeout}ms`));
@@ -50,12 +50,12 @@ async function testServer(port = 3000, timeout = 10000) {
             reject(new Error(`Health check failed with status: ${res.statusCode}`));
           }
         });
-        
+
         req.on('error', (err) => {
           // Server might not be ready yet, retry
           setTimeout(testRequest, 1000);
         });
-        
+
         req.setTimeout(5000);
       });
     };
@@ -67,7 +67,7 @@ async function testServer(port = 3000, timeout = 10000) {
 
 async function main() {
   log('🚀 Starting complete deployment process...');
-  
+
   try {
     // Step 1: Clean and prepare directories
     log('🧹 Cleaning build directories...');
@@ -80,7 +80,9 @@ async function main() {
 
     // Step 2: Build CSS with Tailwind
     log('🎨 Building CSS with Tailwind...');
-    executeCommand('npx tailwindcss -i client/src/index.css -o dist/public/assets/styles.css --minify');
+    executeCommand(
+      'npx tailwindcss -i client/src/index.css -o dist/public/assets/styles.css --minify'
+    );
 
     // Step 3: Copy public assets
     log('📁 Copying public assets...');
@@ -91,7 +93,7 @@ async function main() {
 
     // Copy root assets
     const rootAssets = ['favicon.ico', 'robots.txt', 'sitemap.xml', 'manifest.json'];
-    rootAssets.forEach(asset => {
+    rootAssets.forEach((asset) => {
       const assetPath = path.join(__dirname, asset);
       if (fs.existsSync(assetPath)) {
         fs.copyFileSync(assetPath, path.join(__dirname, 'dist', 'public', asset));
@@ -114,7 +116,7 @@ async function main() {
         'process.env.NODE_ENV': '"production"',
         'import.meta.env.MODE': '"production"',
         'import.meta.env.PROD': 'true',
-        'import.meta.env.DEV': 'false'
+        'import.meta.env.DEV': 'false',
       },
       loader: {
         '.png': 'file',
@@ -125,34 +127,31 @@ async function main() {
         '.woff': 'file',
         '.woff2': 'file',
         '.eot': 'file',
-        '.ttf': 'file'
+        '.ttf': 'file',
       },
       publicPath: '/assets/',
       external: [],
       jsx: 'automatic',
-      jsxImportSource: 'react'
+      jsxImportSource: 'react',
     });
 
     // Step 5: Process HTML template
     log('📄 Processing HTML template...');
     const htmlPath = path.join(__dirname, 'client', 'index.html');
     let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-    
+
     htmlContent = htmlContent
       .replace(
         '<script type="module" src="/src/main.tsx"></script>',
         '<script type="module" src="/assets/app.js"></script>'
       )
-      .replace(
-        '</head>',
-        '    <link rel="stylesheet" href="/assets/styles.css">\n  </head>'
-      );
-    
+      .replace('</head>', '    <link rel="stylesheet" href="/assets/styles.css">\n  </head>');
+
     fs.writeFileSync(path.join(__dirname, 'dist', 'public', 'index.html'), htmlContent);
 
     // Step 6: Create production server instead of building server separately
     log('🖥️ Creating production server...');
-    
+
     const app = express();
     const PORT = process.env.PORT || 3000;
 
@@ -170,24 +169,29 @@ async function main() {
       res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+      res.setHeader(
+        'Access-Control-Allow-Headers',
+        'Content-Type, Authorization, X-Requested-With'
+      );
       next();
     });
 
     // Serve static files
     const staticPath = path.join(__dirname, 'dist', 'public');
-    app.use(express.static(staticPath, {
-      maxAge: '1y',
-      etag: true,
-      lastModified: true
-    }));
+    app.use(
+      express.static(staticPath, {
+        maxAge: '1y',
+        etag: true,
+        lastModified: true,
+      })
+    );
 
     // Health check
     app.get('/health', (req, res) => {
-      res.json({ 
-        status: 'healthy', 
+      res.json({
+        status: 'healthy',
         timestamp: new Date().toISOString(),
-        uptime: process.uptime()
+        uptime: process.uptime(),
       });
     });
 
@@ -198,7 +202,7 @@ async function main() {
       log('✅ Server routes loaded successfully');
     } catch (error) {
       log(`⚠️ Using fallback routes: ${error.message}`);
-      
+
       // Minimal API endpoints
       app.get('/api/properties', (req, res) => res.json([]));
       app.get('/api/market-insights', (req, res) => res.json({ insights: [] }));
@@ -230,7 +234,7 @@ async function main() {
     // Show build stats
     const clientStats = fs.statSync('dist/public/assets/app.js');
     const cssStats = fs.statSync('dist/public/assets/styles.css');
-    
+
     log('📊 Build completed successfully!');
     log(`   Client Bundle: ${(clientStats.size / 1024).toFixed(1)}KB`);
     log(`   CSS Bundle: ${(cssStats.size / 1024).toFixed(1)}KB`);
@@ -246,7 +250,6 @@ async function main() {
       log('🛑 Shutting down gracefully...');
       server.close(() => process.exit(0));
     });
-
   } catch (error) {
     console.error('❌ Deployment failed:', error);
     process.exit(1);

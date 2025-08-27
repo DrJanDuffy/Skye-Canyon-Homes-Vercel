@@ -1,4 +1,4 @@
-import type { Express, Request, Response } from "express";
+import type { Express, Request, Response } from 'express';
 
 interface SitemapUrl {
   loc: string;
@@ -8,9 +8,10 @@ interface SitemapUrl {
 }
 
 export function generateSitemap(): string {
-  const baseUrl = process.env.NODE_ENV === 'production' 
-    ? 'https://skyecanyonhomesforsale.com' 
-    : 'http://localhost:5000';
+  const baseUrl =
+    process.env.NODE_ENV === 'production'
+      ? 'https://skyecanyonhomesforsale.com'
+      : 'http://localhost:5000';
 
   const urls: SitemapUrl[] = [
     // Main pages
@@ -19,25 +20,25 @@ export function generateSitemap(): string {
     { loc: '/contact', changefreq: 'monthly', priority: 0.8 },
     { loc: '/properties', changefreq: 'daily', priority: 0.9 },
     { loc: '/voice-search', changefreq: 'weekly', priority: 0.7 },
-    
+
     // Location pages
     { loc: '/northwest-las-vegas', changefreq: 'weekly', priority: 0.8 },
     { loc: '/las-vegas-real-estate', changefreq: 'weekly', priority: 0.8 },
     { loc: '/luxury-homes-las-vegas', changefreq: 'weekly', priority: 0.8 },
-    
+
     // Skye Canyon specific pages
     { loc: '/skye-canyon-guide', changefreq: 'monthly', priority: 0.9 },
     { loc: '/skye-canyon-schools', changefreq: 'monthly', priority: 0.8 },
     { loc: '/skye-canyon-parks', changefreq: 'monthly', priority: 0.7 },
     { loc: '/skye-canyon-communities', changefreq: 'monthly', priority: 0.8 },
-    
+
     // Analysis pages
     { loc: '/market-analysis', changefreq: 'weekly', priority: 0.8 },
     { loc: '/neighborhood-analysis', changefreq: 'weekly', priority: 0.7 },
-    
+
     // Legal pages
     { loc: '/privacy-policy', changefreq: 'yearly', priority: 0.3 },
-    { loc: '/terms-of-service', changefreq: 'yearly', priority: 0.3 }
+    { loc: '/terms-of-service', changefreq: 'yearly', priority: 0.3 },
   ];
 
   const lastmod = new Date().toISOString().split('T')[0];
@@ -47,12 +48,16 @@ export function generateSitemap(): string {
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${urls.map(url => `  <url>
+${urls
+  .map(
+    (url) => `  <url>
     <loc>${baseUrl}${url.loc}</loc>
     <lastmod>${url.lastmod || lastmod}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
-  </url>`).join('\n')}
+  </url>`
+  )
+  .join('\n')}
 </urlset>`;
 
   return xmlContent;
@@ -68,9 +73,10 @@ export function registerSitemapRoutes(app: Express) {
 
   // Robots.txt
   app.get('/robots.txt', (req: Request, res: Response) => {
-    const baseUrl = process.env.NODE_ENV === 'production' 
-      ? 'https://skyecanyonhomesforsale.com' 
-      : 'http://localhost:5000';
+    const baseUrl =
+      process.env.NODE_ENV === 'production'
+        ? 'https://skyecanyonhomesforsale.com'
+        : 'http://localhost:5000';
 
     const robotsContent = `User-agent: *
 Allow: /

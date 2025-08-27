@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
-import { CheckCircle, AlertCircle, MapPin, Phone, Clock, Star, Users, TrendingUp } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import {
+  CheckCircle,
+  AlertCircle,
+  MapPin,
+  Phone,
+  Clock,
+  Star,
+  Users,
+  TrendingUp,
+} from 'lucide-react';
 
 interface BusinessProfileData {
   name: string;
@@ -29,18 +38,18 @@ interface OptimizationScore {
 
 export default function GoogleBusinessProfileDashboard() {
   const [profileData, setProfileData] = useState<BusinessProfileData>({
-    name: "Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®",
-    address: "10111 W Skye Canyon Park Dr, Las Vegas, NV 89166",
-    phone: "(702) 500-1902",
-    website: "https://skyecanyonhomesforsale.com",
+    name: 'Skye Canyon Las Vegas Luxury Homes | Dr. Jan Duffy, REALTOR®',
+    address: '10111 W Skye Canyon Park Dr, Las Vegas, NV 89166',
+    phone: '(702) 500-1902',
+    website: 'https://skyecanyonhomesforsale.com',
     hours: [
-      "Monday: 9:00 AM – 6:00 PM",
-      "Tuesday: 9:00 AM – 6:00 PM", 
-      "Wednesday: 9:00 AM – 6:00 PM",
-      "Thursday: 9:00 AM – 6:00 PM",
-      "Friday: 9:00 AM – 6:00 PM",
-      "Saturday: 9:00 AM – 5:00 PM",
-      "Sunday: 11:00 AM – 4:00 PM"
+      'Monday: 9:00 AM – 6:00 PM',
+      'Tuesday: 9:00 AM – 6:00 PM',
+      'Wednesday: 9:00 AM – 6:00 PM',
+      'Thursday: 9:00 AM – 6:00 PM',
+      'Friday: 9:00 AM – 6:00 PM',
+      'Saturday: 9:00 AM – 5:00 PM',
+      'Sunday: 11:00 AM – 4:00 PM',
     ],
     rating: 4.9,
     reviewCount: 47,
@@ -50,8 +59,8 @@ export default function GoogleBusinessProfileDashboard() {
       'Identifies as women-owned',
       'Serves Las Vegas area',
       'Luxury home specialist',
-      'New construction expert'
-    ]
+      'New construction expert',
+    ],
   });
 
   const [optimizationScore, setOptimizationScore] = useState<OptimizationScore>({
@@ -59,7 +68,7 @@ export default function GoogleBusinessProfileDashboard() {
     completeness: 95,
     accuracy: 98,
     engagement: 87,
-    visibility: 89
+    visibility: 89,
   });
 
   const [recentInsights, setRecentInsights] = useState([
@@ -67,26 +76,26 @@ export default function GoogleBusinessProfileDashboard() {
       metric: 'Profile Views',
       value: '1,247',
       change: '+23%',
-      period: 'Last 30 days'
+      period: 'Last 30 days',
     },
     {
       metric: 'Direction Requests',
       value: '156',
       change: '+18%',
-      period: 'Last 30 days'
+      period: 'Last 30 days',
     },
     {
       metric: 'Phone Calls',
       value: '89',
       change: '+31%',
-      period: 'Last 30 days'
+      period: 'Last 30 days',
     },
     {
       metric: 'Website Clicks',
       value: '342',
       change: '+15%',
-      period: 'Last 30 days'
-    }
+      period: 'Last 30 days',
+    },
   ]);
 
   const [optimizationTasks, setOptimizationTasks] = useState([
@@ -95,29 +104,29 @@ export default function GoogleBusinessProfileDashboard() {
       task: 'Add high-quality photos of recent listings',
       priority: 'high',
       completed: false,
-      description: 'Upload 5-10 professional photos showcasing your best properties'
+      description: 'Upload 5-10 professional photos showcasing your best properties',
     },
     {
       id: 2,
       task: 'Respond to recent reviews',
       priority: 'medium',
       completed: true,
-      description: 'Thank customers for positive feedback and address any concerns'
+      description: 'Thank customers for positive feedback and address any concerns',
     },
     {
       id: 3,
       task: 'Update services offered',
       priority: 'low',
       completed: false,
-      description: 'Add new construction partnerships with Toll Brothers and Lennar'
+      description: 'Add new construction partnerships with Toll Brothers and Lennar',
     },
     {
       id: 4,
       task: 'Post weekly market updates',
       priority: 'medium',
       completed: false,
-      description: 'Share Skye Canyon market insights and new listings'
-    }
+      description: 'Share Skye Canyon market insights and new listings',
+    },
   ]);
 
   const getScoreColor = (score: number) => {
@@ -128,10 +137,14 @@ export default function GoogleBusinessProfileDashboard() {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'high': return 'bg-red-100 text-red-800';
-      case 'medium': return 'bg-yellow-100 text-yellow-800';
-      case 'low': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'high':
+        return 'bg-red-100 text-red-800';
+      case 'medium':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'low':
+        return 'bg-green-100 text-green-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
@@ -230,12 +243,14 @@ export default function GoogleBusinessProfileDashboard() {
                   <p className="text-sm text-gray-600">{profileData.website}</p>
                 </div>
               </div>
-              
+
               <div>
                 <label className="text-sm font-medium">Categories</label>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {profileData.categories.map((category, index) => (
-                    <Badge key={index} variant="secondary">{category}</Badge>
+                    <Badge key={index} variant="secondary">
+                      {category}
+                    </Badge>
                   ))}
                 </div>
               </div>
@@ -248,9 +263,7 @@ export default function GoogleBusinessProfileDashboard() {
           <Card>
             <CardHeader>
               <CardTitle>Optimization Score</CardTitle>
-              <CardDescription>
-                Overall profile optimization score and breakdown
-              </CardDescription>
+              <CardDescription>Overall profile optimization score and breakdown</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="text-center">
@@ -318,9 +331,7 @@ export default function GoogleBusinessProfileDashboard() {
                       <p className="text-xs text-gray-500">{insight.period}</p>
                     </div>
                     <div className="text-right">
-                      <span className="text-sm font-medium text-green-600">
-                        {insight.change}
-                      </span>
+                      <span className="text-sm font-medium text-green-600">{insight.change}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -351,12 +362,12 @@ export default function GoogleBusinessProfileDashboard() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2">
-                        <p className={`text-sm font-medium ${task.completed ? 'line-through text-gray-500' : ''}`}>
+                        <p
+                          className={`text-sm font-medium ${task.completed ? 'line-through text-gray-500' : ''}`}
+                        >
                           {task.task}
                         </p>
-                        <Badge className={getPriorityColor(task.priority)}>
-                          {task.priority}
-                        </Badge>
+                        <Badge className={getPriorityColor(task.priority)}>{task.priority}</Badge>
                       </div>
                       <p className="text-xs text-gray-600 mt-1">{task.description}</p>
                     </div>

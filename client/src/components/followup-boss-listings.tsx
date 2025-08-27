@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { MapPin, Heart } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { MapPin, Heart } from 'lucide-react';
 
 interface FollowUpBossListing {
   id: string;
@@ -32,7 +32,7 @@ export default function FollowUpBossListings() {
         throw new Error('Failed to fetch listings');
       }
       const data = await response.json();
-      
+
       // Transform FollowUp Boss data to match our interface
       const transformedListings = data.map((item: any) => ({
         id: item.id,
@@ -43,9 +43,9 @@ export default function FollowUpBossListings() {
         sqft: item.squareFeet,
         imageUrl: item.photos?.[0]?.url,
         status: item.status || 'Active',
-        listingDate: item.listDate
+        listingDate: item.listDate,
       }));
-      
+
       setListings(transformedListings);
     } catch (err) {
       setError('Unable to load authentic listings at this time');
@@ -81,7 +81,8 @@ export default function FollowUpBossListings() {
             Connect Your CRM for Live Listings
           </h3>
           <p className="text-yellow-700 text-sm">
-            To display authentic property data, please ensure your FollowUp Boss CRM integration is properly configured.
+            To display authentic property data, please ensure your FollowUp Boss CRM integration is
+            properly configured.
           </p>
         </div>
       </div>
@@ -101,27 +102,25 @@ export default function FollowUpBossListings() {
       {listings.map((listing) => (
         <Card key={listing.id} className="overflow-hidden hover:shadow-lg transition-shadow">
           {listing.imageUrl && (
-            <img 
-              src={listing.imageUrl} 
+            <img
+              src={listing.imageUrl}
               alt={`Property at ${listing.address}`}
               className="w-full h-48 object-cover"
             />
           )}
           <CardContent className="p-6">
             <div className="flex justify-between items-start mb-3">
-              <h3 className="text-xl font-bold text-gray-900">
-                {formatPrice(listing.price)}
-              </h3>
+              <h3 className="text-xl font-bold text-gray-900">{formatPrice(listing.price)}</h3>
               <Badge variant={listing.status === 'active' ? 'default' : 'secondary'}>
                 {listing.status}
               </Badge>
             </div>
-            
+
             <p className="text-gray-600 mb-3 flex items-center">
               <MapPin className="w-4 h-4 mr-1" />
               {listing.address}
             </p>
-            
+
             <div className="flex justify-between text-sm text-gray-600 mb-4">
               {listing.bedrooms && (
                 <span className="flex items-center">
@@ -142,7 +141,7 @@ export default function FollowUpBossListings() {
                 </span>
               )}
             </div>
-            
+
             <div className="flex space-x-2">
               <Button className="flex-1 bg-realscout-blue text-white hover:bg-realscout-navy">
                 View Details

@@ -169,10 +169,5 @@ export default function CriticalCSS() {
     }
   `;
 
-  return (
-    <style 
-      dangerouslySetInnerHTML={{ __html: criticalStyles }}
-      data-purpose="critical-css"
-    />
-  );
+  return <style dangerouslySetInnerHTML={{ __html: criticalStyles }} data-purpose="critical-css" />;
 }

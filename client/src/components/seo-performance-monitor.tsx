@@ -1,9 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrendingUp, Search, Globe, Smartphone, Zap, CheckCircle, AlertTriangle } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  TrendingUp,
+  Search,
+  Globe,
+  Smartphone,
+  Zap,
+  CheckCircle,
+  AlertTriangle,
+} from 'lucide-react';
 
 interface SEOMetrics {
   pageSpeed: {
@@ -39,37 +47,34 @@ export default function SEOPerformanceMonitor() {
       mobile: 76,
       fcp: 1.8,
       lcp: 2.4,
-      cls: 0.08
+      cls: 0.08,
     },
     rankings: [
-      { keyword: "skye canyon real estate", position: 3, change: 2, searchVolume: 850 },
-      { keyword: "las vegas luxury homes", position: 8, change: -1, searchVolume: 2400 },
-      { keyword: "northwest las vegas realtor", position: 5, change: 1, searchVolume: 560 },
-      { keyword: "new construction homes las vegas", position: 12, change: 3, searchVolume: 1200 },
-      { keyword: "toll brothers las vegas", position: 15, change: 5, searchVolume: 680 }
+      { keyword: 'skye canyon real estate', position: 3, change: 2, searchVolume: 850 },
+      { keyword: 'las vegas luxury homes', position: 8, change: -1, searchVolume: 2400 },
+      { keyword: 'northwest las vegas realtor', position: 5, change: 1, searchVolume: 560 },
+      { keyword: 'new construction homes las vegas', position: 12, change: 3, searchVolume: 1200 },
+      { keyword: 'toll brothers las vegas', position: 15, change: 5, searchVolume: 680 },
     ],
     technicalSEO: {
       score: 92,
-      issues: [
-        "Some images missing alt text",
-        "Minor LCP optimization needed"
-      ],
+      issues: ['Some images missing alt text', 'Minor LCP optimization needed'],
       recommendations: [
-        "Optimize hero section images for faster loading",
-        "Implement lazy loading for below-fold content",
-        "Add missing alt attributes to property images"
-      ]
+        'Optimize hero section images for faster loading',
+        'Implement lazy loading for below-fold content',
+        'Add missing alt attributes to property images',
+      ],
     },
     localSEO: {
       gmbOptimization: 94,
       citations: 47,
       reviews: 47,
       localRankings: [
-        { keyword: "realtor near me skye canyon", position: 2 },
-        { keyword: "luxury homes skye canyon", position: 1 },
-        { keyword: "real estate agent 89166", position: 4 }
-      ]
-    }
+        { keyword: 'realtor near me skye canyon', position: 2 },
+        { keyword: 'luxury homes skye canyon', position: 1 },
+        { keyword: 'real estate agent 89166', position: 4 },
+      ],
+    },
   });
 
   const getScoreColor = (score: number) => {
@@ -121,7 +126,9 @@ export default function SEOPerformanceMonitor() {
                   <Globe className="h-4 w-4 text-blue-500" />
                   <span className="text-sm font-medium">Desktop Speed</span>
                 </div>
-                <div className={`text-2xl font-bold ${getScoreColor(seoMetrics.pageSpeed.desktop)}`}>
+                <div
+                  className={`text-2xl font-bold ${getScoreColor(seoMetrics.pageSpeed.desktop)}`}
+                >
                   {seoMetrics.pageSpeed.desktop}
                 </div>
                 <p className="text-xs text-gray-500">PageSpeed Score</p>
@@ -147,7 +154,9 @@ export default function SEOPerformanceMonitor() {
                   <Zap className="h-4 w-4 text-yellow-500" />
                   <span className="text-sm font-medium">Technical SEO</span>
                 </div>
-                <div className={`text-2xl font-bold ${getScoreColor(seoMetrics.technicalSEO.score)}`}>
+                <div
+                  className={`text-2xl font-bold ${getScoreColor(seoMetrics.technicalSEO.score)}`}
+                >
                   {seoMetrics.technicalSEO.score}
                 </div>
                 <p className="text-xs text-gray-500">Overall Score</p>
@@ -160,7 +169,9 @@ export default function SEOPerformanceMonitor() {
                   <Search className="h-4 w-4 text-green-500" />
                   <span className="text-sm font-medium">Local SEO</span>
                 </div>
-                <div className={`text-2xl font-bold ${getScoreColor(seoMetrics.localSEO.gmbOptimization)}`}>
+                <div
+                  className={`text-2xl font-bold ${getScoreColor(seoMetrics.localSEO.gmbOptimization)}`}
+                >
                   {seoMetrics.localSEO.gmbOptimization}
                 </div>
                 <p className="text-xs text-gray-500">GMB Score</p>
@@ -220,21 +231,33 @@ export default function SEOPerformanceMonitor() {
             <CardContent>
               <div className="space-y-4">
                 {seoMetrics.rankings.map((ranking, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between p-3 border rounded-lg"
+                  >
                     <div className="flex-1">
                       <div className="flex items-center space-x-2">
                         <span className="font-medium">{ranking.keyword}</span>
-                        <Badge variant="outline">{ranking.searchVolume.toLocaleString()} vol/mo</Badge>
+                        <Badge variant="outline">
+                          {ranking.searchVolume.toLocaleString()} vol/mo
+                        </Badge>
                       </div>
                     </div>
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-1">
                         {getChangeIcon(ranking.change)}
-                        <span className={`text-sm ${ranking.change > 0 ? 'text-green-600' : ranking.change < 0 ? 'text-red-600' : 'text-gray-600'}`}>
-                          {ranking.change > 0 ? '+' : ''}{ranking.change}
+                        <span
+                          className={`text-sm ${ranking.change > 0 ? 'text-green-600' : ranking.change < 0 ? 'text-red-600' : 'text-gray-600'}`}
+                        >
+                          {ranking.change > 0 ? '+' : ''}
+                          {ranking.change}
                         </span>
                       </div>
-                      <Badge className={getScoreBadgeColor(ranking.position <= 3 ? 95 : ranking.position <= 10 ? 80 : 60)}>
+                      <Badge
+                        className={getScoreBadgeColor(
+                          ranking.position <= 3 ? 95 : ranking.position <= 10 ? 80 : 60
+                        )}
+                      >
                         #{ranking.position}
                       </Badge>
                     </div>
@@ -258,7 +281,10 @@ export default function SEOPerformanceMonitor() {
               <CardContent>
                 <div className="space-y-2">
                   {seoMetrics.technicalSEO.issues.map((issue, index) => (
-                    <div key={index} className="flex items-center space-x-2 p-2 bg-yellow-50 rounded">
+                    <div
+                      key={index}
+                      className="flex items-center space-x-2 p-2 bg-yellow-50 rounded"
+                    >
                       <AlertTriangle className="h-4 w-4 text-yellow-500 flex-shrink-0" />
                       <span className="text-sm">{issue}</span>
                     </div>
@@ -331,7 +357,11 @@ export default function SEOPerformanceMonitor() {
                   {seoMetrics.localSEO.localRankings.map((ranking, index) => (
                     <div key={index} className="flex items-center justify-between">
                       <span className="text-sm font-medium">{ranking.keyword}</span>
-                      <Badge className={getScoreBadgeColor(ranking.position <= 3 ? 95 : ranking.position <= 10 ? 80 : 60)}>
+                      <Badge
+                        className={getScoreBadgeColor(
+                          ranking.position <= 3 ? 95 : ranking.position <= 10 ? 80 : 60
+                        )}
+                      >
                         #{ranking.position}
                       </Badge>
                     </div>

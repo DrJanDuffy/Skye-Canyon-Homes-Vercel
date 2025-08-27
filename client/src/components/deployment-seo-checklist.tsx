@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { CheckCircle, AlertTriangle, Clock, ExternalLink } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { CheckCircle, AlertTriangle, Clock, ExternalLink } from 'lucide-react';
 
 interface ChecklistItem {
   id: string;
@@ -22,7 +22,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Geo-specific meta tags, Open Graph, Twitter Cards',
       status: 'completed',
       priority: 'high',
-      category: 'technical'
+      category: 'technical',
     },
     {
       id: 'structured-data',
@@ -30,7 +30,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Real estate agent, local business, geo-enhanced schemas',
       status: 'completed',
       priority: 'high',
-      category: 'technical'
+      category: 'technical',
     },
     {
       id: 'sitemap',
@@ -38,7 +38,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Enhanced sitemap with location coordinates',
       status: 'completed',
       priority: 'high',
-      category: 'technical'
+      category: 'technical',
     },
     {
       id: 'robots',
@@ -46,7 +46,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Allow all important pages, block sensitive areas',
       status: 'completed',
       priority: 'medium',
-      category: 'technical'
+      category: 'technical',
     },
     {
       id: 'core-web-vitals',
@@ -54,9 +54,9 @@ export default function DeploymentSEOChecklist() {
       description: 'FCP currently 7747ms - needs immediate attention',
       status: 'critical',
       priority: 'high',
-      category: 'performance'
+      category: 'performance',
     },
-    
+
     // Local SEO
     {
       id: 'nap-consistency',
@@ -64,7 +64,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Name, Address, Phone: (702) 500-1902 across all pages',
       status: 'completed',
       priority: 'high',
-      category: 'local'
+      category: 'local',
     },
     {
       id: 'business-hours',
@@ -72,7 +72,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Mo-Fr 09:00-18:00, Sa 09:00-17:00, Su 11:00-16:00',
       status: 'completed',
       priority: 'medium',
-      category: 'local'
+      category: 'local',
     },
     {
       id: 'service-areas',
@@ -80,9 +80,9 @@ export default function DeploymentSEOChecklist() {
       description: 'Skye Canyon, Centennial Hills, Northwest Las Vegas',
       status: 'completed',
       priority: 'high',
-      category: 'local'
+      category: 'local',
     },
-    
+
     // Content SEO
     {
       id: 'keyword-optimization',
@@ -90,7 +90,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Skye Canyon, Las Vegas NV 89166, luxury homes',
       status: 'completed',
       priority: 'high',
-      category: 'content'
+      category: 'content',
     },
     {
       id: 'builder-partnerships',
@@ -98,9 +98,9 @@ export default function DeploymentSEOChecklist() {
       description: 'Toll Brothers and Lennar integration',
       status: 'completed',
       priority: 'medium',
-      category: 'content'
+      category: 'content',
     },
-    
+
     // Performance Issues
     {
       id: 'image-optimization',
@@ -108,7 +108,7 @@ export default function DeploymentSEOChecklist() {
       description: 'WebP format, lazy loading, compression',
       status: 'in-progress',
       priority: 'high',
-      category: 'performance'
+      category: 'performance',
     },
     {
       id: 'css-optimization',
@@ -116,7 +116,7 @@ export default function DeploymentSEOChecklist() {
       description: 'Inline critical CSS, async non-critical',
       status: 'in-progress',
       priority: 'high',
-      category: 'performance'
+      category: 'performance',
     },
     {
       id: 'javascript-optimization',
@@ -124,8 +124,8 @@ export default function DeploymentSEOChecklist() {
       description: 'Code splitting, tree shaking, preloading',
       status: 'pending',
       priority: 'medium',
-      category: 'performance'
-    }
+      category: 'performance',
+    },
   ]);
 
   const getStatusIcon = (status: ChecklistItem['status']) => {
@@ -166,45 +166,37 @@ export default function DeploymentSEOChecklist() {
   };
 
   const categoryStats = {
-    technical: checklist.filter(item => item.category === 'technical'),
-    content: checklist.filter(item => item.category === 'content'),
-    local: checklist.filter(item => item.category === 'local'),
-    performance: checklist.filter(item => item.category === 'performance')
+    technical: checklist.filter((item) => item.category === 'technical'),
+    content: checklist.filter((item) => item.category === 'content'),
+    local: checklist.filter((item) => item.category === 'local'),
+    performance: checklist.filter((item) => item.category === 'performance'),
   };
 
   const overallProgress = Math.round(
-    (checklist.filter(item => item.status === 'completed').length / checklist.length) * 100
+    (checklist.filter((item) => item.status === 'completed').length / checklist.length) * 100
   );
 
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          SEO Deployment Checklist
-        </h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">SEO Deployment Checklist</h2>
         <p className="text-gray-600 mb-4">
           Comprehensive optimization status for Dr. Jan Duffy Real Estate
         </p>
-        <div className="text-3xl font-bold text-blue-600">
-          {overallProgress}% Complete
-        </div>
+        <div className="text-3xl font-bold text-blue-600">{overallProgress}% Complete</div>
       </div>
 
       {/* Category Overview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {Object.entries(categoryStats).map(([category, items]) => {
-          const completed = items.filter(item => item.status === 'completed').length;
+          const completed = items.filter((item) => item.status === 'completed').length;
           const percentage = Math.round((completed / items.length) * 100);
-          
+
           return (
             <Card key={category}>
               <CardContent className="p-4 text-center">
-                <div className="text-lg font-semibold capitalize mb-2">
-                  {category}
-                </div>
-                <div className="text-2xl font-bold text-blue-600 mb-1">
-                  {percentage}%
-                </div>
+                <div className="text-lg font-semibold capitalize mb-2">{category}</div>
+                <div className="text-2xl font-bold text-blue-600 mb-1">{percentage}%</div>
                 <div className="text-sm text-gray-600">
                   {completed}/{items.length} tasks
                 </div>
@@ -224,14 +216,10 @@ export default function DeploymentSEOChecklist() {
                   {getStatusIcon(item.status)}
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold text-gray-900">
-                        {item.title}
-                      </h3>
+                      <h3 className="font-semibold text-gray-900">{item.title}</h3>
                       {getPriorityBadge(item.priority)}
                     </div>
-                    <p className="text-gray-600 text-sm mb-2">
-                      {item.description}
-                    </p>
+                    <p className="text-gray-600 text-sm mb-2">{item.description}</p>
                     <div className="flex items-center gap-2">
                       {getStatusBadge(item.status)}
                       <Badge variant="outline" className="capitalize">
@@ -258,21 +246,17 @@ export default function DeploymentSEOChecklist() {
           <div className="space-y-3">
             <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
               <div>
-                <div className="font-medium text-red-800">
-                  First Contentful Paint (FCP): 7747ms
-                </div>
+                <div className="font-medium text-red-800">First Contentful Paint (FCP): 7747ms</div>
                 <div className="text-sm text-red-600">
                   Currently in "Poor" range - Target: &lt; 1800ms
                 </div>
               </div>
               <Badge variant="destructive">Critical</Badge>
             </div>
-            
+
             <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
               <div>
-                <div className="font-medium text-yellow-800">
-                  Mobile Performance Score: 42
-                </div>
+                <div className="font-medium text-yellow-800">Mobile Performance Score: 42</div>
                 <div className="text-sm text-yellow-600">
                   Needs optimization for mobile Core Web Vitals
                 </div>
@@ -296,7 +280,7 @@ export default function DeploymentSEOChecklist() {
             <li>Configure CDN for static asset delivery</li>
             <li>Monitor Core Web Vitals improvements post-deployment</li>
           </ol>
-          
+
           <div className="flex gap-3 mt-4">
             <Button variant="outline" size="sm">
               <ExternalLink className="h-4 w-4 mr-2" />

@@ -10,11 +10,11 @@ if (!supabaseKey) {
 export const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: {
     persistSession: false,
-    autoRefreshToken: false
+    autoRefreshToken: false,
   },
   db: {
-    schema: 'public'
-  }
+    schema: 'public',
+  },
 });
 
 export default supabase;

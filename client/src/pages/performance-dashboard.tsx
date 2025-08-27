@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Activity, Clock, AlertTriangle, TrendingUp, Server } from "lucide-react";
+import { useQuery } from '@tanstack/react-query';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
+import { Activity, Clock, AlertTriangle, TrendingUp, Server } from 'lucide-react';
 
 interface PerformanceMetrics {
   totalRequests: number;
@@ -21,27 +21,27 @@ interface SlowEndpoint {
 
 export default function PerformanceDashboard() {
   const { data: metrics, isLoading: metricsLoading } = useQuery<PerformanceMetrics>({
-    queryKey: ["/api/performance/metrics"],
+    queryKey: ['/api/performance/metrics'],
     refetchInterval: 10000, // Refresh every 10 seconds
   });
 
   const { data: slowEndpoints, isLoading: slowLoading } = useQuery<SlowEndpoint[]>({
-    queryKey: ["/api/performance/slow-endpoints"],
+    queryKey: ['/api/performance/slow-endpoints'],
     refetchInterval: 30000, // Refresh every 30 seconds
   });
 
   const getPerformanceColor = (responseTime: number) => {
-    if (responseTime < 200) return "text-green-600";
-    if (responseTime < 500) return "text-yellow-600";
-    if (responseTime < 1000) return "text-orange-600";
-    return "text-red-600";
+    if (responseTime < 200) return 'text-green-600';
+    if (responseTime < 500) return 'text-yellow-600';
+    if (responseTime < 1000) return 'text-orange-600';
+    return 'text-red-600';
   };
 
   const getPerformanceBadge = (responseTime: number) => {
-    if (responseTime < 200) return "default";
-    if (responseTime < 500) return "secondary";
-    if (responseTime < 1000) return "destructive";
-    return "destructive";
+    if (responseTime < 200) return 'default';
+    if (responseTime < 500) return 'secondary';
+    if (responseTime < 1000) return 'destructive';
+    return 'destructive';
   };
 
   if (metricsLoading || slowLoading) {
@@ -85,7 +85,9 @@ export default function PerformanceDashboard() {
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${getPerformanceColor(metrics?.averageResponseTime || 0)}`}>
+            <div
+              className={`text-2xl font-bold ${getPerformanceColor(metrics?.averageResponseTime || 0)}`}
+            >
               {metrics?.averageResponseTime || 0}ms
             </div>
             <p className="text-xs text-muted-foreground">Average across all endpoints</p>
@@ -98,9 +100,7 @@ export default function PerformanceDashboard() {
             <AlertTriangle className="h-4 w-4 text-yellow-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-yellow-600">
-              {metrics?.slowRequests || 0}
-            </div>
+            <div className="text-2xl font-bold text-yellow-600">{metrics?.slowRequests || 0}</div>
             <p className="text-xs text-muted-foreground">Requests over 1000ms</p>
           </CardContent>
         </Card>
@@ -111,7 +111,9 @@ export default function PerformanceDashboard() {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className={`text-2xl font-bold ${(metrics?.errorRate || 0) > 5 ? 'text-red-600' : 'text-green-600'}`}>
+            <div
+              className={`text-2xl font-bold ${(metrics?.errorRate || 0) > 5 ? 'text-red-600' : 'text-green-600'}`}
+            >
               {metrics?.errorRate || 0}%
             </div>
             <p className="text-xs text-muted-foreground">4xx and 5xx responses</p>
@@ -131,7 +133,7 @@ export default function PerformanceDashboard() {
               Endpoints with the highest traffic in the last 24 hours
             </CardDescription>
           </CardHeader>
-          
+
           <CardContent>
             {metrics?.topEndpoints && metrics.topEndpoints.length > 0 ? (
               <div className="space-y-3">
@@ -139,8 +141,8 @@ export default function PerformanceDashboard() {
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex-1">
                       <p className="text-sm font-medium truncate">{endpoint.endpoint}</p>
-                      <Progress 
-                        value={(endpoint.count / metrics.topEndpoints[0].count) * 100} 
+                      <Progress
+                        value={(endpoint.count / metrics.topEndpoints[0].count) * 100}
                         className="h-2 mt-1"
                       />
                     </div>
@@ -163,11 +165,9 @@ export default function PerformanceDashboard() {
               <AlertTriangle className="h-5 w-5 text-yellow-500" />
               Slow Response Endpoints
             </CardTitle>
-            <CardDescription>
-              Endpoints with response times over 500ms
-            </CardDescription>
+            <CardDescription>Endpoints with response times over 500ms</CardDescription>
           </CardHeader>
-          
+
           <CardContent>
             {slowEndpoints && slowEndpoints.length > 0 ? (
               <div className="space-y-4">
@@ -183,8 +183,8 @@ export default function PerformanceDashboard() {
                       <span>Max: {endpoint.maxTime}ms</span>
                       <span>{endpoint.requestCount} requests</span>
                     </div>
-                    <Progress 
-                      value={Math.min((endpoint.averageTime / 2000) * 100, 100)} 
+                    <Progress
+                      value={Math.min((endpoint.averageTime / 2000) * 100, 100)}
                       className="h-1"
                     />
                   </div>
@@ -205,35 +205,58 @@ export default function PerformanceDashboard() {
       <Card className="mt-6">
         <CardHeader>
           <CardTitle>Performance Health Summary</CardTitle>
-          <CardDescription>
-            Overall website performance assessment
-          </CardDescription>
+          <CardDescription>Overall website performance assessment</CardDescription>
         </CardHeader>
-        
+
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 border rounded-lg">
-              <div className={`text-2xl font-bold mb-2 ${getPerformanceColor(metrics?.averageResponseTime || 0)}`}>
-                {(metrics?.averageResponseTime || 0) < 500 ? 'Good' : 
-                 (metrics?.averageResponseTime || 0) < 1000 ? 'Fair' : 'Needs Improvement'}
+              <div
+                className={`text-2xl font-bold mb-2 ${getPerformanceColor(metrics?.averageResponseTime || 0)}`}
+              >
+                {(metrics?.averageResponseTime || 0) < 500
+                  ? 'Good'
+                  : (metrics?.averageResponseTime || 0) < 1000
+                    ? 'Fair'
+                    : 'Needs Improvement'}
               </div>
               <p className="text-sm text-gray-600">Response Time</p>
             </div>
-            
+
             <div className="text-center p-4 border rounded-lg">
-              <div className={`text-2xl font-bold mb-2 ${(metrics?.errorRate || 0) < 1 ? 'text-green-600' : 
-                                                           (metrics?.errorRate || 0) < 5 ? 'text-yellow-600' : 'text-red-600'}`}>
-                {(metrics?.errorRate || 0) < 1 ? 'Excellent' : 
-                 (metrics?.errorRate || 0) < 5 ? 'Good' : 'Poor'}
+              <div
+                className={`text-2xl font-bold mb-2 ${
+                  (metrics?.errorRate || 0) < 1
+                    ? 'text-green-600'
+                    : (metrics?.errorRate || 0) < 5
+                      ? 'text-yellow-600'
+                      : 'text-red-600'
+                }`}
+              >
+                {(metrics?.errorRate || 0) < 1
+                  ? 'Excellent'
+                  : (metrics?.errorRate || 0) < 5
+                    ? 'Good'
+                    : 'Poor'}
               </div>
               <p className="text-sm text-gray-600">Error Rate</p>
             </div>
-            
+
             <div className="text-center p-4 border rounded-lg">
-              <div className={`text-2xl font-bold mb-2 ${(metrics?.slowRequests || 0) < 5 ? 'text-green-600' : 
-                                                           (metrics?.slowRequests || 0) < 20 ? 'text-yellow-600' : 'text-red-600'}`}>
-                {(metrics?.slowRequests || 0) < 5 ? 'Optimal' : 
-                 (metrics?.slowRequests || 0) < 20 ? 'Acceptable' : 'Concerning'}
+              <div
+                className={`text-2xl font-bold mb-2 ${
+                  (metrics?.slowRequests || 0) < 5
+                    ? 'text-green-600'
+                    : (metrics?.slowRequests || 0) < 20
+                      ? 'text-yellow-600'
+                      : 'text-red-600'
+                }`}
+              >
+                {(metrics?.slowRequests || 0) < 5
+                  ? 'Optimal'
+                  : (metrics?.slowRequests || 0) < 20
+                    ? 'Acceptable'
+                    : 'Concerning'}
               </div>
               <p className="text-sm text-gray-600">Slow Requests</p>
             </div>

@@ -21,7 +21,7 @@ class PerformanceMonitor {
       // Capture original end method
       const originalEnd = res.end;
 
-      res.end = function(chunk?: any, encoding?: any) {
+      res.end = function (chunk?: any, encoding?: any) {
         const endTime = Date.now();
         const responseTime = endTime - startTime;
 
@@ -33,7 +33,7 @@ class PerformanceMonitor {
           statusCode: res.statusCode,
           timestamp: new Date(),
           userAgent: req.get('User-Agent'),
-          ip: req.ip
+          ip: req.ip,
         };
 
         this.recordMetric(metric);
@@ -48,7 +48,7 @@ class PerformanceMonitor {
 
   private recordMetric(metric: PerformanceMetrics) {
     this.metrics.push(metric);
-    
+
     // Keep only last maxMetrics entries
     if (this.metrics.length > this.maxMetrics) {
       this.metrics = this.metrics.slice(-this.maxMetrics);
@@ -56,7 +56,9 @@ class PerformanceMonitor {
 
     // Log slow requests
     if (metric.responseTime > 2000) {
-      console.warn(`Slow request detected: ${metric.method} ${metric.endpoint} - ${metric.responseTime}ms`);
+      console.warn(
+        `Slow request detected: ${metric.method} ${metric.endpoint} - ${metric.responseTime}ms`
+      );
     }
   }
 
@@ -65,8 +67,8 @@ class PerformanceMonitor {
   }
 
   getAnalytics() {
-    const recentMetrics = this.metrics.filter(m => 
-      Date.now() - m.timestamp.getTime() < 24 * 60 * 60 * 1000 // Last 24 hours
+    const recentMetrics = this.metrics.filter(
+      (m) => Date.now() - m.timestamp.getTime() < 24 * 60 * 60 * 1000 // Last 24 hours
     );
 
     if (recentMetrics.length === 0) {
@@ -75,25 +77,29 @@ class PerformanceMonitor {
         averageResponseTime: 0,
         slowRequests: 0,
         errorRate: 0,
-        topEndpoints: []
+        topEndpoints: [],
       };
     }
 
     const totalRequests = recentMetrics.length;
-    const averageResponseTime = recentMetrics.reduce((sum, m) => sum + m.responseTime, 0) / totalRequests;
-    const slowRequests = recentMetrics.filter(m => m.responseTime > 1000).length;
-    const errorRequests = recentMetrics.filter(m => m.statusCode >= 400).length;
+    const averageResponseTime =
+      recentMetrics.reduce((sum, m) => sum + m.responseTime, 0) / totalRequests;
+    const slowRequests = recentMetrics.filter((m) => m.responseTime > 1000).length;
+    const errorRequests = recentMetrics.filter((m) => m.statusCode >= 400).length;
     const errorRate = (errorRequests / totalRequests) * 100;
 
     // Top endpoints by request count
-    const endpointCounts = recentMetrics.reduce((acc, m) => {
-      const key = `${m.method} ${m.endpoint}`;
-      acc[key] = (acc[key] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
+    const endpointCounts = recentMetrics.reduce(
+      (acc, m) => {
+        const key = `${m.method} ${m.endpoint}`;
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>
+    );
 
     const topEndpoints = Object.entries(endpointCounts)
-      .sort(([,a], [,b]) => b - a)
+      .sort(([, a], [, b]) => b - a)
       .slice(0, 10)
       .map(([endpoint, count]) => ({ endpoint, count }));
 
@@ -102,27 +108,30 @@ class PerformanceMonitor {
       averageResponseTime: Math.round(averageResponseTime),
       slowRequests,
       errorRate: Math.round(errorRate * 100) / 100,
-      topEndpoints
+      topEndpoints,
     };
   }
 
   getSlowEndpoints() {
-    const endpointTimes = this.metrics.reduce((acc, m) => {
-      if (!acc[m.endpoint]) {
-        acc[m.endpoint] = [];
-      }
-      acc[m.endpoint].push(m.responseTime);
-      return acc;
-    }, {} as Record<string, number[]>);
+    const endpointTimes = this.metrics.reduce(
+      (acc, m) => {
+        if (!acc[m.endpoint]) {
+          acc[m.endpoint] = [];
+        }
+        acc[m.endpoint].push(m.responseTime);
+        return acc;
+      },
+      {} as Record<string, number[]>
+    );
 
     return Object.entries(endpointTimes)
       .map(([endpoint, times]) => ({
         endpoint,
         averageTime: Math.round(times.reduce((sum, time) => sum + time, 0) / times.length),
         maxTime: Math.max(...times),
-        requestCount: times.length
+        requestCount: times.length,
       }))
-      .filter(e => e.averageTime > 500)
+      .filter((e) => e.averageTime > 500)
       .sort((a, b) => b.averageTime - a.averageTime);
   }
 }

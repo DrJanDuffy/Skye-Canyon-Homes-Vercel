@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import React, { Component, type ErrorInfo, type ReactNode } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
@@ -27,7 +27,7 @@ export default class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({
       error,
-      errorInfo
+      errorInfo,
     });
 
     // Log error to analytics
@@ -35,7 +35,7 @@ export default class ErrorBoundary extends Component<Props, State> {
       window.gtag('event', 'javascript_error', {
         event_category: 'error',
         event_label: error.message,
-        value: 1
+        value: 1,
       });
     }
 
@@ -62,20 +62,17 @@ export default class ErrorBoundary extends Component<Props, State> {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-gray-600">
-              An unexpected error occurred. Please try refreshing the page or contact support if the problem persists.
+              An unexpected error occurred. Please try refreshing the page or contact support if the
+              problem persists.
             </p>
-            
+
             <div className="space-y-2">
               <Button onClick={this.handleRetry} className="w-full">
                 <RefreshCw className="w-4 h-4 mr-2" />
                 Try Again
               </Button>
-              
-              <Button 
-                variant="outline" 
-                onClick={() => window.location.reload()} 
-                className="w-full"
-              >
+
+              <Button variant="outline" onClick={() => window.location.reload()} className="w-full">
                 Refresh Page
               </Button>
             </div>

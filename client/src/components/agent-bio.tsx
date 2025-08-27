@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Phone, Mail, MapPin } from 'lucide-react';
 // Using public directory for reliable image loading
 
 export default function AgentBio() {
@@ -15,14 +15,14 @@ export default function AgentBio() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <img 
-              src="/dr-jan-duffy.jpg" 
-              alt="Dr. Jan Duffy REALTOR professional headshot" 
+            <img
+              src="/dr-jan-duffy.jpg"
+              alt="Dr. Jan Duffy REALTOR professional headshot"
               className="rounded-xl shadow-lg w-full max-w-md mx-auto lg:mx-0"
               style={{ imageRendering: 'auto', maxWidth: '400px', height: 'auto' }}
             />
           </div>
-          
+
           <div>
             <div className="mb-6">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -31,26 +31,24 @@ export default function AgentBio() {
               <div className="text-xl text-realscout-blue font-semibold mb-2">
                 REALTOR® | Skye Canyon Specialist
               </div>
-              <div className="text-gray-600 mb-4">
-                Licensed in Nevada | License# S.0197614
-              </div>
+              <div className="text-gray-600 mb-4">Licensed in Nevada | License# S.0197614</div>
             </div>
-            
+
             <div className="space-y-4 text-gray-700 mb-8">
               <p>
-                Dr. Jan Duffy is a top-rated Nevada REALTOR® specializing in luxury homes, new construction, 
-                custom builds, and resales in Skye Canyon and Northwest Las Vegas. She partners with leading 
-                home builders like Toll Brothers and Lennar to provide expert guidance for buying or selling 
-                high-end homes.
+                Dr. Jan Duffy is a top-rated Nevada REALTOR® specializing in luxury homes, new
+                construction, custom builds, and resales in Skye Canyon and Northwest Las Vegas. She
+                partners with leading home builders like Toll Brothers and Lennar to provide expert
+                guidance for buying or selling high-end homes.
               </p>
               <p>
-                With extensive knowledge of Skye Canyon neighborhoods, amenities, and market trends, her listings 
-                sell 12% faster and at 98% of the asking price. Whether you're interested in luxury homes in 
-                Skye Canyon, Centennial Hills, or Northwest Las Vegas, Dr. Duffy is the trusted real estate 
-                expert you need.
+                With extensive knowledge of Skye Canyon neighborhoods, amenities, and market trends,
+                her listings sell 12% faster and at 98% of the asking price. Whether you're
+                interested in luxury homes in Skye Canyon, Centennial Hills, or Northwest Las Vegas,
+                Dr. Duffy is the trusted real estate expert you need.
               </p>
             </div>
-            
+
             {/* Credentials */}
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div>
@@ -71,7 +69,7 @@ export default function AgentBio() {
                 </ul>
               </div>
             </div>
-            
+
             {/* Contact Options */}
             <div className="space-y-3 mb-6">
               <div className="flex items-center text-gray-700">
@@ -87,23 +85,19 @@ export default function AgentBio() {
                 <span>10111 W. Skye Canyon Park Drive, Las Vegas, NV 89166</span>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
-                href="https://g.co/kgs/nbUf6Pj"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button 
-                  className="bg-realscout-blue text-white hover:bg-realscout-navy"
-                >
+              <a href="https://g.co/kgs/nbUf6Pj" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-realscout-blue text-white hover:bg-realscout-navy">
                   Schedule Consultation
                 </Button>
               </a>
-              <Button 
+              <Button
                 variant="outline"
                 className="border-realscout-blue text-realscout-blue hover:bg-realscout-blue hover:text-white"
-                onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+                onClick={() =>
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+                }
               >
                 View Testimonials
               </Button>

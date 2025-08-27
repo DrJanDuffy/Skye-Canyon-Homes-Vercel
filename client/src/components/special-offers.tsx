@@ -1,33 +1,36 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Gift, Clock, Star, ExternalLink } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Gift, Clock, Star, ExternalLink } from 'lucide-react';
 
 const currentOffers = [
   {
-    title: "Free Home Valuation",
-    description: "Get an accurate market analysis of your Skye Canyon home value with our complimentary CMA report.",
-    value: "$500 Value",
-    expiry: "Limited Time",
-    cta: "Get Free Valuation",
-    highlight: true
+    title: 'Free Home Valuation',
+    description:
+      'Get an accurate market analysis of your Skye Canyon home value with our complimentary CMA report.',
+    value: '$500 Value',
+    expiry: 'Limited Time',
+    cta: 'Get Free Valuation',
+    highlight: true,
   },
   {
-    title: "VIP Buyer Program",
-    description: "Access exclusive off-market listings and get first priority on new Skye Canyon properties.",
-    value: "Exclusive Access",
-    expiry: "For Qualified Buyers",
-    cta: "Join VIP Program",
-    highlight: false
+    title: 'VIP Buyer Program',
+    description:
+      'Access exclusive off-market listings and get first priority on new Skye Canyon properties.',
+    value: 'Exclusive Access',
+    expiry: 'For Qualified Buyers',
+    cta: 'Join VIP Program',
+    highlight: false,
   },
   {
-    title: "Seller Success Package",
-    description: "Professional photography, staging consultation, and premium marketing for faster sales.",
-    value: "$2,500 Value",
-    expiry: "This Quarter",
-    cta: "Learn More",
-    highlight: false
-  }
+    title: 'Seller Success Package',
+    description:
+      'Professional photography, staging consultation, and premium marketing for faster sales.',
+    value: '$2,500 Value',
+    expiry: 'This Quarter',
+    cta: 'Learn More',
+    highlight: false,
+  },
 ];
 
 export default function SpecialOffers() {
@@ -46,10 +49,13 @@ export default function SpecialOffers() {
             Exceptional value and service for your real estate journey
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {currentOffers.map((offer, index) => (
-            <Card key={index} className={`h-full ${offer.highlight ? 'ring-4 ring-yellow-400' : ''}`}>
+            <Card
+              key={index}
+              className={`h-full ${offer.highlight ? 'ring-4 ring-yellow-400' : ''}`}
+            >
               <CardHeader>
                 {offer.highlight && (
                   <Badge className="w-fit mb-2 bg-yellow-400 text-gray-900">
@@ -64,13 +70,9 @@ export default function SpecialOffers() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-700 leading-relaxed">
-                  {offer.description}
-                </p>
-                <div className="text-2xl font-bold text-realscout-blue">
-                  {offer.value}
-                </div>
-                <a 
+                <p className="text-gray-700 leading-relaxed">{offer.description}</p>
+                <div className="text-2xl font-bold text-realscout-blue">{offer.value}</div>
+                <a
                   href="https://g.co/kgs/nbUf6Pj"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -85,7 +87,7 @@ export default function SpecialOffers() {
             </Card>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <p className="text-lg opacity-90 mb-6">
             Ready to take advantage of these exclusive offers?
@@ -96,12 +98,11 @@ export default function SpecialOffers() {
                 Call (702) 500-1902
               </Button>
             </a>
-            <a 
-              href="https://g.co/kgs/nbUf6Pj"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-realscout-blue">
+            <a href="https://g.co/kgs/nbUf6Pj" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-realscout-blue"
+              >
                 Schedule Consultation
               </Button>
             </a>

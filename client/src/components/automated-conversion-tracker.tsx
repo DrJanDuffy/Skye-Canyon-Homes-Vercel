@@ -4,21 +4,20 @@ interface AutomatedConversionTrackerProps {
   onConversionEvent?: (eventType: string, data: any) => void;
 }
 
-export default function AutomatedConversionTracker({ 
-  onConversionEvent 
+export default function AutomatedConversionTracker({
+  onConversionEvent,
 }: AutomatedConversionTrackerProps) {
-  
   useEffect(() => {
     // Track voice search conversion events
     const handleVoiceSearchLimit = (event: CustomEvent) => {
       const { searchCount, query } = event.detail;
-      
+
       // Log conversion analytics
       if (window.gtag) {
         window.gtag('event', 'voice_search_limit_reached', {
           event_category: 'conversion',
           event_label: 'realscout_popup_triggered',
-          value: searchCount
+          value: searchCount,
         });
       }
 
@@ -34,7 +33,10 @@ export default function AutomatedConversionTracker({
     window.addEventListener('voiceSearchLimitReached', handleVoiceSearchLimit as EventListener);
 
     return () => {
-      window.removeEventListener('voiceSearchLimitReached', handleVoiceSearchLimit as EventListener);
+      window.removeEventListener(
+        'voiceSearchLimitReached',
+        handleVoiceSearchLimit as EventListener
+      );
     };
   }, [onConversionEvent]);
 
@@ -106,13 +108,17 @@ export default function AutomatedConversionTracker({
           You've explored our voice search feature! Ready to discover all available properties in Skye Canyon with our comprehensive MLS platform?
         </p>
         
-        ${lastQuery ? `
+        ${
+          lastQuery
+            ? `
           <div style="background: #f3f4f6; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
             <p style="color: #4b5563; font-size: 0.9rem; margin: 0;">
               Last search: <strong>"${lastQuery}"</strong>
             </p>
           </div>
-        ` : ''}
+        `
+            : ''
+        }
       </div>
       
       <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">

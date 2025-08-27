@@ -10,14 +10,14 @@ async function testConnection() {
     const sql = postgres(connectionString, {
       max: 1,
       connect_timeout: 10,
-      ssl: 'require'
+      ssl: 'require',
     });
-    
+
     console.log('Attempting to connect...');
     const result = await sql`SELECT version()`;
     console.log('Connection successful!');
     console.log('Database version:', result[0].version);
-    
+
     await sql.end();
     console.log('Connection closed.');
   } catch (error) {

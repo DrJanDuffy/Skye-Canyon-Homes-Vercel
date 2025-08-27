@@ -1,11 +1,11 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle, XCircle, AlertCircle, RefreshCw, TestTube } from "lucide-react";
-import { apiRequest } from "@/lib/queryClient";
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { CheckCircle, XCircle, AlertCircle, RefreshCw, TestTube } from 'lucide-react';
+import { apiRequest } from '@/lib/queryClient';
 
 interface ValidationResult {
   isValid: boolean;
@@ -17,16 +17,20 @@ interface ValidationResult {
 export default function FollowUpBossStatus() {
   const queryClient = useQueryClient();
 
-  const { data: validation, isLoading, error } = useQuery<ValidationResult>({
-    queryKey: ["/api/followup-boss/validate"],
+  const {
+    data: validation,
+    isLoading,
+    error,
+  } = useQuery<ValidationResult>({
+    queryKey: ['/api/followup-boss/validate'],
     refetchInterval: 30000, // Check every 30 seconds
   });
 
   const testMutation = useMutation({
-    mutationFn: () => apiRequest("/api/followup-boss/test", "POST", {}),
+    mutationFn: () => apiRequest('/api/followup-boss/test', 'POST', {}),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/followup-boss/validate"] });
-    }
+      queryClient.invalidateQueries({ queryKey: ['/api/followup-boss/validate'] });
+    },
   });
 
   const getStatusIcon = (status?: string) => {
@@ -80,11 +84,9 @@ export default function FollowUpBossStatus() {
               {getStatusIcon(validation?.status)}
               API Connection Status
             </CardTitle>
-            <CardDescription>
-              Current status of your Follow Up Boss API integration
-            </CardDescription>
+            <CardDescription>Current status of your Follow Up Boss API integration</CardDescription>
           </CardHeader>
-          
+
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="font-medium">Connection Status:</span>
@@ -92,7 +94,7 @@ export default function FollowUpBossStatus() {
                 {validation?.status || 'Unknown'}
               </Badge>
             </div>
-            
+
             <div className="flex items-center justify-between">
               <span className="font-medium">API Valid:</span>
               <Badge variant={validation?.isValid ? 'default' : 'destructive'}>
@@ -101,7 +103,7 @@ export default function FollowUpBossStatus() {
             </div>
 
             <Separator />
-            
+
             <div>
               <p className="font-medium mb-2">Status Message:</p>
               <p className="text-sm text-gray-600">{validation?.message}</p>
@@ -111,8 +113,8 @@ export default function FollowUpBossStatus() {
               <div>
                 <p className="font-medium mb-2">Error Details:</p>
                 <pre className="text-xs bg-gray-100 p-2 rounded overflow-auto">
-                  {typeof validation.errorDetails === 'string' 
-                    ? validation.errorDetails 
+                  {typeof validation.errorDetails === 'string'
+                    ? validation.errorDetails
                     : JSON.stringify(validation.errorDetails, null, 2)}
                 </pre>
               </div>
@@ -127,18 +129,20 @@ export default function FollowUpBossStatus() {
               Test your API connection and perform maintenance tasks
             </CardDescription>
           </CardHeader>
-          
+
           <CardContent className="space-y-4">
-            <Button 
-              onClick={() => queryClient.invalidateQueries({ queryKey: ["/api/followup-boss/validate"] })}
-              variant="outline" 
+            <Button
+              onClick={() =>
+                queryClient.invalidateQueries({ queryKey: ['/api/followup-boss/validate'] })
+              }
+              variant="outline"
               className="w-full"
             >
               <RefreshCw className="h-4 w-4 mr-2" />
               Refresh Status
             </Button>
 
-            <Button 
+            <Button
               onClick={() => testMutation.mutate()}
               disabled={testMutation.isPending || validation?.status !== 'active'}
               className="w-full"
@@ -175,7 +179,8 @@ export default function FollowUpBossStatus() {
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>API Key Expired</AlertTitle>
           <AlertDescription>
-            Your Follow Up Boss API key has expired. Please generate a new API key from your Follow Up Boss account:
+            Your Follow Up Boss API key has expired. Please generate a new API key from your Follow
+            Up Boss account:
             <br />
             1. Log into Follow Up Boss
             <br />
@@ -193,7 +198,8 @@ export default function FollowUpBossStatus() {
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>API Key Not Configured</AlertTitle>
           <AlertDescription>
-            Follow Up Boss API key is not configured. Please add your API key to enable lead management integration.
+            Follow Up Boss API key is not configured. Please add your API key to enable lead
+            management integration.
           </AlertDescription>
         </Alert>
       )}
@@ -203,7 +209,8 @@ export default function FollowUpBossStatus() {
           <CheckCircle className="h-4 w-4" />
           <AlertTitle>Integration Active</AlertTitle>
           <AlertDescription>
-            Your Follow Up Boss integration is working properly. All leads from your website will be automatically sent to your CRM.
+            Your Follow Up Boss integration is working properly. All leads from your website will be
+            automatically sent to your CRM.
           </AlertDescription>
         </Alert>
       )}

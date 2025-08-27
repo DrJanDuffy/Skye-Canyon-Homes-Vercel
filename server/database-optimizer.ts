@@ -13,7 +13,7 @@ export async function optimizedPropertySearch(filters: {
   offset?: number;
 }) {
   const { priceMin, priceMax, type, bedrooms, bathrooms, limit = 20, offset = 0 } = filters;
-  
+
   let query = db.select().from(properties);
   const conditions = [];
 
@@ -47,29 +47,31 @@ const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 
 export async function getCachedMarketStats() {
   const now = Date.now();
-  
-  if (marketStatsCache && (now - marketStatsCache.timestamp) < CACHE_DURATION) {
+
+  if (marketStatsCache && now - marketStatsCache.timestamp < CACHE_DURATION) {
     return marketStatsCache.data;
   }
 
   const stats = await db.select().from(marketStats).limit(1);
-  
+
   marketStatsCache = {
     data: stats[0],
-    timestamp: now
+    timestamp: now,
   };
 
   return marketStatsCache.data;
 }
 
 // Batch lead processing for efficiency
-export async function batchCreateLeads(leadsData: Array<{
-  name: string;
-  email: string;
-  phone?: string;
-  message?: string;
-  source: string;
-}>) {
+export async function batchCreateLeads(
+  leadsData: Array<{
+    name: string;
+    email: string;
+    phone?: string;
+    message?: string;
+    source: string;
+  }>
+) {
   try {
     const results = await db.insert(leads).values(leadsData).returning();
     return results;
@@ -88,7 +90,8 @@ export function optimizeConnection() {
 
 // Query performance monitoring
 export async function logSlowQueries(query: string, duration: number) {
-  if (duration > 1000) { // Log queries slower than 1 second
+  if (duration > 1000) {
+    // Log queries slower than 1 second
     console.warn(`Slow query detected (${duration}ms):`, query);
   }
 }

@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle, AlertCircle, Globe, Search, TrendingUp, ExternalLink } from "lucide-react";
+import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { CheckCircle, AlertCircle, Globe, Search, TrendingUp, ExternalLink } from 'lucide-react';
 
 interface IndexingStatus {
   url: string;
@@ -15,7 +15,9 @@ interface IndexingStatus {
 export default function SEOManagementDashboard() {
   const [indexingResults, setIndexingResults] = useState<IndexingStatus[]>([]);
   const [isIndexing, setIsIndexing] = useState(false);
-  const [sitemapStatus, setSitemapStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [sitemapStatus, setSitemapStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>(
+    'idle'
+  );
 
   const handleIndexAllPages = async () => {
     setIsIndexing(true);
@@ -23,12 +25,12 @@ export default function SEOManagementDashboard() {
       const response = await fetch('/api/google/index-all-pages', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
-      
+
       const result = await response.json();
-      
+
       if (result.success) {
         setIndexingResults(result.results?.results || []);
       } else {
@@ -47,10 +49,10 @@ export default function SEOManagementDashboard() {
       const response = await fetch('/api/google/submit-sitemap', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
-      
+
       const result = await response.json();
       setSitemapStatus(result.success ? 'success' : 'error');
     } catch (error) {
@@ -75,58 +77,58 @@ export default function SEOManagementDashboard() {
     '/skye-canyon-communities',
     '/market-analysis',
     '/las-vegas-real-estate',
-    '/northwest-las-vegas'
+    '/northwest-las-vegas',
   ];
 
   const googleSearchConsoleSetup = [
     {
       step: 1,
-      title: "Verify Domain Ownership",
-      description: "Add DNS TXT record or upload HTML file to verify your domain",
-      action: "Go to Search Console",
-      link: "https://search.google.com/search-console"
+      title: 'Verify Domain Ownership',
+      description: 'Add DNS TXT record or upload HTML file to verify your domain',
+      action: 'Go to Search Console',
+      link: 'https://search.google.com/search-console',
     },
     {
       step: 2,
-      title: "Submit Sitemap",
-      description: "Add your sitemap URL to Google Search Console",
-      action: "Submit Sitemap",
-      completed: sitemapStatus === 'success'
+      title: 'Submit Sitemap',
+      description: 'Add your sitemap URL to Google Search Console',
+      action: 'Submit Sitemap',
+      completed: sitemapStatus === 'success',
     },
     {
       step: 3,
-      title: "Request Indexing",
-      description: "Request Google to index all your pages",
-      action: "Index Pages",
-      completed: indexingResults.length > 0
-    }
+      title: 'Request Indexing',
+      description: 'Request Google to index all your pages',
+      action: 'Index Pages',
+      completed: indexingResults.length > 0,
+    },
   ];
 
   const seoMetrics = [
     {
-      title: "Total Pages",
+      title: 'Total Pages',
       value: siteUrls.length.toString(),
-      description: "Site pages available",
-      icon: Globe
+      description: 'Site pages available',
+      icon: Globe,
     },
     {
-      title: "SEO Optimized",
-      value: "100%",
-      description: "Pages with meta data",
-      icon: Search
+      title: 'SEO Optimized',
+      value: '100%',
+      description: 'Pages with meta data',
+      icon: Search,
     },
     {
-      title: "Structured Data",
-      value: "15+",
-      description: "Schema.org implementations",
-      icon: TrendingUp
+      title: 'Structured Data',
+      value: '15+',
+      description: 'Schema.org implementations',
+      icon: TrendingUp,
     },
     {
-      title: "Indexing Status",
-      value: indexingResults.length > 0 ? "Requested" : "Pending",
-      description: "Google indexing",
-      icon: CheckCircle
-    }
+      title: 'Indexing Status',
+      value: indexingResults.length > 0 ? 'Requested' : 'Pending',
+      description: 'Google indexing',
+      icon: CheckCircle,
+    },
   ];
 
   return (
@@ -161,7 +163,7 @@ export default function SEOManagementDashboard() {
 
             <TabsContent value="setup" className="space-y-4">
               <h3 className="text-lg font-semibold mb-4">Google Search Console Setup</h3>
-              
+
               <div className="space-y-4">
                 {googleSearchConsoleSetup.map((item) => (
                   <Card key={item.step}>
@@ -177,31 +179,29 @@ export default function SEOManagementDashboard() {
                           </div>
                         </div>
                         <div className="flex items-center space-x-2">
-                          {item.completed && (
-                            <CheckCircle className="w-5 h-5 text-green-600" />
-                          )}
+                          {item.completed && <CheckCircle className="w-5 h-5 text-green-600" />}
                           {item.link ? (
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
+                            <Button
+                              variant="outline"
+                              size="sm"
                               onClick={() => window.open(item.link, '_blank')}
                             >
                               {item.action}
                               <ExternalLink className="w-3 h-3 ml-1" />
                             </Button>
                           ) : item.step === 2 ? (
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
+                            <Button
+                              variant="outline"
+                              size="sm"
                               onClick={handleSubmitSitemap}
                               disabled={sitemapStatus === 'submitting'}
                             >
                               {sitemapStatus === 'submitting' ? 'Submitting...' : item.action}
                             </Button>
                           ) : item.step === 3 ? (
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
+                            <Button
+                              variant="outline"
+                              size="sm"
                               onClick={handleIndexAllPages}
                               disabled={isIndexing}
                             >
@@ -219,7 +219,8 @@ export default function SEOManagementDashboard() {
                 <CardContent className="p-4">
                   <h4 className="font-medium mb-2">Site Verification Meta Tag</h4>
                   <p className="text-sm text-gray-600 mb-2">
-                    Add this meta tag to your site's &lt;head&gt; section for Google Search Console verification:
+                    Add this meta tag to your site's &lt;head&gt; section for Google Search Console
+                    verification:
                   </p>
                   <code className="block bg-gray-100 p-2 rounded text-sm">
                     &lt;meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /&gt;
@@ -231,7 +232,7 @@ export default function SEOManagementDashboard() {
             <TabsContent value="indexing" className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Page Indexing Status</h3>
-                <Button 
+                <Button
                   onClick={handleIndexAllPages}
                   disabled={isIndexing}
                   className="bg-blue-600 hover:bg-blue-700"
@@ -248,7 +249,10 @@ export default function SEOManagementDashboard() {
                   <CardContent>
                     <div className="space-y-2 max-h-64 overflow-y-auto">
                       {siteUrls.map((url) => (
-                        <div key={url} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                        <div
+                          key={url}
+                          className="flex items-center justify-between p-2 bg-gray-50 rounded"
+                        >
                           <span className="text-sm">{url}</span>
                           <Badge variant="outline">Ready</Badge>
                         </div>
@@ -267,12 +271,20 @@ export default function SEOManagementDashboard() {
                     ) : (
                       <div className="space-y-2 max-h-64 overflow-y-auto">
                         {indexingResults.map((result, index) => (
-                          <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                          <div
+                            key={index}
+                            className="flex items-center justify-between p-2 bg-gray-50 rounded"
+                          >
                             <span className="text-sm">{result.url}</span>
-                            <Badge variant={
-                              result.status === 'indexed' ? 'default' :
-                              result.status === 'error' ? 'destructive' : 'secondary'
-                            }>
+                            <Badge
+                              variant={
+                                result.status === 'indexed'
+                                  ? 'default'
+                                  : result.status === 'error'
+                                    ? 'destructive'
+                                    : 'secondary'
+                              }
+                            >
                               {result.status}
                             </Badge>
                           </div>
@@ -286,24 +298,28 @@ export default function SEOManagementDashboard() {
 
             <TabsContent value="analytics" className="space-y-4">
               <h3 className="text-lg font-semibold">Google Analytics Configuration</h3>
-              
+
               <Card>
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <h4 className="font-medium">Google Analytics 4</h4>
-                      <p className="text-sm text-gray-600">Real-time visitor tracking and conversion monitoring</p>
+                      <p className="text-sm text-gray-600">
+                        Real-time visitor tracking and conversion monitoring
+                      </p>
                     </div>
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <Badge variant="default">Configured</Badge>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>Measurement ID:</span>
-                      <span className="font-mono">{import.meta.env.VITE_GA_MEASUREMENT_ID || 'Not configured'}</span>
+                      <span className="font-mono">
+                        {import.meta.env.VITE_GA_MEASUREMENT_ID || 'Not configured'}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Page View Tracking:</span>

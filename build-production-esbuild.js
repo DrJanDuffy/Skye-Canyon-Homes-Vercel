@@ -14,11 +14,11 @@ function log(message) {
 function executeCommand(command, options = {}) {
   try {
     log(`Executing: ${command}`);
-    return execSync(command, { 
-      stdio: 'inherit', 
+    return execSync(command, {
+      stdio: 'inherit',
       encoding: 'utf8',
       timeout: 300000,
-      ...options 
+      ...options,
     });
   } catch (error) {
     console.error(`❌ Command failed: ${command}`);
@@ -39,7 +39,9 @@ async function main() {
 
     // Step 2: Build CSS with Tailwind
     log('Building CSS with Tailwind...');
-    executeCommand('npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify');
+    executeCommand(
+      'npx tailwindcss -i client/src/index.css -o dist/public/assets/main.css --minify'
+    );
 
     // Step 3: Build React application with ESBuild
     log('Building React application with ESBuild...');
@@ -69,21 +71,21 @@ async function main() {
       '--define:import.meta.env.DEV=false',
       '--define:import.meta.env.MODE=\\"production\\"',
       '--alias:@=client/src',
-      '--alias:@shared=shared'
+      '--alias:@shared=shared',
     ].join(' ');
-    
+
     executeCommand(clientBuildArgs);
 
     // Step 4: Process and copy HTML template
     log('Processing HTML template...');
     const indexPath = path.join(__dirname, 'client', 'index.html');
     let htmlContent = fs.readFileSync(indexPath, 'utf-8');
-    
+
     // Update asset references for production
     htmlContent = htmlContent
       .replace(/src="\/src\/main\.tsx"/g, 'src="/assets/main.js" type="module"')
       .replace(/<\/head>/g, '    <link rel="stylesheet" href="/assets/main.css">\n  </head>');
-    
+
     fs.writeFileSync('dist/public/index.html', htmlContent);
 
     // Step 5: Copy public assets
@@ -96,7 +98,7 @@ async function main() {
           const srcPath = path.join(src, item);
           const destPath = path.join(dest, item);
           const stat = fs.statSync(srcPath);
-          
+
           if (stat.isDirectory()) {
             fs.mkdirSync(destPath, { recursive: true });
             copyAssets(srcPath, destPath);
@@ -105,7 +107,7 @@ async function main() {
           }
         }
       };
-      
+
       copyAssets(publicDir, 'dist/public');
     }
 
@@ -120,9 +122,9 @@ async function main() {
       '--outdir=dist',
       '--minify',
       '--sourcemap',
-      '--alias:@shared=shared'
+      '--alias:@shared=shared',
     ].join(' ');
-    
+
     executeCommand(serverBuildArgs);
 
     // Step 7: Verify build output
@@ -131,7 +133,7 @@ async function main() {
       'dist/public/index.html',
       'dist/public/assets/main.js',
       'dist/public/assets/main.css',
-      'dist/index.js'
+      'dist/index.js',
     ];
 
     for (const file of requiredFiles) {
@@ -143,7 +145,7 @@ async function main() {
     // Step 8: Display build summary
     log('Build completed successfully!');
     console.log('\n📊 Build Summary:');
-    
+
     for (const file of requiredFiles) {
       const stats = fs.statSync(file);
       const sizeKB = Math.round(stats.size / 1024);
@@ -151,7 +153,6 @@ async function main() {
     }
 
     console.log('\n🎉 Production build ready! Run with: NODE_ENV=production node dist/index.js');
-
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);

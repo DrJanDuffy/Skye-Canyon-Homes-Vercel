@@ -12,9 +12,9 @@ declare global {
   }
 }
 
-export default function RealScoutSearchWidget({ 
-  className = "", 
-  variant = 'hero' 
+export default function RealScoutSearchWidget({
+  className = '',
+  variant = 'hero',
 }: RealScoutSearchWidgetProps) {
   if (variant === 'hero') {
     return (
@@ -27,11 +27,11 @@ export default function RealScoutSearchWidget({
             Search available properties or get your home's current market value
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div className="bg-blue-50 p-6 rounded-lg text-center">
             <h3 className="font-semibold text-blue-900 mb-3">Search Homes for Sale</h3>
-            <realscout-search 
+            <realscout-search
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               search-type="buy"
               location="Skye Canyon, Las Vegas, NV"
@@ -44,12 +44,13 @@ export default function RealScoutSearchWidget({
               Browse luxury homes, new construction, and custom properties
             </p>
           </div>
-          
+
           <div className="bg-green-50 p-6 rounded-lg text-center">
             <h3 className="font-semibold text-green-900 mb-3">Get Your Home's Value</h3>
             <div id="homebot_homeowner_3"></div>
-            <script dangerouslySetInnerHTML={{
-              __html: `
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
                 (function (h,b) { 
                   var w = window, d = document, s = 'script', x, y; 
                   w['__hb_namespace'] = h; 
@@ -61,23 +62,32 @@ export default function RealScoutSearchWidget({
                   x.parentNode.insertBefore(y,x) 
                 })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); 
                 Homebot('#homebot_homeowner_3', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
-              `
-            }} />
+              `,
+              }}
+            />
             <p className="text-sm text-green-700 mt-3">
               Instant market analysis with recent comparable sales
             </p>
           </div>
         </div>
-        
+
         <div className="text-center">
           <p className="text-sm text-gray-600 mb-4">
             Powered by RealScout • Updated daily with MLS data
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="http://drjanduffy.realscout.com/onboarding" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center">
+            <a
+              href="http://drjanduffy.realscout.com/onboarding"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-center"
+            >
               Advanced Property Search
             </a>
-            <a href="tel:+17025001902" className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-center">
+            <a
+              href="tel:+17025001902"
+              className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-center"
+            >
               Contact Dr. Jan Duffy
             </a>
           </div>
@@ -90,13 +100,13 @@ export default function RealScoutSearchWidget({
     return (
       <div className={`${className} bg-white rounded-lg shadow-lg p-6`}>
         <h3 className="text-xl font-bold text-gray-900 mb-4">Quick Home Search</h3>
-        
+
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Search Properties
             </label>
-            <realscout-search 
+            <realscout-search
               agent-encoded-id="QWdlbnQtMjI1MDUw"
               search-type="buy"
               location="Skye Canyon, Las Vegas, NV"
@@ -104,14 +114,13 @@ export default function RealScoutSearchWidget({
               data-production="true"
             ></realscout-search>
           </div>
-          
+
           <div className="border-t pt-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Home Valuation
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Home Valuation</label>
             <div id="homebot_homeowner_5"></div>
-            <script dangerouslySetInnerHTML={{
-              __html: `
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
                 (function (h,b) { 
                   var w = window, d = document, s = 'script', x, y; 
                   w['__hb_namespace'] = h; 
@@ -123,8 +132,9 @@ export default function RealScoutSearchWidget({
                   x.parentNode.insertBefore(y,x) 
                 })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); 
                 Homebot('#homebot_homeowner_5', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
-              `
-            }} />
+              `,
+              }}
+            />
           </div>
         </div>
       </div>
@@ -133,15 +143,17 @@ export default function RealScoutSearchWidget({
 
   // Inline variant
   return (
-    <div className={`${className} bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-6`}>
+    <div
+      className={`${className} bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-6`}
+    >
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
           <h3 className="text-xl font-bold mb-1">Ready to Find Your Next Home?</h3>
           <p className="text-blue-100">Search current listings or get your home's value</p>
         </div>
-        
+
         <div className="flex flex-col sm:flex-row gap-3">
-          <realscout-search 
+          <realscout-search
             agent-encoded-id="QWdlbnQtMjI1MDUw"
             search-type="buy"
             location="Skye Canyon, Las Vegas, NV"
@@ -149,11 +161,12 @@ export default function RealScoutSearchWidget({
             button-style="white"
             data-production="true"
           ></realscout-search>
-          
+
           <div className="inline-block">
             <div id="homebot_homeowner_4"></div>
-            <script dangerouslySetInnerHTML={{
-              __html: `
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
                 (function (h,b) { 
                   var w = window, d = document, s = 'script', x, y; 
                   w['__hb_namespace'] = h; 
@@ -165,8 +178,9 @@ export default function RealScoutSearchWidget({
                   x.parentNode.insertBefore(y,x) 
                 })('Homebot','https://embed.homebotapp.com/lgw/v1/widget.js'); 
                 Homebot('#homebot_homeowner_4', '35de8cf0a487cf0fec06278f2023805ea02eba0b58960a43')
-              `
-            }} />
+              `,
+              }}
+            />
           </div>
         </div>
       </div>

@@ -1,15 +1,15 @@
-import { useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useLazyLoading } from "@/hooks/use-lazy-loading";
+import { useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useLazyLoading } from '@/hooks/use-lazy-loading';
 
 interface OptimizedListingsProps {
   className?: string;
   limit?: number;
 }
 
-export default function OptimizedListings({ className = "", limit = 6 }: OptimizedListingsProps) {
-  const { isInView, elementRef } = useLazyLoading(0.1, "100px");
-  
+export default function OptimizedListings({ className = '', limit = 6 }: OptimizedListingsProps) {
+  const { isInView, elementRef } = useLazyLoading(0.1, '100px');
+
   const { data: listings, isLoading } = useQuery({
     queryKey: ['/api/properties'],
     enabled: isInView,
@@ -48,7 +48,10 @@ export default function OptimizedListings({ className = "", limit = 6 }: Optimiz
             >
               <div className="relative h-48">
                 <img
-                  src={listing.imageUrl || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=75'}
+                  src={
+                    listing.imageUrl ||
+                    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=75'
+                  }
                   alt={listing.address || 'Property image'}
                   className="w-full h-full object-cover"
                   loading="lazy"

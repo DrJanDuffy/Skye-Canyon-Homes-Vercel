@@ -1,11 +1,11 @@
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
 
 export default function RelocationServices() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
+
       <section className="py-12 bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -13,9 +13,10 @@ export default function RelocationServices() {
               Skye Canyon Homes Relocation Expert
             </h1>
             <p className="text-xl opacity-90 max-w-3xl mx-auto mb-8">
-              Comprehensive relocation services for families moving to Las Vegas premier guard-gated community.
+              Comprehensive relocation services for families moving to Las Vegas premier guard-gated
+              community.
             </p>
-            <a 
+            <a
               href="tel:+17025001902"
               className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors"
             >

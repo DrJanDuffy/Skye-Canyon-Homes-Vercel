@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -10,14 +10,14 @@ interface OptimizedImageProps {
   priority?: boolean;
 }
 
-export default function OptimizedImage({ 
-  src, 
-  alt, 
-  className = "", 
+export default function OptimizedImage({
+  src,
+  alt,
+  className = '',
   width,
   height,
-  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
-  priority = false
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  priority = false,
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(priority);
@@ -26,7 +26,7 @@ export default function OptimizedImage({
 
   useEffect(() => {
     if (priority) return; // Skip intersection observer for priority images
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,9 +34,9 @@ export default function OptimizedImage({
           observer.disconnect();
         }
       },
-      { 
+      {
         threshold: 0.1,
-        rootMargin: '50px'
+        rootMargin: '50px',
       }
     );
 
@@ -51,11 +51,9 @@ export default function OptimizedImage({
   const generateSrcSet = (baseSrc: string, format: 'webp' | 'jpeg') => {
     const ext = format === 'webp' ? '.webp' : '.jpg';
     const baseName = baseSrc.replace(/\.(jpg|jpeg|png)$/i, '');
-    
+
     const sizes = [400, 800, 1200, 1600];
-    return sizes
-      .map(size => `${baseName}_${size}w${ext} ${size}w`)
-      .join(', ');
+    return sizes.map((size) => `${baseName}_${size}w${ext} ${size}w`).join(', ');
   };
 
   const getWebPSrc = (originalSrc: string) => {
@@ -72,14 +70,14 @@ export default function OptimizedImage({
         sizes={sizes}
         type="image/webp"
       />
-      
+
       {/* JPEG fallback */}
       <source
         srcSet={isInView ? generateSrcSet(src, 'jpeg') : ''}
         sizes={sizes}
         type="image/jpeg"
       />
-      
+
       {/* Main image element */}
       <img
         ref={imgRef}

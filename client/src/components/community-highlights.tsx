@@ -1,34 +1,40 @@
 const highlights = [
   {
-    emoji: "🏔️",
-    title: "Stunning Views",
-    description: "Panoramic mountain and city views from every home, creating breathtaking backdrops for daily living."
+    emoji: '🏔️',
+    title: 'Stunning Views',
+    description:
+      'Panoramic mountain and city views from every home, creating breathtaking backdrops for daily living.',
   },
   {
-    emoji: "⛳",
-    title: "Golf Course Living",
-    description: "Championship golf course designed by renowned architects, offering world-class amenities and recreation."
+    emoji: '⛳',
+    title: 'Golf Course Living',
+    description:
+      'Championship golf course designed by renowned architects, offering world-class amenities and recreation.',
   },
   {
-    emoji: "🛡️",
-    title: "Gated Security",
-    description: "24/7 gated community with professional security ensuring privacy and peace of mind for residents."
+    emoji: '🛡️',
+    title: 'Gated Security',
+    description:
+      '24/7 gated community with professional security ensuring privacy and peace of mind for residents.',
   },
   {
-    emoji: "🏡",
-    title: "Custom Homes",
-    description: "Luxury custom-built homes with premium finishes, smart home technology, and architectural excellence."
+    emoji: '🏡',
+    title: 'Custom Homes',
+    description:
+      'Luxury custom-built homes with premium finishes, smart home technology, and architectural excellence.',
   },
   {
-    emoji: "📍",
-    title: "Prime Location",
-    description: "Convenient access to Las Vegas Strip, shopping, dining, and entertainment while maintaining suburban tranquility."
+    emoji: '📍',
+    title: 'Prime Location',
+    description:
+      'Convenient access to Las Vegas Strip, shopping, dining, and entertainment while maintaining suburban tranquility.',
   },
   {
-    emoji: "👥",
-    title: "Community",
-    description: "Vibrant community with clubhouse, fitness center, pools, and organized events for residents."
-  }
+    emoji: '👥',
+    title: 'Community',
+    description:
+      'Vibrant community with clubhouse, fitness center, pools, and organized events for residents.',
+  },
 ];
 
 export default function CommunityHighlights() {
@@ -43,7 +49,7 @@ export default function CommunityHighlights() {
             Discover what makes Skye Canyon Las Vegas's premier luxury community
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {highlights.map((highlight, index) => (
             <div key={index} className="text-center p-6">

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 declare global {
   namespace JSX {
@@ -20,7 +20,7 @@ export default function GlobalRealScoutWidget() {
     const script = document.createElement('script');
     script.src = 'https://em.realscout.com/widgets/realscout-web-components.umd.js';
     script.type = 'module';
-    
+
     script.onload = () => {
       console.log('RealScout web components loaded successfully');
     };

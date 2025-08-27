@@ -1,59 +1,59 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, Users, Home, Award, Clock, MapPin } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { TrendingUp, Users, Home, Award, Clock, MapPin } from 'lucide-react';
 
 const performanceStats = [
   {
     icon: Home,
-    metric: "150+",
-    label: "Homes Sold",
-    trend: "+23% this year",
-    color: "text-green-600"
+    metric: '150+',
+    label: 'Homes Sold',
+    trend: '+23% this year',
+    color: 'text-green-600',
   },
   {
     icon: TrendingUp,
-    metric: "12 days",
-    label: "Avg. Days on Market",
-    trend: "67% faster than area avg",
-    color: "text-blue-600"
+    metric: '12 days',
+    label: 'Avg. Days on Market',
+    trend: '67% faster than area avg',
+    color: 'text-blue-600',
   },
   {
     icon: Users,
-    metric: "98%",
-    label: "Client Satisfaction",
-    trend: "150+ five-star reviews",
-    color: "text-purple-600"
+    metric: '98%',
+    label: 'Client Satisfaction',
+    trend: '150+ five-star reviews',
+    color: 'text-purple-600',
   },
   {
     icon: Award,
-    metric: "Top 1%",
-    label: "Las Vegas REALTORS®",
-    trend: "Consistent ranking",
-    color: "text-yellow-600"
-  }
+    metric: 'Top 1%',
+    label: 'Las Vegas REALTORS®',
+    trend: 'Consistent ranking',
+    color: 'text-yellow-600',
+  },
 ];
 
 const recentActivity = [
   {
-    type: "Sale",
-    address: "Desert Highlands Dr",
-    price: "$1,850,000",
-    days: "Sold in 5 days",
-    icon: Home
+    type: 'Sale',
+    address: 'Desert Highlands Dr',
+    price: '$1,850,000',
+    days: 'Sold in 5 days',
+    icon: Home,
   },
   {
-    type: "Sale",
-    address: "Canyon Vista Way",
-    price: "$1,450,000", 
-    days: "Sold in 8 days",
-    icon: Home
+    type: 'Sale',
+    address: 'Canyon Vista Way',
+    price: '$1,450,000',
+    days: 'Sold in 8 days',
+    icon: Home,
   },
   {
-    type: "Listing",
-    address: "Granite Peak Dr",
-    price: "$1,750,000",
-    days: "New listing",
-    icon: MapPin
-  }
+    type: 'Listing',
+    address: 'Granite Peak Dr',
+    price: '$1,750,000',
+    days: 'New listing',
+    icon: MapPin,
+  },
 ];
 
 export default function PerformanceInsights() {
@@ -68,7 +68,7 @@ export default function PerformanceInsights() {
             Data-driven success in the Skye Canyon luxury market
           </p>
         </div>
-        
+
         {/* Key Performance Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {performanceStats.map((stat, index) => (
@@ -77,15 +77,9 @@ export default function PerformanceInsights() {
                 <div className="flex justify-center mb-4">
                   <stat.icon className={`w-8 h-8 ${stat.color}`} />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">
-                  {stat.metric}
-                </div>
-                <div className="text-gray-600 mb-2">
-                  {stat.label}
-                </div>
-                <div className={`text-sm font-medium ${stat.color}`}>
-                  {stat.trend}
-                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.metric}</div>
+                <div className="text-gray-600 mb-2">{stat.label}</div>
+                <div className={`text-sm font-medium ${stat.color}`}>{stat.trend}</div>
               </CardContent>
             </Card>
           ))}
@@ -94,9 +88,7 @@ export default function PerformanceInsights() {
         {/* Recent Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Recent Sales Activity
-            </h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Sales Activity</h3>
             <div className="space-y-4">
               {recentActivity.map((activity, index) => (
                 <div key={index} className="flex items-center p-4 bg-gray-50 rounded-lg">
@@ -121,9 +113,7 @@ export default function PerformanceInsights() {
           </div>
 
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Market Leadership
-            </h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Market Leadership</h3>
             <div className="space-y-6">
               <div className="flex items-start">
                 <div className="flex-shrink-0">
@@ -131,27 +121,36 @@ export default function PerformanceInsights() {
                 </div>
                 <div className="ml-4">
                   <h4 className="font-semibold text-gray-900">Faster Sales</h4>
-                  <p className="text-gray-600">Properties sell 67% faster than area average through strategic pricing and marketing.</p>
+                  <p className="text-gray-600">
+                    Properties sell 67% faster than area average through strategic pricing and
+                    marketing.
+                  </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="flex-shrink-0">
                   <TrendingUp className="w-6 h-6 text-realscout-blue mt-1" />
                 </div>
                 <div className="ml-4">
                   <h4 className="font-semibold text-gray-900">Higher Sale Prices</h4>
-                  <p className="text-gray-600">87% of listings sell above asking price with expert negotiation and market positioning.</p>
+                  <p className="text-gray-600">
+                    87% of listings sell above asking price with expert negotiation and market
+                    positioning.
+                  </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start">
                 <div className="flex-shrink-0">
                   <Award className="w-6 h-6 text-realscout-blue mt-1" />
                 </div>
                 <div className="ml-4">
                   <h4 className="font-semibold text-gray-900">Industry Recognition</h4>
-                  <p className="text-gray-600">Consistently ranked in top 1% of Las Vegas REALTORS® for production and client satisfaction.</p>
+                  <p className="text-gray-600">
+                    Consistently ranked in top 1% of Las Vegas REALTORS® for production and client
+                    satisfaction.
+                  </p>
                 </div>
               </div>
             </div>

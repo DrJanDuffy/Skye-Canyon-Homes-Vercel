@@ -1,23 +1,32 @@
-import { Helmet } from "react-helmet-async";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
-import BackToTop from "@/components/back-to-top";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { MapPin, Home } from "lucide-react";
-import FAQSection from "@/components/faq-section";
-import RelatedSearches from "@/components/related-searches";
-import RealScoutListings from "@/components/realscout-listings";
+import { Helmet } from 'react-helmet-async';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import BackToTop from '@/components/back-to-top';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { MapPin, Home } from 'lucide-react';
+import FAQSection from '@/components/faq-section';
+import RelatedSearches from '@/components/related-searches';
+import RealScoutListings from '@/components/realscout-listings';
 
 export default function SkyeCanyonGuide() {
   return (
     <>
       <Helmet>
         <title>Skye Canyon Community Guide | Living in Las Vegas NV 89166</title>
-        <meta name="description" content="Complete Skye Canyon community guide covering amenities, schools, parks, dining, and lifestyle. Expert neighborhood insights from Dr. Jan Duffy, local REALTOR®." />
-        <meta name="keywords" content="Skye Canyon community, Las Vegas 89166, neighborhood guide, schools, amenities, lifestyle" />
+        <meta
+          name="description"
+          content="Complete Skye Canyon community guide covering amenities, schools, parks, dining, and lifestyle. Expert neighborhood insights from Dr. Jan Duffy, local REALTOR®."
+        />
+        <meta
+          name="keywords"
+          content="Skye Canyon community, Las Vegas 89166, neighborhood guide, schools, amenities, lifestyle"
+        />
         <meta property="og:title" content="Skye Canyon Community Guide | Dr. Jan Duffy REALTOR®" />
-        <meta property="og:description" content="Discover what makes Skye Canyon special - amenities, schools, parks, and lifestyle in this premier Las Vegas community." />
+        <meta
+          property="og:description"
+          content="Discover what makes Skye Canyon special - amenities, schools, parks, and lifestyle in this premier Las Vegas community."
+        />
         <meta property="og:type" content="article" />
         <link rel="canonical" href="https://skyecanyonhomesforsale.com/skye-canyon-guide" />
       </Helmet>
@@ -31,7 +40,8 @@ export default function SkyeCanyonGuide() {
               Skye Canyon Homes Community Guide Las Vegas 89166 Living
             </h1>
             <p className="text-xl opacity-90 mb-8">
-              Discover what makes Skye Canyon one of Las Vegas's most desirable guard-gated communities
+              Discover what makes Skye Canyon one of Las Vegas's most desirable guard-gated
+              communities
             </p>
           </div>
         </section>
@@ -43,9 +53,7 @@ export default function SkyeCanyonGuide() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Current Skye Canyon Home Listings Nevada 89166
               </h2>
-              <p className="text-xl text-gray-600">
-                Available homes in this exclusive community
-              </p>
+              <p className="text-xl text-gray-600">Available homes in this exclusive community</p>
             </div>
             <RealScoutListings className="w-full" variant="luxury" />
           </div>
@@ -54,7 +62,9 @@ export default function SkyeCanyonGuide() {
         {/* Community Stats */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">Skye Canyon Community Overview Las Vegas Nevada</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">
+              Skye Canyon Community Overview Las Vegas Nevada
+            </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <Card>
                 <CardContent className="p-6 text-center">
@@ -93,21 +103,29 @@ export default function SkyeCanyonGuide() {
                 <CardContent className="p-6">
                   <span className="text-3xl mb-4 block">🛡️</span>
                   <h3 className="text-xl font-semibold mb-2">24/7 Guard-Gated Security</h3>
-                  <p className="text-gray-600">Controlled access with roving security patrols ensuring residents' safety and privacy</p>
+                  <p className="text-gray-600">
+                    Controlled access with roving security patrols ensuring residents' safety and
+                    privacy
+                  </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6">
                   <span className="text-3xl mb-4 block">🌲</span>
                   <h3 className="text-xl font-semibold mb-2">Desert Highlands Golf Course</h3>
-                  <p className="text-gray-600">Championship 18-hole golf course with stunning mountain views and clubhouse amenities</p>
+                  <p className="text-gray-600">
+                    Championship 18-hole golf course with stunning mountain views and clubhouse
+                    amenities
+                  </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6">
                   <Home className="w-8 h-8 text-realscout-blue mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Community Recreation Center</h3>
-                  <p className="text-gray-600">State-of-the-art fitness center, pools, tennis courts, and event spaces</p>
+                  <p className="text-gray-600">
+                    State-of-the-art fitness center, pools, tennis courts, and event spaces
+                  </p>
                 </CardContent>
               </Card>
             </div>
@@ -115,34 +133,40 @@ export default function SkyeCanyonGuide() {
         </section>
 
         {/* FAQ Section for Skye Canyon Community */}
-        <FAQSection 
+        <FAQSection
           title="Living in Skye Canyon - Community Guide FAQs"
           pageType="skye-canyon"
           faqs={[
             {
-              question: "What makes Skye Canyon different from other Las Vegas communities?",
-              answer: "Skye Canyon is a prestigious 24/7 guard-gated community featuring the Desert Highlands Golf Course, exclusive amenities, and larger lot sizes averaging 0.23 acres. The community offers privacy, security, and resort-style living."
+              question: 'What makes Skye Canyon different from other Las Vegas communities?',
+              answer:
+                'Skye Canyon is a prestigious 24/7 guard-gated community featuring the Desert Highlands Golf Course, exclusive amenities, and larger lot sizes averaging 0.23 acres. The community offers privacy, security, and resort-style living.',
             },
             {
-              question: "What amenities are included with Skye Canyon living?",
-              answer: "Residents enjoy access to Desert Highlands Golf Course, community recreation center with fitness facilities, swimming pools, tennis courts, walking trails, clubhouse, and various community events and activities."
+              question: 'What amenities are included with Skye Canyon living?',
+              answer:
+                'Residents enjoy access to Desert Highlands Golf Course, community recreation center with fitness facilities, swimming pools, tennis courts, walking trails, clubhouse, and various community events and activities.',
             },
             {
-              question: "What are the HOA fees in Skye Canyon?",
-              answer: "Skye Canyon HOA fees typically range from $180-$320 per month, which includes security, golf course maintenance, community amenities, landscaping of common areas, and exclusive club access."
+              question: 'What are the HOA fees in Skye Canyon?',
+              answer:
+                'Skye Canyon HOA fees typically range from $180-$320 per month, which includes security, golf course maintenance, community amenities, landscaping of common areas, and exclusive club access.',
             },
             {
-              question: "What schools serve Skye Canyon residents?",
-              answer: "Skye Canyon is served by highly-rated schools in the Clark County School District, including top-performing elementary, middle, and high schools in the northwest Las Vegas area with excellent academic programs."
+              question: 'What schools serve Skye Canyon residents?',
+              answer:
+                'Skye Canyon is served by highly-rated schools in the Clark County School District, including top-performing elementary, middle, and high schools in the northwest Las Vegas area with excellent academic programs.',
             },
             {
-              question: "How far is Skye Canyon from Las Vegas Strip and airport?",
-              answer: "Skye Canyon is approximately 25-30 minutes from the Las Vegas Strip and McCarran International Airport, offering convenient access to entertainment, dining, and travel while maintaining a peaceful residential setting."
+              question: 'How far is Skye Canyon from Las Vegas Strip and airport?',
+              answer:
+                'Skye Canyon is approximately 25-30 minutes from the Las Vegas Strip and McCarran International Airport, offering convenient access to entertainment, dining, and travel while maintaining a peaceful residential setting.',
             },
             {
-              question: "Are there dining and shopping options near Skye Canyon?",
-              answer: "Yes, Skye Canyon is close to various shopping centers, restaurants, grocery stores, and entertainment venues in the northwest Las Vegas area, with easy access to major retail and dining destinations."
-            }
+              question: 'Are there dining and shopping options near Skye Canyon?',
+              answer:
+                'Yes, Skye Canyon is close to various shopping centers, restaurants, grocery stores, and entertainment venues in the northwest Las Vegas area, with easy access to major retail and dining destinations.',
+            },
           ]}
         />
 

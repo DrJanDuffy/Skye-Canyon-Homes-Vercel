@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import FAQSchema from "./faq-schema";
+import { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import FAQSchema from './faq-schema';
 
 interface FAQItem {
   question: string;
@@ -18,10 +18,8 @@ export default function FAQSection({ title, faqs, pageType = 'general' }: FAQSec
   const [openItems, setOpenItems] = useState<number[]>([]);
 
   const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+    setOpenItems((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
@@ -39,9 +37,7 @@ export default function FAQSection({ title, faqs, pageType = 'general' }: FAQSec
                     onClick={() => toggleItem(index)}
                     className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-realscout-blue"
                   >
-                    <h3 className="text-lg font-semibold text-gray-900 pr-4">
-                      {faq.question}
-                    </h3>
+                    <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
                     {openItems.includes(index) ? (
                       <ChevronUp className="w-5 h-5 text-realscout-blue flex-shrink-0" />
                     ) : (
@@ -50,9 +46,7 @@ export default function FAQSection({ title, faqs, pageType = 'general' }: FAQSec
                   </button>
                   {openItems.includes(index) && (
                     <div className="px-6 pb-4">
-                      <p className="text-gray-600 leading-relaxed">
-                        {faq.answer}
-                      </p>
+                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
                     </div>
                   )}
                 </CardContent>

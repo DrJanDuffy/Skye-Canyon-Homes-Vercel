@@ -22,7 +22,7 @@ function executeCommand(command, options = {}) {
     const result = execSync(command, {
       stdio: 'inherit',
       cwd: __dirname,
-      ...options
+      ...options,
     });
     return result;
   } catch (error) {
@@ -34,30 +34,30 @@ function executeCommand(command, options = {}) {
 
 async function validateProjectStructure() {
   log('Validating project structure...');
-  
+
   const requiredFiles = [
     'client/index.html',
     'client/src/main.tsx',
     'server/index.ts',
     'tailwind.config.ts',
-    'postcss.config.js'
+    'postcss.config.js',
   ];
-  
+
   for (const file of requiredFiles) {
     if (!fs.existsSync(path.join(__dirname, file))) {
       throw new Error(`Required file missing: ${file}`);
     }
   }
-  
+
   log('✅ Project structure validated');
 }
 
 async function buildClient() {
   log('Building React client with ESBuild...');
-  
+
   // Create output directories
   fs.mkdirSync('dist/public/assets', { recursive: true });
-  
+
   try {
     await build({
       entryPoints: ['client/src/main.tsx'],
@@ -82,7 +82,7 @@ async function buildClient() {
         '.woff': 'dataurl',
         '.woff2': 'dataurl',
         '.ttf': 'dataurl',
-        '.eot': 'dataurl'
+        '.eot': 'dataurl',
       },
       minify: true,
       sourcemap: true,
@@ -91,21 +91,21 @@ async function buildClient() {
         'process.env.NODE_ENV': '"production"',
         'import.meta.env.PROD': 'true',
         'import.meta.env.DEV': 'false',
-        'import.meta.env.MODE': '"production"'
+        'import.meta.env.MODE': '"production"',
       },
       resolveExtensions: ['.tsx', '.ts', '.jsx', '.js', '.css', '.json'],
       alias: {
         '@': path.resolve(__dirname, 'client/src'),
         '@shared': path.resolve(__dirname, 'shared'),
-        '@assets': path.resolve(__dirname, 'attached_assets')
+        '@assets': path.resolve(__dirname, 'attached_assets'),
       },
       external: [],
       platform: 'browser',
       splitting: false,
       metafile: true,
-      write: true
+      write: true,
     });
-    
+
     log('✅ Client build completed');
   } catch (error) {
     console.error('Client build failed:', error);
@@ -115,13 +115,13 @@ async function buildClient() {
 
 async function buildCSS() {
   log('Building CSS with Tailwind...');
-  
+
   try {
     executeCommand(
       'npx tailwindcss -i client/src/index-simple.css -o dist/public/assets/main.css --minify',
       { stdio: 'inherit' }
     );
-    
+
     log('✅ CSS build completed');
   } catch (error) {
     console.error('CSS build failed:', error);
@@ -131,26 +131,23 @@ async function buildCSS() {
 
 async function processHTML() {
   log('Processing HTML template...');
-  
+
   try {
     // Read the original HTML template
     const htmlPath = path.join(__dirname, 'client', 'index.html');
     let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-    
+
     // Update script and style references for production build
     htmlContent = htmlContent
       .replace(
         '<script type="module" src="/src/main.tsx"></script>',
         '<script type="module" src="/assets/main.js"></script>'
       )
-      .replace(
-        '</head>',
-        '    <link rel="stylesheet" href="/assets/main.css">\n  </head>'
-      );
-    
+      .replace('</head>', '    <link rel="stylesheet" href="/assets/main.css">\n  </head>');
+
     // Write the processed HTML
     fs.writeFileSync(path.join(__dirname, 'dist', 'public', 'index.html'), htmlContent);
-    
+
     log('✅ HTML template processed');
   } catch (error) {
     console.error('HTML processing failed:', error);
@@ -160,23 +157,23 @@ async function processHTML() {
 
 async function copyPublicAssets() {
   log('Copying public assets...');
-  
+
   try {
     const publicPath = path.join(__dirname, 'public');
     if (fs.existsSync(publicPath)) {
       executeCommand('cp -r public/* dist/public/');
     }
-    
+
     // Copy root assets if they exist
     const rootAssets = ['favicon.ico', 'robots.txt', 'sitemap.xml', 'manifest.json'];
-    rootAssets.forEach(asset => {
+    rootAssets.forEach((asset) => {
       const assetPath = path.join(__dirname, asset);
       if (fs.existsSync(assetPath)) {
         fs.copyFileSync(assetPath, path.join(__dirname, 'dist', 'public', asset));
         log(`Copied ${asset}`);
       }
     });
-    
+
     log('✅ Public assets copied');
   } catch (error) {
     console.error('Asset copying failed:', error);
@@ -186,7 +183,7 @@ async function copyPublicAssets() {
 
 async function buildServer() {
   log('Building Express server...');
-  
+
   try {
     await build({
       entryPoints: ['server/index.ts'],
@@ -198,17 +195,17 @@ async function buildServer() {
       packages: 'external',
       loader: {
         '.ts': 'ts',
-        '.js': 'js'
+        '.js': 'js',
       },
       minify: true,
       sourcemap: true,
       treeShaking: true,
       define: {
-        'process.env.NODE_ENV': '"production"'
+        'process.env.NODE_ENV': '"production"',
       },
       resolveExtensions: ['.ts', '.js', '.json'],
       alias: {
-        '@shared': path.resolve(__dirname, 'shared')
+        '@shared': path.resolve(__dirname, 'shared'),
       },
       external: [
         'express',
@@ -224,10 +221,10 @@ async function buildServer() {
         'express-rate-limit',
         'memorystore',
         'ws',
-        '@anthropic-ai/sdk'
-      ]
+        '@anthropic-ai/sdk',
+      ],
     });
-    
+
     log('✅ Server build completed');
   } catch (error) {
     console.error('Server build failed:', error);
@@ -237,15 +234,15 @@ async function buildServer() {
 
 async function createProductionPackageJson() {
   log('Creating production package.json...');
-  
+
   const originalPackage = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
-  
+
   const productionPackage = {
     name: originalPackage.name,
     version: originalPackage.version,
     type: 'module',
     scripts: {
-      start: 'node server.js'
+      start: 'node server.js',
     },
     dependencies: {
       // Only include runtime dependencies needed for production
@@ -262,59 +259,59 @@ async function createProductionPackageJson() {
       'express-rate-limit': originalPackage.dependencies['express-rate-limit'],
       memorystore: originalPackage.dependencies.memorystore,
       ws: originalPackage.dependencies.ws,
-      '@anthropic-ai/sdk': originalPackage.dependencies['@anthropic-ai/sdk']
-    }
+      '@anthropic-ai/sdk': originalPackage.dependencies['@anthropic-ai/sdk'],
+    },
   };
-  
+
   fs.writeFileSync(
     path.join(__dirname, 'dist', 'package.json'),
     JSON.stringify(productionPackage, null, 2)
   );
-  
+
   log('✅ Production package.json created');
 }
 
 async function verifyBuildArtifacts() {
   log('Verifying build artifacts...');
-  
+
   const requiredFiles = [
     'dist/public/index.html',
     'dist/public/assets/main.js',
     'dist/public/assets/main.css',
     'dist/server.js',
-    'dist/package.json'
+    'dist/package.json',
   ];
-  
+
   for (const file of requiredFiles) {
     const filePath = path.join(__dirname, file);
     if (!fs.existsSync(filePath)) {
       throw new Error(`Build artifact missing: ${file}`);
     }
-    
+
     const stats = fs.statSync(filePath);
     if (stats.size === 0) {
       throw new Error(`Build artifact is empty: ${file}`);
     }
   }
-  
+
   log('✅ All build artifacts verified');
 }
 
 async function testProductionBuild() {
   log('Testing production build...');
-  
+
   // Basic syntax check on built files
   try {
     const serverContent = fs.readFileSync('dist/server.js', 'utf-8');
     if (!serverContent.includes('express')) {
       throw new Error('Server build appears incomplete - missing express');
     }
-    
+
     const clientContent = fs.readFileSync('dist/public/assets/main.js', 'utf-8');
     if (clientContent.length < 1000) {
       throw new Error('Client build appears incomplete - file too small');
     }
-    
+
     log('✅ Production build test passed');
   } catch (error) {
     console.error('Production build test failed:', error);
@@ -326,15 +323,15 @@ async function main() {
   try {
     log('Starting complete production build process...');
     console.time('Total build time');
-    
+
     // Clean existing build
     if (fs.existsSync('dist')) {
       fs.rmSync('dist', { recursive: true, force: true });
     }
-    
+
     // Create base directories
     fs.mkdirSync('dist/public/assets', { recursive: true });
-    
+
     // Execute build steps in order
     await validateProjectStructure();
     await buildClient();
@@ -345,7 +342,7 @@ async function main() {
     await createProductionPackageJson();
     await verifyBuildArtifacts();
     await testProductionBuild();
-    
+
     console.timeEnd('Total build time');
     log('🎉 Production build completed successfully!');
     log('');
@@ -356,7 +353,6 @@ async function main() {
     log('  - dist/server.js (Express server)');
     log('  - dist/public/ (Static assets)');
     log('  - dist/package.json (Production dependencies)');
-    
   } catch (error) {
     console.error('❌ Production build failed:', error.message);
     process.exit(1);

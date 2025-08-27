@@ -9,8 +9,10 @@ export default function PerformanceCriticalLoader() {
       // Remove render-blocking operations
       requestIdleCallback(() => {
         // Defer non-critical CSS and scripts
-        const nonCriticalStyles = document.querySelectorAll('link[rel="stylesheet"]:not([data-critical])');
-        nonCriticalStyles.forEach(style => {
+        const nonCriticalStyles = document.querySelectorAll(
+          'link[rel="stylesheet"]:not([data-critical])'
+        );
+        nonCriticalStyles.forEach((style) => {
           (style as HTMLLinkElement).media = 'print';
           (style as HTMLLinkElement).addEventListener('load', () => {
             (style as HTMLLinkElement).media = 'all';
@@ -20,10 +22,10 @@ export default function PerformanceCriticalLoader() {
         // Preload critical resources
         const preloadCritical = [
           '/dr-jan-duffy-headshot.jpg',
-          'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+          'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
         ];
 
-        preloadCritical.forEach(resource => {
+        preloadCritical.forEach((resource) => {
           const link = document.createElement('link');
           link.rel = 'preload';
           link.href = resource;

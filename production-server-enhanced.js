@@ -20,7 +20,7 @@ const config = {
   publicDir: path.join(__dirname, 'dist', 'public'),
   staticDir: path.join(__dirname, 'public'),
   clientDir: path.join(__dirname, 'client'),
-  isProduction: NODE_ENV === 'production'
+  isProduction: NODE_ENV === 'production',
 };
 
 function log(message) {
@@ -34,10 +34,11 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  
+
   // CSP for production
   if (config.isProduction) {
-    res.setHeader('Content-Security-Policy', 
+    res.setHeader(
+      'Content-Security-Policy',
       "default-src 'self'; script-src 'self' 'unsafe-inline' https://em.realscout.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self' data:;"
     );
   }
@@ -60,20 +61,20 @@ app.get('/health', (req, res) => {
       distExists: fs.existsSync(config.distDir),
       publicExists: fs.existsSync(config.publicDir),
       indexExists: fs.existsSync(path.join(config.publicDir, 'index.html')),
-      assetsExist: fs.existsSync(path.join(config.publicDir, 'assets'))
-    }
+      assetsExist: fs.existsSync(path.join(config.publicDir, 'assets')),
+    },
   });
 });
 
 // Load API routes from built server if available
 const loadApiRoutes = async () => {
   const serverPath = path.join(__dirname, 'dist', 'server.js');
-  
+
   if (fs.existsSync(serverPath)) {
     try {
       // Import the built server module
       const serverModule = await import(`file://${serverPath}`);
-      
+
       if (serverModule.setupApiRoutes) {
         serverModule.setupApiRoutes(app);
         log('✅ API routes loaded from built server');
@@ -90,25 +91,25 @@ const loadApiRoutes = async () => {
       log(`⚠️  Could not load API routes: ${error.message}`);
     }
   }
-  
+
   // Fallback API routes
   app.get('/api/status', (req, res) => {
     res.json({
       message: 'Production server running',
       version: '1.0.0',
       environment: NODE_ENV,
-      buildStatus: fs.existsSync(serverPath) ? 'available' : 'fallback'
+      buildStatus: fs.existsSync(serverPath) ? 'available' : 'fallback',
     });
   });
-  
+
   app.get('/api/properties', (req, res) => {
     res.json({
       message: 'API server running in fallback mode. Build server.js for full functionality.',
       status: 'fallback',
-      data: []
+      data: [],
     });
   });
-  
+
   log('⚠️  Using fallback API routes');
   return false;
 };
@@ -125,14 +126,14 @@ const serveStaticFiles = () => {
       } else if (filePath.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico)$/)) {
         res.setHeader('Cache-Control', `public, max-age=${config.isProduction ? 31536000 : 0}`);
       }
-    }
+    },
   };
 
   // Priority order for serving static files
   const staticDirs = [
     { path: config.publicDir, name: 'dist/public (built assets)' },
     { path: config.staticDir, name: 'public (static assets)' },
-    { path: config.clientDir, name: 'client (development)' }
+    { path: config.clientDir, name: 'client (development)' },
   ];
 
   staticDirs.forEach(({ path: dirPath, name }) => {
@@ -160,7 +161,7 @@ app.get('*', (req, res, next) => {
     path.join(config.publicDir, 'index.html'),
     path.join(config.staticDir, 'index.html'),
     path.join(config.clientDir, 'index.html'),
-    path.join(__dirname, 'index.html')
+    path.join(__dirname, 'index.html'),
   ];
 
   for (const indexPath of indexPaths) {
@@ -211,7 +212,7 @@ app.get('*', (req, res, next) => {
             <div class="status info">
                 <h4>📁 Looking for files in:</h4>
                 <ul>
-                    ${indexPaths.map(p => `<li><code>${p}</code> ${fs.existsSync(p) ? '✅' : '❌'}</li>`).join('')}
+                    ${indexPaths.map((p) => `<li><code>${p}</code> ${fs.existsSync(p) ? '✅' : '❌'}</li>`).join('')}
                 </ul>
             </div>
         </div>
@@ -226,18 +227,18 @@ app.use('/api/*', (req, res) => {
     error: 'API endpoint not found',
     path: req.path,
     method: req.method,
-    available: ['/api/status', '/api/properties', '/health']
+    available: ['/api/status', '/api/properties', '/health'],
   });
 });
 
 // Global error handler
 app.use((err, req, res, next) => {
   console.error('Server error:', err);
-  
+
   if (req.path.startsWith('/api/')) {
     res.status(500).json({
       error: config.isProduction ? 'Internal server error' : err.message,
-      ...(config.isProduction ? {} : { stack: err.stack })
+      ...(config.isProduction ? {} : { stack: err.stack }),
     });
   } else {
     res.status(500).send(`
@@ -269,31 +270,31 @@ process.on('SIGINT', () => {
 const startServer = async () => {
   // Setup static file serving
   serveStaticFiles();
-  
+
   // Load API routes
   await loadApiRoutes();
-  
+
   // Start server
   const server = app.listen(PORT, HOST, () => {
     log(`Server running on http://${HOST}:${PORT}`);
     log(`Environment: ${NODE_ENV}`);
     log(`Build artifacts check:`);
-    
+
     // Check build artifacts
     const artifacts = [
       { path: path.join(config.publicDir, 'index.html'), name: 'HTML template' },
       { path: path.join(config.publicDir, 'assets', 'app.js'), name: 'React bundle' },
       { path: path.join(config.publicDir, 'assets', 'styles.css'), name: 'CSS bundle' },
-      { path: path.join(config.distDir, 'server.js'), name: 'Server bundle' }
+      { path: path.join(config.distDir, 'server.js'), name: 'Server bundle' },
     ];
-    
+
     let missingCount = 0;
     artifacts.forEach(({ path: filePath, name }) => {
       const exists = fs.existsSync(filePath);
       log(`  ${exists ? '✅' : '❌'} ${name}`);
       if (!exists) missingCount++;
     });
-    
+
     if (missingCount === 0) {
       log('🎉 All build artifacts found - ready for production!');
     } else {
@@ -313,7 +314,7 @@ const startServer = async () => {
 };
 
 // Start the server
-startServer().catch(err => {
+startServer().catch((err) => {
   console.error('❌ Failed to start server:', err);
   process.exit(1);
 });
