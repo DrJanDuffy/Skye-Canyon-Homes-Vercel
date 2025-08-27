@@ -11,15 +11,15 @@
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/dist/public/assets/$1"
+      "dest": "/assets/$1"
     },
     {
       "src": "/images/(.*)",
-      "dest": "/dist/public/images/$1"
+      "dest": "/images/$1"
     },
     {
       "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|webp))",
-      "dest": "/dist/public/$1"
+      "dest": "/$1"
     },
     {
       "src": "/sitemap.xml",
