@@ -503,35 +503,15 @@ export default function App(): JSX.Element {
             </div>
             
             {/* Google Maps Embed */}
-            <div style={{ 
-              width: '100%', 
-              height: '400px', 
-              backgroundColor: '#e2e8f0', 
-              borderRadius: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid #cbd5e1',
-              marginBottom: '24px'
-            }}>
-              <div style={{ textAlign: 'center', color: '#64748b' }}>
-                <div style={{ fontSize: '3rem', marginBottom: '16px' }}>🗺️</div>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '8px' }}>Interactive Map</h4>
-                <p style={{ fontSize: '1rem', marginBottom: '16px' }}>
-                  Google Maps integration showing Skye Canyon amenities
-                </p>
-                <div style={{ 
-                  backgroundColor: '#1e3a8a', 
-                  color: 'white', 
-                  padding: '12px 24px', 
-                  borderRadius: '8px', 
-                  fontSize: '0.875rem',
-                  display: 'inline-block'
-                }}>
-                  Map Loading...
-                </div>
-              </div>
-            </div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3759.177380798106!2d-115.31846408808583!3d36.31289477227488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c893357adc2aff%3A0x68d152a9c6f09956!2sSkye%20Canyon%20Real%20Estate%20%7C%20Homes%20by%20Dr.%20Jan%20Duffy!5e1!3m2!1sen!2sus!4v1756287875409!5m2!1sen!2sus" 
+              width="100%" 
+              height="400" 
+              style={{ border: 0, borderRadius: '12px' }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            />
             
             <div style={{ textAlign: 'center' }}>
               <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '16px' }}>
