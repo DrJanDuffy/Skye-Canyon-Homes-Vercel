@@ -147,8 +147,14 @@ async function buildWorking() {
         );
       }
       
+      // IMPORTANT: Remove the React root div and script to preserve original HTML
+      htmlContent = htmlContent.replace(
+        '    <!-- RealScout initialization will be handled by React -->\n    <div id="root"></div>\n    <script type="module" src="/assets/main.js"></script>',
+        '    <!-- RealScout Web Components will initialize automatically -->\n    <realscout-office-listings agent-encoded-id="QWdlbnQtMjI1MDUw" search-type="buy" location="Skye Canyon, Las Vegas, NV" data-production="true"></realscout-office-listings>'
+      );
+      
       fs.writeFileSync('dist/public/index.html', htmlContent);
-      console.log('✅ HTML references updated successfully');
+      console.log('✅ HTML references updated successfully - Original rich content preserved!');
     } else {
       console.log('⚠️ Original HTML not found, creating basic HTML');
       const htmlContent = `<!DOCTYPE html>
