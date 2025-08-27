@@ -24,6 +24,8 @@ import RealScoutListings from '@/components/realscout-listings';
 import RealScoutSearchWidget from '@/components/realscout-search-widget';
 import RelatedSearches from '@/components/related-searches';
 import ReviewHighlights from '@/components/review-highlights';
+import GoogleBusinessReview from '@/components/google-business-review';
+import SkyeCanyonNeighborhoodExplorer from '@/components/skye-canyon-neighborhood-explorer';
 import ServicesOverview from '@/components/services-overview';
 import VoiceSearchIntegration from '@/components/voice-search-integration';
 
@@ -262,6 +264,24 @@ export default function Home() {
 
         {/* Client Reviews Section */}
         <ReviewHighlights />
+
+        {/* Google Business Review Section */}
+        <GoogleBusinessReview />
+
+        {/* Skye Canyon Neighborhood Explorer */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Explore Skye Canyon Neighborhood
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Discover nearby restaurants, schools, parks, and amenities that make Skye Canyon the perfect place to call home.
+              </p>
+            </div>
+            <SkyeCanyonNeighborhoodExplorer />
+          </div>
+        </section>
 
         {/* Home Valuation CTA Section */}
         <section className="py-16 bg-white">

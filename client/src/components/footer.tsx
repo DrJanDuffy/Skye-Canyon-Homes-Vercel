@@ -125,6 +125,19 @@ export default function Footer() {
                 <div>Saturday: 9:00 AM - 5:00 PM</div>
                 <div>Sunday: 11:00 AM - 4:00 PM</div>
               </div>
+              
+              <div className="mt-4 pt-4 border-t border-gray-600">
+                <h5 className="text-sm font-semibold mb-3 text-white">Leave a Review</h5>
+                <a 
+                  href="https://g.page/r/CVaZ8MapUtFoEBM/review" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  <span className="mr-2">⭐</span>
+                  Google Business Review
+                </a>
+              </div>
             </div>
           </div>
         </div>

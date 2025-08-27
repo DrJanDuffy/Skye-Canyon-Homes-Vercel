@@ -231,6 +231,17 @@ export default function Navigation() {
               Contact
             </a>
 
+            {/* Reviews */}
+            <a
+              href="https://g.page/r/CVaZ8MapUtFoEBM/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-gray-700 hover:text-realscout-blue transition-colors font-medium group"
+            >
+              <Star className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200" />
+              Reviews
+            </a>
+
             {/* CTA Button */}
             <a
               href="https://drjanduffy.realscout.com/onboarding"
@@ -406,6 +417,18 @@ export default function Navigation() {
             >
               <MessageCircle className="w-4 h-4 mr-3" />
               Contact
+            </a>
+
+            {/* Reviews */}
+            <a
+              href="https://g.page/r/CVaZ8MapUtFoEBM/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center px-3 py-3 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Star className="w-4 h-4 mr-3" />
+              Reviews
             </a>
 
             {/* CTA Button - Mobile */}
