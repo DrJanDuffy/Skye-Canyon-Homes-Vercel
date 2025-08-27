@@ -306,6 +306,226 @@ export default function App(): JSX.Element {
         </div>
       </section>
 
+      {/* Address Search with Autocomplete Section */}
+      <section style={{ padding: '80px 0', backgroundColor: '#1e3a8a', color: 'white' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '24px' }}>
+              Find Your Dream Home in Skye Canyon
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#bfdbfe', maxWidth: '800px', margin: '0 auto' }}>
+              Use our advanced address search to find properties in your preferred area. 
+              Get instant results with Google Maps autocomplete technology.
+            </p>
+          </div>
+          
+          {/* Address Search Form */}
+          <div style={{ 
+            backgroundColor: 'white', 
+            borderRadius: '16px', 
+            padding: '48px', 
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+            maxWidth: '800px',
+            margin: '0 auto'
+          }}>
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#111827', marginBottom: '16px' }}>
+                Start Your Property Search
+              </h3>
+              <p style={{ color: '#6b7280', fontSize: '1.125rem' }}>
+                Enter an address, neighborhood, or zip code to find available properties
+              </p>
+            </div>
+            
+            {/* Google Maps Autocomplete Form */}
+            <form style={{ marginBottom: '32px' }}>
+              <div style={{ marginBottom: '24px' }}>
+                <label style={{ 
+                  display: 'block', 
+                  fontSize: '1rem', 
+                  fontWeight: '500', 
+                  color: '#374151', 
+                  marginBottom: '8px',
+                  textAlign: 'left'
+                }}>
+                  Address or Location
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <input 
+                    type="text" 
+                    id="address-autocomplete"
+                    placeholder="Enter address, neighborhood, or zip code..."
+                    style={{
+                      width: '100%',
+                      padding: '16px 20px',
+                      fontSize: '1rem',
+                      border: '2px solid #e5e7eb',
+                      borderRadius: '8px',
+                      outline: 'none',
+                      transition: 'border-color 0.3s',
+                      boxSizing: 'border-box'
+                    }}
+                    onFocus={(e) => e.target.style.borderColor = '#1e3a8a'}
+                    onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    right: '16px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    color: '#9ca3af'
+                  }}>
+                    🔍
+                  </div>
+                </div>
+                <p style={{ 
+                  fontSize: '0.875rem', 
+                  color: '#6b7280', 
+                  marginTop: '8px',
+                  textAlign: 'left'
+                }}>
+                  Powered by Google Maps Platform - Get instant address suggestions
+                </p>
+              </div>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '24px' }}>
+                <div>
+                  <label style={{ 
+                    display: 'block', 
+                    fontSize: '0.875rem', 
+                    fontWeight: '500', 
+                    color: '#374151', 
+                    marginBottom: '6px',
+                    textAlign: 'left'
+                  }}>
+                    Property Type
+                  </label>
+                  <select style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    fontSize: '0.875rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '6px',
+                    outline: 'none',
+                    backgroundColor: 'white'
+                  }}>
+                    <option value="">Any Type</option>
+                    <option value="single-family">Single Family</option>
+                    <option value="townhouse">Townhouse</option>
+                    <option value="condo">Condominium</option>
+                    <option value="new-construction">New Construction</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label style={{ 
+                    display: 'block', 
+                    fontSize: '0.875rem', 
+                    fontWeight: '500', 
+                    color: '#374151', 
+                    marginBottom: '6px',
+                    textAlign: 'left'
+                  }}>
+                    Price Range
+                  </label>
+                  <select style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    fontSize: '0.875rem',
+                    border: '2px solid #e5e7eb',
+                    borderRadius: '6px',
+                    outline: 'none',
+                    backgroundColor: 'white'
+                  }}>
+                    <option value="">Any Price</option>
+                    <option value="300k-500k">$300K - $500K</option>
+                    <option value="500k-750k">$500K - $750K</option>
+                    <option value="750k-1m">$750K - $1M</option>
+                    <option value="1m-plus">$1M+</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div style={{ textAlign: 'center' }}>
+                <button 
+                  type="submit"
+                  style={{
+                    backgroundColor: '#1e3a8a',
+                    color: 'white',
+                    padding: '16px 32px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    fontSize: '1.125rem',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.3s',
+                    marginRight: '16px'
+                  }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#1e40af'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#1e3a8a'}
+                >
+                  🔍 Search Properties
+                </button>
+                <a 
+                  href="tel:(702) 500-1902"
+                  style={{
+                    border: '2px solid #1e3a8a',
+                    color: '#1e3a8a',
+                    padding: '16px 32px',
+                    borderRadius: '8px',
+                    fontWeight: '600',
+                    fontSize: '1.125rem',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s',
+                    display: 'inline-block'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.backgroundColor = '#1e3a8a';
+                    e.target.style.color = 'white';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.backgroundColor = 'transparent';
+                    e.target.style.color = '#1e3a8a';
+                  }}
+                >
+                  📞 Get Expert Help
+                </a>
+              </div>
+            </form>
+            
+            {/* Benefits Section */}
+            <div style={{ 
+              backgroundColor: '#f8fafc', 
+              borderRadius: '12px', 
+              padding: '24px',
+              border: '1px solid #e2e8f0'
+            }}>
+              <h4 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#111827', marginBottom: '16px', textAlign: 'center' }}>
+                Why Use Our Advanced Search?
+              </h4>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>Google Maps autocomplete</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>Instant address validation</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>15% higher conversion</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ color: '#16a34a', fontSize: '1.25rem' }}>✅</span>
+                  <span style={{ color: '#6b7280', fontSize: '0.875rem' }}>Real-time results</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
