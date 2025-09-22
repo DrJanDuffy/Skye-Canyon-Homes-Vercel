@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useSearchParams } from '@/hooks/use-search-params';
 import BackToTop from '@/components/back-to-top';
 import Breadcrumb from '@/components/breadcrumb';
 import FAQSection from '@/components/faq-section';
@@ -9,13 +10,24 @@ import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
 
 export default function Properties() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.search || '';
   return (
     <>
       <Helmet>
-        <title>Skye Canyon Properties for Sale MLS Listings 89166 | Dr. Jan Duffy REALTOR®</title>
+        <title>
+          {searchQuery 
+            ? `Search Results for "${searchQuery}" - Skye Canyon Properties | Dr. Jan Duffy REALTOR®`
+            : "Skye Canyon Properties for Sale MLS Listings 89166 | Dr. Jan Duffy REALTOR®"
+          }
+        </title>
         <meta
           name="description"
-          content="Browse current Skye Canyon MLS properties for sale in Las Vegas, NV 89166. Luxury homes, golf course properties, and new construction. Expert service by Dr. Jan Duffy REALTOR®."
+          content={
+            searchQuery
+              ? `Find Skye Canyon properties matching "${searchQuery}" in Las Vegas, NV 89166. Expert assistance from Dr. Jan Duffy REALTOR® for luxury homes and golf course properties.`
+              : "Browse current Skye Canyon MLS properties for sale in Las Vegas, NV 89166. Luxury homes, golf course properties, and new construction. Expert service by Dr. Jan Duffy REALTOR®."
+          }
         />
         <meta
           name="keywords"
@@ -82,6 +94,23 @@ export default function Properties() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
           <Breadcrumb items={[{ label: 'Properties' }]} />
         </div>
+
+        {/* Search Results Section */}
+        {searchQuery && (
+          <section className="py-12 bg-blue-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                  Search Results for "{searchQuery}"
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Showing properties matching your search criteria
+                </p>
+              </div>
+              <RealScoutListings className="w-full" variant="search" searchTerm={searchQuery} />
+            </div>
+          </section>
+        )}
 
         {/* Current MLS Listings */}
         <section className="py-16 bg-white">
