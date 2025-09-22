@@ -25,6 +25,7 @@ import SeoManagement from '@/pages/seo-management';
 import HomeSimple from '@/pages/home-simple';
 import NotFound from '@/pages/not-found';
 import Search from '@/pages/search';
+import StaticMapsDemo from '@/components/static-maps-demo';
 
 // Service Pages
 import BuyerAgent from '@/pages/services/buyer-agent';
@@ -78,6 +79,9 @@ export default function App(): JSX.Element {
       {/* Search Route */}
       <Route path="/search" component={Search} />
       <Route path="/search/:query" component={Search} />
+      
+      {/* Demo Route */}
+      <Route path="/demo/maps" component={StaticMapsDemo} />
       
       {/* 404 Route - must be last */}
       <Route component={NotFound} />

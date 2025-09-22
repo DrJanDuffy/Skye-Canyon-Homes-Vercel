@@ -7,6 +7,7 @@ import FAQSection from '@/components/faq-section';
 import FollowUpBossListings from '@/components/followup-boss-listings';
 import Footer from '@/components/footer';
 import RealScoutListings from '@/components/realscout-listings';
+import StaticMapsDemo from '@/components/static-maps-demo';
 
 export default function Properties() {
   const searchParams = useSearchParams();
@@ -140,6 +141,32 @@ export default function Properties() {
               <h3 className="text-lg font-medium text-gray-700 mb-4">Browse All Properties</h3>
             </div>
             <RealScoutListings className="w-full" variant="all-properties" />
+          </div>
+        </section>
+
+        {/* Interactive Property Maps Demo */}
+        <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Interactive Property Maps with Google Maps Integration
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Experience enhanced property listings with custom static maps, location context, and nearby amenities. 
+                See exactly where each property is located in relation to Skye Canyon's premier features.
+              </p>
+              <div className="mt-6">
+                <a
+                  href="/demo/maps"
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-realscout-blue hover:bg-realscout-navy transition-colors"
+                >
+                  View Interactive Maps Demo
+                  <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
