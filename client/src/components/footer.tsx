@@ -85,12 +85,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services/buyer-agent" className="hover:text-white transition-colors">
                   Buyer's Guide
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services/seller-agent" className="hover:text-white transition-colors">
                   Seller's Guide
                 </a>
               </li>

@@ -181,28 +181,35 @@ export default function Navigation() {
                   <h3 className="font-semibold text-realscout-blue text-sm uppercase tracking-wide">Our Services</h3>
                 </div>
                 <Link
-                  href="/buyer-services"
+                  href="/services/buyer-agent"
                   className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-realscout-blue transition-colors group/item"
                 >
                   <User className="w-4 h-4 mr-3 text-gray-400 group-hover/item:text-realscout-blue transition-colors" />
                   Buyer Services
                 </Link>
                 <Link
-                  href="/seller-services"
+                  href="/services/seller-agent"
                   className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-realscout-blue transition-colors group/item"
                 >
                   <Building2 className="w-4 h-4 mr-3 text-gray-400 group-hover/item:text-realscout-blue transition-colors" />
                   Seller Services
                 </Link>
                 <Link
-                  href="/home-valuation"
+                  href="/services/luxury-properties"
                   className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-realscout-blue transition-colors group/item"
                 >
-                  <Calculator className="w-4 h-4 mr-3 text-gray-400 group-hover/item:text-realscout-blue transition-colors" />
-                  Home Valuation
+                  <Star className="w-4 h-4 mr-3 text-gray-400 group-hover/item:text-realscout-blue transition-colors" />
+                  Luxury Properties
                 </Link>
                 <Link
-                  href="/consultation"
+                  href="/services/new-construction"
+                  className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-realscout-blue transition-colors group/item"
+                >
+                  <Building2 className="w-4 h-4 mr-3 text-gray-400 group-hover/item:text-realscout-blue transition-colors" />
+                  New Construction
+                </Link>
+                <Link
+                  href="/contact"
                   className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-realscout-blue transition-colors group/item"
                 >
                   <MessageCircle className="w-4 h-4 mr-3 text-gray-400 group-hover/item:text-realscout-blue transition-colors" />
@@ -371,7 +378,7 @@ export default function Navigation() {
               </div>
               <div className="space-y-1">
                 <Link
-                  href="/buyer-services"
+                  href="/services/buyer-agent"
                   className="flex items-center px-2 py-2 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -379,7 +386,7 @@ export default function Navigation() {
                   Buyer Services
                 </Link>
                 <Link
-                  href="/seller-services"
+                  href="/services/seller-agent"
                   className="flex items-center px-2 py-2 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -387,12 +394,20 @@ export default function Navigation() {
                   Seller Services
                 </Link>
                 <Link
-                  href="/home-valuation"
+                  href="/services/luxury-properties"
                   className="flex items-center px-2 py-2 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Calculator className="w-4 h-4 mr-3 text-gray-400" />
-                  Home Valuation
+                  <Star className="w-4 h-4 mr-3 text-gray-400" />
+                  Luxury Properties
+                </Link>
+                <Link
+                  href="/services/new-construction"
+                  className="flex items-center px-2 py-2 text-gray-600 hover:text-realscout-blue hover:bg-gray-50 rounded"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Building2 className="w-4 h-4 mr-3 text-gray-400" />
+                  New Construction
                 </Link>
               </div>
             </div>
@@ -408,16 +423,14 @@ export default function Navigation() {
             </Link>
 
             {/* Contact */}
-            <a
-              href="https://g.co/kgs/nbUf6Pj"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="flex items-center px-3 py-3 text-gray-700 hover:text-realscout-blue hover:bg-gray-50 rounded-lg font-medium"
               onClick={() => setMobileMenuOpen(false)}
             >
               <MessageCircle className="w-4 h-4 mr-3" />
               Contact
-            </a>
+            </Link>
 
             {/* Reviews */}
             <a
