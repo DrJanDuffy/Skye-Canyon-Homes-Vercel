@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route } from 'wouter';
-import Navigation from '@/components/navigation';
+import ModernHeader from '@/components/modern-header';
 import Home from '@/pages/home';
 import About from '@/pages/about';
 import Contact from '@/pages/contact';
@@ -39,7 +39,7 @@ export default function App(): JSX.Element {
   
   return (
     <Router>
-      <Navigation />
+      <ModernHeader />
       
       {/* Main Routes */}
       <Route path="/" component={Home} />

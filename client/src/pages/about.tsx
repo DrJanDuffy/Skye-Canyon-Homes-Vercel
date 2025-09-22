@@ -16,7 +16,6 @@ import BackToTop from '@/components/back-to-top';
 import Breadcrumb from '@/components/breadcrumb';
 import FAQSection from '@/components/faq-section';
 import Footer from '@/components/footer';
-import Navigation from '@/components/navigation';
 import PerformanceInsights from '@/components/performance-insights';
 import RealScoutListings from '@/components/realscout-listings';
 import { Button } from '@/components/ui/button';

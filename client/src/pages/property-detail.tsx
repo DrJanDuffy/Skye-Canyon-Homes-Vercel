@@ -18,7 +18,6 @@ import {
 import { useParams } from 'wouter';
 import { Helmet } from 'react-helmet-async';
 import Footer from '@/components/footer';
-import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';

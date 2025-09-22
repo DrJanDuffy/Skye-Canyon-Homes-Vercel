@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '@/components/footer';
-import Navigation from '@/components/navigation';
 import VoiceSearchIntegration from '@/components/voice-search-integration';
 
 export default function VoiceSearchPage() {

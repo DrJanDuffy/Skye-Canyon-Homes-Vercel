@@ -2,7 +2,6 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Footer from '@/components/footer';
-import Navigation from '@/components/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';

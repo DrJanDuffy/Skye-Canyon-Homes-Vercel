@@ -6,7 +6,6 @@ import FAQSection from '@/components/faq-section';
 
 import FollowUpBossListings from '@/components/followup-boss-listings';
 import Footer from '@/components/footer';
-import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
 
 export default function Properties() {

@@ -16,7 +16,6 @@ import { ContextualContent } from '@/components/internal-link-optimizer';
 import LinkBuildingSEO from '@/components/link-building-seo';
 import LocalBusinessSchema from '@/components/local-business-schema';
 import LocalCitationsSchema from '@/components/local-citations-schema';
-import Navigation from '@/components/navigation';
 import NeighborhoodHeatmap from '@/components/neighborhood-heatmap';
 import PreferenceCollector from '@/components/preference-collector';
 import RealScoutAnalytics from '@/components/realscout-analytics';
