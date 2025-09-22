@@ -93,13 +93,16 @@ export default function About() {
             '@context': 'https://schema.org',
             '@type': 'Person',
             name: 'Dr. Jan Duffy',
+            alternateName: 'Dr. Jan Duffy REALTOR',
             jobTitle: 'REALTOR®',
-            description: 'Top-rated Skye Canyon real estate specialist',
+            description: 'Top-rated Skye Canyon real estate specialist with 15+ years experience in Las Vegas luxury homes',
             telephone: '(702) 500-1902',
-            email: 'jan@skyecanyonhomesforsale.com',
+            email: 'DrDuffy@SkyeCanyonHomesForSale.com',
             url: 'https://skyecanyonhomesforsale.com/about',
+            image: 'https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg',
             address: {
               '@type': 'PostalAddress',
+              streetAddress: '10111 W. Skye Canyon Park Drive',
               addressLocality: 'Las Vegas',
               addressRegion: 'NV',
               postalCode: '89166',
@@ -110,6 +113,28 @@ export default function About() {
               name: 'Nevada Real Estate Division',
               identifier: 'S.0197614',
             },
+            hasOccupation: {
+              '@type': 'Occupation',
+              name: 'Real Estate Agent',
+              description: 'Specializes in luxury homes, golf course properties, and new construction in Skye Canyon, Las Vegas',
+              occupationLocation: {
+                '@type': 'Place',
+                name: 'Skye Canyon, Las Vegas, NV 89166'
+              }
+            },
+            knowsAbout: [
+              'Skye Canyon Real Estate',
+              'Luxury Homes Las Vegas',
+              'Golf Course Properties',
+              'New Construction',
+              'Guard Gated Communities',
+              'Desert Highlands Golf Course'
+            ],
+            award: [
+              'Top 1% Agent',
+              '98% Client Satisfaction',
+              '150+ Homes Sold'
+            ]
           })}
         </script>
 
@@ -170,8 +195,10 @@ export default function About() {
                   Your Trusted Skye Canyon Real Estate Expert
                 </p>
                 <p className="text-lg mb-8 text-gray-600 leading-relaxed">
-                  Providing comprehensive real estate services for Skye Canyon buyers, sellers, and
-                  investors with personalized attention and local market expertise.
+                  With over 15 years of exclusive focus on Skye Canyon and Northwest Las Vegas real estate, 
+                  Dr. Jan Duffy has built an unparalleled reputation for delivering exceptional results. 
+                  Licensed in Nevada (S.0197614), she combines deep local market knowledge with 
+                  cutting-edge technology to provide unmatched service to luxury home buyers and sellers.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a href="https://g.co/kgs/nbUf6Pj" target="_blank" rel="noopener noreferrer">
@@ -268,8 +295,16 @@ export default function About() {
               <CardContent className="p-8">
                 <div className="prose max-w-none">
                   <p className="text-lg leading-relaxed mb-6">
-                    Dr. Jan Duffy offers comprehensive real estate services for Skye Canyon clients,
-                    including buyer representation, listing services, investment property analysis,
+                    Dr. Jan Duffy brings over 15 years of exclusive expertise to Skye Canyon real estate, 
+                    having personally facilitated the sale of over 150 luxury properties in this premier 
+                    Las Vegas community. Her deep understanding of the local market dynamics, combined with 
+                    advanced technology tools and personalized service, has earned her recognition as one of 
+                    Nevada's top-performing real estate professionals.
+                  </p>
+                  <p className="text-lg leading-relaxed mb-6">
+                    Specializing in luxury homes, golf course properties, and new construction within 
+                    Skye Canyon's guard-gated communities, Dr. Duffy provides comprehensive services 
+                    including buyer representation, listing services, investment property analysis, 
                     and market consultation. Her approach combines detailed market research with
                     personalized client service to ensure optimal outcomes for every transaction.
                   </p>

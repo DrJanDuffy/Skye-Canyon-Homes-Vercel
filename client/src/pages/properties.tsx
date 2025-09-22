@@ -70,8 +70,8 @@ export default function Properties() {
           content="https://skyecanyonhomesforsale.com/dr-jan-duffy-headshot.jpg"
         />
 
-        <link rel="canonical" href="https://skyecanyonhomesforsale.com/properties" />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href={`https://skyecanyonhomesforsale.com/properties${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`} />
+        <meta name="robots" content={searchQuery && searchQuery.length < 3 ? "noindex, follow" : "index, follow, max-image-preview:large"} />
       </Helmet>
       <div className="min-h-screen bg-gray-50">
         <Navigation />
