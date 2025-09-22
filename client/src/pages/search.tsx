@@ -12,6 +12,7 @@ export default function Search() {
           content="Search for Skye Canyon homes and properties in Las Vegas, NV 89166. Expert assistance from Dr. Jan Duffy, your local Skye Canyon REALTOR®."
         />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/search" />
       </Helmet>
       
       <Navigation />

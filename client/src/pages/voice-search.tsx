@@ -26,6 +26,8 @@ export default function VoiceSearchPage() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://skyecanyonhomesforsale.com/voice-search" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/voice-search" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
 
       <Navigation />

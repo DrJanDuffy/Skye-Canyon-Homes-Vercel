@@ -16,6 +16,7 @@ import {
   Wifi,
 } from 'lucide-react';
 import { useParams } from 'wouter';
+import { Helmet } from 'react-helmet-async';
 import Footer from '@/components/footer';
 import Navigation from '@/components/navigation';
 import RealScoutListings from '@/components/realscout-listings';
@@ -91,8 +92,19 @@ export default function PropertyDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navigation />
+    <>
+      <Helmet>
+        <title>{property ? `${property.address} - Skye Canyon Property | Dr. Jan Duffy REALTOR®` : 'Property Details | Dr. Jan Duffy REALTOR®'}</title>
+        <meta
+          name="description"
+          content={property ? `View details for ${property.address} in Skye Canyon, Las Vegas. ${property.bedrooms} bed, ${property.bathrooms} bath home listed at ${formatPrice(property.price)}. Contact Dr. Jan Duffy for showings.` : 'View detailed information about this Skye Canyon property. Contact Dr. Jan Duffy for expert real estate assistance.'}
+        />
+        <link rel="canonical" href={`https://skyecanyonhomesforsale.com/property/${id}`} />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+      
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
 
       {/* Hero Image */}
       <div className="relative h-96 lg:h-[500px]">
@@ -325,7 +337,8 @@ export default function PropertyDetail() {
         </div>
       </section>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import type { Lead } from '@shared/schema';
 import { useQuery } from '@tanstack/react-query';
 import { Calendar, DollarSign, Mail, MessageSquare, Phone, TrendingUp, Users } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,7 +15,17 @@ interface LeadWithScore extends Lead {
 }
 
 export default function LeadDashboard() {
-  const { data: leads = [], isLoading } = useQuery<LeadWithScore[]>({
+  return (
+    <>
+      <Helmet>
+        <title>Lead Dashboard | Dr. Jan Duffy REALTOR®</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/lead-dashboard" />
+      </Helmet>
+      
+      <div>
+        {(() => {
+          const { data: leads = [], isLoading } = useQuery<LeadWithScore[]>({
     queryKey: ['/api/leads'],
   });
 
@@ -259,7 +270,9 @@ export default function LeadDashboard() {
             </Card>
           ))
         )}
+        </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

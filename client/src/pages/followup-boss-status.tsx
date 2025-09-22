@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AlertCircle, CheckCircle, RefreshCw, TestTube, XCircle } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -15,7 +16,17 @@ interface ValidationResult {
 }
 
 export default function FollowUpBossStatus() {
-  const queryClient = useQueryClient();
+  return (
+    <>
+      <Helmet>
+        <title>Follow Up Boss Status | Dr. Jan Duffy REALTOR®</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/followup-boss-status" />
+      </Helmet>
+      
+      <div>
+        {(() => {
+          const queryClient = useQueryClient();
 
   const {
     data: validation,
@@ -213,7 +224,9 @@ export default function FollowUpBossStatus() {
             automatically sent to your CRM.
           </AlertDescription>
         </Alert>
-      )}
-    </div>
+        )}
+      </div>
+      </div>
+    </>
   );
 }

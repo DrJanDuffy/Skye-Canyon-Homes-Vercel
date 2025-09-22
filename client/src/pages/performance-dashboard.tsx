@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Activity, AlertTriangle, Clock, Server, TrendingUp } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -20,7 +21,17 @@ interface SlowEndpoint {
 }
 
 export default function PerformanceDashboard() {
-  const { data: metrics, isLoading: metricsLoading } = useQuery<PerformanceMetrics>({
+  return (
+    <>
+      <Helmet>
+        <title>Performance Dashboard | Dr. Jan Duffy REALTOR®</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/performance-dashboard" />
+      </Helmet>
+      
+      <div>
+        {(() => {
+          const { data: metrics, isLoading: metricsLoading } = useQuery<PerformanceMetrics>({
     queryKey: ['/api/performance/metrics'],
     refetchInterval: 10000, // Refresh every 10 seconds
   });
@@ -274,7 +285,9 @@ export default function PerformanceDashboard() {
             </div>
           </div>
         </CardContent>
-      </Card>
-    </div>
+        </Card>
+      </div>
+      </div>
+    </>
   );
 }
