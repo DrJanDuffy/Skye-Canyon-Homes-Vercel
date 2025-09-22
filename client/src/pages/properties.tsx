@@ -11,7 +11,7 @@ import RealScoutListings from '@/components/realscout-listings';
 
 export default function Properties() {
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.search || '';
+  const searchQuery = searchParams?.search || '';
   return (
     <>
       <Helmet>
@@ -107,7 +107,7 @@ export default function Properties() {
                   Showing properties matching your search criteria
                 </p>
               </div>
-              <RealScoutListings className="w-full" variant="search" searchTerm={searchQuery} />
+              <RealScoutListings className="w-full" variant="all-properties" />
             </div>
           </section>
         )}

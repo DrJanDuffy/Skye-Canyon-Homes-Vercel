@@ -5,6 +5,11 @@ export function useSearchParams() {
   const [location] = useLocation();
   
   return useMemo(() => {
+    // Handle server-side rendering
+    if (typeof window === 'undefined') {
+      return {};
+    }
+    
     const urlParams = new URLSearchParams(window.location.search);
     const params: Record<string, string> = {};
     
