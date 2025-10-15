@@ -49,6 +49,24 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml",
+      "headers": {
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, max-age=86400"
+      }
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt",
+      "headers": {
+        "Content-Type": "text/plain",
+        "Cache-Control": "public, max-age=86400"
+      }
+    }
+  ],
   "routes": [
     {
       "src": "/sitemap.xml",

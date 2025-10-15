@@ -1,7 +1,8 @@
 # Google Search Console Setup Guide
 
 ## Current Status
-- **Domain**: skyecanyonhomesforsale.com (non-www)
+- **Domain**: skyecanyonhomesforsale.com (non-www) - but Vercel redirects to www
+- **Actual Domain**: www.skyecanyonhomesforsale.com (what Vercel serves)
 - **Sitemap**: Fixed with proper XML schema and current dates
 - **Verification**: Ready for Google verification code
 
@@ -29,7 +30,7 @@
 1. Go to [Google Search Console](https://search.google.com/search-console)
 2. Click "Add Property"
 3. Select "URL prefix"
-4. Enter: `https://skyecanyonhomesforsale.com`
+4. Enter: `https://www.skyecanyonhomesforsale.com` (since Vercel redirects to www)
 
 ### Step 2: Verify Ownership
 1. Choose "HTML tag" verification method
@@ -42,7 +43,7 @@
 
 ### Step 3: Submit Sitemap
 1. In Google Search Console, go to "Sitemaps"
-2. Add sitemap: `https://skyecanyonhomesforsale.com/sitemap.xml`
+2. Add sitemap: `https://www.skyecanyonhomesforsale.com/sitemap.xml`
 3. Click "Submit"
 
 ### Step 4: Request Indexing

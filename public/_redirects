@@ -1,6 +1,10 @@
 # Netlify/Vercel redirect rules for single page application
 /*    /index.html   200
 
+# Exclude sitemap and robots from SPA routing
+/sitemap.xml    /sitemap.xml   200
+/robots.txt     /robots.txt    200
+
 # Force HTTPS redirects
 http://skyecanyonhomesforsale.com/*  https://skyecanyonhomesforsale.com/:splat  301!
 http://www.skyecanyonhomesforsale.com/*  https://skyecanyonhomesforsale.com/:splat  301!
