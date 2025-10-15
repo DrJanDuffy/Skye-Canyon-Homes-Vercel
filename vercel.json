@@ -3,6 +3,22 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
+  "routes": [
+    {
+      "src": "/sitemap\\.xml",
+      "dest": "/sitemap.xml",
+      "headers": {
+        "Content-Type": "application/xml"
+      }
+    },
+    {
+      "src": "/robots\\.txt",
+      "dest": "/robots.txt",
+      "headers": {
+        "Content-Type": "text/plain"
+      }
+    }
+  ],
   "redirects": [
     {
       "source": "/:path*",
