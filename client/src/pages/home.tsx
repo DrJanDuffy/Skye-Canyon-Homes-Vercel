@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import Navigation from '@/components/navigation';
 import AgentBio from '@/components/agent-bio';
 import AISearchAssistant from '@/components/ai-search-assistant';
 import AuthenticPropertyListings from '@/components/authentic-property-listings';
