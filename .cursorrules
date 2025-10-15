@@ -1,9 +1,57 @@
-# Skye Canyon Real Estate Website - Cursor AI Rules
+# .cursorrules - Real Estate Website Build Instructions
+
+## Project Overview
+Build a high-performance, SEO-optimized real estate website for Dr. Jan Duffy, Las Vegas Real Estate Expert. The site must rank well on Google and provide excellent user experience.
+
+## Tech Stack (REQUIRED)
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript (strict mode enabled)
+- **Styling**: Tailwind CSS
+- **Database**: PostgreSQL with Prisma ORM
+- **Deployment**: Vercel
+- **Analytics**: Google Analytics 4 + Google Search Console integration
+- **CMS**: Sanity.io or Contentful for blog/property listings
+
+## Core Principles
+1. **SEO-First**: Every page must be fully server-side rendered with complete metadata
+2. **Performance**: Target Core Web Vitals - LCP < 2.5s, FID < 100ms, CLS < 0.1
+3. **Mobile-First**: Design for mobile, scale up to desktop
+4. **Accessibility**: WCAG 2.1 AA compliance minimum
+5. **Speed**: Optimize everything - images, fonts, scripts
+
+## Code Style Requirements
+
+### TypeScript Rules
+- Use TypeScript for ALL code
+- Enable strict mode in tsconfig.json
+- Prefer interfaces over types
+- Avoid using `any` - use `unknown` if type is uncertain
+- Use proper type annotations for all functions
+- Use functional programming patterns, avoid classes
+
+### Component Structure
+```typescript
+interface ComponentProps {
+  title: string;
+  description?: string;
+  children?: React.ReactNode;
+}
+
+export default function Component({ title, description, children }: ComponentProps) {
+  return (
+    <div className="component-wrapper">
+      <h1>{title}</h1>
+      {description && <p>{description}</p>}
+      {children}
+    </div>
+  );
+}
+```
 
 ## Project Context
 This is a comprehensive real estate website for Dr. Jan Duffy, specializing in Skye Canyon Las Vegas properties (89166). The site features property listings, home valuations, market analysis, and lead generation.
 
-## Tech Stack
+## Legacy Tech Stack (Current)
 - Frontend: React 18 + TypeScript + Vite
 - Backend: Express + TypeScript + PostgreSQL
 - UI: Tailwind CSS + Shadcn/ui components
@@ -163,8 +211,80 @@ app.get('/api/endpoint', async (req, res) => {
 });
 ```
 
+## Next.js 15 App Router Requirements
+
+### File Structure
+```
+app/
+├── (marketing)/
+│   ├── page.tsx          # Homepage
+│   ├── about/
+│   │   └── page.tsx
+│   ├── contact/
+│   │   └── page.tsx
+│   └── layout.tsx
+├── (dashboard)/
+│   ├── admin/
+│   │   └── page.tsx
+│   └── layout.tsx
+├── api/
+│   ├── properties/
+│   │   └── route.ts
+│   └── leads/
+│       └── route.ts
+├── globals.css
+├── layout.tsx            # Root layout
+└── page.tsx              # Root page
+```
+
+### SEO Requirements
+- Use `generateMetadata()` for dynamic metadata
+- Implement structured data (JSON-LD)
+- Use `next/image` for all images
+- Implement proper canonical URLs
+- Use `next/font` for font optimization
+
+### Performance Requirements
+- Use `next/dynamic` for code splitting
+- Implement proper loading states
+- Use `Suspense` boundaries
+- Optimize images with proper alt text
+- Use `next/link` for internal navigation
+
+### Database Schema (Prisma)
+```prisma
+model Property {
+  id          String   @id @default(cuid())
+  address     String
+  price       Decimal
+  bedrooms    Int
+  bathrooms   Int
+  sqft        Int
+  images      String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  name        String
+  email       String   @unique
+  phone       String?
+  message     String?
+  createdAt   DateTime @default(now())
+}
+```
+
+## Migration Strategy
+1. **Phase 1**: Keep current Vite + React setup running
+2. **Phase 2**: Create new Next.js 15 project in parallel
+3. **Phase 3**: Migrate components one by one
+4. **Phase 4**: Set up Prisma database
+5. **Phase 5**: Deploy Next.js version and switch DNS
+
 ## Debugging
 - Use console.log sparingly, prefer proper error handling
 - Check network requests in browser dev tools
 - Verify environment variables are set correctly
 - Test responsive design on multiple screen sizes
+- Use Next.js built-in performance monitoring

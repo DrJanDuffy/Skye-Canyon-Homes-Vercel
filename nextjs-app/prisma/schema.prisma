@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id          String   @id @default(cuid())
+  address     String
+  price       Decimal
+  bedrooms    Int
+  bathrooms   Int
+  sqft        Int
+  images      String[]
+  description String?
+  features    String[]
+  status      String   @default("active") // active, sold, pending
+  mlsNumber   String?
+  yearBuilt   Int?
+  lotSize     String?
+  propertyType String  @default("single-family")
+  garage      Int?
+  pool        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("properties")
+}
+
+model Lead {
+  id          String   @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String   @unique
+  phone       String?
+  message     String?
+  source      String   @default("website") // website, referral, etc.
+  status      String   @default("new") // new, contacted, qualified, converted
+  priceRange  String?
+  timeframe   String?
+  propertyType String?
+  location    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("leads")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      String   @default("agent") // agent, admin
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model MarketStats {
+  id                String   @id @default(cuid())
+  area              String   // "Skye Canyon", "89166", etc.
+  medianPrice       Decimal
+  avgPricePerSqft   Decimal
+  daysOnMarket      Int
+  totalListings     Int
+  newListings       Int
+  soldListings      Int
+  priceChange       Decimal  // % change from previous period
+  period            String   // "monthly", "quarterly", "yearly"
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@map("market_stats")
+}

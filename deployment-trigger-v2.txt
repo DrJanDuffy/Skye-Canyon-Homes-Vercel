@@ -1,0 +1,3 @@
+Deployment triggered at 2025-01-15T23:15:00Z
+Next.js 15 upgrade in progress
+Current Vite app needs cache refresh
