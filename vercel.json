@@ -64,10 +64,6 @@
       "dest": "/robots.txt"
     },
     {
-      "src": "/test.txt",
-      "dest": "/test.txt"
-    },
-    {
       "src": "/assets/(.*)",
       "dest": "/assets/$1",
       "headers": {
