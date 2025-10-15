@@ -107,30 +107,146 @@ app.get('/api/realscout/onboarding', (req, res) => {
 
 // SEO endpoints
 app.get('/sitemap.xml', (req, res) => {
+  console.log('🎯 SITEMAP ROUTE HIT!', req.url);
   res.setHeader('Content-Type', 'application/xml');
-  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
   
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>https://skyecanyonhomesforsale.com/</loc>
+    <loc>https://www.skyecanyonhomesforsale.com/</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://skyecanyonhomesforsale.com/properties</loc>
+    <loc>https://www.skyecanyonhomesforsale.com/about</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/contact</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/properties</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://skyecanyonhomesforsale.com/about</loc>
+    <loc>https://www.skyecanyonhomesforsale.com/voice-search</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/northwest-las-vegas</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/las-vegas-real-estate</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/luxury-homes-las-vegas</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/skye-canyon-guide</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/skye-canyon-schools</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://skyecanyonhomesforsale.com/contact</loc>
+    <loc>https://www.skyecanyonhomesforsale.com/skye-canyon-parks</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/skye-canyon-communities</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/market-analysis</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/neighborhood-analysis</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/services/buyer-agent</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/services/first-time-buyer</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/services/luxury-properties</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/services/new-construction</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/services/seller-agent</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/services/relocation</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/privacy-policy</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.skyecanyonhomesforsale.com/terms-of-service</loc>
+    <lastmod>2025-01-15T20:00:00Z</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>`;
   
