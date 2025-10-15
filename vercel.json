@@ -59,7 +59,7 @@
   ],
   "routes": [
     {
-      "src": "/sitemap-new\\.xml",
+      "src": "/google-sitemap\\.xml",
       "dest": "/api/sitemap-generator"
     },
     {
