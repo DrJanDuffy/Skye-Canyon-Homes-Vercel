@@ -150,7 +150,7 @@ export default function EnhancedSEOMetadata({
       </script>
 
       {/* Google Search Console */}
-      <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+      <meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE_NEEDED" />
 
       {/* Additional Rich Snippets */}
       <script type="application/ld+json">

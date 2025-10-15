@@ -4,7 +4,7 @@ export default function GoogleSearchConsole() {
   return (
     <Helmet>
       {/* Google Search Console Verification */}
-      <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+      <meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE_NEEDED" />
 
       {/* Search Console Structured Data */}
       <script type="application/ld+json">

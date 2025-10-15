@@ -36,6 +36,14 @@ export function generateSitemap(): string {
     { loc: '/market-analysis', changefreq: 'weekly', priority: 0.8 },
     { loc: '/neighborhood-analysis', changefreq: 'weekly', priority: 0.7 },
 
+    // Service pages
+    { loc: '/services/buyer-agent', changefreq: 'monthly', priority: 0.8 },
+    { loc: '/services/first-time-buyer', changefreq: 'monthly', priority: 0.8 },
+    { loc: '/services/luxury-properties', changefreq: 'monthly', priority: 0.8 },
+    { loc: '/services/new-construction', changefreq: 'monthly', priority: 0.8 },
+    { loc: '/services/seller-agent', changefreq: 'monthly', priority: 0.8 },
+    { loc: '/services/relocation', changefreq: 'monthly', priority: 0.7 },
+
     // Legal pages
     { loc: '/privacy-policy', changefreq: 'yearly', priority: 0.3 },
     { loc: '/terms-of-service', changefreq: 'yearly', priority: 0.3 },
