@@ -16,17 +16,7 @@ interface ValidationResult {
 }
 
 export default function FollowUpBossStatus() {
-  return (
-    <>
-      <Helmet>
-        <title>Follow Up Boss Status | Dr. Jan Duffy REALTOR®</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://skyecanyonhomesforsale.com/followup-boss-status" />
-      </Helmet>
-      
-      <div>
-        {(() => {
-          const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const {
     data: validation,
@@ -82,148 +72,155 @@ export default function FollowUpBossStatus() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Follow Up Boss Integration Status</h1>
-        <p className="text-gray-600">Monitor and manage your CRM API connection</p>
-      </div>
+    <>
+      <Helmet>
+        <title>Follow Up Boss Status | Dr. Jan Duffy REALTOR®</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://skyecanyonhomesforsale.com/followup-boss-status" />
+      </Helmet>
+      
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Follow Up Boss Integration Status</h1>
+          <p className="text-gray-600">Monitor and manage your CRM API connection</p>
+        </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              {getStatusIcon(validation?.status)}
-              API Connection Status
-            </CardTitle>
-            <CardDescription>Current status of your Follow Up Boss API integration</CardDescription>
-          </CardHeader>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                {getStatusIcon(validation?.status)}
+                API Connection Status
+              </CardTitle>
+              <CardDescription>Current status of your Follow Up Boss API integration</CardDescription>
+            </CardHeader>
 
-          <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="font-medium">Connection Status:</span>
-              <Badge variant={getStatusColor(validation?.status)}>
-                {validation?.status || 'Unknown'}
-              </Badge>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <span className="font-medium">API Valid:</span>
-              <Badge variant={validation?.isValid ? 'default' : 'destructive'}>
-                {validation?.isValid ? 'Yes' : 'No'}
-              </Badge>
-            </div>
-
-            <Separator />
-
-            <div>
-              <p className="font-medium mb-2">Status Message:</p>
-              <p className="text-sm text-gray-600">{validation?.message}</p>
-            </div>
-
-            {validation?.errorDetails && (
-              <div>
-                <p className="font-medium mb-2">Error Details:</p>
-                <pre className="text-xs bg-gray-100 p-2 rounded overflow-auto">
-                  {typeof validation.errorDetails === 'string'
-                    ? validation.errorDetails
-                    : JSON.stringify(validation.errorDetails, null, 2)}
-                </pre>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="font-medium">Connection Status:</span>
+                <Badge variant={getStatusColor(validation?.status)}>
+                  {validation?.status || 'Unknown'}
+                </Badge>
               </div>
-            )}
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Actions & Testing</CardTitle>
-            <CardDescription>
-              Test your API connection and perform maintenance tasks
-            </CardDescription>
-          </CardHeader>
+              <div className="flex items-center justify-between">
+                <span className="font-medium">API Valid:</span>
+                <Badge variant={validation?.isValid ? 'default' : 'destructive'}>
+                  {validation?.isValid ? 'Yes' : 'No'}
+                </Badge>
+              </div>
 
-          <CardContent className="space-y-4">
-            <Button
-              onClick={() =>
-                queryClient.invalidateQueries({ queryKey: ['/api/followup-boss/validate'] })
-              }
-              variant="outline"
-              className="w-full"
-            >
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Refresh Status
-            </Button>
+              <Separator />
 
-            <Button
-              onClick={() => testMutation.mutate()}
-              disabled={testMutation.isPending || validation?.status !== 'active'}
-              className="w-full"
-            >
-              <TestTube className="h-4 w-4 mr-2" />
-              {testMutation.isPending ? 'Testing...' : 'Test API Connection'}
-            </Button>
+              <div>
+                <p className="font-medium mb-2">Status Message:</p>
+                <p className="text-sm text-gray-600">{validation?.message}</p>
+              </div>
 
-            {testMutation.isSuccess && (
-              <Alert>
-                <CheckCircle className="h-4 w-4" />
-                <AlertTitle>Test Successful</AlertTitle>
-                <AlertDescription>
-                  API connection test completed successfully. Lead integration is working.
-                </AlertDescription>
-              </Alert>
-            )}
+              {validation?.errorDetails && (
+                <div>
+                  <p className="font-medium mb-2">Error Details:</p>
+                  <pre className="text-xs bg-gray-100 p-2 rounded overflow-auto">
+                    {typeof validation.errorDetails === 'string'
+                      ? validation.errorDetails
+                      : JSON.stringify(validation.errorDetails, null, 2)}
+                  </pre>
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
-            {testMutation.isError && (
-              <Alert variant="destructive">
-                <XCircle className="h-4 w-4" />
-                <AlertTitle>Test Failed</AlertTitle>
-                <AlertDescription>
-                  API test failed. Please check your API key and try again.
-                </AlertDescription>
-              </Alert>
-            )}
-          </CardContent>
-        </Card>
-      </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Actions & Testing</CardTitle>
+              <CardDescription>
+                Test your API connection and perform maintenance tasks
+              </CardDescription>
+            </CardHeader>
 
-      {validation?.status === 'expired' && (
-        <Alert className="mt-6" variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>API Key Expired</AlertTitle>
-          <AlertDescription>
-            Your Follow Up Boss API key has expired. Please generate a new API key from your Follow
-            Up Boss account:
-            <br />
-            1. Log into Follow Up Boss
-            <br />
-            2. Go to Settings → Integrations → API
-            <br />
-            3. Generate a new API key
-            <br />
-            4. Update your secrets in Replit
-          </AlertDescription>
-        </Alert>
-      )}
+            <CardContent className="space-y-4">
+              <Button
+                onClick={() =>
+                  queryClient.invalidateQueries({ queryKey: ['/api/followup-boss/validate'] })
+                }
+                variant="outline"
+                className="w-full"
+              >
+                <RefreshCw className="h-4 w-4 mr-2" />
+                Refresh Status
+              </Button>
 
-      {validation?.status === 'missing_key' && (
-        <Alert className="mt-6">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>API Key Not Configured</AlertTitle>
-          <AlertDescription>
-            Follow Up Boss API key is not configured. Please add your API key to enable lead
-            management integration.
-          </AlertDescription>
-        </Alert>
-      )}
+              <Button
+                onClick={() => testMutation.mutate()}
+                disabled={testMutation.isPending || validation?.status !== 'active'}
+                className="w-full"
+              >
+                <TestTube className="h-4 w-4 mr-2" />
+                {testMutation.isPending ? 'Testing...' : 'Test API Connection'}
+              </Button>
 
-      {validation?.status === 'active' && (
-        <Alert className="mt-6">
-          <CheckCircle className="h-4 w-4" />
-          <AlertTitle>Integration Active</AlertTitle>
-          <AlertDescription>
-            Your Follow Up Boss integration is working properly. All leads from your website will be
-            automatically sent to your CRM.
-          </AlertDescription>
-        </Alert>
+              {testMutation.isSuccess && (
+                <Alert>
+                  <CheckCircle className="h-4 w-4" />
+                  <AlertTitle>Test Successful</AlertTitle>
+                  <AlertDescription>
+                    API connection test completed successfully. Lead integration is working.
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {testMutation.isError && (
+                <Alert variant="destructive">
+                  <XCircle className="h-4 w-4" />
+                  <AlertTitle>Test Failed</AlertTitle>
+                  <AlertDescription>
+                    API test failed. Please check your API key and try again.
+                  </AlertDescription>
+                </Alert>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        {validation?.status === 'expired' && (
+          <Alert className="mt-6" variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>API Key Expired</AlertTitle>
+            <AlertDescription>
+              Your Follow Up Boss API key has expired. Please generate a new API key from your Follow
+              Up Boss account:
+              <br />
+              1. Log into Follow Up Boss
+              <br />
+              2. Go to Settings → Integrations → API
+              <br />
+              3. Generate a new API key
+              <br />
+              4. Update your secrets in Replit
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {validation?.status === 'missing_key' && (
+          <Alert className="mt-6">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>API Key Not Configured</AlertTitle>
+            <AlertDescription>
+              Follow Up Boss API key is not configured. Please add your API key to enable lead
+              management integration.
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {validation?.status === 'active' && (
+          <Alert className="mt-6">
+            <CheckCircle className="h-4 w-4" />
+            <AlertTitle>Integration Active</AlertTitle>
+            <AlertDescription>
+              Your Follow Up Boss integration is working properly. All leads from your website will be
+              automatically sent to your CRM.
+            </AlertDescription>
+          </Alert>
         )}
       </div>
     </>

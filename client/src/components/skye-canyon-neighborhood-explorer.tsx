@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Search, MapPin, Clock, Phone, Globe, Car, ArrowLeft, ExpandMore } from 'lucide-react';
+import { Search, MapPin, Clock, Phone, Globe, Car, ArrowLeft, ChevronDown } from 'lucide-react';
 
 interface Place {
   placeId: string;
@@ -419,7 +419,7 @@ export default function SkyeCanyonNeighborhoodExplorer({ className = '' }: Neigh
                       className="flex items-center"
                     >
                       {showMorePlaces ? 'Show Less' : 'Show More'}
-                      <ExpandMore className={`w-4 h-4 ml-2 transition-transform ${showMorePlaces ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${showMorePlaces ? 'rotate-180' : ''}`} />
                     </Button>
                   </div>
                 )}

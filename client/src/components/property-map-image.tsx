@@ -109,10 +109,9 @@ export default function PropertyMapImage({
         <img
           src={mapUrl}
           alt={`Map showing location of ${property.address}`}
-          className="w-full h-full object-cover"
+          className={`w-full h-full object-cover ${interactive ? 'cursor-pointer' : 'cursor-default'}`}
           loading="lazy"
           onClick={interactive ? onMapClick : undefined}
-          className={interactive ? 'cursor-pointer' : 'cursor-default'}
         />
         
         {/* Overlay for interactive maps */}
