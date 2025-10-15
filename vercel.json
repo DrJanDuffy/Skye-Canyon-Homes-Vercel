@@ -45,7 +45,12 @@
           "value": "http"
         }
       ],
-      "destination": "https://skyecanyonhomesforsale.com/:path*",
+      "destination": "https://www.skyecanyonhomesforsale.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://skyecanyonhomesforsale.com/:path*",
+      "destination": "https://www.skyecanyonhomesforsale.com/:path*",
       "permanent": true
     }
   ],

@@ -1,8 +1,8 @@
 # Google Search Console Setup Guide
 
 ## Current Status
-- **Domain**: skyecanyonhomesforsale.com (non-www) - but Vercel redirects to www
-- **Actual Domain**: www.skyecanyonhomesforsale.com (what Vercel serves)
+- **Primary Domain**: www.skyecanyonhomesforsale.com (main site)
+- **Redirect Domain**: skyecanyonhomesforsale.com (redirects to www)
 - **Sitemap**: Fixed with proper XML schema and current dates
 - **Verification**: Ready for Google verification code
 
@@ -49,17 +49,17 @@
 ### Step 4: Request Indexing
 1. Go to "URL Inspection" tool
 2. Enter key pages like:
-   - `https://skyecanyonhomesforsale.com/`
-   - `https://skyecanyonhomesforsale.com/properties`
-   - `https://skyecanyonhomesforsale.com/about`
+   - `https://www.skyecanyonhomesforsale.com/`
+   - `https://www.skyecanyonhomesforsale.com/properties`
+   - `https://www.skyecanyonhomesforsale.com/about`
 3. Click "Request Indexing" for each
 
 ## Domain Configuration Notes
 
 ### WWW vs Non-WWW
-- **Current Setup**: Non-www (`skyecanyonhomesforsale.com`)
-- **Redirects**: All www traffic redirects to non-www (configured in `public/_redirects`)
-- **Recommendation**: Stick with non-www for Google Search Console
+- **Primary Setup**: WWW (`www.skyecanyonhomesforsale.com`)
+- **Redirects**: All non-www traffic redirects to www (configured in `vercel.json`)
+- **Recommendation**: Use www version for Google Search Console
 
 ### Vercel Configuration
 - Updated `vercel.json` to properly serve sitemap.xml with correct content-type
