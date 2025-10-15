@@ -57,10 +57,7 @@
   "routes": [
     {
       "src": "/sitemap\\.xml",
-      "dest": "/sitemap.xml",
-      "headers": {
-        "Content-Type": "application/xml"
-      }
+      "dest": "/api/sitemap.js"
     },
     {
       "src": "/robots\\.txt",
