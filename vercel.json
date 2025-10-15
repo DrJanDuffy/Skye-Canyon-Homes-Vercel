@@ -3,15 +3,13 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
-  "functions": {
-    "api/sitemap.js": {
-      "maxDuration": 10
-    }
-  },
   "routes": [
     {
       "src": "/sitemap\\.xml",
-      "dest": "/api/sitemap"
+      "dest": "/sitemap.xml",
+      "headers": {
+        "Content-Type": "application/xml"
+      }
     },
     {
       "src": "/robots\\.txt",
