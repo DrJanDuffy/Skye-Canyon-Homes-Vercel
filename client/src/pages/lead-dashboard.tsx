@@ -270,9 +270,7 @@ export default function LeadDashboard() {
             </Card>
           ))
         )}
-        </div>
       </div>
-      </div>
-    </>
+    </div>
   );
 }

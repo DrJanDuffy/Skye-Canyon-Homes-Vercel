@@ -226,7 +226,6 @@ export default function FollowUpBossStatus() {
         </Alert>
         )}
       </div>
-      </div>
     </>
   );
 }

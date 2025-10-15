@@ -87,3 +87,4 @@ package-lock.json
 
 # Git merge artifacts
 *.orig
+.vercel

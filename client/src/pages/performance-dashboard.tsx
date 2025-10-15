@@ -287,7 +287,7 @@ export default function PerformanceDashboard() {
         </CardContent>
         </Card>
       </div>
-      </div>
+    </div>
     </>
   );
 }
