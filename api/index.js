@@ -264,8 +264,12 @@ Sitemap: https://skyecanyonhomesforsale.com/sitemap.xml`;
   res.send(robots);
 });
 
-// All other routes serve the React app
+// All other routes serve the React app (except sitemap and robots)
 app.get('*', (req, res) => {
+  // Skip serving React app for sitemap and robots
+  if (req.path === '/sitemap.xml' || req.path === '/robots.txt') {
+    return res.status(404).send('Not found');
+  }
   res.sendFile(path.join(__dirname, '../dist/public/index.html'));
 });
 
