@@ -14,7 +14,8 @@
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "check:all": "biome check .",
-    "check:fix": "biome check --write ."
+    "check:fix": "biome check --write .",
+    "deploy": "echo 'Savant deployment trigger - forcing Vercel deployment'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
